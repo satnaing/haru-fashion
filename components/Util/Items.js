@@ -1,0 +1,130 @@
+const Items = [
+  {
+    img1: "/items/minimalist-img-3-364x492.jpg",
+    img2: "/items/minimalist-img-31-364x492.jpg",
+    name: "Oversized check overshirt",
+    price: 546,
+  },
+  {
+    img1: "/items/minimalist-img-12-364x492.jpg",
+    img2: "/items/minimalist-img-121-364x492.jpg",
+    name: "Long sleeve checked shirt",
+    price: 96,
+  },
+  {
+    img1: "/items/minimalist-img-3-364x492.jpg",
+    img2: "/items/minimalist-img-31-364x492.jpg",
+    name: "Oversizeds check overshirt",
+    price: 240,
+  },
+  {
+    img1: "/items/minimalist-img-1-364x492.jpg",
+    img2: "/items/minimalist-img-11-364x492.jpg",
+    name: "Ripped midi skirt",
+    price: 256,
+  },
+  {
+    img1: "/items/minimalist-img-13-364x492.jpg",
+    img2: "/items/minimalist-img-131-364x492.jpg",
+    name: "Joggers with mesh detail",
+    price: 146,
+  },
+  {
+    img1: "/items/minimalist-img-15-364x492.jpg",
+    img2: "/items/minimalist-img-151-364x492.jpg",
+    name: "Zebra print midi skirt",
+    price: 106,
+  },
+  {
+    img1: "/items/minimalist-img-9-364x492.jpg",
+    img2: "/items/minimalist-img-91-364x492.jpg",
+    name: "Flared ribbed trousers",
+    price: 246,
+  },
+  {
+    img1: "/items/minimalist-img-8-364x492.jpg",
+    img2: "/items/minimalist-img-81-364x492.jpg",
+    name: "Floral midi skirt",
+    price: 516,
+  },
+  {
+    img1: "/items/minimalist-img-5-364x492.jpg",
+    img2: "/items/minimalist-img-51-364x492.jpg",
+    name: "Quilted bomber jacket",
+    price: 99,
+  },
+  {
+    img1: "/items/minimalist-img-6-364x492.jpg",
+    img2: "/items/minimalist-img-61-364x492.jpg",
+    name: "Faux suede bomber jacket",
+    price: 116,
+  },
+  // {
+  //   img1: "/items/minimalist-img-15-364x492.jpg",
+  //   img2: "/items/minimalist-img-151-364x492.jpg",
+  //   name: "Zebra print midi skirt",
+  //   price: 106,
+  // },
+  {
+    img1: "/items/minimalist-img-3-364x492.jpg",
+    img2: "/items/minimalist-img-31-364x492.jpg",
+    name: "Oversizede check overshirt",
+    price: 546,
+  },
+  {
+    img1: "/items/minimalist-img-12-364x492.jpg",
+    img2: "/items/minimalist-img-121-364x492.jpg",
+    name: "Long sleeve checked shirt",
+    price: 96,
+  },
+  {
+    img1: "/items/minimalist-img-3-364x492.jpg",
+    img2: "/items/minimalist-img-31-364x492.jpg",
+    name: "Oversizedf check overshirt",
+    price: 240,
+  },
+  {
+    img1: "/items/minimalist-img-1-364x492.jpg",
+    img2: "/items/minimalist-img-11-364x492.jpg",
+    name: "Ripped midi skirt",
+    price: 256,
+  },
+  {
+    img1: "/items/minimalist-img-13-364x492.jpg",
+    img2: "/items/minimalist-img-131-364x492.jpg",
+    name: "Joggers with mesh detail",
+    price: 146,
+  },
+  {
+    img1: "/items/minimalist-img-15-364x492.jpg",
+    img2: "/items/minimalist-img-151-364x492.jpg",
+    name: "Zebra print midi skirt",
+    price: 106,
+  },
+  {
+    img1: "/items/minimalist-img-9-364x492.jpg",
+    img2: "/items/minimalist-img-91-364x492.jpg",
+    name: "Flared ribbed trousers",
+    price: 246,
+  },
+  {
+    img1: "/items/minimalist-img-8-364x492.jpg",
+    img2: "/items/minimalist-img-81-364x492.jpg",
+    name: "Floral midi skirt",
+    price: 516,
+  },
+  {
+    img1: "/items/minimalist-img-5-364x492.jpg",
+    img2: "/items/minimalist-img-51-364x492.jpg",
+    name: "Quilted bomber jacket",
+    price: 99,
+  },
+  {
+    img1: "/items/minimalist-img-6-364x492.jpg",
+    img2: "/items/minimalist-img-61-364x492.jpg",
+    name: "Faux suede bomber jacket",
+    price: 223,
+  },
+];
+
+export default Items;

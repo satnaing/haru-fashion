@@ -1,0 +1,48 @@
+.cardContainer {
+  @apply mx-auto;
+  /* my-6 */
+}
+
+.imageContainer {
+  @apply relative overflow-hidden mb-2;
+}
+
+.firstImage {
+  min-width: 200px;
+  @apply w-full h-full absolute top-0 left-0 transition-opacity;
+}
+/* w-60 */
+.secondImage {
+  min-width: 200px;
+  @apply w-full h-full transition-transform;
+}
+
+.itemName {
+  @apply block no-underline text-gray500 mb-1;
+}
+
+.cardContainer:hover .firstImage {
+  @apply opacity-0;
+}
+
+.cardContainer:hover .secondImage {
+  @apply transition-transform transform scale-110 duration-1000;
+  /* transform: scale(1.2, 1.2);
+  transition: transform 1.5s; */
+}
+
+.addBtn {
+  @apply text-gray500 text-center no-underline absolute z-30 bg-white bottom-3 left-1/2 p-3 w-4/5 inline-block transform -translate-x-1/2 translate-y-28 transition-transform duration-700;
+}
+
+.addBtn:hover {
+  @apply bg-gray500 text-gray100;
+}
+
+.cardContainer:hover .addBtn {
+  transform: translate(-50%, -20%);
+}
+
+.wishlist {
+  @apply text-gray500 bg-white absolute top-3 right-4 px-2 py-1 hover:bg-gray500 hover:text-white;
+}

@@ -1,0 +1,20 @@
+.footerHead {
+  @apply text-gray400 text-lg mb-3;
+}
+
+.column {
+  @apply flex flex-col;
+}
+
+.column a,
+.column span {
+  @apply py-2;
+}
+
+.bottomFooter {
+  @apply border-2 py-1 text-xs border-gray200 flex justify-between text-gray400;
+}
+
+.bottomFooter a {
+  @apply ml-4;
+}
