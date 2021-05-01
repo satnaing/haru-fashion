@@ -1,19 +1,19 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import HeroSection from "../components/HeroSection";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import GhostButton from "../components/Buttons/GhostButton";
 import Button from "../components/Buttons/Button";
 import TextButton from "../components/Buttons/TextButton";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
 import Slideshow from "../components/HeroSection/Slideshow";
 import Image from "next/image";
-import OverlayContainer from "../components/Util/OverlayContainer";
-import Card from "../components/Card";
+import OverlayContainer from "../components/OverlayContainer/OverlayContainer";
+import Card from "../components/Card/Card";
 import Card3 from "../components/Card/Card3";
 import Card5 from "../components/Card/Card5";
-import TestiSlider from "../components/TestiSlider";
+import TestiSlider from "../components/TestiSlider/TestiSlider";
 import { default as featuredItems } from "../components/Util/Items";
 import { useState } from "react";
 

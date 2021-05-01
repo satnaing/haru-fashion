@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useEffect, useState } from "react";
 import UserIcon from "../../public/icons/UserIcon";
 import Button from "../Buttons/Button";
-import Input from "../Input";
+import Input from "../Input/Input";
 
 export default function LoginForm() {
   const [open, setOpen] = useState(false);
@@ -106,7 +106,7 @@ export default function LoginForm() {
                       <label htmlFor="remember">Remember me?</label>
                     </div>
                     <a
-                      href="#"
+                      href="www.example.com"
                       className="text-gray400 hover:text-gray500 focus:outline-none focus:text-gray500"
                     >
                       Forgot your password?
@@ -115,12 +115,12 @@ export default function LoginForm() {
                   <Button
                     value="Log in"
                     extraClass="w-full text-center text-xl mb-4"
-                    size="large"
+                    size="lg"
                   />
                   <div className="text-center text-gray400">
                     Not a member?{" "}
                     <a
-                      href="#"
+                      href="www.example.com"
                       className="text-gray500 focus:outline-none focus:underline"
                     >
                       Register

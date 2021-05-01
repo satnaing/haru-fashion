@@ -2,23 +2,42 @@ import { FC } from "react";
 
 type Props = {
   extraClass?: string;
-  size?: "small" | "large";
+  size?: "sm" | "lg" | "xl";
   value: string;
+  inverted?: true;
+  noBorder?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const Button: FC<Props> = ({ extraClass, size = "small", value }) => (
-  <div
-    className={`${extraClass} cursor-pointer border-2 border-gray500 inline-block bg-gray500 hover:bg-gray400 hover:border-gray400`}
-  >
+const GhostButton: FC<Props> = ({
+  size = "sm",
+  value,
+  extraClass,
+  inverted = false,
+  noBorder = false,
+  onClick,
+  children,
+}) => {
+  let btnSize = "";
+  if (size === "sm") {
+    btnSize = "py-1 px-5";
+  } else if (size === "lg") {
+    btnSize = "py-2 px-6";
+  } else {
+    btnSize = "py-3 px-7 text-xl";
+  }
+  return (
     <button
-      type="button"
-      className={`no-underline inline-block text-gray100 focus:outline-none focus:text-gray300 tracking-widest ${
-        size === "small" ? "py-1 px-5" : "py-2 px-6"
-      }`}
+      onClick={onClick}
+      className={`focus:outline-none ${
+        noBorder ? "" : "border border-gray500"
+      } ${btnSize} ${
+        inverted ? "hover:text-gray100 hover:bg-gray500" : "hover:text-gray400"
+      } ${extraClass}`}
     >
-      {value}
+      {value} <span className="ml-1">{children}</span>
     </button>
-  </div>
-);
+  );
+};
 
-export default Button;
+export default GhostButton;

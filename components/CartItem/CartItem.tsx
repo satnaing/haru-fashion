@@ -1,10 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useRef, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import BagIcon from "../../public/icons/BagIcon";
-import UserIcon from "../../public/icons/UserIcon";
 import Button from "../Buttons/Button";
 import GhostButton from "../Buttons/GhostButton";
-import Input from "../Input";
 import Item from "./Item";
 
 const items = [
@@ -80,13 +78,14 @@ export default function CartItem() {
               enter="ease-linear duration-600"
               enterFrom="-translate-y-full"
               enterTo="translate-y-0"
-              //   enterFrom="translate-x-full"
-              //   enterTo="translate-x-0"
               leave="ease-linear duration-300"
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <div className="relative inline-block dur h-screen w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+              <div
+                style={{ height: "100vh" }}
+                className="relative inline-block dur h-screen w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl"
+              >
                 <div className="bg-lightgreen flex justify-between p-6">
                   <h3 className="text-xl">Cart (3)</h3>
                   <button
@@ -125,7 +124,7 @@ export default function CartItem() {
                     <Button
                       value="Checkout"
                       extraClass="text-center"
-                      size="large"
+                      size="lg"
                     />
                   </div>
                 </div>

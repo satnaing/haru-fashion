@@ -9,24 +9,24 @@ import BagIcon from "../../public/icons/BagIcon";
 import WhistlistIcon from "../../public/icons/WhistlistIcon";
 import UserIcon from "../../public/icons/UserIcon";
 import SearchIcon from "../../public/icons/SearchIcon";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import LoginForm from "../LoginForm";
-import SearchForm from "../Search/SearchForm";
-import CartItem from "../CartItem";
+import LoginForm from "../LoginForm/LoginForm";
+import SearchForm from "../SearchForm/SearchForm";
+import CartItem from "../CartItem/CartItem";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [didMount, setDidMount] = useState<boolean>(false); // to disable Can't perform a React state Warning
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const offset = window.scrollY;
     if (offset > 30) {
       setScrolled(true);
     } else {
       setScrolled(false);
     }
-  };
+  }, [setScrolled]);
 
   useEffect(() => {
     setDidMount(true);

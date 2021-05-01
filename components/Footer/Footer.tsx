@@ -2,7 +2,7 @@ import Head from "next/head";
 import FacebookLogo from "../../public/icons/FacebookLogo";
 import InstagramLogo from "../../public/icons/InstagramLogo";
 import Button from "../Buttons/Button";
-import Input from "../Input";
+import Input from "../Input/Input";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -12,27 +12,27 @@ export default function Footer() {
         <div>
           <h6 className={styles.footerHead}>COMPANY</h6>
           <div className={styles.column}>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-            <a href="#">Store Location</a>
-            <a href="#">Careers</a>
+            <a href="example">About Us</a>
+            <a href="example">Contact Us</a>
+            <a href="example">Store Location</a>
+            <a href="example">Careers</a>
           </div>
         </div>
         <div>
           <h6 className={styles.footerHead}>HELP</h6>
           <div className={styles.column}>
-            <a href="#">Order Tracking</a>
-            <a href="#">FAQs</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
+            <a href="example">Order Tracking</a>
+            <a href="example">FAQs</a>
+            <a href="example">Privacy Policy</a>
+            <a href="example">Terms & Conditions</a>
           </div>
         </div>
         <div>
           <h6 className={styles.footerHead}>STORE</h6>
           <div className={styles.column}>
-            <a href="#">Women</a>
-            <a href="#">Men</a>
-            <a href="#">Bags</a>
+            <a href="example">Women</a>
+            <a href="example">Men</a>
+            <a href="example">Bags</a>
           </div>
         </div>
         <div>
@@ -55,7 +55,8 @@ export default function Footer() {
         <h4 className="text-3xl mb-4">Newsletter</h4>
         <span>Be the first to know about new arrivals, sales & promos!</span>
         <div className="mt-5">
-          <Input /> <Button size="large" value="Send" extraClass="ml-4" />
+          <Input name="email" type="email" />{" "}
+          <Button size="lg" value="Send" extraClass="ml-4" />
         </div>
       </div>
       <div className={styles.bottomFooter}>

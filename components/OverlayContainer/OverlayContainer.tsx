@@ -1,5 +1,4 @@
 import { FC } from "react";
-import GhostButton from "../Buttons/GhostButton";
 import styles from "./OverlayContainer.module.css";
 
 type Props = {

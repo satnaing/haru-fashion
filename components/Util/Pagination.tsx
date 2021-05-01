@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import NextArrow from "../../public/icons/NextArrow";
 import PrevArrow from "../../public/icons/PrevArrow";
 
@@ -56,16 +56,16 @@ const Pagination: FC<Props> = ({
   return (
     <div className="w-full">
       <ul className="flex justify-center">
-        <a
+        <button
           onClick={handlePrev}
           className={`${
             activePage === 1
               ? "pointer-events-none cursor-not-allowed text-gray400"
               : "cursor-pointer"
-          } flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
+          } focus:outline-none flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
         >
           <PrevArrow />
-        </a>
+        </button>
         {(midPageNumbers || endPageNumbers) && (
           <span className="flex items-end text-3xl">...</span>
         )}
@@ -73,30 +73,30 @@ const Pagination: FC<Props> = ({
         {pageNumbers.map((num) => {
           return (
             <li key={num} className="">
-              <a
+              <button
                 onClick={() => handlePage(num)}
                 className={`${
                   num === activePage && "bg-gray500 text-gray100"
-                } cursor-pointer flex justify-center items-center w-10 h-10 border mx-1 hover:bg-gray500 hover:text-gray100`}
+                } focus:outline-none cursor-pointer flex justify-center items-center w-10 h-10 border mx-1 hover:bg-gray500 hover:text-gray100`}
               >
                 {num}
-              </a>
+              </button>
             </li>
           );
         })}
         {(midPageNumbers || startPageNumbers) && (
           <span className="flex items-end text-3xl">...</span>
         )}
-        <a
+        <button
           onClick={() => handleNext(numOfPagniation)}
           className={`${
             activePage === numOfPagniation
               ? "pointer-events-none cursor-not-allowed text-gray400"
               : "cursor-pointer"
-          } flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
+          } focus:outline-none flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
         >
           <NextArrow />
-        </a>
+        </button>
       </ul>
     </div>
   );

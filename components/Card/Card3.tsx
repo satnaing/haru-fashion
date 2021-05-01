@@ -1,7 +1,5 @@
 import { FC } from "react";
-import Heart from "../../public/icons/Heart";
-import styles from "./Card.module.css";
-import Card from "./index";
+import Card from "./Card";
 
 type Props = {
   imgSrc1: string;

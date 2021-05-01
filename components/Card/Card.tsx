@@ -15,7 +15,7 @@ const Card: FC<Props> = ({
   imgSrc1,
   imgSrc2,
   imgAlt,
-  itemLink = "#",
+  itemLink = "www.example.com",
   itemName,
   itemPrice,
 }) => (
@@ -27,12 +27,12 @@ const Card: FC<Props> = ({
         <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
         {/* https://i.ibb.co/NS99V3K/minimalist-img-21.webp */}
       </a>
-      <a href="#" className={styles.wishlist}>
+      <a href="www.example.com" className={styles.wishlist}>
         <Heart />
       </a>
       <div className="absolute z-20 bottom-5 left-1/2 w-4/5 translate-y-28 "></div>
       <div className={styles.btnWrapper}>
-        <a href="#" className={styles.addBtn}>
+        <a href="www.example.com" className={styles.addBtn}>
           Add to cart
         </a>
       </div>

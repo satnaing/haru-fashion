@@ -22,7 +22,8 @@ const testi = [
     occupation: "Business Owner",
   },
 ];
-
+// animate__fadeIn
+// animate__lightSpeedInRight
 const TestiSlider: FC = () => {
   const [arrIndex, setArrIndex] = useState(0);
   const [animate, setAnimate] = useState("animate__lightSpeedInRight");
@@ -58,8 +59,8 @@ const TestiSlider: FC = () => {
     >
       <div className="slide-section min-w-min h-40 flex">
         {testi.map((ti, index) => {
-          if (index === arrIndex) {
-            return (
+          return (
+            index === arrIndex && (
               <div
                 key={ti.name}
                 className={`h-full flex flex-col items-center justify-center animate__animated ${animate}`}
@@ -71,8 +72,8 @@ const TestiSlider: FC = () => {
                   <span className="text-sm">({ti.occupation})</span>
                 </div>
               </div>
-            );
-          }
+            )
+          );
         })}
       </div>
       <span

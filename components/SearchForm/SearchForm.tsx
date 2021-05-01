@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useEffect, useState } from "react";
 import SearchIcon from "../../public/icons/SearchIcon";
 import Button from "../Buttons/Button";
-import Input from "../Input";
+import Input from "../Input/Input";
 
 export default function SearchForm() {
   const [open, setOpen] = useState(false);
@@ -81,7 +81,6 @@ export default function SearchForm() {
                       type="search"
                       placeholder="Search anything ..."
                       className="px-4 py-2 w-full focus:outline-none text-2xl"
-                      autoFocus
                     />
                   </div>
                   <div className="border-t-2 border-gray300"></div>
