@@ -15,10 +15,12 @@ import Card3 from "../components/Card/Card3";
 import Card5 from "../components/Card/Card5";
 import TestiSlider from "../components/TestiSlider/TestiSlider";
 import { default as featuredItems } from "../components/Util/Items";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CartContext from "../context/CartContext";
 
 export default function Home() {
   const [totalItems, setTotalItems] = useState(10);
+  const { addItem } = useContext(CartContext);
 
   const currentItems = featuredItems.slice(0, totalItems);
 
@@ -111,11 +113,12 @@ export default function Home() {
         <div className="flex flex-col md:flex-row flex-wrap w-full mb-8">
           {currentItems.map((item) => (
             <Card5
-              key={item.name}
+              key={item.id}
               imgSrc1={item.img1}
               imgSrc2={item.img2}
               itemName={item.name}
               itemPrice={item.price}
+              onClick={() => addItem(item.name)}
             />
           ))}
         </div>

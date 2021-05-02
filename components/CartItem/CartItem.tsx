@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useContext, useState } from "react";
+import CartContext from "../../context/CartContext";
 import BagIcon from "../../public/icons/BagIcon";
 import Button from "../Buttons/Button";
 import GhostButton from "../Buttons/GhostButton";
@@ -24,6 +25,7 @@ const items = [
 
 export default function CartItem() {
   const [open, setOpen] = useState(false);
+  const { cart } = useContext(CartContext);
 
   function closeModal() {
     setOpen(false);
@@ -35,13 +37,17 @@ export default function CartItem() {
 
   return (
     <>
-      <div className="">
+      <div className="relative">
         <button
           type="button"
           onClick={openModal}
           className="focus:outline-none"
         >
           <BagIcon />
+          {/* {cart[1]} */}
+          <span className="absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full">
+            {cart.length}
+          </span>
         </button>
       </div>
       <Transition show={open} as={Fragment}>

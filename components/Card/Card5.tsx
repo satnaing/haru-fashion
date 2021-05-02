@@ -8,6 +8,7 @@ type Props = {
   itemLink?: string;
   itemName: string;
   itemPrice: number;
+  onClick?: () => void;
 };
 
 const Card5: FC<Props> = ({
@@ -17,6 +18,7 @@ const Card5: FC<Props> = ({
   itemLink = "#",
   itemName,
   itemPrice,
+  onClick,
 }) => (
   <div className="w-full sm:w-1/2 lg:w-1/4 xl:w-1/5 px-4 py-4">
     <Card
@@ -26,6 +28,7 @@ const Card5: FC<Props> = ({
       itemLink={itemLink}
       itemName={itemName}
       itemPrice={itemPrice}
+      onClick={onClick}
     />
   </div>
 );

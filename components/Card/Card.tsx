@@ -9,6 +9,7 @@ type Props = {
   itemLink?: string;
   itemName: string;
   itemPrice: number;
+  onClick?: () => void;
 };
 
 const Card: FC<Props> = ({
@@ -18,6 +19,7 @@ const Card: FC<Props> = ({
   itemLink = "www.example.com",
   itemName,
   itemPrice,
+  onClick,
 }) => (
   <div className={styles.cardContainer}>
     <div className={styles.imageContainer}>
@@ -32,9 +34,9 @@ const Card: FC<Props> = ({
       </a>
       <div className="absolute z-20 bottom-5 left-1/2 w-4/5 translate-y-28 "></div>
       <div className={styles.btnWrapper}>
-        <a href="www.example.com" className={styles.addBtn}>
+        <button onClick={onClick} className={styles.addBtn}>
           Add to cart
-        </a>
+        </button>
       </div>
     </div>
     <a href={itemLink} className={styles.itemName}>

@@ -14,6 +14,7 @@ import Link from "next/link";
 import LoginForm from "../LoginForm/LoginForm";
 import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
+// import CartProvider from "../../context/cartStore";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
