@@ -27,6 +27,11 @@ export default function CartItem() {
   const [open, setOpen] = useState(false);
   const { cart } = useContext(CartContext);
 
+  let noOfItems = 0;
+  cart.forEach((item) => {
+    noOfItems += item.qty;
+  });
+
   function closeModal() {
     setOpen(false);
   }
@@ -46,7 +51,7 @@ export default function CartItem() {
           <BagIcon />
           {/* {cart[1]} */}
           <span className="absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full">
-            {cart.length}
+            {noOfItems}
           </span>
         </button>
       </div>
@@ -105,14 +110,14 @@ export default function CartItem() {
 
                 <div className="h-full">
                   <div className="itemContainer px-4 h-2/3 w-full flex-grow flex-shrink overflow-y-auto">
-                    {items.map((item) => {
+                    {cart.map((item) => {
                       return (
                         <Item
                           key={item.id}
                           name={item.name}
                           price={item.price}
                           qty={item.qty}
-                          img={item.img}
+                          img={item.img1}
                         />
                       );
                     })}

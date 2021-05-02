@@ -1,9 +1,5 @@
 import { createContext } from "react";
-
-export type cartType = {
-  cart: string[];
-  addItem?: (item: any) => void;
-};
+import { cartType } from "./cart-types";
 
 export const initialContextValues: cartType = {
   cart: [],

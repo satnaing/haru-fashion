@@ -32,7 +32,7 @@
 }
 
 .addBtn {
-  @apply text-gray500 text-center no-underline absolute z-30 bg-white bottom-3 left-1/2 p-3 w-4/5 inline-block transform -translate-x-1/2 translate-y-28 transition-transform duration-700;
+  @apply text-gray500 focus:outline-none text-center no-underline absolute z-30 bg-white bottom-3 left-1/2 p-3 w-4/5 inline-block transform -translate-x-1/2 translate-y-28 transition-transform duration-700;
 }
 
 .addBtn:hover {

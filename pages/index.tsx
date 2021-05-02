@@ -118,7 +118,7 @@ export default function Home() {
               imgSrc2={item.img2}
               itemName={item.name}
               itemPrice={item.price}
-              onClick={() => addItem(item.name)}
+              onClick={() => addItem(item)}
             />
           ))}
         </div>

@@ -1,10 +1,17 @@
-const cartReducer = (state, action) => {
+import { ADD_ITEM, cartType, itemType } from "./cart-types";
+import addItemToCart from "./Util/addItemToCart";
+
+type actionType = {
+  type: string;
+  payload: itemType;
+};
+
+const cartReducer = (state: cartType, action: actionType) => {
   switch (action.type) {
-    case "ADD_ITEM":
-      console.log(state);
+    case ADD_ITEM:
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: addItemToCart(state.cart, action.payload),
       };
     default:
       return state;
