@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useCallback, useContext, useEffect, useState } from "react";
 import CartContext from "../../context/CartContext";
 import BagIcon from "../../public/icons/BagIcon";
 import Button from "../Buttons/Button";
@@ -25,6 +25,7 @@ const items = [
 
 export default function CartItem() {
   const [open, setOpen] = useState(false);
+  const [animate, setAnimate] = useState("");
   const { cart, addItem, removeItem, deleteItem } = useContext(CartContext);
 
   let subtotal = 0;
@@ -33,6 +34,22 @@ export default function CartItem() {
   cart.forEach((item) => {
     noOfItems += item.qty;
   });
+
+  const handleAnimate = useCallback(() => {
+    if (noOfItems === 0) return;
+    setAnimate("animate__animated animate__headShake");
+    // setTimeout(() => {
+    //   setAnimate("");
+    // }, 0.1);
+  }, [noOfItems, setAnimate]);
+
+  // Set animate when no of items changes
+  useEffect(() => {
+    handleAnimate();
+    setTimeout(() => {
+      setAnimate("");
+    }, 1000);
+  }, [handleAnimate]);
 
   function closeModal() {
     setOpen(false);
@@ -52,7 +69,9 @@ export default function CartItem() {
         >
           <BagIcon />
           {/* {cart[1]} */}
-          <span className="animate__animated animate__bounce absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full">
+          <span
+            className={`${animate} absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
+          >
             {noOfItems}
           </span>
         </button>
