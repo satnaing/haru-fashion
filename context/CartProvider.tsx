@@ -1,7 +1,13 @@
 import { useReducer } from "react";
 import cartReducer from "./cartReducer";
 import CartContext, { initialContextValues } from "./CartContext";
-import { ADD_ITEM, itemType, cartType } from "./cart-types";
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  DELETE_ITEM,
+  itemType,
+  cartType,
+} from "./cart-types";
 
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialContextValues);
@@ -13,7 +19,21 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  const value: cartType = { cart: state.cart, addItem };
+  const removeItem = (item: itemType) => {
+    dispatch({
+      type: REMOVE_ITEM,
+      payload: item,
+    });
+  };
+
+  const deleteItem = (item: itemType) => {
+    dispatch({
+      type: DELETE_ITEM,
+      payload: item,
+    });
+  };
+
+  const value: cartType = { cart: state.cart, addItem, removeItem, deleteItem };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 

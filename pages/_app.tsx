@@ -3,6 +3,8 @@ import "../styles/globals.css";
 import "animate.css";
 import { AuthProvider } from "../context/AuthContext";
 import CartProvider from "../context/CartProvider";
+import MainProvider from "../context/MainProvider";
+import TextProvider from "../context/TestContext";
 // import CartProvider from "../components/context/cartStore";
 // import "react-slideshow-image/dist/styles.css";
 // import "../styles/carousel.css";
@@ -10,11 +12,13 @@ import CartProvider from "../context/CartProvider";
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <CartProvider>
-      <Component {...pageProps} />
+      <TextProvider>
+        <Component {...pageProps} />
+      </TextProvider>
     </CartProvider>
-    //    <AuthProvider>
-    //    <Component {...pageProps} />
-    //  </AuthProvider>
+    // <MainProvider>
+    //   <Component {...pageProps} />
+    // </MainProvider>
   );
 };
 

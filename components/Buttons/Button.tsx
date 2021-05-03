@@ -29,11 +29,7 @@ const GhostButton: FC<Props> = ({
   return (
     <button
       onClick={onClick}
-      className={`focus:outline-none ${
-        noBorder ? "" : "border border-gray500"
-      } ${btnSize} ${
-        inverted ? "hover:text-gray100 hover:bg-gray500" : "hover:text-gray400"
-      } ${extraClass}`}
+      className={`focus:outline-none ${btnSize} border border-gray500 bg-gray500 text-gray100 hover:bg-gray400 hover:border-gray400 ${extraClass}`}
     >
       {value} <span className="ml-1">{children}</span>
     </button>

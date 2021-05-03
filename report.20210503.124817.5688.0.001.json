@@ -1,0 +1,465 @@
+
+{
+  "header": {
+    "reportVersion": 2,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20210503.124817.5688.0.001.json",
+    "dumpEventTime": "2021-05-03T12:48:17Z",
+    "dumpEventTimeStamp": "1620022697024",
+    "processId": 5688,
+    "threadId": null,
+    "cwd": "/home/eklage/dev/React Project/e-commerce",
+    "commandLine": [
+      "node",
+      "/home/eklage/dev/React Project/e-commerce/node_modules/.bin/next",
+      "dev"
+    ],
+    "nodejsVersion": "v12.16.2",
+    "glibcVersionRuntime": "2.31",
+    "glibcVersionCompiler": "2.17",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "12.16.2",
+      "v8": "7.8.279.23-node.34",
+      "uv": "1.34.2",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.4",
+      "http_parser": "2.9.3",
+      "openssl": "1.1.1e",
+      "cldr": "36.0",
+      "icu": "65.1",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.16.2/node-v12.16.2-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.16.2/node-v12.16.2.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "5.4.0-72-generic",
+    "osVersion": "#80-Ubuntu SMP Mon Apr 12 17:35:00 UTC 2021",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2619,
+        "user": 371200,
+        "nice": 11800,
+        "sys": 99200,
+        "idle": 3144800,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2584,
+        "user": 385800,
+        "nice": 14900,
+        "sys": 96500,
+        "idle": 2898200,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2601,
+        "user": 369800,
+        "nice": 17000,
+        "sys": 99200,
+        "idle": 2965800,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2632,
+        "user": 369600,
+        "nice": 28900,
+        "sys": 109300,
+        "idle": 1624000,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2636,
+        "user": 383200,
+        "nice": 13400,
+        "sys": 95700,
+        "idle": 1717900,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2599,
+        "user": 379900,
+        "nice": 10200,
+        "sys": 108300,
+        "idle": 2315600,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2611,
+        "user": 350000,
+        "nice": 9800,
+        "sys": 101000,
+        "idle": 2527000,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+        "speed": 2612,
+        "user": 414700,
+        "nice": 8200,
+        "sys": 79400,
+        "idle": 3091400,
+        "irq": 0
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "wlp3s0",
+        "internal": false,
+        "mac": "5c:ea:1d:60:23:57",
+        "address": "192.168.1.10",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "wlp3s0",
+        "internal": false,
+        "mac": "5c:ea:1d:60:23:57",
+        "address": "fe80::dde0:6800:a174:16ae",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 3
+      }
+    ],
+    "host": "eklage-Vostro-3578"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000000b40285",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string const&, v8::Local<v8::String>) [node]"
+    },
+    {
+      "pc": "0x0000000000a033ef",
+      "symbol": "node::OnFatalError(char const*, char const*) [node]"
+    },
+    {
+      "pc": "0x0000000000b76ffe",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x0000000000b77379",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x0000000000d23ad5",
+      "symbol": " [node]"
+    },
+    {
+      "pc": "0x0000000000d24166",
+      "symbol": "v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [node]"
+    },
+    {
+      "pc": "0x0000000000d309e5",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000000000d31895",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000000000d3434c",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [node]"
+    },
+    {
+      "pc": "0x0000000000cfaf1b",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationType, v8::internal::AllocationOrigin) [node]"
+    },
+    {
+      "pc": "0x000000000103d9bc",
+      "symbol": "v8::internal::Runtime_AllocateInOldGeneration(int, unsigned long*, v8::internal::Isolate*) [node]"
+    },
+    {
+      "pc": "0x00000000013c03d9",
+      "symbol": " [node]"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2153103360,
+    "totalCommittedMemory": 2150540784,
+    "usedMemory": 2140243568,
+    "availableMemory": 47370776,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 33088,
+        "capacity": 32808,
+        "used": 32808,
+        "available": 0
+      },
+      "new_space": {
+        "memorySize": 2097152,
+        "committedMemory": 172840,
+        "capacity": 1047456,
+        "used": 24848,
+        "available": 1022608
+      },
+      "old_space": {
+        "memorySize": 2024677376,
+        "committedMemory": 2024327064,
+        "capacity": 2017002400,
+        "used": 2016413624,
+        "available": 588776
+      },
+      "code_space": {
+        "memorySize": 1478656,
+        "committedMemory": 1432384,
+        "capacity": 1358464,
+        "used": 1358464,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 4460544,
+        "committedMemory": 4447920,
+        "capacity": 2521280,
+        "used": 2521280,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 118931456,
+        "committedMemory": 118931456,
+        "capacity": 118806240,
+        "used": 118806240,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 1196032,
+        "committedMemory": 1196032,
+        "capacity": 1086304,
+        "used": 1086304,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1047456,
+        "used": 0,
+        "available": 1047456
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 92.329,
+    "kernelCpuSeconds": 2.44146,
+    "cpuConsumptionPercent": 94.7705,
+    "maxRss": 2288513024,
+    "pageFaults": {
+      "IORequired": 19,
+      "IONotRequired": 839271
+    },
+    "fsActivity": {
+      "reads": 69104,
+      "writes": 40656
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 42.054,
+    "kernelCpuSeconds": 1.50692,
+    "cpuConsumptionPercent": 43.5609,
+    "fsActivity": {
+      "reads": 62216,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "workers": [
+  ],
+  "environmentVariables": {
+    "GJS_DEBUG_TOPICS": "JS ERROR;JS LOG",
+    "LESSOPEN": "| /usr/bin/lesspipe %s",
+    "USER": "eklage",
+    "LC_TIME": "en_US.UTF-8",
+    "npm_config_user_agent": "npm/7.10.0 node/v12.16.2 linux x64",
+    "SSH_AGENT_PID": "3629",
+    "XDG_SESSION_TYPE": "x11",
+    "GIT_ASKPASS": "/usr/share/code/resources/app/extensions/git/dist/askpass.sh",
+    "npm_node_execpath": "/home/eklage/.nvm/versions/node/v12.16.2/bin/node",
+    "SHLVL": "1",
+    "npm_config_noproxy": "",
+    "HOME": "/home/eklage",
+    "CHROME_DESKTOP": "code-url-handler.desktop",
+    "TERM_PROGRAM_VERSION": "1.55.2",
+    "DESKTOP_SESSION": "ubuntu",
+    "NVM_BIN": "/home/eklage/.nvm/versions/node/v12.16.2/bin",
+    "npm_package_json": "/home/eklage/dev/React Project/e-commerce/package.json",
+    "NVM_INC": "/home/eklage/.nvm/versions/node/v12.16.2/include/node",
+    "GIO_LAUNCHED_DESKTOP_FILE": "/usr/share/applications/code.desktop",
+    "GNOME_SHELL_SESSION_MODE": "ubuntu",
+    "GTK_MODULES": "gail:atk-bridge",
+    "VSCODE_GIT_ASKPASS_MAIN": "/usr/share/code/resources/app/extensions/git/dist/askpass-main.js",
+    "LC_MONETARY": "en_US.UTF-8",
+    "VSCODE_GIT_ASKPASS_NODE": "/usr/share/code/code",
+    "MANAGERPID": "3397",
+    "npm_config_userconfig": "/home/eklage/.npmrc",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "COLORTERM": "truecolor",
+    "GIO_LAUNCHED_DESKTOP_FILE_PID": "4125",
+    "COLOR": "1",
+    "NVM_DIR": "/home/eklage/.nvm",
+    "npm_config_metrics_registry": "https://registry.npmjs.org/",
+    "MANDATORY_PATH": "/usr/share/gconf/ubuntu.mandatory.path",
+    "IM_CONFIG_PHASE": "1",
+    "LOGNAME": "eklage",
+    "JOURNAL_STREAM": "9:56253",
+    "_": "/home/eklage/.nvm/versions/node/v12.16.2/bin/npm",
+    "npm_config_prefix": "/home/eklage/.nvm/versions/node/v12.16.2",
+    "XDG_SESSION_CLASS": "user",
+    "DEFAULTS_PATH": "/usr/share/gconf/ubuntu.default.path",
+    "USERNAME": "eklage",
+    "TERM": "xterm-256color",
+    "npm_config_cache": "/home/eklage/.npm",
+    "GNOME_DESKTOP_SESSION_ID": "this-is-deprecated",
+    "WINDOWPATH": "2",
+    "npm_config_node_gyp": "/home/eklage/.nvm/versions/node/v12.16.2/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
+    "PATH": "/home/eklage/dev/React Project/e-commerce/node_modules/.bin:/home/eklage/dev/React Project/node_modules/.bin:/home/eklage/dev/node_modules/.bin:/home/eklage/node_modules/.bin:/home/node_modules/.bin:/node_modules/.bin:/home/eklage/.nvm/versions/node/v12.16.2/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/home/eklage/.nvm/versions/node/v12.16.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+    "SESSION_MANAGER": "local/eklage-Vostro-3578:@/tmp/.ICE-unix/3665,unix/eklage-Vostro-3578:/tmp/.ICE-unix/3665",
+    "INVOCATION_ID": "62b43571334a48309eda0c82222a6dce",
+    "PAPERSIZE": "letter",
+    "NODE": "/home/eklage/.nvm/versions/node/v12.16.2/bin/node",
+    "npm_package_name": "e-commerce",
+    "XDG_MENU_PREFIX": "gnome-",
+    "LC_ADDRESS": "en_US.UTF-8",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "DISPLAY": ":0",
+    "LANG": "en_US.UTF-8",
+    "XDG_CURRENT_DESKTOP": "Unity",
+    "LC_TELEPHONE": "en_US.UTF-8",
+    "XMODIFIERS": "@im=ibus",
+    "XDG_SESSION_DESKTOP": "ubuntu",
+    "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+    "LS_COLORS": "rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:",
+    "VSCODE_GIT_IPC_HANDLE": "/run/user/1000/vscode-git-42a698a5fb.sock",
+    "TERM_PROGRAM": "vscode",
+    "npm_lifecycle_script": "next dev",
+    "SSH_AUTH_SOCK": "/run/user/1000/keyring/ssh",
+    "ORIGINAL_XDG_CURRENT_DESKTOP": "ubuntu:GNOME",
+    "SHELL": "/bin/bash",
+    "LC_NAME": "en_US.UTF-8",
+    "npm_package_version": "0.1.0",
+    "npm_lifecycle_event": "dev",
+    "QT_ACCESSIBILITY": "1",
+    "GDMSESSION": "ubuntu",
+    "LESSCLOSE": "/usr/bin/lesspipe %s %s",
+    "LC_MEASUREMENT": "en_US.UTF-8",
+    "GPG_AGENT_INFO": "/run/user/1000/gnupg/S.gpg-agent:0:1",
+    "GJS_DEBUG_OUTPUT": "stderr",
+    "LC_IDENTIFICATION": "en_US.UTF-8",
+    "QT_IM_MODULE": "ibus",
+    "npm_config_globalconfig": "/home/eklage/.nvm/versions/node/v12.16.2/etc/npmrc",
+    "npm_config_init_module": "/home/eklage/.npm-init.js",
+    "PWD": "/home/eklage/dev/React Project/e-commerce",
+    "npm_execpath": "/home/eklage/.nvm/versions/node/v12.16.2/lib/node_modules/npm/bin/npm-cli.js",
+    "XDG_CONFIG_DIRS": "/etc/xdg/xdg-ubuntu:/etc/xdg",
+    "NVM_CD_FLAGS": "",
+    "XDG_DATA_DIRS": "/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop",
+    "LC_NUMERIC": "en_US.UTF-8",
+    "npm_command": "run-script",
+    "LC_PAPER": "en_US.UTF-8",
+    "INIT_CWD": "/home/eklage/dev/React Project/e-commerce",
+    "EDITOR": "vi",
+    "NODE_ENV": "development",
+    "TRACE_ID": "4e40b317a8b27740"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 67108864,
+      "hard": 67108864
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048576,
+      "hard": 1048576
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 30661,
+      "hard": 30661
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/lib/x86_64-linux-gnu/libdl.so.2",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+    "/lib/x86_64-linux-gnu/libm.so.6",
+    "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/lib/x86_64-linux-gnu/libpthread.so.0",
+    "/lib/x86_64-linux-gnu/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2",
+    "/lib/x86_64-linux-gnu/libnss_files.so.2",
+    "/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2",
+    "/lib/x86_64-linux-gnu/libresolv.so.2",
+    "/lib/x86_64-linux-gnu/libnss_dns.so.2",
+    "/lib/x86_64-linux-gnu/libnss_myhostname.so.2"
+  ]
+}

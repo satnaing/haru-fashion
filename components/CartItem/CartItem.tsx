@@ -25,7 +25,9 @@ const items = [
 
 export default function CartItem() {
   const [open, setOpen] = useState(false);
-  const { cart } = useContext(CartContext);
+  const { cart, addItem, removeItem, deleteItem } = useContext(CartContext);
+
+  let subtotal = 0;
 
   let noOfItems = 0;
   cart.forEach((item) => {
@@ -50,7 +52,7 @@ export default function CartItem() {
         >
           <BagIcon />
           {/* {cart[1]} */}
-          <span className="absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full">
+          <span className="animate__animated animate__bounce absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full">
             {noOfItems}
           </span>
         </button>
@@ -98,7 +100,7 @@ export default function CartItem() {
                 className="relative inline-block dur h-screen w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl"
               >
                 <div className="bg-lightgreen flex justify-between p-6">
-                  <h3 className="text-xl">Cart (3)</h3>
+                  <h3 className="text-xl">Cart ({noOfItems})</h3>
                   <button
                     type="button"
                     className="outline-none focus:outline-none text-2xl"
@@ -111,13 +113,17 @@ export default function CartItem() {
                 <div className="h-full">
                   <div className="itemContainer px-4 h-2/3 w-full flex-grow flex-shrink overflow-y-auto">
                     {cart.map((item) => {
+                      subtotal += item.price * item.qty;
                       return (
                         <Item
                           key={item.id}
                           name={item.name}
-                          price={item.price}
+                          price={item.price * item.qty}
                           qty={item.qty}
                           img={item.img1}
+                          onAdd={() => addItem(item)}
+                          onRemove={() => removeItem(item)}
+                          onDelete={() => deleteItem(item)}
                         />
                       );
                     })}
@@ -125,7 +131,7 @@ export default function CartItem() {
                   <div className="btnContainer mt-4 px-4 h-1/3 mb-20 w-full flex flex-col ">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span>$ 403</span>
+                      <span>$ {subtotal}</span>
                     </div>
                     <GhostButton
                       value="View Cart"
