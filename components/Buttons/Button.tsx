@@ -9,7 +9,7 @@ type Props = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const GhostButton: FC<Props> = ({
+const Button: FC<Props> = ({
   size = "sm",
   value,
   extraClass,
@@ -29,11 +29,11 @@ const GhostButton: FC<Props> = ({
   return (
     <button
       onClick={onClick}
-      className={`focus:outline-none ${btnSize} border border-gray500 bg-gray500 text-gray100 hover:bg-gray400 hover:border-gray400 ${extraClass}`}
+      className={`focus:outline-none ${btnSize} border border-gray500 bg-gray500 text-gray100 hover:text-gray300 ${extraClass}`}
     >
       {value} <span className="ml-1">{children}</span>
     </button>
   );
 };
 
-export default GhostButton;
+export default Button;

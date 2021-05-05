@@ -1,21 +1,46 @@
-import Head from "next/head";
-// import styles from "../styles/Home.module.css";
-import Header from "../components/Header/Header";
-import HeroSection from "../components/HeroSection";
-import Footer from "../components/Footer/Footer";
-import GhostButton from "../components/Buttons/GhostButton";
-import Button from "../components/Buttons/Button";
-import TextButton from "../components/Buttons/TextButton";
-import Input from "../components/Input/Input";
-import Slideshow from "../components/HeroSection/Slideshow";
-import Card from "../components/Card/Card";
-import CartItem from "../components/CartItem/CartItem";
-const Test = () => {
+import Cookie from "js-cookie";
+import { useEffect, useState } from "react";
+
+const Product = ({ initialRememberValue }) => {
+  const [rememberMe, setRememberMe] = useState<any>(() => initialRememberValue);
+
+  useEffect(() => {
+    Cookie.set("rememberMe", JSON.stringify(rememberMe));
+  }, [rememberMe]);
+
   return (
-    <div>
-      <CartItem />
-    </div>
+    <>
+      remember me
+      <input
+        type="checkbox"
+        value={rememberMe}
+        checked={rememberMe}
+        onChange={(e) => setRememberMe(e.target.checked)}
+      />
+    </>
   );
 };
 
-export default Test;
+export const getServerSideProps = async (context) => {
+  console.log(context.req.cookies.rememberMe);
+  const remValue = context.req.cookies.rememberMe;
+  return {
+    props: {
+      initialRememberValue: remValue || "",
+    },
+  };
+};
+
+// export function getServersideProps({ req, res }) {
+//   // const cookies = parseCookies(req);
+//   // console.log(req);
+//   // console.log(res);
+
+//   return {
+//     props: {
+//       initialRememberValue: req.Cookie,
+//     },
+//   };
+// }
+
+export default Product;

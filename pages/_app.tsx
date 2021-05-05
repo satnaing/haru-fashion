@@ -9,9 +9,9 @@ import TextProvider from "../context/TestContext";
 // import "react-slideshow-image/dist/styles.css";
 // import "../styles/carousel.css";
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps, cartState }: any) => {
   return (
-    <CartProvider>
+    <CartProvider iniState={cartState}>
       <TextProvider>
         <Component {...pageProps} />
       </TextProvider>
@@ -21,5 +21,29 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     // </MainProvider>
   );
 };
+
+MyApp.getInitialProps = async (appCtx) => {
+  // console.log(appCtx.ctx.req.cookies.cartState);
+  let cartState;
+  // if (appCtx.ctx.req.cookies.cartState) {
+  //   cartState = appCtx.ctx.req.cookies.cartState || "";
+  // }
+  cartState = appCtx.ctx.req?.cookies?.cartState || '{"cart":[]}';
+
+  // try {
+  //   cartState = appCtx.ctx.req.cookies.cartState || "";
+  // } catch {}
+
+  return { cartState };
+};
+
+// export const getServerSideProps = async (context) => {
+//   console.log("hello from app");
+//   return {
+//     props: {
+//       initialRememberValue: "haha" || "",
+//     },
+//   };
+// };
 
 export default MyApp;

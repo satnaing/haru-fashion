@@ -5,12 +5,13 @@ import {
   DELETE_ITEM,
   cartType,
   itemType,
+  CLEAR_CART,
 } from "./cart-types";
 import removeItemFromCart from "./Util/removeItemFromCart";
 
 type actionType = {
   type: string;
-  payload: itemType;
+  payload?: itemType;
 };
 
 const cartReducer = (state: cartType, action: actionType) => {
@@ -31,6 +32,11 @@ const cartReducer = (state: cartType, action: actionType) => {
         cart: state.cart.filter(
           (cartItem) => cartItem.id !== action.payload.id
         ),
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
       };
     default:
       return state;

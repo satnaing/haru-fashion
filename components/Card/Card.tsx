@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 import Heart from "../../public/icons/Heart";
 import styles from "./Card.module.css";
@@ -16,19 +17,21 @@ const Card: FC<Props> = ({
   imgSrc1,
   imgSrc2,
   imgAlt,
-  itemLink = "www.example.com",
+  itemLink = "",
   itemName,
   itemPrice,
   onClick,
 }) => (
   <div className={styles.cardContainer}>
     <div className={styles.imageContainer}>
-      <a href={itemLink}>
-        <img className={styles.firstImage} src={imgSrc1} alt={imgAlt} />
-        {/* https://i.ibb.co/ZTXPJ8d/minimalist-img-2-1.jpg */}
-        <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
-        {/* https://i.ibb.co/NS99V3K/minimalist-img-21.webp */}
-      </a>
+      <Link href={itemLink}>
+        <a>
+          <img className={styles.firstImage} src={imgSrc1} alt={imgAlt} />
+          {/* https://i.ibb.co/ZTXPJ8d/minimalist-img-2-1.jpg */}
+          <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
+          {/* https://i.ibb.co/NS99V3K/minimalist-img-21.webp */}
+        </a>
+      </Link>
       <a href="www.example.com" className={styles.wishlist}>
         <Heart />
       </a>
@@ -39,9 +42,9 @@ const Card: FC<Props> = ({
         </button>
       </div>
     </div>
-    <a href={itemLink} className={styles.itemName}>
-      {itemName}
-    </a>
+    <Link href={itemLink}>
+      <a className={styles.itemName}>{itemName}</a>
+    </Link>
     <span className="text-gray400">$ {itemPrice}</span>
   </div>
 );

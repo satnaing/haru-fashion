@@ -1,6 +1,7 @@
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export const DELETE_ITEM = "DELETE_ITEM";
+export const CLEAR_CART = "CLEAR_CART";
 
 export type itemType = {
   id: number;
@@ -16,4 +17,5 @@ export type cartType = {
   addItem?: (item: itemType) => void;
   removeItem?: (item: itemType) => void;
   deleteItem?: (item: itemType) => void;
+  clearCart?: () => void;
 };

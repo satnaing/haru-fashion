@@ -63,13 +63,15 @@ const Header = () => {
           </ul>
           <div className="flex-1 flex justify-center cursor-pointer">
             <Link href="/">
-              <Image
-                className="justify-center"
-                src="/logo-light.png"
-                alt="Picture of the author"
-                width={90}
-                height={22}
-              />
+              <a>
+                <Image
+                  className="justify-center"
+                  src="/logo-light.png"
+                  alt="Picture of the author"
+                  width={90}
+                  height={22}
+                />
+              </a>
             </Link>
           </div>
           <ul className={`flex-1 flex justify-end ${styles.rightMenu}`}>

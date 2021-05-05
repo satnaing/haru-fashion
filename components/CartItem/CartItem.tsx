@@ -1,4 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
+import Link from "next/link";
 import { Fragment, useCallback, useContext, useEffect, useState } from "react";
 import CartContext from "../../context/CartContext";
 import BagIcon from "../../public/icons/BagIcon";
@@ -152,11 +153,13 @@ export default function CartItem() {
                       <span>Subtotal</span>
                       <span>$ {subtotal}</span>
                     </div>
-                    <GhostButton
-                      value="View Cart"
-                      extraClass="text-center my-4"
-                      size="lg"
-                    />
+                    <Link href="/shopping-cart">
+                      <GhostButton
+                        value="View Cart"
+                        extraClass="text-center my-4"
+                        size="lg"
+                      />
+                    </Link>
                     <Button
                       value="Checkout"
                       extraClass="text-center"

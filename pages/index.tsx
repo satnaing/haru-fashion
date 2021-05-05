@@ -119,6 +119,7 @@ export default function Home() {
               itemName={item.name}
               itemPrice={item.price}
               onClick={() => addItem(item)}
+              itemLink={`/products/${encodeURIComponent(item.id)}`}
             />
           ))}
         </div>
@@ -150,6 +151,15 @@ export default function Home() {
     </div>
   );
 }
+
+// export const getServerSideProps = async (context) => {
+//   console.log("haha");
+//   return {
+//     props: {
+//       initialRememberValue: "haha" || "",
+//     },
+//   };
+// };
 
 {
   /* <div
