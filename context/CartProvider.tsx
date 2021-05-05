@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { FC, useEffect, useReducer } from "react";
 import cartReducer from "./cartReducer";
 import CartContext, { initialContextValues } from "./CartContext";
 import Cookie from "js-cookie";
@@ -11,9 +11,14 @@ import {
   CLEAR_CART,
 } from "./cart-types";
 
-const CartProvider = ({ iniState, children }) => {
-  // console.log(iniState);
-  const [state, dispatch] = useReducer(cartReducer, JSON.parse(iniState));
+type CartProviderType = {
+  iniState: string;
+  children: any;
+};
+
+const CartProvider: FC<CartProviderType> = ({ iniState, children }) => {
+  const initPersistState: cartType = JSON.parse(iniState);
+  const [state, dispatch] = useReducer(cartReducer, initPersistState);
 
   // Persist State with Cookies
   useEffect(() => {
