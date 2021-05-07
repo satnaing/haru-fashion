@@ -11,6 +11,14 @@ type AppCustomProps = {
   cartState: string;
 };
 
+// const MyApp = ({ Component, pageProps }: AppCustomProps) => {
+//   return (
+//     <TextProvider>
+//       <Component {...pageProps} />
+//     </TextProvider>
+//   );
+// };
+
 const MyApp = ({ Component, pageProps, cartState }: AppCustomProps) => {
   return (
     <CartProvider iniState={cartState}>

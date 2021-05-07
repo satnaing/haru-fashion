@@ -1,12 +1,11 @@
 import { GetStaticProps } from "next";
 
-export default function Home() {
-  return <div>Hello World</div>;
+export default function Home({ post }) {
+  return <div>Hello {post.title}</div>;
 }
 
-export async function getServerSideProps(context) {
-  console.log(context.req.cookies);
-  return {
-    props: {}, // will be passed to the page component as props
-  };
+export async function getStaticProps() {
+  const res = await fetch(`https://fakestoreapi.com/products/1`);
+  const post = await res.json();
+  return { props: { post } };
 }
