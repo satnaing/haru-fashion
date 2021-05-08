@@ -1,10 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useEffect, useState } from "react";
 import UserIcon from "../../public/icons/UserIcon";
-import Button from "../Buttons/Button";
-import Input from "../Input/Input";
+import Login from "./Login";
+import Register from "./Register";
 
 export default function LoginForm() {
+  const [isLogin, setIsLogin] = useState(true);
   const [open, setOpen] = useState(false);
 
   function closeModal() {
@@ -72,63 +73,14 @@ export default function LoginForm() {
                 >
                   &#10005;
                 </button>
-                <Dialog.Title
-                  as="h3"
-                  className="text-4xl text-center my-8 font-medium leading-6 text-gray-900"
-                >
-                  Login
-                </Dialog.Title>
-                <div className="mt-2">
-                  <Input
-                    type="email"
-                    placeholder="Email Address *"
-                    name="email"
-                    required
-                    extraClass="w-full focus:border-gray500"
-                    border="border-2 border-gray300 mb-4"
-                  />
-                  <Input
-                    type="password"
-                    placeholder="Password *"
-                    name="password"
-                    required
-                    extraClass="w-full focus:border-gray500 mb-4"
-                    border="border-2 border-gray300"
-                  />
-                  <div className="flex justify-between mb-4">
-                    <div className="flex items-center text-gray400 focus:outline-none">
-                      <input
-                        type="checkbox"
-                        id="remember"
-                        name="remember"
-                        className="w-4 h-4 mb-0 mr-2"
-                      />
-                      <label htmlFor="remember">Remember me?</label>
-                    </div>
-                    <a
-                      href="www.example.com"
-                      className="text-gray400 hover:text-gray500 focus:outline-none focus:text-gray500"
-                    >
-                      Forgot your password?
-                    </a>
-                  </div>
-                  <Button
-                    value="Log in"
-                    extraClass="w-full text-center text-xl mb-4"
-                    size="lg"
-                  />
-                  <div className="text-center text-gray400">
-                    Not a member?{" "}
-                    <a
-                      href="www.example.com"
-                      className="text-gray500 focus:outline-none focus:underline"
-                    >
-                      Register
-                    </a>
-                  </div>
-                </div>
 
-                <div className="mt-4">
+                {isLogin ? (
+                  <Login onRegister={() => setIsLogin(false)} />
+                ) : (
+                  <Register onLogin={() => setIsLogin(true)} />
+                )}
+
+                {/* <div className="mt-4">
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
@@ -136,7 +88,7 @@ export default function LoginForm() {
                   >
                     Got it, thanks!
                   </button>
-                </div>
+                </div> */}
               </div>
             </Transition.Child>
           </div>
