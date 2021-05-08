@@ -17,12 +17,25 @@ import TestiSlider from "../components/TestiSlider/TestiSlider";
 import { default as featuredItems } from "../components/Util/Items";
 import { useState, useContext } from "react";
 import CartContext from "../context/CartContext";
+import { db } from "./../firebase/firebase";
 
-export default function Home() {
+{
+  /* <Card5
+  key={item.id}
+  imgSrc1={item.img1}
+  imgSrc2={item.img2}
+  itemName={item.name}
+  itemPrice={item.price}
+  onClick={() => addItem(item)}
+  itemLink={`/products/${encodeURIComponent(item.id)}`}
+/>; */
+}
+
+export default function Home({ products }) {
   const [totalItems, setTotalItems] = useState(10);
   const { addItem } = useContext(CartContext);
 
-  const currentItems = featuredItems.slice(0, totalItems);
+  const currentItems = products.slice(0, totalItems);
 
   // let arrItems = [];
 
@@ -152,25 +165,46 @@ export default function Home() {
   );
 }
 
-// export const getServerSideProps = async (context) => {
-//   console.log("haha");
-//   return {
-//     props: {
-//       initialRememberValue: "haha" || "",
-//     },
-//   };
-// };
-
-{
-  /* <div
-              className="h-full bg-yellow flex flex-col items-center justify-center"
-              style={{ width: "700px" }}
-            >
-              <div className="textiContainer text-center w-4/5">
-                <span className="mb-5">{testi[0].speech}</span>
-                <h5 className="font-bold">{testi[0].name}</h5>
-              </div>
-            </div>
-            <div className="h-full bg-red" style={{ width: "700px" }}></div>
-            <div className="h-full bg-blue" style={{ width: "700px" }}></div> */
-}
+export const getStaticProps = async () => {
+  let products = [];
+  const res = await db.collection("products").get();
+  res.forEach((doc) => {
+    console.log(doc.data().id);
+    let docData = doc.data();
+    products = [
+      ...products,
+      {
+        id: docData.id,
+        name: docData.name,
+        price: docData.price,
+        img1: docData.img1,
+        img2: docData.img2,
+      },
+    ];
+  });
+  console.log(products);
+  // db.collection("products")
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       console.log(doc.data().id);
+  //       let docData = doc.data();
+  //       products = [
+  //         ...products,
+  //         {
+  //           id: docData.id,
+  //           name: docData.name,
+  //           price: docData.price,
+  //           img1: docData.img1,
+  //           img2: docData.img2,
+  //         },
+  //       ];
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error getting doc: ", error);
+  //   });
+  return {
+    props: { products }, // will be passed to the page component as props
+  };
+};

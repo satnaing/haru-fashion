@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import Heart from "../../public/icons/Heart";
 import styles from "./Card.module.css";
 
@@ -10,7 +11,7 @@ type Props = {
   itemLink?: string;
   itemName: string;
   itemPrice: number;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Card: FC<Props> = ({
@@ -27,9 +28,7 @@ const Card: FC<Props> = ({
       <Link href={itemLink}>
         <a>
           <img className={styles.firstImage} src={imgSrc1} alt={imgAlt} />
-          {/* https://i.ibb.co/ZTXPJ8d/minimalist-img-2-1.jpg */}
           <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
-          {/* https://i.ibb.co/NS99V3K/minimalist-img-21.webp */}
         </a>
       </Link>
       <a href="www.example.com" className={styles.wishlist}>

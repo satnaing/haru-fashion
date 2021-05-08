@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, FormEvent } from "react";
 
 type Props = {
   type?: string;
@@ -8,6 +8,8 @@ type Props = {
   required?: boolean;
   border?: string;
   id?: string;
+  onChange?: (e: FormEvent<HTMLInputElement>) => void;
+  value?: string;
 };
 
 const Input: FC<Props> = ({
@@ -18,6 +20,8 @@ const Input: FC<Props> = ({
   required = false,
   border = "",
   id = "",
+  onChange,
+  value,
 }) => (
   <input
     type={type}
@@ -28,6 +32,8 @@ const Input: FC<Props> = ({
     name={name}
     placeholder={placeholder}
     required={required}
+    onChange={onChange}
+    value={value}
   />
 );
 

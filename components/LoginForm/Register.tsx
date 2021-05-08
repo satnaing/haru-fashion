@@ -1,13 +1,85 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { FC } from "react";
+import { FC, FormEvent, useState } from "react";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
+import firebase from "../../firebase/firebase";
+// import firebase from "firebase/app";
 
 type Props = {
   onLogin: () => void;
 };
 
 const Register: FC<Props> = ({ onLogin }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setName(e.currentTarget.value);
+  };
+
+  const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setEmail(e.currentTarget.value);
+  };
+
+  const handlePasswordChange = (e: FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setPassword(e.currentTarget.value);
+  };
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // User is signed in.
+      console.log(user);
+    } else {
+      // No user is signed in.
+      console.log("Not Signed in");
+    }
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        user
+          .updateProfile({
+            displayName: name,
+          })
+          .then(function () {
+            // Update successful.
+            console.log(user);
+          })
+          .catch(function (error) {
+            // An error happened.
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+    // firebase
+    //   .auth()
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then(function (result) {
+    //     return result.user.updateProfile({
+    //       displayName: name,
+    //     });
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <>
       <Dialog.Title
@@ -16,7 +88,7 @@ const Register: FC<Props> = ({ onLogin }) => {
       >
         Register
       </Dialog.Title>
-      <div className="mt-2">
+      <form onSubmit={handleSubmit} className="mt-2">
         <Input
           type="name"
           placeholder="User Name *"
@@ -24,6 +96,8 @@ const Register: FC<Props> = ({ onLogin }) => {
           required
           extraClass="w-full focus:border-gray500"
           border="border-2 border-gray300 mb-4"
+          onChange={handleNameChange}
+          value={name}
         />
         <Input
           type="email"
@@ -32,6 +106,8 @@ const Register: FC<Props> = ({ onLogin }) => {
           required
           extraClass="w-full focus:border-gray500"
           border="border-2 border-gray300 mb-4"
+          onChange={handleEmailChange}
+          value={email}
         />
         <Input
           type="password"
@@ -40,17 +116,10 @@ const Register: FC<Props> = ({ onLogin }) => {
           required
           extraClass="w-full focus:border-gray500 mb-4"
           border="border-2 border-gray300"
+          onChange={handlePasswordChange}
+          value={password}
         />
         <div className="flex justify-between mb-4">
-          {/* <div className="flex items-center text-gray400 focus:outline-none">
-            <input
-              type="checkbox"
-              id="remember"
-              name="remember"
-              className="w-4 h-4 mb-0 mr-2"
-            />
-            <label htmlFor="remember">Remember me?</label>
-          </div> */}
           <p className="text-gray400">
             Your personal data will be used to support your experience
             throughout this website, to manage access to your account, and for
@@ -61,6 +130,7 @@ const Register: FC<Props> = ({ onLogin }) => {
           </p>
         </div>
         <Button
+          type="submit"
           value="Register"
           extraClass="w-full text-center text-xl mb-4"
           size="lg"
@@ -74,7 +144,7 @@ const Register: FC<Props> = ({ onLogin }) => {
             Login
           </span>
         </div>
-      </div>
+      </form>
     </>
   );
 };

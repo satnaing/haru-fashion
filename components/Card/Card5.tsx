@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEventHandler, ReactNode } from "react";
 import Card from "./Card";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   itemLink?: string;
   itemName: string;
   itemPrice: number;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Card5: FC<Props> = ({

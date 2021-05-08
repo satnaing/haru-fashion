@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 type Props = {
+  type?: "button" | "submit" | "reset";
   extraClass?: string;
   size?: "sm" | "lg" | "xl";
   value: string;
@@ -17,6 +18,7 @@ const Button: FC<Props> = ({
   noBorder = false,
   onClick,
   children,
+  type = "button",
 }) => {
   let btnSize = "";
   if (size === "sm") {
@@ -28,6 +30,7 @@ const Button: FC<Props> = ({
   }
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`focus:outline-none ${btnSize} border border-gray500 bg-gray500 text-gray100 hover:text-gray300 ${extraClass}`}
     >

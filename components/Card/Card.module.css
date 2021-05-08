@@ -9,12 +9,16 @@
 
 .firstImage {
   min-width: 200px;
-  @apply w-full h-full absolute top-0 left-0 transition-opacity;
+  height: 300px;
+  @apply w-full absolute top-0 left-0 transition-opacity object-cover;
 }
+/* 
+  @apply w-full h-full absolute top-0 left-0 transition-opacity; */
 /* w-60 */
 .secondImage {
   min-width: 200px;
-  @apply w-full h-full transition-transform;
+  height: 300px;
+  @apply w-full transition-transform object-cover;
 }
 
 .itemName {
