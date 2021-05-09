@@ -3,6 +3,7 @@ import { FC, FormEvent, useState } from "react";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
 import firebase from "../../firebase/firebase";
+import { useAuth } from "../../firebase/firebaseAuth";
 // import firebase from "firebase/app";
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const Register: FC<Props> = ({ onLogin }) => {
+  const auth = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,44 +31,46 @@ const Register: FC<Props> = ({ onLogin }) => {
     setPassword(e.currentTarget.value);
   };
 
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      // User is signed in.
-      console.log(user);
-    } else {
-      // No user is signed in.
-      console.log("Not Signed in");
-    }
-  });
+  // firebase.auth().onAuthStateChanged(function (user) {
+  //   if (user) {
+  //     // User is signed in.
+  //     console.log(user);
+  //   } else {
+  //     // No user is signed in.
+  //     console.log("Not Signed in");
+  //   }
+  // });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        user
-          .updateProfile({
-            displayName: name,
-          })
-          .then(function () {
-            // Update successful.
-            console.log(user);
-          })
-          .catch(function (error) {
-            // An error happened.
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-      });
+    auth.signup(email, password);
+
+    // firebase
+    //   .auth()
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     var user = userCredential.user;
+    //     user
+    //       .updateProfile({
+    //         displayName: name,
+    //       })
+    //       .then(function () {
+    //         // Update successful.
+    //         console.log(user);
+    //       })
+    //       .catch(function (error) {
+    //         // An error happened.
+    //         console.log(error);
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     console.log(errorCode);
+    //     console.log(errorMessage);
+    //   });
     // firebase
     //   .auth()
     //   .createUserWithEmailAndPassword(email, password)
@@ -93,7 +97,7 @@ const Register: FC<Props> = ({ onLogin }) => {
           type="name"
           placeholder="User Name *"
           name="username"
-          required
+          // required
           extraClass="w-full focus:border-gray500"
           border="border-2 border-gray300 mb-4"
           onChange={handleNameChange}

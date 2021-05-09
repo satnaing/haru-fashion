@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/Footer";
 import GhostButton from "../../components/Buttons/GhostButton";
 import Button from "../../components/Buttons/Button";
 import Card5 from "../../components/Card/Card5";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Items from "../../components/Util/Items";
 import Heart from "../../public/icons/Heart";
 import { Disclosure } from "@headlessui/react";
@@ -14,17 +14,27 @@ import InstagramLogo from "../../public/icons/InstagramLogo";
 import { GetStaticProps } from "next";
 import firebase, { db } from "../../firebase/firebase";
 import Link from "next/link";
+import CartContext from "../../context/CartContext";
 
 const Product = ({ post }) => {
   const img1 = post.img1;
   const img2 = post.img2;
 
+  const { addItem } = useContext(CartContext);
   const [size, setSize] = useState("M");
   const [mainImg, setMainImg] = useState(img1);
+  const [currentQty, setCurrentQty] = useState(1);
 
   const handleSize = (value: string) => {
     setSize(value);
   };
+
+  const currentItem = {
+    ...post,
+    qty: currentQty,
+  };
+
+  // console.log(currentItem);
 
   const featuredItems = Items.slice(0, 5);
 
@@ -105,13 +115,21 @@ const Product = ({ post }) => {
           </div>
           <div className="addToCart flex space-x-4 mb-4">
             <div className="plusOrMinus flex border border-gray300 divide-x-2 divide-gray300">
-              <div className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100">
+              <div
+                onClick={() => setCurrentQty((prevState) => prevState - 1)}
+                className={`${
+                  currentQty === 1 && "pointer-events-none"
+                } h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100`}
+              >
                 -
               </div>
               <div className="h-full w-12 flex justify-center items-center pointer-events-none">
-                1
+                {currentQty}
               </div>
-              <div className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100">
+              <div
+                onClick={() => setCurrentQty((prevState) => prevState + 1)}
+                className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100"
+              >
                 +
               </div>
             </div>
@@ -119,6 +137,7 @@ const Product = ({ post }) => {
               value="Add to cart"
               size="lg"
               extraClass="flex-grow text-center"
+              onClick={() => addItem(currentItem)}
             />
             {/* extraClass="w-full text-center" */}
             <GhostButton value="Add to wishlist" size="lg">
@@ -185,11 +204,10 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const productRef = db.collection("products");
-  const snapshot = await productRef
-    .where("id", "==", parseInt(params.id))
-    .get();
+  const paramId = params.id as string;
+  const snapshot = await productRef.where("id", "==", parseInt(paramId)).get();
   if (snapshot.empty) {
     console.log("No matching doc");
     return { props: { post: "Error" } };
@@ -206,6 +224,6 @@ export async function getStaticProps({ params }) {
   // const post = await res.json();
 
   return { props: { post } };
-}
+};
 
 export default Product;

@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { FC } from "react";
+import { FC, FormEvent, FormEventHandler, useState } from "react";
+import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
 
@@ -8,6 +9,25 @@ type Props = {
 };
 
 const Login: FC<Props> = ({ onRegister }) => {
+  const auth = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setEmail(e.currentTarget.value);
+  };
+
+  const handlePasswordChange = (e: FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setPassword(e.currentTarget.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    auth.signin(email, password);
+  };
+
   return (
     <>
       <Dialog.Title
@@ -16,7 +36,7 @@ const Login: FC<Props> = ({ onRegister }) => {
       >
         Login
       </Dialog.Title>
-      <div className="mt-2">
+      <form onSubmit={handleSubmit} className="mt-2">
         <Input
           type="email"
           placeholder="Email Address *"
@@ -24,6 +44,8 @@ const Login: FC<Props> = ({ onRegister }) => {
           required
           extraClass="w-full focus:border-gray500"
           border="border-2 border-gray300 mb-4"
+          onChange={handleEmailChange}
+          value={email}
         />
         <Input
           type="password"
@@ -32,6 +54,8 @@ const Login: FC<Props> = ({ onRegister }) => {
           required
           extraClass="w-full focus:border-gray500 mb-4"
           border="border-2 border-gray300"
+          onChange={handlePasswordChange}
+          value={password}
         />
         <div className="flex justify-between mb-4">
           <div className="flex items-center text-gray400 focus:outline-none">
@@ -51,6 +75,7 @@ const Login: FC<Props> = ({ onRegister }) => {
           </a>
         </div>
         <Button
+          type="submit"
           value="Log in"
           extraClass="w-full text-center text-xl mb-4"
           size="lg"
@@ -64,7 +89,7 @@ const Login: FC<Props> = ({ onRegister }) => {
             Register
           </span>
         </div>
-      </div>
+      </form>
     </>
   );
 };

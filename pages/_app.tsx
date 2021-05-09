@@ -4,6 +4,8 @@ import "animate.css";
 import CartProvider from "../context/CartProvider";
 import TextProvider from "../context/TestContext";
 import { NextComponentType, NextPageContext } from "next";
+import firebase from "../firebase/firebase";
+import { ProvideAuth } from "../firebase/firebaseAuth";
 
 type AppCustomProps = {
   Component: NextComponentType<NextPageContext, any, {}>;
@@ -11,21 +13,13 @@ type AppCustomProps = {
   cartState: string;
 };
 
-// const MyApp = ({ Component, pageProps }: AppCustomProps) => {
-//   return (
-//     <TextProvider>
-//       <Component {...pageProps} />
-//     </TextProvider>
-//   );
-// };
-
 const MyApp = ({ Component, pageProps, cartState }: AppCustomProps) => {
   return (
-    <CartProvider iniState={cartState}>
-      <TextProvider>
+    <ProvideAuth>
+      <CartProvider iniState={cartState}>
         <Component {...pageProps} />
-      </TextProvider>
-    </CartProvider>
+      </CartProvider>
+    </ProvideAuth>
   );
 };
 

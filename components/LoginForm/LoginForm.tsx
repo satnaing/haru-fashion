@@ -1,11 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useRef, useEffect, useState } from "react";
+import { Fragment, useRef, useEffect, useState, useContext } from "react";
+import { useAuth } from "../../firebase/firebaseAuth";
 import UserIcon from "../../public/icons/UserIcon";
+import Button from "../Buttons/Button";
 import Login from "./Login";
 import Register from "./Register";
 
 export default function LoginForm() {
-  const [isLogin, setIsLogin] = useState(true);
+  const auth = useAuth();
+  const [isLoginPage, setisLoginPage] = useState(true);
   const [open, setOpen] = useState(false);
 
   function closeModal() {
@@ -73,11 +76,12 @@ export default function LoginForm() {
                 >
                   &#10005;
                 </button>
-
-                {isLogin ? (
-                  <Login onRegister={() => setIsLogin(false)} />
+                {auth.user ? (
+                  <Button value="Sign Out" onClick={() => auth.signout()} />
+                ) : isLoginPage ? (
+                  <Login onRegister={() => setisLoginPage(false)} />
                 ) : (
-                  <Register onLogin={() => setIsLogin(true)} />
+                  <Register onLogin={() => setisLoginPage(true)} />
                 )}
 
                 {/* <div className="mt-4">

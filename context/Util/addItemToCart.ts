@@ -17,7 +17,7 @@ const addItemToCart = (cartItems: itemType[], item: itemType) => {
       price: item.price,
       img1: item.img1,
       img2: item.img2,
-      qty: 1,
+      qty: item.qty,
     },
   ];
 };
