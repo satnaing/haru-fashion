@@ -69,12 +69,13 @@ export default function CartItem() {
           className="focus:outline-none"
         >
           <BagIcon />
-          {/* {cart[1]} */}
-          <span
-            className={`${animate} absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
-          >
-            {noOfItems}
-          </span>
+          {noOfItems > 0 && (
+            <span
+              className={`${animate} absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
+            >
+              {noOfItems}
+            </span>
+          )}
         </button>
       </div>
       <Transition show={open} as={Fragment}>

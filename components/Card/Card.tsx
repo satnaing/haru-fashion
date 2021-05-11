@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FC, MouseEventHandler } from "react";
 import Heart from "../../public/icons/Heart";

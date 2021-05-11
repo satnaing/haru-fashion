@@ -34,8 +34,6 @@ const Product = ({ post }) => {
     qty: currentQty,
   };
 
-  // console.log(currentItem);
-
   const featuredItems = Items.slice(0, 5);
 
   return (
@@ -209,13 +207,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const paramId = params.id as string;
   const snapshot = await productRef.where("id", "==", parseInt(paramId)).get();
   if (snapshot.empty) {
-    console.log("No matching doc");
+    // console.log("No matching doc");
     return { props: { post: "Error" } };
   }
 
   let post: firebase.firestore.DocumentData;
   snapshot.forEach((doc) => {
-    console.log(doc.id, "=>", doc.data());
+    // console.log(doc.id, "=>", doc.data());
     post = doc.data();
   });
 

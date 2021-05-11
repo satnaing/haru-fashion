@@ -77,15 +77,9 @@ const Header = () => {
           <ul className={`flex-1 flex justify-end ${styles.rightMenu}`}>
             <li>
               <SearchForm />
-              {/* <a href="#">
-                <SearchIcon />
-              </a> */}
             </li>
             <li>
               <LoginForm />
-              {/* <a href="#">
-                <UserIcon />
-              </a> */}
             </li>
             <li>
               <a href="#">
@@ -94,9 +88,6 @@ const Header = () => {
             </li>
             <li>
               <CartItem />
-              {/* <a href="#">
-                <BagIcon />
-              </a> */}
             </li>
           </ul>
         </div>
