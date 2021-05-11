@@ -19,7 +19,6 @@ const Pagination: FC<Props> = ({
   handleNext,
   handlePrev,
 }) => {
-  // const [haha, setHAHA] = useState(false);
   let midPageNumbers = false;
   let startPageNumbers = false;
   let endPageNumbers = false;
@@ -44,6 +43,20 @@ const Pagination: FC<Props> = ({
     pageNumbers = [activePage - 1, activePage, activePage + 1];
     midPageNumbers = true;
     startPageNumbers = false;
+    endPageNumbers = false;
+  }
+
+  if (numOfPagniation === 3) {
+    pageNumbers = [1, 2, 3];
+    startPageNumbers = false;
+    midPageNumbers = false;
+    endPageNumbers = false;
+  }
+
+  if (numOfPagniation === 1) {
+    pageNumbers = [1];
+    startPageNumbers = false;
+    midPageNumbers = false;
     endPageNumbers = false;
   }
 

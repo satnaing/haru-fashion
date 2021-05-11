@@ -49,10 +49,14 @@ const Header = () => {
         <div className={`flex justify-between ${styles.mainMenu}`}>
           <ul className={`flex-1 flex ${styles.leftMenu}`}>
             <li>
-              <a href="#">Men</a>
+              <Link href={`/product-category/men`}>
+                <a>Men</a>
+              </Link>
             </li>
             <li>
-              <a href="#">Women</a>
+              <Link href={`/product-category/women`}>
+                <a>Women</a>
+              </Link>
             </li>
             <li>
               <a href="#">Bags</a>

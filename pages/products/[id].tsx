@@ -45,9 +45,9 @@ const Product = ({ post }) => {
             <a className="text-gray400">Home</a>
           </Link>{" "}
           /{" "}
-          <a href="#" className="text-gray400 capitalize">
-            {post.category}
-          </a>{" "}
+          <Link href={`/product-category/${post.category}`}>
+            <a className="text-gray400 capitalize">{post.category}</a>
+          </Link>{" "}
           / <span>{post.name}</span>
         </div>
       </div>
@@ -207,19 +207,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const paramId = params.id as string;
   const snapshot = await productRef.where("id", "==", parseInt(paramId)).get();
   if (snapshot.empty) {
-    // console.log("No matching doc");
     return { props: { post: "Error" } };
   }
 
   let post: firebase.firestore.DocumentData;
   snapshot.forEach((doc) => {
-    // console.log(doc.id, "=>", doc.data());
     post = doc.data();
   });
-
-  // console.log("Post is ", post);
-  // const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
-  // const post = await res.json();
 
   return { props: { post } };
 };

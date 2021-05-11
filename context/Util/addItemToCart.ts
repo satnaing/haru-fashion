@@ -2,11 +2,11 @@ import { itemType } from "../cart-types";
 
 const addItemToCart = (cartItems: itemType[], item: itemType) => {
   const duplicate = cartItems.some((cartItem) => cartItem.id === item.id);
+  let itemQty = 0;
+  item.qty ? (itemQty = item.qty) : itemQty++;
   if (duplicate) {
     return cartItems.map((cartItem) =>
-      cartItem.id === item.id
-        ? { ...cartItem, qty: cartItem.qty + 1 }
-        : cartItem
+      cartItem.id === item.id ? { ...cartItem, qty: itemQty } : cartItem
     );
   }
   return [
@@ -17,7 +17,7 @@ const addItemToCart = (cartItems: itemType[], item: itemType) => {
       price: item.price,
       img1: item.img1,
       img2: item.img2,
-      qty: item.qty,
+      qty: itemQty,
     },
   ];
 };
