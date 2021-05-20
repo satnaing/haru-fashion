@@ -27,7 +27,7 @@ const items = [
 export default function CartItem() {
   const [open, setOpen] = useState(false);
   const [animate, setAnimate] = useState("");
-  const { cart, addItem, removeItem, deleteItem } = useContext(CartContext);
+  const { cart, addOne, removeItem, deleteItem } = useContext(CartContext);
 
   let subtotal = 0;
 
@@ -68,7 +68,7 @@ export default function CartItem() {
           onClick={openModal}
           className="focus:outline-none"
         >
-          <BagIcon />
+          <BagIcon extraClass="h-8 w-8 sm:h-6 sm:w-6" />
           {noOfItems > 0 && (
             <span
               className={`${animate} absolute text-xs -top-3 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
@@ -110,8 +110,8 @@ export default function CartItem() {
             <Transition.Child
               as={Fragment}
               enter="ease-linear duration-600"
-              enterFrom="-translate-y-full"
-              enterTo="translate-y-0"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
               leave="ease-linear duration-300"
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
@@ -120,11 +120,11 @@ export default function CartItem() {
                 style={{ height: "100vh" }}
                 className="relative inline-block dur h-screen w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl"
               >
-                <div className="bg-lightgreen flex justify-between p-6">
+                <div className="bg-lightgreen flex justify-between items-center p-6">
                   <h3 className="text-xl">Cart ({noOfItems})</h3>
                   <button
                     type="button"
-                    className="outline-none focus:outline-none text-2xl"
+                    className="outline-none focus:outline-none text-3xl sm:text-2xl"
                     onClick={closeModal}
                   >
                     &#10005;
@@ -142,7 +142,7 @@ export default function CartItem() {
                           price={item.price * item.qty}
                           qty={item.qty}
                           img={item.img1}
-                          onAdd={() => addItem(item)}
+                          onAdd={() => addOne(item)}
                           onRemove={() => removeItem(item)}
                           onDelete={() => deleteItem(item)}
                         />

@@ -8,7 +8,7 @@ import styles from "./Footer.module.css";
 export default function Footer() {
   return (
     <>
-      <div className="border-t-2 border-gray100 py-16 px-20 flex justify-between ">
+      <div className={styles.footerContainer}>
         <div>
           <h6 className={styles.footerHead}>COMPANY</h6>
           <div className={styles.column}>
@@ -53,16 +53,24 @@ export default function Footer() {
       </div>
       <div className="flex flex-col items-center pb-16">
         <h4 className="text-3xl mb-4">Newsletter</h4>
-        <span>Be the first to know about new arrivals, sales & promos!</span>
-        <div className="mt-5">
-          <Input name="email" type="email" />{" "}
-          <Button size="lg" value="Send" extraClass="ml-4" />
+        <span className="px-6 text-center">
+          Be the first to know about new arrivals, sales & promos!
+        </span>
+        <div className="mt-5 px-6 flex w-full sm:w-auto flex-col sm:flex-row">
+          <Input name="email" type="email" extraClass=" w-full sm:w-auto" />{" "}
+          <Button
+            size="lg"
+            value="Send"
+            extraClass="ml-0 mt-4 sm:mt-0 tracking-widest sm:tracking-normal sm:mt-0 sm:ml-4 w-auto w-full sm:w-auto"
+          />
         </div>
       </div>
       <div className={styles.bottomFooter}>
-        <span className="ml-20">@2020 GOYA. All rights reserved.</span>
-        <span className="flex items-center mr-20">
-          Follow us on Social Media:{" "}
+        <span className="ml-6 sm:ml-12 md:ml-20">
+          @2020 GOYA. All rights reserved.
+        </span>
+        <span className="flex items-center mr-6 sm:mr-12 md:mr-20">
+          <span className="hidden sm:block">Follow us on Social Media:</span>{" "}
           <a href="www.facebook.com">
             <FacebookLogo />
           </a>

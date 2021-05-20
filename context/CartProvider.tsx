@@ -4,6 +4,7 @@ import CartContext, { initialContextValues } from "./CartContext";
 import Cookie from "js-cookie";
 import {
   ADD_ITEM,
+  ADD_ONE,
   REMOVE_ITEM,
   DELETE_ITEM,
   itemType,
@@ -32,6 +33,13 @@ const CartProvider: FC<CartProviderType> = ({ iniState, children }) => {
     });
   };
 
+  const addOne = (item: itemType) => {
+    dispatch({
+      type: ADD_ONE,
+      payload: item,
+    });
+  };
+
   const removeItem = (item: itemType) => {
     dispatch({
       type: REMOVE_ITEM,
@@ -55,6 +63,7 @@ const CartProvider: FC<CartProviderType> = ({ iniState, children }) => {
   const value: cartType = {
     cart: state.cart,
     addItem,
+    addOne,
     removeItem,
     deleteItem,
     clearCart,

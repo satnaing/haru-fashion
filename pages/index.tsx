@@ -22,7 +22,7 @@ import firebase from "../firebase/firebase";
 
 export default function Home({ products }) {
   const [totalItems, setTotalItems] = useState(10);
-  const { addItem } = useContext(CartContext);
+  const { addOne } = useContext(CartContext);
 
   const currentItems = products.slice(0, totalItems);
 
@@ -120,7 +120,7 @@ export default function Home({ products }) {
               imgSrc2={item.img2}
               itemName={item.name}
               itemPrice={item.price}
-              onClick={() => addItem(item)}
+              onClick={() => addOne(item)}
               itemLink={`/products/${encodeURIComponent(item.id)}`}
             />
           ))}

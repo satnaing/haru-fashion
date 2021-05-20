@@ -49,7 +49,7 @@ const ProductCategory = ({ items }) => {
   return (
     <div>
       <Header />
-      <div className="px-20 bg-lightgreen h-16 w-full flex items-center">
+      <div className="px-6 sm:px-12 md:px-20 bg-lightgreen h-16 w-full flex items-center">
         <div className="breadcrumb">
           <Link href="/">
             <a className="text-gray400">Home</a>
@@ -57,7 +57,7 @@ const ProductCategory = ({ items }) => {
           / <span className="capitalize">{category}</span>
         </div>
       </div>
-      <div className="px-20 w-full mt-8">
+      <div className="px-6 sm:px-12 md:px-20 w-full mt-8">
         <h3 className="text-4xl mb-2 capitalize">{category}</h3>
         <div className="flex justify-between mt-6">
           <span>
@@ -66,7 +66,7 @@ const ProductCategory = ({ items }) => {
           <span>Filter by: Price</span>
         </div>
       </div>
-      <div className="px-16 mb-14">
+      <div className="px-2 sm:px-8 md:px-16 mb-14">
         <div className="flex flex-wrap mb-8">
           {currentItems.map((item) => (
             <Card5

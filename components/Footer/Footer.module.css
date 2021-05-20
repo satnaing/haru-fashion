@@ -1,5 +1,5 @@
 .footerHead {
-  @apply text-gray400 text-lg mb-3;
+  @apply text-gray400 text-lg mb-1 md:mb-3;
 }
 
 .column {
@@ -9,6 +9,14 @@
 .column a,
 .column span {
   @apply py-2;
+}
+
+.footerContainer {
+  @apply border-t-2 border-gray100 py-16 px-6 sm:px-12 md:px-20 flex flex-col md:flex-row justify-between;
+}
+
+.footerContainer > div {
+  @apply mb-6 md:mb-0;
 }
 
 .bottomFooter {

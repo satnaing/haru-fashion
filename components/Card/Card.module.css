@@ -9,7 +9,7 @@
 
 .firstImage {
   min-width: 200px;
-  height: 300px;
+  height: 500px;
   @apply w-full absolute top-0 left-0 transition-opacity object-cover;
 }
 /* 
@@ -17,8 +17,15 @@
 /* w-60 */
 .secondImage {
   min-width: 200px;
-  height: 300px;
+  height: 500px;
   @apply w-full transition-transform object-cover;
+}
+
+@media (min-width: 576px) {
+  .firstImage,
+  .secondImage {
+    height: 300px;
+  }
 }
 
 .itemName {

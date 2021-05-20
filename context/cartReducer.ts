@@ -1,6 +1,7 @@
 import addItemToCart from "./Util/addItemToCart";
 import {
   ADD_ITEM,
+  ADD_ONE,
   REMOVE_ITEM,
   DELETE_ITEM,
   cartType,
@@ -20,6 +21,11 @@ const cartReducer = (state: cartType, action: actionType) => {
       return {
         ...state,
         cart: addItemToCart(state.cart, action.payload),
+      };
+    case ADD_ONE:
+      return {
+        ...state,
+        cart: addItemToCart(state.cart, action.payload, true),
       };
     case REMOVE_ITEM:
       return {

@@ -14,6 +14,7 @@ import Link from "next/link";
 import LoginForm from "../LoginForm/LoginForm";
 import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
+import MenuIcon from "../../public/icons/MenuIcon";
 // import CartProvider from "../../context/cartStore";
 
 const Header = () => {
@@ -46,8 +47,13 @@ const Header = () => {
           scrolled ? "bg-white sticky top-0 shadow-md z-50" : "bg-transparent"
         } w-full z-50 h-20 relative`}
       >
-        <div className={`flex justify-between ${styles.mainMenu}`}>
-          <ul className={`flex-1 flex ${styles.leftMenu}`}>
+        <div
+          className={`flex justify-between align-baseline ${styles.mainMenu}`}
+        >
+          <div className="flex-1 lg:flex-0 lg:hidden">
+            <MenuIcon />
+          </div>
+          <ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>
             <li>
               <Link href={`/product-category/men`}>
                 <a>Men</a>
@@ -65,7 +71,7 @@ const Header = () => {
               <a href="#">Blogs</a>
             </li>
           </ul>
-          <div className="flex-1 flex justify-center cursor-pointer">
+          <div className="flex-1 flex justify-center items-center cursor-pointer">
             <Link href="/">
               <a>
                 <Image

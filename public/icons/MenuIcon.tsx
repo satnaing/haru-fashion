@@ -1,7 +1,7 @@
-const BagIcon = ({ extraClass = "" }) => (
+const MenuIcon = ({ size = "md", extraClass = "" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-6 ${extraClass}`}
+    className="h-8 w-8 sm:h-6 sm:w-6"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -10,9 +10,9 @@ const BagIcon = ({ extraClass = "" }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+      d="M4 6h16M4 12h8m-8 6h16"
     />
   </svg>
 );
 
-export default BagIcon;
+export default MenuIcon;

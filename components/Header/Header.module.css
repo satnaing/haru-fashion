@@ -17,16 +17,20 @@
 
 /* Main Menu */
 .mainMenu {
-  @apply px-8 py-6;
+  @apply px-6 md:px-8 py-6;
 }
 /* .leftMenu {
   @apply ml-8 my-6;
 } */
 
 .leftMenu li {
-  @apply mr-12;
+  @apply mr-12 hidden lg:block;
 }
 
 .rightMenu li {
   @apply ml-12;
+}
+
+.rightMenu li:not(:last-child) {
+  @apply hidden lg:block;
 }

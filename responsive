@@ -1,0 +1,3 @@
+btn = mt-4 py-3 sm:py-2 text-xl sm:text-base
+container = px-6 sm:px-12 md:px-20
+icons = h-8 w-8 sm:h-6 sm:w-6

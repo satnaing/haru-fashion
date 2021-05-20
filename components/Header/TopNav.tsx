@@ -8,7 +8,7 @@ import { Menu } from "@headlessui/react";
 
 const TopNav = () => {
   return (
-    <div className="bg-gray500 text-gray100">
+    <div className="bg-gray500 text-gray100 hidden lg:block">
       <div className="flex justify-between">
         <ul className={`flex ${styles.topLeftMenu}`}>
           <li>
