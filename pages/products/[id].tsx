@@ -186,7 +186,7 @@ const Product = ({ post }) => {
                 size="lg"
                 extraClass="text-center xl:hidden"
               >
-                <Heart extraClass="bg-black" />
+                <Heart extraClass="inline bg-black" />
               </GhostButton>
             </div>
           </div>
