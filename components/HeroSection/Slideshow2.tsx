@@ -1,12 +1,9 @@
 import { Slide } from "react-slideshow-image";
-import LeftArrow from "../../public/icons/LeftArrow";
-import RightArrow from "../../public/icons/RightArrow";
 import TextButton from "../Buttons/TextButton";
 import styles from "./Hero.module.css";
 
 const sliders = [
   {
-    id: 1,
     bgImg: "/bg-img/curly_hair_white-1.jpg",
     subtitle: "Spring Revolution",
     titleUp: "Night Summer",
@@ -14,7 +11,6 @@ const sliders = [
     rightText: true,
   },
   {
-    id: 2,
     bgImg: "/bg-img/curly_hair_girl-1.jpg",
     subtitle: "50% off",
     titleUp: "New Cocktail",
@@ -22,7 +18,6 @@ const sliders = [
     rightText: false,
   },
   {
-    id: 3,
     bgImg: "/bg-img/monigote.jpg",
     subtitle: "Spring promo",
     titleUp: "The Weekend",
@@ -36,17 +31,6 @@ const sectionHeight = "720px";
 const slideProperties = {
   duration: 5000,
   canSwipe: true,
-  prevArrow: (
-    <div className={`${styles.arrows} left-8`}>
-      <LeftArrow />
-    </div>
-  ),
-  nextArrow: (
-    <div className={`${styles.arrows} right-8`}>
-      <RightArrow />
-    </div>
-  ),
-
   // indicators: true,
 };
 
@@ -56,7 +40,7 @@ const Slideshow = () => {
       <div className="slide-container absolute w-full h-screen top-8 z-20">
         <Slide {...slideProperties}>
           {sliders.map((slider) => (
-            <div className="each-slide relative" key={slider.id}>
+            <div className="each-slide relative">
               <div
                 style={{
                   backgroundImage: `url(${slider.bgImg})`,

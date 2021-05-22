@@ -10,6 +10,16 @@ import { ProvideAuth } from "../firebase/firebaseAuth";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
+import "react-slideshow-image/dist/styles.css";
+
+// Import Swiper styles
+
+// Import Swiper styles
+import "swiper/swiper.min.css";
+import "swiper/components/navigation/navigation.min.css";
+import "swiper/components/pagination/pagination.min.css";
+import "swiper/components/scrollbar/scrollbar.min.css";
+
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());

@@ -1,3 +1,9 @@
+.swiper-slide {
+  width: 100% !important;
+  margin: auto !important;
+}
+
+/* Custom React Slideshow Images
 .react-slideshow-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -59,80 +65,4 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-top: 20px;
-}
-.react-slideshow-container + ul.indicators li {
-  display: inline-block;
-  position: relative;
-  width: 7px;
-  height: 7px;
-  padding: 5px;
-  margin: 0;
-}
-.react-slideshow-container + ul.indicators .each-slideshow-indicator {
-  border: 0;
-  opacity: 0.25;
-  cursor: pointer;
-  background: transparent;
-  color: transparent;
-}
-.react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  content: "";
-  background: #000;
-  text-align: center;
-}
-.react-slideshow-container + ul.indicators .each-slideshow-indicator:hover,
-.react-slideshow-container + ul.indicators .each-slideshow-indicator.active,
-.react-slideshow-container + ul.indicators .each-slideshow-indicator:focus {
-  opacity: 0.75;
-  outline: 0;
-}
-.react-slideshow-fade-wrapper {
-  width: 100%;
-  overflow: hidden;
-}
-.react-slideshow-fade-wrapper .react-slideshow-fade-images-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-.react-slideshow-fade-wrapper .react-slideshow-fade-images-wrap > div {
-  position: relative;
-  opacity: 0;
-}
-.react-slideshow-wrapper.slide {
-  width: 100%;
-  overflow: hidden;
-}
-.react-slideshow-wrapper .images-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-.react-slideshow-zoom-wrapper {
-  width: 100%;
-  overflow: hidden;
-}
-.react-slideshow-zoom-wrapper .zoom-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  overflow: hidden;
-}
-.react-slideshow-zoom-wrapper .zoom-wrapper > div {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
+} */

@@ -16,9 +16,8 @@ import TextButton from "../components/Buttons/TextButton";
 // let w = window.innerWidth;
 
 const ShoppingCart = () => {
-  const { cart, addItem, removeItem, deleteItem, clearCart } = useContext(
-    CartContext
-  );
+  const { cart, addOne, removeItem, deleteItem, clearCart } =
+    useContext(CartContext);
 
   let subtotal = 0;
 
@@ -88,7 +87,7 @@ const ShoppingCart = () => {
                             {item.qty}
                           </div>
                           <div
-                            onClick={() => addItem(item)}
+                            onClick={() => addOne(item)}
                             className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100"
                           >
                             +
@@ -174,6 +173,3 @@ const ShoppingCart = () => {
 };
 
 export default ShoppingCart;
-
-//meet.google.com/stf-rcgk-qgd
-

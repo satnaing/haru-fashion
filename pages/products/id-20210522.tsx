@@ -17,15 +17,6 @@ import Link from "next/link";
 import CartContext from "../../context/CartContext";
 import { Slide } from "react-slideshow-image";
 
-// swiperjs
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// import Swiper core and required modules
-import SwiperCore, { Pagination } from "swiper/core";
-
-// install Swiper modules
-SwiperCore.use([Pagination]);
-
 const slideProperties = {
   autoplay: false,
   canSwipe: true,
@@ -69,8 +60,8 @@ const Product = ({ post }) => {
           / <span>{post.name}</span>
         </div>
       </div>
-      <div className="itemSection mx-6 sm:mx-20 flex flex-col md:flex-row">
-        <div className="imgSection w-full md:w-1/2 h-full flex">
+      <div className="itemSection mx-6 sm:mx-20 flex flex-col sm:flex-row">
+        <div className="imgSection w-full sm:w-1/2 h-full flex">
           <div className="hidden sm:block w-full sm:w-1/4 h-full space-y-4 my-4">
             <img
               className={`cursor-pointer ${
@@ -94,28 +85,17 @@ const Product = ({ post }) => {
             />
           </div>
           <div className="w-full sm:w-3/4 h-full m-0 sm:m-4">
-            <Swiper
-              slidesPerView={1}
-              spaceBetween={0}
-              loop={true}
-              pagination={{
-                clickable: true,
-              }}
-              className="mySwiper sm:hidden"
-            >
-              <SwiperSlide>
+            <Slide {...slideProperties}>
+              <div className="each-slide">
                 <img className="each-slide w-full" src={img1} alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
+              </div>
+              <div className="each-slide">
                 <img className="each-slide w-full" src={img2} alt="" />
-              </SwiperSlide>
-            </Swiper>
-            <div className="hidden sm:block h-full">
-              <img className="w-full" src={mainImg} alt="" />
-            </div>
+              </div>
+            </Slide>
           </div>
         </div>
-        <div className="infoSection w-full md:w-1/2 h-auto py-8 sm:pl-4 flex flex-col">
+        <div className="infoSection w-full sm:w-1/2 h-auto sm:h-96 py-8 sm:pl-4 flex flex-col">
           <h1 className="text-3xl mb-4">{post.name}</h1>
           <span className="text-2xl text-gray400 mb-2">$ {post.price}</span>
           <span className="mb-2 text-justify">{post.desc}</span>
@@ -147,8 +127,8 @@ const Product = ({ post }) => {
               L
             </div>
           </div>
-          <div className="addToCart flex flex-col sm:flex-row md:flex-col lg:flex-row space-y-4 sm:space-y-0 mb-4">
-            <div className="plusOrMinus h-12 flex border justify-center border-gray300 divide-x-2 divide-gray300 mb-4 mr-0 sm:mr-4 md:mr-0 lg:mr-4">
+          <div className="addToCart flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-0 sm:space-x-4 mb-4">
+            <div className="plusOrMinus h-12 flex border justify-center border-gray300 divide-x-2 divide-gray300">
               <div
                 onClick={() => setCurrentQty((prevState) => prevState - 1)}
                 className={`${
@@ -167,28 +147,20 @@ const Product = ({ post }) => {
                 +
               </div>
             </div>
-            <div className="flex h-12 space-x-4 w-full">
-              <Button
-                value="Add to cart"
-                size="lg"
-                extraClass="flex-grow text-center"
-                onClick={() => addItem(currentItem)}
-              />
-              <GhostButton
-                value="Add to wishlist"
-                size="lg"
-                extraClass="text-center hidden xl:block"
-              >
-                <Heart extraClass="inline bg-black" />
-              </GhostButton>
-              <GhostButton
-                value=""
-                size="lg"
-                extraClass="text-center xl:hidden"
-              >
-                <Heart extraClass="bg-black" />
-              </GhostButton>
-            </div>
+            <Button
+              value="Add to cart"
+              size="lg"
+              extraClass="flex-grow text-center"
+              onClick={() => addItem(currentItem)}
+            />
+            {/* extraClass="w-full text-center" */}
+            <GhostButton
+              value="Add to wishlist"
+              size="lg"
+              extraClass="text-center"
+            >
+              <Heart extraClass="inline bg-black" />
+            </GhostButton>
           </div>
           <Disclosure>
             {({ open }) => (
@@ -220,32 +192,7 @@ const Product = ({ post }) => {
       {/* <div className="hidden"> */}
       <div className="recSection my-8 mx-6 sm:mx-20 flex flex-wrap">
         <h2 className="text-3xl mb-4">You may also like</h2>
-        <Swiper
-          slidesPerView={1}
-          centeredSlides={true}
-          spaceBetween={0}
-          loop={true}
-          grabCursor={true}
-          pagination={{
-            clickable: true,
-          }}
-          className="mySwiper sm:hidden"
-        >
-          {featuredItems.map((item) => (
-            <SwiperSlide key={item.name}>
-              <div className="mb-6">
-                <Card5
-                  key={item.name}
-                  imgSrc1={item.img1}
-                  imgSrc2={item.img2}
-                  itemName={item.name}
-                  itemPrice={item.price}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className="hidden sm:flex flex-wrap">
+        <div className="flex flex-wrap">
           {featuredItems.map((item) => (
             <Card5
               key={item.name}
