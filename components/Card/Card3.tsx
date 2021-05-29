@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import Card from "./Card";
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
   itemLink?: string;
   itemName: string;
   itemPrice: number;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Card3: FC<Props> = ({
@@ -17,6 +18,7 @@ const Card3: FC<Props> = ({
   itemLink = "#",
   itemName,
   itemPrice,
+  onClick,
 }) => (
   <div className="w-full md:w-1/3 px-0 md:px-20 flex justify-center mb-8 md:mb-0">
     <Card
@@ -26,6 +28,7 @@ const Card3: FC<Props> = ({
       itemLink={itemLink}
       itemName={itemName}
       itemPrice={itemPrice}
+      onClick={onClick}
     />
   </div>
 );

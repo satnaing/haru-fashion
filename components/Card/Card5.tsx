@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode } from "react";
+import { FC, MouseEventHandler } from "react";
 import Card from "./Card";
 
 type Props = {

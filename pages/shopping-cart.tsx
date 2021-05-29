@@ -79,7 +79,7 @@ const ShoppingCart = () => {
                         $ {item.price}
                       </td>
                       <td>
-                        <div className="w-12 h-32 sm:h-auto sm:w-2/6 mx-auto flex flex-col-reverse sm:flex-row border border-gray300 sm:divide-x-2 divide-gray300">
+                        <div className="w-12 h-32 sm:h-auto sm:w-3/4 md:w-2/6 mx-auto flex flex-col-reverse sm:flex-row border border-gray300 sm:divide-x-2 divide-gray300">
                           <div
                             onClick={() => removeItem(item)}
                             className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100"

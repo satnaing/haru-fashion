@@ -19,6 +19,7 @@ import { useState, useContext } from "react";
 import CartContext from "../context/CartContext";
 import { db } from "./../firebase/firebase";
 import firebase from "../firebase/firebase";
+import Link from "next/link";
 
 export default function Home({ products }) {
   const [totalItems, setTotalItems] = useState(10);
@@ -44,35 +45,41 @@ export default function Home({ products }) {
               imgSrc="/bg-img/banner_minipage1.jpg"
               imgSrc2="/bg-img/banner_minipage1-tablet.jpg"
             >
-              <GhostButton
-                value="New Arrivals"
-                size="xl"
-                inverted
-                noBorder
-                extraClass="absolute bottom-10-per sm:right-10-per z-20"
-              />
+              <Link href="/new-arrivals">
+                <GhostButton
+                  value="New Arrivals"
+                  size="xl"
+                  inverted
+                  noBorder
+                  extraClass="absolute bottom-10-per right-10-per z-20"
+                />
+              </Link>
             </OverlayContainer>
           </div>
           <div className="w-full md:w-1/3 lg:w-1/4 bg-cover p-4">
             <OverlayContainer imgSrc="/bg-img/banner_minipage2.jpg">
-              <GhostButton
-                value="Women Collection"
-                size="lg"
-                inverted
-                noBorder
-                extraClass="absolute bottom-10-per z-20"
-              />
+              <Link href="/product-category/women">
+                <GhostButton
+                  value="Women Collection"
+                  size="lg"
+                  inverted
+                  noBorder
+                  extraClass="absolute bottom-10-per z-20"
+                />
+              </Link>
             </OverlayContainer>
           </div>
           <div className="w-full md:w-1/3 lg:w-1/4 bg-cover p-4">
             <OverlayContainer imgSrc="/bg-img/banner_minipage3.jpg">
-              <GhostButton
-                value="Men Collection"
-                size="lg"
-                inverted
-                noBorder
-                extraClass="absolute bottom-10-per z-20"
-              />
+              <Link href="/product-category/men">
+                <GhostButton
+                  value="Men Collection"
+                  size="lg"
+                  inverted
+                  noBorder
+                  extraClass="absolute bottom-10-per z-20"
+                />
+              </Link>
             </OverlayContainer>
           </div>
         </div>
@@ -87,6 +94,30 @@ export default function Home({ products }) {
         </div>
         <div className="flex flex-col md:flex-row w-full px-6 sm:px-16 md:px-20">
           <Card3
+            imgSrc1={currentItems[3].img1}
+            imgSrc2={currentItems[3].img2}
+            itemName={currentItems[3].name}
+            itemPrice={currentItems[3].price}
+            onClick={() => addOne(currentItems[3])}
+            itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
+          />
+          <Card3
+            imgSrc1={currentItems[4].img1}
+            imgSrc2={currentItems[4].img2}
+            itemName={currentItems[4].name}
+            itemPrice={currentItems[4].price}
+            onClick={() => addOne(currentItems[3])}
+            itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
+          />
+          <Card3
+            imgSrc1={currentItems[2].img1}
+            imgSrc2={currentItems[2].img2}
+            itemName={currentItems[2].name}
+            itemPrice={currentItems[2].price}
+            onClick={() => addOne(currentItems[3])}
+            itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
+          />
+          {/* <Card3
             imgSrc1="/bg-img/woman-hoodie-1.jpg"
             imgSrc2="/bg-img/women-shortpatch-a1.jpg"
             itemName="Shortpatch"
@@ -103,7 +134,7 @@ export default function Home({ products }) {
             imgSrc2="/bg-img/woman-hoodie-1.jpg"
             itemName="HodieS"
             itemPrice={230.0}
-          />
+          /> */}
         </div>
       </section>
       <section className="w-full hidden h-full py-16 md:flex flex-col items-center bg-lightgreen">
@@ -161,7 +192,6 @@ export const getStaticProps = async () => {
   let products = [];
   const res = await db.collection("products").get();
   res.forEach((doc) => {
-    // console.log(doc.data().id);
     let docData = doc.data();
     products = [
       ...products,
@@ -174,28 +204,6 @@ export const getStaticProps = async () => {
       },
     ];
   });
-  // console.log(products);
-  // db.collection("products")
-  //   .get()
-  //   .then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       console.log(doc.data().id);
-  //       let docData = doc.data();
-  //       products = [
-  //         ...products,
-  //         {
-  //           id: docData.id,
-  //           name: docData.name,
-  //           price: docData.price,
-  //           img1: docData.img1,
-  //           img2: docData.img2,
-  //         },
-  //       ];
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     console.log("Error getting doc: ", error);
-  //   });
   return {
     props: { products }, // will be passed to the page component as props
   };

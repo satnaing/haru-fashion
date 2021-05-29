@@ -62,7 +62,7 @@ export default function CartItem() {
                     <a>
                       <Image
                         className="justify-center"
-                        src="/logo-light.png"
+                        src="/logo.svg"
                         alt="Picture of the author"
                         width={85}
                         height={22}

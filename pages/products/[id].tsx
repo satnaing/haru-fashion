@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/Footer";
 import GhostButton from "../../components/Buttons/GhostButton";
 import Button from "../../components/Buttons/Button";
 import Card5 from "../../components/Card/Card5";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Items from "../../components/Util/Items";
 import Heart from "../../public/icons/Heart";
 import { Disclosure } from "@headlessui/react";
@@ -15,7 +15,6 @@ import { GetStaticProps } from "next";
 import firebase, { db } from "../../firebase/firebase";
 import Link from "next/link";
 import CartContext from "../../context/CartContext";
-import { Slide } from "react-slideshow-image";
 
 // swiperjs
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,22 +25,18 @@ import SwiperCore, { Pagination } from "swiper/core";
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
-const slideProperties = {
-  autoplay: false,
-  canSwipe: true,
-  indicators: true,
-  prevArrow: <div className="hidden"></div>,
-  nextArrow: <div className="hidden"></div>,
-};
-
-const Product = ({ post }) => {
+const Product = ({ post, products }) => {
   const img1 = post.img1;
   const img2 = post.img2;
 
-  const { addItem } = useContext(CartContext);
+  const { addItem, addOne } = useContext(CartContext);
   const [size, setSize] = useState("M");
   const [mainImg, setMainImg] = useState(img1);
   const [currentQty, setCurrentQty] = useState(1);
+
+  useEffect(() => {
+    setMainImg(post.img1);
+  }, [post]);
 
   const handleSize = (value: string) => {
     setSize(value);
@@ -231,7 +226,7 @@ const Product = ({ post }) => {
           }}
           className="mySwiper sm:hidden"
         >
-          {featuredItems.map((item) => (
+          {products.map((item) => (
             <SwiperSlide key={item.name}>
               <div className="mb-6">
                 <Card5
@@ -240,19 +235,23 @@ const Product = ({ post }) => {
                   imgSrc2={item.img2}
                   itemName={item.name}
                   itemPrice={item.price}
+                  onClick={() => addOne(item)}
+                  itemLink={`/products/${encodeURIComponent(item.id)}`}
                 />
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
         <div className="hidden sm:flex flex-wrap">
-          {featuredItems.map((item) => (
+          {products.map((item) => (
             <Card5
               key={item.name}
               imgSrc1={item.img1}
               imgSrc2={item.img2}
               itemName={item.name}
               itemPrice={item.price}
+              onClick={() => addOne(item)}
+              itemLink={`/products/${encodeURIComponent(item.id)}`}
             />
           ))}
         </div>
@@ -290,7 +289,40 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     post = doc.data();
   });
 
-  return { props: { post } };
+  let products = [];
+  const productSnapshot = await productRef.get();
+  productSnapshot.forEach((doc) => {
+    let docData = doc.data();
+    products = [
+      ...products,
+      {
+        id: docData.id,
+        name: docData.name,
+        price: docData.price,
+        img1: docData.img1,
+        img2: docData.img2,
+      },
+    ];
+  });
+  let nums = [];
+  let numOfItems = 5;
+  for (let i = 0; i < numOfItems; i++) {
+    let ranNum = Math.floor(Math.random() * products.length);
+    if (!nums.includes(ranNum)) {
+      nums.push(ranNum);
+    } else {
+      numOfItems++;
+    }
+  }
+  let newProducts = [
+    products[nums[0]],
+    products[nums[1]],
+    products[nums[2]],
+    products[nums[3]],
+    products[nums[4]],
+  ];
+
+  return { props: { post, products: newProducts } };
 };
 
 export default Product;
