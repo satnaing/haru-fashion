@@ -14,7 +14,7 @@ import InstagramLogo from "../../public/icons/InstagramLogo";
 import { GetStaticProps } from "next";
 import firebase, { db } from "../../firebase/firebase";
 import Link from "next/link";
-import CartContext from "../../context/CartContext";
+import CartContext from "../../context/cart/CartContext";
 
 // swiperjs
 import { Swiper, SwiperSlide } from "swiper/react";

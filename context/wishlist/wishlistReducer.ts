@@ -1,4 +1,4 @@
-import addItemToCart from "./Util/addItemToCart";
+import addItemToCart from "../Util/addItemToCart";
 import {
   ADD_ITEM,
   ADD_ONE,
@@ -7,8 +7,8 @@ import {
   cartType,
   itemType,
   CLEAR_CART,
-} from "./cart-types";
-import removeItemFromCart from "./Util/removeItemFromCart";
+} from "./wishlist-type";
+import removeItemFromCart from "../Util/removeItemFromCart";
 
 type actionType = {
   type: string;

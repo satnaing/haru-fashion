@@ -9,7 +9,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import firebase, { db } from "../../firebase/firebase";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import CartContext from "../../context/CartContext";
+import CartContext from "../../context/cart/CartContext";
 
 const ProductCategory = ({ items }) => {
   const { addItem } = useContext(CartContext);

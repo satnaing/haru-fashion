@@ -1,4 +1,4 @@
-import { itemType } from "../cart-types";
+import { itemType } from "../cart/cart-types";
 
 const addItemToCart = (
   cartItems: itemType[],

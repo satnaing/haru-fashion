@@ -1,4 +1,4 @@
-import { itemType } from "../cart-types";
+import { itemType } from "../cart/cart-types";
 
 const removeItemFromCart = (cartItems: itemType[], item: itemType) => {
   //   const duplicate = cartItems.some((cartItem) => cartItem.id === item.id);

@@ -1,5 +1,4 @@
 import React, { FC, useContext } from "react";
-import CartContext from "../../context/CartContext";
 
 type Props = {
   img: string;

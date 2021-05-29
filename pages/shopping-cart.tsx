@@ -9,7 +9,7 @@ import useWindowSize from "../components/Util/useWindowSize";
 import Link from "next/link";
 import LeftArrow from "../public/icons/LeftArrow";
 import Button from "../components/Buttons/Button";
-import CartContext from "../context/CartContext";
+import CartContext from "../context/cart/CartContext";
 import GhostButton from "../components/Buttons/GhostButton";
 import TextButton from "../components/Buttons/TextButton";
 
@@ -72,7 +72,13 @@ const ShoppingCart = () => {
                   return (
                     <tr className="border-b-2 border-gray200" key={item.id}>
                       <td className="my-3 flex flex-col xl:flex-row items-start sm:items-center xl:space-x-2 text-center xl:text-left">
-                        <img src={item.img1} alt="" className="h-32 xl:mr-4" />
+                        <Link href={`/products/${encodeURIComponent(item.id)}`}>
+                          <img
+                            src={item.img1}
+                            alt=""
+                            className="h-32 xl:mr-4"
+                          />
+                        </Link>
                         <span>{item.name}</span>
                       </td>
                       <td className="text-right text-gray400 hidden sm:table-cell">

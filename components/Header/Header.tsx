@@ -16,7 +16,6 @@ import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
 import MenuIcon from "../../public/icons/MenuIcon";
 import Menu from "../Menu/Menu";
-// import CartProvider from "../../context/cartStore";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -91,10 +90,14 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <a href="#">Bags</a>
+              <Link href="/coming-soon">
+                <a>Bags</a>
+              </Link>
             </li>
             <li>
-              <a href="#">Blogs</a>
+              <Link href="/coming-soon">
+                <a>Blogs</a>
+              </Link>
             </li>
           </ul>
           <div className="flex-1 flex justify-center items-center cursor-pointer">
@@ -118,9 +121,11 @@ const Header = () => {
               <LoginForm />
             </li>
             <li>
-              <a href="#">
-                <WhistlistIcon />
-              </a>
+              <Link href="/wishlist">
+                <a>
+                  <WhistlistIcon />
+                </a>
+              </Link>
             </li>
             <li>
               <CartItem />

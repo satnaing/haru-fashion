@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment, useCallback, useContext, useEffect, useState } from "react";
-import CartContext from "../../context/CartContext";
+import CartContext from "../../context/cart/CartContext";
 import BagIcon from "../../public/icons/BagIcon";
 import MenuIcon from "../../public/icons/MenuIcon";
 import Button from "../Buttons/Button";

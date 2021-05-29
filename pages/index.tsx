@@ -15,23 +15,24 @@ import Card3 from "../components/Card/Card3";
 import Card5 from "../components/Card/Card5";
 import TestiSlider from "../components/TestiSlider/TestiSlider";
 import { default as featuredItems } from "../components/Util/Items";
-import { useState, useContext } from "react";
-import CartContext from "../context/CartContext";
+import { useState, useContext, useEffect } from "react";
+import CartContext from "../context/cart/CartContext";
 import { db } from "./../firebase/firebase";
 import firebase from "../firebase/firebase";
 import Link from "next/link";
+import useWindowSize from "../components/Util/useWindowSize";
 
 export default function Home({ products }) {
   const [totalItems, setTotalItems] = useState(10);
   const { addOne } = useContext(CartContext);
+  const [viewWidth, setViewWidth] = useWindowSize();
 
   const currentItems = products.slice(0, totalItems);
 
-  // let arrItems = [];
-
-  // for (let i = 1; i <= totalItems; i++) {
-  //   arrItems = [...arrItems, i];
-  // }
+  // Change totalItems to 8 for good layout
+  useEffect(() => {
+    viewWidth <= 1280 ? setTotalItems(8) : setTotalItems(10);
+  }, [viewWidth]);
 
   return (
     <div className="">

@@ -2,7 +2,7 @@ import type { AppProps, AppContext } from "next/app";
 import Router from "next/router";
 import "../styles/globals.css";
 import "animate.css";
-import CartProvider from "../context/CartProvider";
+import CartProvider from "../context/cart/CartProvider";
 import TextProvider from "../context/TestContext";
 import { NextComponentType, NextPageContext } from "next";
 import firebase from "../firebase/firebase";
