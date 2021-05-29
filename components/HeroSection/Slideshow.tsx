@@ -37,12 +37,12 @@ const slideProperties = {
   duration: 5000,
   canSwipe: true,
   prevArrow: (
-    <div className={`${styles.arrows} left-8`}>
+    <div className={`${styles.arrows} left-2 md:left-8`}>
       <LeftArrow />
     </div>
   ),
   nextArrow: (
-    <div className={`${styles.arrows} right-8`}>
+    <div className={`${styles.arrows} right-2 md:right-8`}>
       <RightArrow />
     </div>
   ),
@@ -53,7 +53,7 @@ const slideProperties = {
 const Slideshow = () => {
   return (
     <div style={{ height: 640 }}>
-      <div className="slide-container absolute w-full h-screen top-8 z-20">
+      <div className="slide-container absolute w-full h-screen top-0 lg:top-8 z-20">
         <Slide {...slideProperties}>
           {sliders.map((slider) => (
             <div className="each-slide relative" key={slider.id}>
@@ -61,7 +61,7 @@ const Slideshow = () => {
                 style={{
                   backgroundImage: `url(${slider.bgImg})`,
                   height: sectionHeight,
-                  backgroundPosition: "center",
+                  backgroundPosition: "50% 50%",
                   backgroundSize: "cover",
                 }}
               >

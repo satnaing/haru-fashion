@@ -18,7 +18,7 @@ const Card3: FC<Props> = ({
   itemName,
   itemPrice,
 }) => (
-  <div className="w-full md:w-1/3 px-20 flex justify-center">
+  <div className="w-full md:w-1/3 px-0 md:px-20 flex justify-center mb-8 md:mb-0">
     <Card
       imgSrc1={imgSrc1}
       imgSrc2={imgSrc2}

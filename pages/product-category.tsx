@@ -15,9 +15,9 @@ const CardContainer = () => {
   const [viewWidth, setViewWidth] = useWindowSize();
 
   // Change postPerPage to 8 for good layout
-  // useEffect(() => {
-  //   viewWidth <= 1280 ? setPostPerPage(8) : setPostPerPage(10);
-  // }, [viewWidth]);
+  useEffect(() => {
+    viewWidth <= 1280 ? setPostPerPage(8) : setPostPerPage(10);
+  }, [viewWidth]);
 
   const handlePage = (number: number) => {
     setCurrentPage(number);

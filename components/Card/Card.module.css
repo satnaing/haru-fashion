@@ -21,7 +21,8 @@
   @apply w-full transition-transform object-cover;
 }
 
-@media (min-width: 576px) {
+/* 576px */
+@media (min-width: 992px) {
   .firstImage,
   .secondImage {
     height: 300px;

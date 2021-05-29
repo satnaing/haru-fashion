@@ -15,6 +15,7 @@ import LoginForm from "../LoginForm/LoginForm";
 import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
 import MenuIcon from "../../public/icons/MenuIcon";
+import Menu from "../Menu/Menu";
 // import CartProvider from "../../context/cartStore";
 
 const Header = () => {
@@ -51,7 +52,8 @@ const Header = () => {
           className={`flex justify-between align-baseline ${styles.mainMenu}`}
         >
           <div className="flex-1 lg:flex-0 lg:hidden">
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <Menu />
           </div>
           <ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>
             <li>

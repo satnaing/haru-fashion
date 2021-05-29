@@ -37,20 +37,23 @@ export default function Home({ products }) {
       <Header />
       {/* <HeroSection /> */}
       <Slideshow />
-      <section className="w-full h-auto px-16 py-10 border border-b-2 border-gray100">
+      <section className="w-full h-auto px-2 sm:px-8 md:px-16 py-10 border border-b-2 border-gray100">
         <div className="h-full flex flex-col md:flex-row">
-          <div className="h-full w-full md:w-1/2 p-4">
-            <OverlayContainer imgSrc="/bg-img/banner_minipage1.jpg">
+          <div className="h-full w-full md:w-1/3 lg:w-1/2 p-4">
+            <OverlayContainer
+              imgSrc="/bg-img/banner_minipage1.jpg"
+              imgSrc2="/bg-img/banner_minipage1-tablet.jpg"
+            >
               <GhostButton
                 value="New Arrivals"
                 size="xl"
                 inverted
                 noBorder
-                extraClass="absolute bottom-10-per right-10-per z-20"
+                extraClass="absolute bottom-10-per sm:right-10-per z-20"
               />
             </OverlayContainer>
           </div>
-          <div className="w-full md:w-1/4 bg-cover p-4">
+          <div className="w-full md:w-1/3 lg:w-1/4 bg-cover p-4">
             <OverlayContainer imgSrc="/bg-img/banner_minipage2.jpg">
               <GhostButton
                 value="Women Collection"
@@ -61,7 +64,7 @@ export default function Home({ products }) {
               />
             </OverlayContainer>
           </div>
-          <div className="w-full md:w-1/4 bg-cover p-4">
+          <div className="w-full md:w-1/3 lg:w-1/4 bg-cover p-4">
             <OverlayContainer imgSrc="/bg-img/banner_minipage3.jpg">
               <GhostButton
                 value="Men Collection"
@@ -75,14 +78,14 @@ export default function Home({ products }) {
         </div>
       </section>
       <section className="w-full h-full flex flex-col justify-center items-center mt-16 mb-20">
-        <div className="w-1/3 text-center mb-8">
+        <div className="w-3/4 sm:w-1/2 md:w-1/3 text-center mb-8">
           <h4 className="text-3xl mb-4">Best Selling</h4>
           <span>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius fugit
             aliquam hic, voluptatibus iste consectetur odit
           </span>
         </div>
-        <div className="flex flex-col md:flex-row w-full px-20">
+        <div className="flex flex-col md:flex-row w-full px-6 sm:px-16 md:px-20">
           <Card3
             imgSrc1="/bg-img/woman-hoodie-1.jpg"
             imgSrc2="/bg-img/women-shortpatch-a1.jpg"
@@ -103,16 +106,16 @@ export default function Home({ products }) {
           />
         </div>
       </section>
-      <section className="w-full h-full py-16 flex flex-col items-center bg-lightgreen">
+      <section className="w-full hidden h-full py-16 md:flex flex-col items-center bg-lightgreen">
         <h4 className="text-3xl">Testimonial</h4>
         <TestiSlider />
       </section>
 
-      <section className="px-16 my-16 flex flex-col items-center">
+      <section className="px-2 sm:px-8 md:px-16 my-16 flex flex-col items-center">
         <div className="text-center mb-6">
           <h4 className="text-3xl">Featured Products</h4>
         </div>
-        <div className="flex flex-col md:flex-row flex-wrap w-full mb-8">
+        <div className="flex flex-col sm:flex-row flex-wrap w-full mb-8">
           {currentItems.map((item) => (
             <Card5
               key={item.id}
