@@ -7,23 +7,6 @@ import Button from "../Buttons/Button";
 import GhostButton from "../Buttons/GhostButton";
 import Item from "./Item";
 
-const items = [
-  {
-    id: 1,
-    name: "Zipped Joggers",
-    img: "/items/minimalist-img-6-364x492.jpg",
-    price: 243,
-    qty: 1,
-  },
-  {
-    id: 2,
-    name: "Washed Denim Shirt",
-    img: "/items/minimalist-img-61-364x492.jpg",
-    price: 135,
-    qty: 2,
-  },
-];
-
 export default function CartItem() {
   const [open, setOpen] = useState(false);
   const [animate, setAnimate] = useState("");

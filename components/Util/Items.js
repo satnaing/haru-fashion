@@ -69,12 +69,6 @@ const Items = [
     name: "Faux suede bomber jacket",
     price: 116,
   },
-  // {
-  //   img1: "/items/minimalist-img-15-364x492.jpg",
-  //   img2: "/items/minimalist-img-151-364x492.jpg",
-  //   name: "Zebra print midi skirt",
-  //   price: 106,
-  // },
   {
     id: 11,
     img1: "https://i.ibb.co/dtBkZ2z/5814619742-2-4-1-jpg.webp",
