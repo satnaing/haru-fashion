@@ -182,6 +182,7 @@ const Product = ({ post, products }) => {
               <GhostButton
                 value=""
                 size="lg"
+                onClick={() => addToWishlist(currentItem)}
                 extraClass="text-center xl:hidden"
               >
                 <Heart extraClass="inline bg-black" />
