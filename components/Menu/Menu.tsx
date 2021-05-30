@@ -2,14 +2,22 @@ import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { Fragment, useCallback, useContext, useEffect, useState } from "react";
-import CartContext from "../../context/cart/CartContext";
+import WishlistContext from "../../context/wishlist/WishlistContext";
 import BagIcon from "../../public/icons/BagIcon";
 import MenuIcon from "../../public/icons/MenuIcon";
 import Button from "../Buttons/Button";
 import GhostButton from "../Buttons/GhostButton";
+import LoginForm from "../LoginForm/LoginForm";
+import WhistlistIcon from "../../public/icons/WhistlistIcon";
+import UserIcon from "../../public/icons/UserIcon";
+import SearchIcon from "../../public/icons/SearchIcon";
 
 export default function CartItem() {
+  const { wishlist } = useContext(WishlistContext);
   const [open, setOpen] = useState(false);
+
+  // Calculate Number of Wishlist
+  let noOfWishlist = wishlist.length;
 
   function closeModal() {
     setOpen(false);
@@ -79,10 +87,18 @@ export default function CartItem() {
                 </div>
 
                 <div className="h-full">
-                  <div className="itemContainer mt-20 px-6 h-1/2 w-full flex flex-col justify-around items-center">
+                  <div className="itemContainer mt-7 px-6 h-1/2 w-full flex flex-col justify-around items-center">
+                    <div className="flex justify-between items-center mt-5 mb-5 border-gray300 border-b-2">
+                      <SearchIcon extraClass="text-gray300 w-6 h-6" />
+                      <input
+                        type="search"
+                        placeholder="Search anything ..."
+                        className="px-4 py-2 w-full focus:outline-none text-2xl"
+                      />
+                    </div>
                     <Link href="/product-category/men">
                       <a
-                        className="w-full text-2xl hover:bg-gray100 text-center py-2"
+                        className="w-full text-xl hover:bg-gray100 text-left py-2"
                         onClick={closeModal}
                       >
                         Men
@@ -90,7 +106,7 @@ export default function CartItem() {
                     </Link>
                     <Link href="/product-category/women">
                       <a
-                        className="w-full text-2xl hover:bg-gray100 text-center py-2"
+                        className="w-full text-xl hover:bg-gray100 text-left py-2"
                         onClick={closeModal}
                       >
                         Women
@@ -98,7 +114,7 @@ export default function CartItem() {
                     </Link>
                     <Link href="/product-category/bags">
                       <a
-                        className="w-full text-2xl hover:bg-gray100 text-center py-2"
+                        className="w-full text-xl hover:bg-gray100 text-left py-2"
                         onClick={closeModal}
                       >
                         Bags
@@ -106,7 +122,7 @@ export default function CartItem() {
                     </Link>
                     <Link href="/blogs">
                       <a
-                        className="w-full text-2xl hover:bg-gray100 text-center py-2"
+                        className="w-full text-xl hover:bg-gray100 text-left py-2"
                         onClick={closeModal}
                       >
                         Blogs
@@ -114,7 +130,7 @@ export default function CartItem() {
                     </Link>
                     <Link href="/about">
                       <a
-                        className="w-full text-2xl hover:bg-gray100 text-center py-2"
+                        className="w-full text-xl hover:bg-gray100 text-left py-2"
                         onClick={closeModal}
                       >
                         About
@@ -122,12 +138,36 @@ export default function CartItem() {
                     </Link>
                     <Link href="/contact">
                       <a
-                        className="w-full text-2xl hover:bg-gray100 text-center py-2"
+                        className="w-full text-xl hover:bg-gray100 text-left py-2"
                         onClick={closeModal}
                       >
                         Contact
                       </a>
                     </Link>
+                    <hr className="border border-gray300 w-full mt-2" />
+                    <div className="w-full text-xl py-2 my-3 flex justify-between">
+                      <LoginForm extraClass="flex justify-between w-full">
+                        <span>Login</span>
+                        <UserIcon />
+                      </LoginForm>
+                    </div>
+                    <hr className="border border-gray300 w-full" />
+                    <Link href="/wishlist">
+                      <a className="text-xl py-2 my-3 w-full flex justify-between">
+                        <span>Wishlist</span>
+                        <div className="relative">
+                          <WhistlistIcon />
+                          {noOfWishlist > 0 && (
+                            <span
+                              className={`absolute text-xs -top-0 -left-7 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
+                            >
+                              {noOfWishlist}
+                            </span>
+                          )}
+                        </div>
+                      </a>
+                    </Link>
+                    <hr className="border border-gray300 w-full" />
                   </div>
                 </div>
               </div>

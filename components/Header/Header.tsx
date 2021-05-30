@@ -138,11 +138,13 @@ const Header = () => {
               <SearchForm />
             </li>
             <li>
-              <LoginForm />
+              <LoginForm>
+                <UserIcon />
+              </LoginForm>
             </li>
             <li>
               <Link href="/wishlist">
-                <a className="relative bg-red">
+                <a className="relative">
                   <WhistlistIcon />
                   {noOfWishlist > 0 && (
                     <span

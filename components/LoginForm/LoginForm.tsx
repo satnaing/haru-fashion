@@ -1,12 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useRef, useEffect, useState, useContext } from "react";
+import { Fragment, useRef, useEffect, useState, useContext, FC } from "react";
 import { useAuth } from "../../firebase/firebaseAuth";
 import UserIcon from "../../public/icons/UserIcon";
 import Button from "../Buttons/Button";
 import Login from "./Login";
 import Register from "./Register";
 
-export default function LoginForm() {
+type Props = {
+  extraClass?: string;
+  children: any;
+};
+
+const LoginForm: FC<Props> = ({ extraClass, children }) => {
   const auth = useAuth();
   const [isLoginPage, setisLoginPage] = useState(true);
   const [open, setOpen] = useState(false);
@@ -21,13 +26,14 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="">
+      <div className={`${extraClass}`}>
         <button
           type="button"
           onClick={openModal}
-          className="focus:outline-none"
+          className={`focus:outline-none ${extraClass}`}
         >
-          <UserIcon />
+          {/* <UserIcon /> */}
+          {children}
         </button>
       </div>
       <Transition show={open} as={Fragment}>
@@ -100,4 +106,6 @@ export default function LoginForm() {
       </Transition>
     </>
   );
-}
+};
+
+export default LoginForm;
