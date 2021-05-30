@@ -21,6 +21,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper/core";
+import WishlistContext from "../../context/wishlist/WishlistContext";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
@@ -30,6 +31,7 @@ const Product = ({ post, products }) => {
   const img2 = post.img2;
 
   const { addItem, addOne } = useContext(CartContext);
+  const { addToWishlist } = useContext(WishlistContext);
   const [size, setSize] = useState("M");
   const [mainImg, setMainImg] = useState(img1);
   const [currentQty, setCurrentQty] = useState(1);
@@ -172,6 +174,7 @@ const Product = ({ post, products }) => {
               <GhostButton
                 value="Add to wishlist"
                 size="lg"
+                onClick={() => addToWishlist(currentItem)}
                 extraClass="text-center hidden xl:block"
               >
                 <Heart extraClass="inline bg-black" />
