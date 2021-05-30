@@ -102,6 +102,7 @@ export default function Home({ products }) {
             itemName={currentItems[3].name}
             itemPrice={currentItems[3].price}
             onClick={() => addOne(currentItems[3])}
+            onAddWishlist={() => addToWishlist(currentItems[3])}
             itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
           />
           <Card3
@@ -109,7 +110,8 @@ export default function Home({ products }) {
             imgSrc2={currentItems[4].img2}
             itemName={currentItems[4].name}
             itemPrice={currentItems[4].price}
-            onClick={() => addOne(currentItems[3])}
+            onAddWishlist={() => addToWishlist(currentItems[4])}
+            onClick={() => addOne(currentItems[4])}
             itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
           />
           <Card3
@@ -117,7 +119,8 @@ export default function Home({ products }) {
             imgSrc2={currentItems[2].img2}
             itemName={currentItems[2].name}
             itemPrice={currentItems[2].price}
-            onClick={() => addOne(currentItems[3])}
+            onAddWishlist={() => addToWishlist(currentItems[2])}
+            onClick={() => addOne(currentItems[2])}
             itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
           />
         </div>
