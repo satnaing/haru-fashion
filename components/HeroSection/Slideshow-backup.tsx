@@ -74,7 +74,7 @@ const Slideshow = () => {
                     {slider.titleUp} <br />
                     {slider.titleDown}
                   </h1>
-                  <TextButton size="small" value="Shop Now" />
+                  <TextButton value="Shop Now" />
                 </div>
               </div>
             ))}

@@ -23,7 +23,7 @@ const Hero = () => {
                 Night Summer <br />
                 Dresses
               </h1>
-              <TextButton size="small" value="Shop Now" />
+              <TextButton value="Shop Now" />
             </div>
             {/* <img src="http://fakeimg.pl/2000x800/0079D8/fff/?text=Without" /> */}
           </div>
@@ -43,7 +43,7 @@ const Hero = () => {
                 New Cocktail <br />
                 Dresses
               </h1>
-              <TextButton size="small" value="Shop Now" />
+              <TextButton value="Shop Now" />
             </div>
           </div>
           <input
@@ -62,7 +62,7 @@ const Hero = () => {
                 The Weekend <br />
                 Promotions
               </h1>
-              <TextButton size="small" value="Shop Now" />
+              <TextButton value="Shop Now" />
             </div>
           </div>
           <label
