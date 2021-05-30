@@ -9,17 +9,37 @@ import BagIcon from "../../public/icons/BagIcon";
 import WhistlistIcon from "../../public/icons/WhistlistIcon";
 import UserIcon from "../../public/icons/UserIcon";
 import SearchIcon from "../../public/icons/SearchIcon";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
 import Link from "next/link";
 import LoginForm from "../LoginForm/LoginForm";
 import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
 import MenuIcon from "../../public/icons/MenuIcon";
 import Menu from "../Menu/Menu";
+import WishlistContext from "../../context/wishlist/WishlistContext";
 
 const Header = () => {
+  const { wishlist } = useContext(WishlistContext);
+  const [animate, setAnimate] = useState("");
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [didMount, setDidMount] = useState<boolean>(false); // to disable Can't perform a React state Warning
+
+  // Calculate Number of Wishlist
+  let noOfWishlist = wishlist.length;
+
+  // Animate Wishlist Number
+  const handleAnimate = useCallback(() => {
+    if (noOfWishlist === 0) return;
+    setAnimate("animate__animated animate__headShake");
+  }, [noOfWishlist, setAnimate]);
+
+  // Set animate when no of wishlist changes
+  useEffect(() => {
+    handleAnimate();
+    setTimeout(() => {
+      setAnimate("");
+    }, 1000);
+  }, [handleAnimate]);
 
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
@@ -122,8 +142,15 @@ const Header = () => {
             </li>
             <li>
               <Link href="/wishlist">
-                <a>
+                <a className="relative bg-red">
                   <WhistlistIcon />
+                  {noOfWishlist > 0 && (
+                    <span
+                      className={`${animate} absolute text-xs -top-3 -right-9 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
+                    >
+                      {noOfWishlist}
+                    </span>
+                  )}
                 </a>
               </Link>
             </li>

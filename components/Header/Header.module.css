@@ -34,3 +34,7 @@
 .rightMenu li:not(:last-child) {
   @apply hidden lg:block;
 }
+
+.rightMenu li:nth-child(3) {
+  @apply hidden sm:block;
+}

@@ -3,6 +3,7 @@ import Router from "next/router";
 import "../styles/globals.css";
 import "animate.css";
 import CartProvider from "../context/cart/CartProvider";
+import WishlistProvider from "../context/wishlist/WishlistProvider";
 import TextProvider from "../context/TestContext";
 import { NextComponentType, NextPageContext } from "next";
 import firebase from "../firebase/firebase";
@@ -28,13 +29,21 @@ type AppCustomProps = {
   Component: NextComponentType<NextPageContext, any, {}>;
   pageProps: any;
   cartState: string;
+  wishlistState: string;
 };
 
-const MyApp = ({ Component, pageProps, cartState }: AppCustomProps) => {
+const MyApp = ({
+  Component,
+  pageProps,
+  cartState,
+  wishlistState,
+}: AppCustomProps) => {
   return (
     <ProvideAuth>
       <CartProvider iniState={cartState}>
-        <Component {...pageProps} />
+        <WishlistProvider iniState={wishlistState}>
+          <Component {...pageProps} />
+        </WishlistProvider>
       </CartProvider>
     </ProvideAuth>
   );
@@ -42,7 +51,9 @@ const MyApp = ({ Component, pageProps, cartState }: AppCustomProps) => {
 
 MyApp.getInitialProps = async (appCtx) => {
   const cartState = appCtx.ctx.req?.cookies?.cartState || '{"cart":[]}';
-  return { cartState };
+  const wishlistState =
+    appCtx.ctx.req?.cookies?.wishlistState || '{"wishlist":[]}';
+  return { cartState, wishlistState };
 };
 
 export default MyApp;

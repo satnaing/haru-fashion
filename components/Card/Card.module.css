@@ -56,5 +56,5 @@
 }
 
 .wishlist {
-  @apply text-gray500 bg-white absolute top-3 right-4 px-2 py-1 hover:bg-gray500 hover:text-white;
+  @apply text-gray500 bg-white absolute focus:outline-none top-3 right-4 px-2 py-1 hover:bg-gray500 hover:text-white;
 }

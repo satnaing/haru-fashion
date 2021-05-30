@@ -10,6 +10,7 @@ import Link from "next/link";
 import LeftArrow from "../public/icons/LeftArrow";
 import Button from "../components/Buttons/Button";
 import CartContext from "../context/cart/CartContext";
+import WishlistContext from "../context/wishlist/WishlistContext";
 import GhostButton from "../components/Buttons/GhostButton";
 import TextButton from "../components/Buttons/TextButton";
 
@@ -19,6 +20,8 @@ const Wishlist = () => {
   const [deli, setDeli] = useState("Yangon");
   const { cart, addOne, removeItem, deleteItem, clearCart } =
     useContext(CartContext);
+  const { wishlist, addToWishlist, deleteWishlistItem, clearWishlist } =
+    useContext(WishlistContext);
 
   let subtotal = 0;
 
@@ -54,7 +57,7 @@ const Wishlist = () => {
                 </th>
                 <th
                   className={`font-normal py-2 ${
-                    cart.length === 0 ? "text-center" : "text-right"
+                    wishlist.length === 0 ? "text-center" : "text-right"
                   }`}
                 >
                   Unit Price
@@ -71,12 +74,12 @@ const Wishlist = () => {
               </tr>
             </thead>
             <tbody>
-              {cart.length === 0 ? (
+              {wishlist.length === 0 ? (
                 <tr className="w-full text-center h-60 border-b-2 border-gray200">
-                  <td colSpan={5}>Cart is empty!</td>
+                  <td colSpan={5}>Wishlist is empty!</td>
                 </tr>
               ) : (
-                cart.map((item) => {
+                wishlist.map((item) => {
                   subtotal += item.price * item.qty;
                   return (
                     <tr className="border-b-2 border-gray200" key={item.id}>
@@ -107,7 +110,7 @@ const Wishlist = () => {
                           extraClass="sm:hidden mb-4"
                         />
                         <button
-                          onClick={() => deleteItem(item)}
+                          onClick={() => deleteWishlistItem(item)}
                           type="button"
                           className="outline-none text-gray300 hover:text-gray500 focus:outline-none text-4xl sm:text-2xl"
                         >
@@ -122,9 +125,9 @@ const Wishlist = () => {
           </table>
           <div>
             <GhostButton
-              onClick={clearCart}
+              onClick={clearWishlist}
               extraClass="hidden sm:inline-block"
-              value="Clear Cart"
+              value="Clear Wishlist"
               size="lg"
             />
             {/* <TextButton value="Clear Cart" /> */}

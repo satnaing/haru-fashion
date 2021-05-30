@@ -17,6 +17,7 @@ import TestiSlider from "../components/TestiSlider/TestiSlider";
 import { default as featuredItems } from "../components/Util/Items";
 import { useState, useContext, useEffect } from "react";
 import CartContext from "../context/cart/CartContext";
+import WishlistContext from "../context/wishlist/WishlistContext";
 import { db } from "./../firebase/firebase";
 import firebase from "../firebase/firebase";
 import Link from "next/link";
@@ -25,6 +26,7 @@ import useWindowSize from "../components/Util/useWindowSize";
 export default function Home({ products }) {
   const [totalItems, setTotalItems] = useState(10);
   const { addOne } = useContext(CartContext);
+  const { addToWishlist } = useContext(WishlistContext);
   const [viewWidth, setViewWidth] = useWindowSize();
 
   const currentItems = products.slice(0, totalItems);
@@ -118,24 +120,6 @@ export default function Home({ products }) {
             onClick={() => addOne(currentItems[3])}
             itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
           />
-          {/* <Card3
-            imgSrc1="/bg-img/woman-hoodie-1.jpg"
-            imgSrc2="/bg-img/women-shortpatch-a1.jpg"
-            itemName="Shortpatch"
-            itemPrice={200.0}
-          />
-          <Card3
-            imgSrc1="/bg-img/women-relaxedshirt-a2.jpg"
-            imgSrc2="/bg-img/woman-hoodie-1.jpg"
-            itemName="Relaxed Shirt"
-            itemPrice={130.0}
-          />
-          <Card3
-            imgSrc1="/bg-img/women-shortpatch-a1.jpg"
-            imgSrc2="/bg-img/woman-hoodie-1.jpg"
-            itemName="HodieS"
-            itemPrice={230.0}
-          /> */}
         </div>
       </section>
       <section className="w-full hidden h-full py-16 md:flex flex-col items-center bg-lightgreen">
@@ -155,6 +139,7 @@ export default function Home({ products }) {
               imgSrc2={item.img2}
               itemName={item.name}
               itemPrice={item.price}
+              onAddWishlist={() => addToWishlist(item)}
               onClick={() => addOne(item)}
               itemLink={`/products/${encodeURIComponent(item.id)}`}
             />

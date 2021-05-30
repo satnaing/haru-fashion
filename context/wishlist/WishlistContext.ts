@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { cartType } from "./wishlist-type";
+import { wishlistType } from "./wishlist-type";
 
-export const initialContextValues: cartType = {
-  cart: [],
+export const initialContextValues: wishlistType = {
+  wishlist: [],
 };
 
-const CartContext = createContext<cartType>(initialContextValues);
+const WishlistContext = createContext<wishlistType>(initialContextValues);
 
-export default CartContext;
+export default WishlistContext;

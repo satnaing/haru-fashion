@@ -10,6 +10,7 @@ type Props = {
   itemLink?: string;
   itemName: string;
   itemPrice: number;
+  onAddWishlist?: MouseEventHandler<HTMLButtonElement>;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -20,6 +21,7 @@ const Card: FC<Props> = ({
   itemLink = "",
   itemName,
   itemPrice,
+  onAddWishlist,
   onClick,
 }) => (
   <div className={styles.cardContainer}>
@@ -30,9 +32,9 @@ const Card: FC<Props> = ({
           <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
         </a>
       </Link>
-      <a href="www.example.com" className={styles.wishlist}>
+      <button onClick={onAddWishlist} className={styles.wishlist}>
         <Heart />
-      </a>
+      </button>
       <div className="absolute z-20 bottom-5 left-1/2 w-4/5 translate-y-28 "></div>
       <div className={styles.btnWrapper}>
         <button onClick={onClick} className={styles.addBtn}>

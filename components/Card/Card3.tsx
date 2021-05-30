@@ -8,6 +8,7 @@ type Props = {
   itemLink?: string;
   itemName: string;
   itemPrice: number;
+  onAddWishlist?: MouseEventHandler<HTMLButtonElement>;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -18,6 +19,7 @@ const Card3: FC<Props> = ({
   itemLink = "#",
   itemName,
   itemPrice,
+  onAddWishlist,
   onClick,
 }) => (
   <div className="w-full md:w-1/3 px-0 md:px-20 flex justify-center mb-8 md:mb-0">
@@ -28,6 +30,7 @@ const Card3: FC<Props> = ({
       itemLink={itemLink}
       itemName={itemName}
       itemPrice={itemPrice}
+      onAddWishlist={onAddWishlist}
       onClick={onClick}
     />
   </div>

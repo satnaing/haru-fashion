@@ -1,48 +1,40 @@
 import addItemToCart from "../Util/addItemToCart";
 import {
-  ADD_ITEM,
-  ADD_ONE,
-  REMOVE_ITEM,
-  DELETE_ITEM,
-  cartType,
+  ADD_TO_WISHLIST,
+  DELETE_WISHLIST_ITEM,
+  CLEAR_WISHLIST,
+  wishlistType,
   itemType,
-  CLEAR_CART,
 } from "./wishlist-type";
 import removeItemFromCart from "../Util/removeItemFromCart";
+import addWishlist from "../Util/addWishlist";
 
 type actionType = {
   type: string;
   payload?: itemType;
 };
 
-const cartReducer = (state: cartType, action: actionType) => {
+const cartReducer = (state: wishlistType, action: actionType) => {
   switch (action.type) {
-    case ADD_ITEM:
+    case ADD_TO_WISHLIST:
       return {
         ...state,
-        cart: addItemToCart(state.cart, action.payload),
+        wishlist: addWishlist(state.wishlist, action.payload),
+        // wishlist: !state.wishlist.some(
+        //   (cartItem) => cartItem.id === action.payload.id
+        // ) && [...state.wishlist, { ...action.payload }],
       };
-    case ADD_ONE:
+    case DELETE_WISHLIST_ITEM:
       return {
         ...state,
-        cart: addItemToCart(state.cart, action.payload, true),
-      };
-    case REMOVE_ITEM:
-      return {
-        ...state,
-        cart: removeItemFromCart(state.cart, action.payload),
-      };
-    case DELETE_ITEM:
-      return {
-        ...state,
-        cart: state.cart.filter(
-          (cartItem) => cartItem.id !== action.payload.id
+        wishlist: state.wishlist.filter(
+          (wishlistItem) => wishlistItem.id !== action.payload.id
         ),
       };
-    case CLEAR_CART:
+    case CLEAR_WISHLIST:
       return {
         ...state,
-        cart: [],
+        wishlist: [],
       };
     default:
       return state;

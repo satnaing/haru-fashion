@@ -1,8 +1,6 @@
-export const ADD_ITEM = "ADD_ITEM";
-export const ADD_ONE = "ADD_ONE";
-export const REMOVE_ITEM = "REMOVE_ITEM";
-export const DELETE_ITEM = "DELETE_ITEM";
-export const CLEAR_CART = "CLEAR_CART";
+export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
+export const DELETE_WISHLIST_ITEM = "DELETE_WISHLIST_ITEMS";
+export const CLEAR_WISHLIST = "CLEAR_WISHLIST";
 
 export type itemType = {
   id: number;
@@ -13,11 +11,11 @@ export type itemType = {
   qty?: number;
 };
 
-export type cartType = {
-  cart: itemType[];
-  addItem?: (item: itemType) => void;
-  addOne?: (item: itemType) => void;
-  removeItem?: (item: itemType) => void;
-  deleteItem?: (item: itemType) => void;
-  clearCart?: () => void;
+export type wishlistType = {
+  wishlist: itemType[];
+  // addItem?: (item: itemType) => void; // delete
+  addToWishlist?: (item: itemType) => void;
+  // removeItem?: (item: itemType) => void; // delete
+  deleteWishlistItem?: (item: itemType) => void;
+  clearWishlist?: () => void;
 };
