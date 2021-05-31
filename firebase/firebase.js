@@ -4,16 +4,14 @@ import "firebase/firestore";
 import { seedDatabase } from "./seed";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCHVqeZFM4ZIjiYng_oFVMU2Fu7VpjdV0I",
-  authDomain: "ecommerce-sn.firebaseapp.com",
-  projectId: "ecommerce-sn",
-  storageBucket: "ecommerce-sn.appspot.com",
-  messagingSenderId: "1085998207330",
-  appId: "1:1085998207330:web:28946e1e95e19bb1b49c3b",
-  measurementId: "G-2GWCTE59TF",
+  apiKey: process.env.NEXT_PUBLIC_FB_APIKEY,
+  authDomain: process.env.NEXT_PUBLIC_FB_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FB_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FB_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FB_MSG_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FB_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FB_MEASUREMENT_ID,
 };
-
-console.log(process.env.FB_APIKEY);
 
 // Initialize Firebase
 if (!firebase.apps.length) {
