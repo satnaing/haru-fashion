@@ -67,7 +67,7 @@ export default function Footer() {
       </div>
       <div className={styles.bottomFooter}>
         <span className="ml-6 sm:ml-12 md:ml-20">
-          @2020 GOYA. All rights reserved.
+          @2020 Haru. All rights reserved.
         </span>
         <span className="flex items-center mr-6 sm:mr-12 md:mr-20">
           <span className="hidden sm:block">Follow us on Social Media:</span>{" "}
