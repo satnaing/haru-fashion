@@ -1,8 +1,7 @@
+import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useRef, useEffect, useState } from "react";
+
 import SearchIcon from "../../public/icons/SearchIcon";
-import Button from "../Buttons/Button";
-import Input from "../Input/Input";
 
 export default function SearchForm() {
   const [open, setOpen] = useState(false);
@@ -20,6 +19,7 @@ export default function SearchForm() {
       <div className="">
         <button
           type="button"
+          aria-label="Search Icon"
           onClick={openModal}
           className="focus:outline-none"
         >
