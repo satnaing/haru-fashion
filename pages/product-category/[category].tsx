@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import CartContext from "../../context/cart/CartContext";
+import WishlistContext from "../../context/wishlist/WishlistContext";
 import { db } from "../../firebase/firebase";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -13,6 +14,7 @@ import useWindowSize from "../../components/Util/useWindowSize";
 
 const ProductCategory = ({ items }) => {
   const { addItem } = useContext(CartContext);
+  const { addToWishlist } = useContext(WishlistContext);
   const [itemPerPage, setItemPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [viewWidth, setViewWidth] = useWindowSize();
@@ -78,6 +80,7 @@ const ProductCategory = ({ items }) => {
               imgSrc2={item.img2}
               itemName={item.name}
               itemPrice={item.price}
+              onAddWishlist={() => addToWishlist(item)}
               onClick={() => addItem(item)}
               itemLink={`/products/${encodeURIComponent(item.id)}`}
             />
