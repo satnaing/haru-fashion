@@ -6,6 +6,10 @@
   @apply flex flex-col;
 }
 
+.column a:hover {
+  @apply text-gray400 underline;
+}
+
 .column a,
 .column span {
   @apply py-2;
