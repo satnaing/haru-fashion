@@ -1,10 +1,9 @@
-import Head from "next/head";
-import styles from "./Header.module.css";
-import Image from "next/image";
+import { Menu } from "@headlessui/react";
+
 import InstagramLogo from "../../public/icons/InstagramLogo";
 import FacebookLogo from "../../public/icons/FacebookLogo";
 import DownArrow from "../../public/icons/DownArrow";
-import { Menu } from "@headlessui/react";
+import styles from "./Header.module.css";
 
 const TopNav = () => {
   return (
@@ -12,12 +11,12 @@ const TopNav = () => {
       <div className="flex justify-between">
         <ul className={`flex ${styles.topLeftMenu}`}>
           <li>
-            <a href="#">
+            <a href="#" aria-label="Haru Fashion Facebook Page">
               <FacebookLogo />
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="#" aria-label="Haru Fashion Instagram Account">
               <InstagramLogo />
             </a>
           </li>
