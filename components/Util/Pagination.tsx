@@ -69,24 +69,31 @@ const Pagination: FC<Props> = ({
   return (
     <div className="w-full">
       <ul className="flex justify-center">
-        <button
-          onClick={handlePrev}
-          className={`${
-            activePage === 1
-              ? "pointer-events-none cursor-not-allowed text-gray400"
-              : "cursor-pointer"
-          } focus:outline-none flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
-        >
-          <PrevArrow />
-        </button>
+        <li>
+          <button
+            type="button"
+            aria-label="Navigate to Previous Page"
+            onClick={handlePrev}
+            className={`${
+              activePage === 1
+                ? "pointer-events-none cursor-not-allowed text-gray400"
+                : "cursor-pointer"
+            } focus:outline-none flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
+          >
+            <PrevArrow />
+          </button>
+        </li>
         {(midPageNumbers || endPageNumbers) && (
-          <span className="flex items-end text-3xl">...</span>
+          <li>
+            <span className="flex items-end text-3xl">...</span>
+          </li>
         )}
         {/* {endPageNumbers && <span className="flex items-end text-3xl">...</span>} */}
         {pageNumbers.map((num) => {
           return (
             <li key={num} className="">
               <button
+                type="button"
                 onClick={() => handlePage(num)}
                 className={`${
                   num === activePage && "bg-gray500 text-gray100"
@@ -98,18 +105,24 @@ const Pagination: FC<Props> = ({
           );
         })}
         {(midPageNumbers || startPageNumbers) && (
-          <span className="flex items-end text-3xl">...</span>
+          <li>
+            <span className="flex items-end text-3xl">...</span>
+          </li>
         )}
-        <button
-          onClick={() => handleNext(numOfPagniation)}
-          className={`${
-            activePage === numOfPagniation
-              ? "pointer-events-none cursor-not-allowed text-gray400"
-              : "cursor-pointer"
-          } focus:outline-none flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
-        >
-          <NextArrow />
-        </button>
+        <li>
+          <button
+            type="button"
+            aria-label="Navigate to Next Page"
+            onClick={() => handleNext(numOfPagniation)}
+            className={`${
+              activePage === numOfPagniation
+                ? "pointer-events-none cursor-not-allowed text-gray400"
+                : "cursor-pointer"
+            } focus:outline-none flex justify-center items-center h-10 w-16 px-3 border mx-1 hover:bg-gray500 hover:text-gray100`}
+          >
+            <NextArrow />
+          </button>
+        </li>
       </ul>
     </div>
   );
