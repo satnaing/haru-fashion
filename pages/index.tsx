@@ -31,7 +31,6 @@ export default function Home({ products }) {
   return (
     <div className="">
       <Header />
-      {/* <HeroSection /> */}
       <Slideshow />
       <section className="w-full h-auto px-2 sm:px-8 md:px-16 py-10 border border-b-2 border-gray100">
         <div className="h-full flex flex-col md:flex-row">
