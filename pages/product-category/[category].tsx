@@ -1,15 +1,15 @@
+import { useContext, useEffect, useState } from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
+import CartContext from "../../context/cart/CartContext";
+import { db } from "../../firebase/firebase";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Card5 from "../../components/Card/Card5";
-import { useCallback, useContext, useEffect, useState } from "react";
 import Pagination from "../../components/Util/Pagination";
-// import Items from "../../components/Util/Items";
 import useWindowSize from "../../components/Util/useWindowSize";
-import { GetStaticPaths, GetStaticProps } from "next";
-import firebase, { db } from "../../firebase/firebase";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import CartContext from "../../context/cart/CartContext";
 
 const ProductCategory = ({ items }) => {
   const { addItem } = useContext(CartContext);
@@ -46,9 +46,12 @@ const ProductCategory = ({ items }) => {
     }
   };
 
+  const capitalizedCategory =
+    category.toString().charAt(0).toUpperCase() + category.toString().slice(1);
+
   return (
     <div>
-      <Header />
+      <Header title={`${capitalizedCategory} - Haru Fashion`} />
       <div className="px-6 sm:px-12 md:px-20 bg-lightgreen h-16 w-full flex items-center">
         <div className="breadcrumb">
           <Link href="/">

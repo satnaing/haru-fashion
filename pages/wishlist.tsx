@@ -1,18 +1,13 @@
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import Card5 from "../components/Card/Card5";
-import { Menu } from "@headlessui/react";
-import { useCallback, useContext, useEffect, useState } from "react";
-import Pagination from "../components/Util/Pagination";
-import Items from "../components/Util/Items";
-import useWindowSize from "../components/Util/useWindowSize";
+import { useContext, useState } from "react";
 import Link from "next/link";
-import LeftArrow from "../public/icons/LeftArrow";
-import Button from "../components/Buttons/Button";
+
 import CartContext from "../context/cart/CartContext";
 import WishlistContext from "../context/wishlist/WishlistContext";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import LeftArrow from "../public/icons/LeftArrow";
+import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
-import TextButton from "../components/Buttons/TextButton";
 
 // let w = window.innerWidth;
 
@@ -27,7 +22,7 @@ const Wishlist = () => {
 
   return (
     <div>
-      <Header />
+      <Header title={`Wishlist - Haru Fashion`} />
       <div className="px-6 md:px-20 w-full border-t-2 border-gray100">
         <h1 className="text-2xl sm:text-4xl text-center sm:text-left mt-6 mb-2 animatee__animated animate__bounce">
           Wishlist

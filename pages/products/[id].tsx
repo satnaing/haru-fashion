@@ -1,20 +1,20 @@
+import { useContext, useEffect, useState } from "react";
+import { Disclosure } from "@headlessui/react";
+import { GetStaticProps } from "next";
+import Link from "next/link";
+
+import firebase, { db } from "../../firebase/firebase";
+import CartContext from "../../context/cart/CartContext";
+import Heart from "../../public/icons/Heart";
+import DownArrow from "../../public/icons/DownArrow";
+import FacebookLogo from "../../public/icons/FacebookLogo";
+import InstagramLogo from "../../public/icons/InstagramLogo";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import GhostButton from "../../components/Buttons/GhostButton";
 import Button from "../../components/Buttons/Button";
 import Card5 from "../../components/Card/Card5";
-import { useContext, useEffect, useState } from "react";
 import Items from "../../components/Util/Items";
-import Heart from "../../public/icons/Heart";
-import { Disclosure } from "@headlessui/react";
-import DownArrow from "../../public/icons/DownArrow";
-import FacebookLogo from "../../public/icons/FacebookLogo";
-import InstagramLogo from "../../public/icons/InstagramLogo";
-
-import { GetStaticProps } from "next";
-import firebase, { db } from "../../firebase/firebase";
-import Link from "next/link";
-import CartContext from "../../context/cart/CartContext";
 
 // swiperjs
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -53,7 +53,7 @@ const Product = ({ post, products }) => {
 
   return (
     <div>
-      <Header />
+      <Header title={`${post.name} - Haru Fashion`} />
       <div className="px-6 sm:px-20 bg-lightgreen h-16 w-full flex items-center border-t-2 border-gray200">
         <div className="breadcrumb">
           <Link href="/">
