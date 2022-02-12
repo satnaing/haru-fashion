@@ -1,4 +1,5 @@
-import Head from "next/head";
+import Link from "next/link";
+
 import FacebookLogo from "../../public/icons/FacebookLogo";
 import InstagramLogo from "../../public/icons/InstagramLogo";
 import Button from "../Buttons/Button";
@@ -30,9 +31,15 @@ export default function Footer() {
         <div>
           <h6 className={styles.footerHead}>STORE</h6>
           <div className={styles.column}>
-            <a href="example">Women</a>
-            <a href="example">Men</a>
-            <a href="example">Bags</a>
+            <Link href={`/product-category/women`}>
+              <a>Women</a>
+            </Link>
+            <Link href={`/product-category/men`}>
+              <a>Men</a>
+            </Link>
+            <Link href={`/product-category/bags`}>
+              <a>Bags</a>
+            </Link>
           </div>
         </div>
         <div>
@@ -71,10 +78,13 @@ export default function Footer() {
         </span>
         <span className="flex items-center mr-6 sm:mr-12 md:mr-20">
           <span className="hidden sm:block">Follow us on Social Media:</span>{" "}
-          <a href="www.facebook.com">
+          <a
+            href="www.facebook.com"
+            aria-label="Facebook Page for Haru Fashion"
+          >
             <FacebookLogo />
           </a>
-          <a href="www.ig.com">
+          <a href="www.ig.com" aria-label="Instagram Account for Haru Fashion">
             <InstagramLogo />
           </a>
         </span>
