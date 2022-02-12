@@ -1,24 +1,24 @@
-import Head from "next/head";
-import styles from "./Header.module.css";
-import Image from "next/image";
-import IgLogo from "../../public/icons/InstagramLogo";
-import FacebookLogo from "../../public/icons/FacebookLogo";
-import DownArrow from "../../public/icons/DownArrow";
-import TopNav from "./TopNav";
-import BagIcon from "../../public/icons/BagIcon";
-import WhistlistIcon from "../../public/icons/WhistlistIcon";
-import UserIcon from "../../public/icons/UserIcon";
-import SearchIcon from "../../public/icons/SearchIcon";
 import { useEffect, useState, useCallback, useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
+
+import TopNav from "./TopNav";
+import WhistlistIcon from "../../public/icons/WhistlistIcon";
+import UserIcon from "../../public/icons/UserIcon";
 import LoginForm from "../LoginForm/LoginForm";
 import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
-import MenuIcon from "../../public/icons/MenuIcon";
 import Menu from "../Menu/Menu";
 import WishlistContext from "../../context/wishlist/WishlistContext";
+import AppHeader from "./AppHeader";
 
-const Header = () => {
+import styles from "./Header.module.css";
+
+type Props = {
+  title?: string;
+};
+
+const Header: React.FC<Props> = ({ title }) => {
   const { wishlist } = useContext(WishlistContext);
   const [animate, setAnimate] = useState("");
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -61,30 +61,7 @@ const Header = () => {
   }
   return (
     <>
-      <Head>
-        <title>Haru Fashion</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicons/apple-touch-icon.png"
-        />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicons/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicons/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/favicons/site.webmanifest" />
-      </Head>
+      <AppHeader title={title} />
       <TopNav />
       <nav
         className={`${
