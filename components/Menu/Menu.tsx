@@ -1,12 +1,10 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Fragment, useCallback, useContext, useEffect, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+
 import WishlistContext from "../../context/wishlist/WishlistContext";
-import BagIcon from "../../public/icons/BagIcon";
 import MenuIcon from "../../public/icons/MenuIcon";
-import Button from "../Buttons/Button";
-import GhostButton from "../Buttons/GhostButton";
 import LoginForm from "../LoginForm/LoginForm";
 import WhistlistIcon from "../../public/icons/WhistlistIcon";
 import UserIcon from "../../public/icons/UserIcon";
@@ -32,10 +30,10 @@ export default function CartItem() {
       <div className="relative">
         <button
           type="button"
+          aria-label="Hamburger Menu"
           onClick={openModal}
           className="focus:outline-none"
         >
-          {/* <BagIcon extraClass="h-8 w-8 sm:h-6 sm:w-6" /> */}
           <MenuIcon />
         </button>
       </div>
