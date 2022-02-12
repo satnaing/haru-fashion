@@ -1,10 +1,9 @@
-import { Dialog, Transition } from "@headlessui/react";
 import { FC, FormEvent, useState } from "react";
+import { Dialog } from "@headlessui/react";
+
+import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
-import firebase from "../../firebase/firebase";
-import { useAuth } from "../../firebase/firebaseAuth";
-// import firebase from "firebase/app";
 
 type Props = {
   onLogin: () => void;

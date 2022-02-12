@@ -1,5 +1,6 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { FC, FormEvent, FormEventHandler, useState } from "react";
+import { FC, FormEvent, useState } from "react";
+import { Dialog } from "@headlessui/react";
+
 import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
