@@ -1,19 +1,15 @@
-import type { AppProps, AppContext } from "next/app";
+import { NextComponentType, NextPageContext } from "next";
 import Router from "next/router";
-import "../styles/globals.css";
-import "animate.css";
+import NProgress from "nprogress";
+
 import CartProvider from "../context/cart/CartProvider";
 import WishlistProvider from "../context/wishlist/WishlistProvider";
-import TextProvider from "../context/TestContext";
-import { NextComponentType, NextPageContext } from "next";
-import firebase from "../firebase/firebase";
 import { ProvideAuth } from "../firebase/firebaseAuth";
-import NProgress from "nprogress";
+
+import "../styles/globals.css";
+import "animate.css";
 import "nprogress/nprogress.css";
-
 import "react-slideshow-image/dist/styles.css";
-
-// Import Swiper styles
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
