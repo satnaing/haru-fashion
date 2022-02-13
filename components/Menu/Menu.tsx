@@ -10,7 +10,7 @@ import WhistlistIcon from "../../public/icons/WhistlistIcon";
 import UserIcon from "../../public/icons/UserIcon";
 import SearchIcon from "../../public/icons/SearchIcon";
 
-export default function CartItem() {
+export default function Menu() {
   const { wishlist } = useContext(WishlistContext);
   const [open, setOpen] = useState(false);
 
