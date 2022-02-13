@@ -1,6 +1,6 @@
 import { FC, useEffect, useReducer } from "react";
 import cartReducer from "./cartReducer";
-import CartContext, { initialContextValues } from "./CartContext";
+import CartContext from "./CartContext";
 import Cookie from "js-cookie";
 import {
   ADD_ITEM,
