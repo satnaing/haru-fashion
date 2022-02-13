@@ -1,7 +1,8 @@
 import { FC, useEffect, useReducer } from "react";
-import cartReducer from "./wishlistReducer";
-import WishlistContext, { initialContextValues } from "./WishlistContext";
 import Cookie from "js-cookie";
+
+import wishlistReducer from "./wishlistReducer";
+import WishlistContext from "./WishlistContext";
 import {
   ADD_TO_WISHLIST,
   DELETE_WISHLIST_ITEM,
@@ -17,7 +18,7 @@ type WishlistProviderType = {
 
 const CartProvider: FC<WishlistProviderType> = ({ iniState, children }) => {
   const initPersistState: wishlistType = JSON.parse(iniState);
-  const [state, dispatch] = useReducer(cartReducer, initPersistState);
+  const [state, dispatch] = useReducer(wishlistReducer, initPersistState);
 
   // Persist State with Cookies
   useEffect(() => {

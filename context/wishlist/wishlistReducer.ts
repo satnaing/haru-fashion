@@ -1,4 +1,4 @@
-import addItemToCart from "../Util/addItemToCart";
+import addWishlist from "../Util/addWishlist";
 import {
   ADD_TO_WISHLIST,
   DELETE_WISHLIST_ITEM,
@@ -6,20 +6,18 @@ import {
   wishlistType,
   itemType,
 } from "./wishlist-type";
-import removeItemFromCart from "../Util/removeItemFromCart";
-import addWishlist from "../Util/addWishlist";
 
 type actionType = {
   type: string;
   payload?: itemType;
 };
 
-const cartReducer = (state: wishlistType, action: actionType) => {
+const wishlistReducer = (state: wishlistType, action: actionType) => {
   switch (action.type) {
     case ADD_TO_WISHLIST:
       return {
         ...state,
-        wishlist: addWishlist(state.wishlist, action.payload),
+        wishlist: addWishlist(state.wishlist, action.payload as itemType),
         // wishlist: !state.wishlist.some(
         //   (cartItem) => cartItem.id === action.payload.id
         // ) && [...state.wishlist, { ...action.payload }],
@@ -28,7 +26,7 @@ const cartReducer = (state: wishlistType, action: actionType) => {
       return {
         ...state,
         wishlist: state.wishlist.filter(
-          (wishlistItem) => wishlistItem.id !== action.payload.id
+          (wishlistItem) => wishlistItem.id !== action.payload!.id
         ),
       };
     case CLEAR_WISHLIST:
@@ -41,4 +39,4 @@ const cartReducer = (state: wishlistType, action: actionType) => {
   }
 };
 
-export default cartReducer;
+export default wishlistReducer;

@@ -2,7 +2,7 @@ import { itemType } from "../wishlist/wishlist-type";
 
 const addWishlist = (wishlistItems: itemType[], item: itemType) => {
   const duplicate = wishlistItems.some(
-    (wishlistItem) => wishlistItem.id === item.id
+    (wishlistItem) => wishlistItem.id === item!.id
   );
 
   if (!duplicate) {
