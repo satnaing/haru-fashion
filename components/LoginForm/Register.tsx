@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 import { useAuth } from "../../firebase/firebaseAuth";
@@ -9,7 +9,7 @@ type Props = {
   onLogin: () => void;
 };
 
-const Register: FC<Props> = ({ onLogin }) => {
+const Register: React.FC<Props> = ({ onLogin }) => {
   const auth = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ const Register: FC<Props> = ({ onLogin }) => {
   //   }
   // });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     auth.signup(email, password);

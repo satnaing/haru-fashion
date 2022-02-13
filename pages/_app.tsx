@@ -1,4 +1,4 @@
-import { NextComponentType, NextPageContext } from "next";
+import { NextComponentType, NextPageContext, NextPage } from "next";
 import Router from "next/router";
 import NProgress from "nprogress";
 
@@ -45,7 +45,7 @@ const MyApp = ({
   );
 };
 
-MyApp.getInitialProps = async (appCtx) => {
+MyApp.getInitialProps = async (appCtx: any) => {
   const cartState = appCtx.ctx.req?.cookies?.cartState || '{"cart":[]}';
   const wishlistState =
     appCtx.ctx.req?.cookies?.wishlistState || '{"wishlist":[]}';
