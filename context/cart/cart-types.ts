@@ -13,11 +13,19 @@ export type itemType = {
   qty?: number;
 };
 
+export interface dbItemType extends itemType {
+  desc: string;
+  category: "men" | "women" | "bags";
+  details: string;
+}
+
+export type cartFuncType = (item: itemType) => void;
+
 export type cartType = {
   cart: itemType[];
-  addItem?: (item: itemType) => void;
-  addOne?: (item: itemType) => void;
-  removeItem?: (item: itemType) => void;
-  deleteItem?: (item: itemType) => void;
+  addItem?: cartFuncType;
+  addOne?: cartFuncType;
+  removeItem?: cartFuncType;
+  deleteItem?: cartFuncType;
   clearCart?: () => void;
 };
