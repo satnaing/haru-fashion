@@ -32,7 +32,12 @@ const Card: FC<Props> = ({
           <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
         </a>
       </Link>
-      <button onClick={onAddWishlist} className={styles.wishlist}>
+      <button
+        type="button"
+        aria-label="Wishlist"
+        onClick={onAddWishlist}
+        className={styles.wishlist}
+      >
         <Heart />
       </button>
       <div className="absolute z-20 bottom-5 left-1/2 w-4/5 translate-y-28 "></div>
