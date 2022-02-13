@@ -20,23 +20,23 @@ const cartReducer = (state: cartType, action: actionType) => {
     case ADD_ITEM:
       return {
         ...state,
-        cart: addItemToCart(state.cart, action.payload),
+        cart: addItemToCart(state.cart, action.payload as itemType),
       };
     case ADD_ONE:
       return {
         ...state,
-        cart: addItemToCart(state.cart, action.payload, true),
+        cart: addItemToCart(state.cart, action.payload as itemType, true),
       };
     case REMOVE_ITEM:
       return {
         ...state,
-        cart: removeItemFromCart(state.cart, action.payload),
+        cart: removeItemFromCart(state.cart, action.payload as itemType),
       };
     case DELETE_ITEM:
       return {
         ...state,
         cart: state.cart.filter(
-          (cartItem) => cartItem.id !== action.payload.id
+          (cartItem) => cartItem.id !== action.payload!.id
         ),
       };
     case CLEAR_CART:
