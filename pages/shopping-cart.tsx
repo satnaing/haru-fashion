@@ -63,7 +63,7 @@ const ShoppingCart = () => {
                 </tr>
               ) : (
                 cart.map((item) => {
-                  subtotal += item.price * item.qty;
+                  subtotal += item.price * item.qty!;
                   return (
                     <tr className="border-b-2 border-gray200" key={item.id}>
                       <td className="my-3 flex flex-col xl:flex-row items-start sm:items-center xl:space-x-2 text-center xl:text-left">
@@ -82,7 +82,7 @@ const ShoppingCart = () => {
                       <td>
                         <div className="w-12 h-32 sm:h-auto sm:w-3/4 md:w-2/6 mx-auto flex flex-col-reverse sm:flex-row border border-gray300 sm:divide-x-2 divide-gray300">
                           <div
-                            onClick={() => removeItem(item)}
+                            onClick={() => removeItem!(item)}
                             className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100"
                           >
                             -
@@ -91,7 +91,7 @@ const ShoppingCart = () => {
                             {item.qty}
                           </div>
                           <div
-                            onClick={() => addOne(item)}
+                            onClick={() => addOne!(item)}
                             className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 hover:text-gray100"
                           >
                             +
@@ -99,13 +99,13 @@ const ShoppingCart = () => {
                         </div>
                       </td>
                       <td className="text-right text-gray400">
-                        $ {item.price * item.qty}
+                        $ {item.price * item.qty!}
                         <br />
                         <span className="text-xs">($ {item.price})</span>
                       </td>
                       <td className="text-right" style={{ minWidth: "3rem" }}>
                         <button
-                          onClick={() => deleteItem(item)}
+                          onClick={() => deleteItem!(item)}
                           type="button"
                           className="outline-none text-gray300 hover:text-gray500 focus:outline-none text-4xl sm:text-2xl"
                         >

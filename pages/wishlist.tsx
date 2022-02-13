@@ -13,9 +13,8 @@ import GhostButton from "../components/Buttons/GhostButton";
 
 const Wishlist = () => {
   const [deli, setDeli] = useState("Yangon");
-  const { cart, addOne, removeItem, deleteItem, clearCart } =
-    useContext(CartContext);
-  const { wishlist, addToWishlist, deleteWishlistItem, clearWishlist } =
+  const { addOne } = useContext(CartContext);
+  const { wishlist, deleteWishlistItem, clearWishlist } =
     useContext(WishlistContext);
 
   let subtotal = 0;
@@ -75,7 +74,7 @@ const Wishlist = () => {
                 </tr>
               ) : (
                 wishlist.map((item) => {
-                  subtotal += item.price * item.qty;
+                  subtotal += item.price * item.qty!;
                   return (
                     <tr className="border-b-2 border-gray200" key={item.id}>
                       <td className="my-3 flex justify-center flex-col items-start sm:items-center">
@@ -92,7 +91,7 @@ const Wishlist = () => {
                         <Button
                           value="Add to cart"
                           extraClass="hidden sm:block m-auto"
-                          onClick={() => addOne(item)}
+                          onClick={() => addOne!(item)}
                         />
                       </td>
                       <td
@@ -101,11 +100,11 @@ const Wishlist = () => {
                       >
                         <Button
                           value="Add"
-                          onClick={() => addOne(item)}
+                          onClick={() => addOne!(item)}
                           extraClass="sm:hidden mb-4"
                         />
                         <button
-                          onClick={() => deleteWishlistItem(item)}
+                          onClick={() => deleteWishlistItem!(item)}
                           type="button"
                           className="outline-none text-gray300 hover:text-gray500 focus:outline-none text-4xl sm:text-2xl"
                         >

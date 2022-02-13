@@ -22,11 +22,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper/core";
 import WishlistContext from "../../context/wishlist/WishlistContext";
+import { dbItemType, itemType } from "../../context/cart/cart-types";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
-const Product = ({ post, products }) => {
+type Props = {
+  post: any;
+  products: dbItemType[];
+};
+
+const Product: React.FC<Props> = ({ post, products }) => {
   const img1 = post.img1;
   const img2 = post.img2;
 
@@ -169,12 +175,12 @@ const Product = ({ post, products }) => {
                 value="Add to cart"
                 size="lg"
                 extraClass="flex-grow text-center"
-                onClick={() => addItem(currentItem)}
+                onClick={() => addItem!(currentItem)}
               />
               <GhostButton
                 value="Add to wishlist"
                 size="lg"
-                onClick={() => addToWishlist(currentItem)}
+                onClick={() => addToWishlist!(currentItem)}
                 extraClass="text-center hidden xl:block"
               >
                 <Heart extraClass="inline bg-black" />
@@ -182,7 +188,7 @@ const Product = ({ post, products }) => {
               <GhostButton
                 value=""
                 size="lg"
-                onClick={() => addToWishlist(currentItem)}
+                onClick={() => addToWishlist!(currentItem)}
                 extraClass="text-center xl:hidden"
               >
                 <Heart extraClass="inline bg-black" />
@@ -235,11 +241,11 @@ const Product = ({ post, products }) => {
               <div className="mb-6">
                 <Card5
                   key={item.name}
-                  imgSrc1={item.img1}
-                  imgSrc2={item.img2}
+                  imgSrc1={item.img1 as string}
+                  imgSrc2={item.img2 as string}
                   itemName={item.name}
                   itemPrice={item.price}
-                  onClick={() => addOne(item)}
+                  onClick={() => addOne!(item)}
                   itemLink={`/products/${encodeURIComponent(item.id)}`}
                 />
               </div>
@@ -250,11 +256,11 @@ const Product = ({ post, products }) => {
           {products.map((item) => (
             <Card5
               key={item.name}
-              imgSrc1={item.img1}
-              imgSrc2={item.img2}
+              imgSrc1={item.img1 as string}
+              imgSrc2={item.img2 as string}
               itemName={item.name}
               itemPrice={item.price}
-              onClick={() => addOne(item)}
+              onClick={() => addOne!(item)}
               itemLink={`/products/${encodeURIComponent(item.id)}`}
             />
           ))}
@@ -267,10 +273,10 @@ const Product = ({ post, products }) => {
 };
 
 export async function getStaticPaths() {
-  let products = [];
+  let products: dbItemType[] = [];
   const querySnapshot = await db.collection("products").get();
   querySnapshot.forEach((doc) => {
-    products = [...products, doc.data()];
+    products = [...products, doc.data() as dbItemType];
   });
 
   const paths = products.map((product) => ({
@@ -282,18 +288,18 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const productRef = db.collection("products");
-  const paramId = params.id as string;
+  const paramId = params!.id as string;
   const snapshot = await productRef.where("id", "==", parseInt(paramId)).get();
   if (snapshot.empty) {
     return { props: { post: "Error" } };
   }
 
-  let post: firebase.firestore.DocumentData;
+  let post: firebase.firestore.DocumentData = {};
   snapshot.forEach((doc) => {
     post = doc.data();
   });
 
-  let products = [];
+  let products: itemType[] = [];
   const productSnapshot = await productRef.get();
   productSnapshot.forEach((doc) => {
     let docData = doc.data();
@@ -308,7 +314,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
     ];
   });
-  let nums = [];
+  let nums: number[] = [];
   let numOfItems = 5;
   for (let i = 0; i < numOfItems; i++) {
     let ranNum = Math.floor(Math.random() * products.length);

@@ -11,7 +11,7 @@ const addItemToCart = (
     return cartItems.map((cartItem) => {
       let itemQty = 0;
       !item.qty || add_one
-        ? (itemQty = cartItem.qty + 1)
+        ? (itemQty = cartItem.qty! + 1)
         : (itemQty = item.qty);
 
       console.log(itemQty);

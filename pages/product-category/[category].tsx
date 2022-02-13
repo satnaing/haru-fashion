@@ -11,8 +11,13 @@ import Footer from "../../components/Footer/Footer";
 import Card5 from "../../components/Card/Card5";
 import Pagination from "../../components/Util/Pagination";
 import useWindowSize from "../../components/Util/useWindowSize";
+import { dbItemType, itemType } from "../../context/cart/cart-types";
 
-const ProductCategory = ({ items }) => {
+type Props = {
+  items: dbItemType[];
+};
+
+const ProductCategory: React.FC<Props> = ({ items }) => {
   const { addItem } = useContext(CartContext);
   const { addToWishlist } = useContext(WishlistContext);
   const [itemPerPage, setItemPerPage] = useState(5);
@@ -49,7 +54,8 @@ const ProductCategory = ({ items }) => {
   };
 
   const capitalizedCategory =
-    category.toString().charAt(0).toUpperCase() + category.toString().slice(1);
+    category!.toString().charAt(0).toUpperCase() +
+    category!.toString().slice(1);
 
   return (
     <div>
@@ -76,12 +82,12 @@ const ProductCategory = ({ items }) => {
           {currentItems.map((item) => (
             <Card5
               key={item.name}
-              imgSrc1={item.img1}
-              imgSrc2={item.img2}
+              imgSrc1={item.img1 as string}
+              imgSrc2={item.img2 as string}
               itemName={item.name}
               itemPrice={item.price}
-              onAddWishlist={() => addToWishlist(item)}
-              onClick={() => addItem(item)}
+              onAddWishlist={() => addToWishlist!(item)}
+              onClick={() => addItem!(item)}
               itemLink={`/products/${encodeURIComponent(item.id)}`}
             />
           ))}
@@ -101,10 +107,10 @@ const ProductCategory = ({ items }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let products = [];
+  let products: dbItemType[] = [];
   const querySnapshot = await db.collection("products").get();
   querySnapshot.forEach((doc) => {
-    products = [...products, doc.data()];
+    products = [...products, doc.data() as dbItemType];
   });
 
   const paths = products.map((product) => ({
@@ -116,7 +122,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const productRef = db.collection("products");
-  const paramCategory = params.category as string;
+  const paramCategory = params!.category as string;
   const snapshot = await productRef
     .where("category", "==", paramCategory)
     .get();
@@ -124,9 +130,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return { props: { items: "Error" } };
   }
 
-  let items = [];
+  let items: dbItemType[] = [];
   snapshot.forEach((doc) => {
-    items = [...items, doc.data()];
+    items = [...items, doc.data() as dbItemType];
   });
 
   return { props: { items } };

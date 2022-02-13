@@ -16,7 +16,7 @@ export default function CartItem() {
 
   let noOfItems = 0;
   cart.forEach((item) => {
-    noOfItems += item.qty;
+    noOfItems += item.qty!;
   });
 
   const handleAnimate = useCallback(() => {
@@ -117,17 +117,17 @@ export default function CartItem() {
                 <div className="h-full">
                   <div className="itemContainer px-4 h-2/3 w-full flex-grow flex-shrink overflow-y-auto">
                     {cart.map((item) => {
-                      subtotal += item.price * item.qty;
+                      subtotal += item.price * item.qty!;
                       return (
                         <Item
                           key={item.id}
                           name={item.name}
-                          price={item.price * item.qty}
-                          qty={item.qty}
-                          img={item.img1}
-                          onAdd={() => addOne(item)}
-                          onRemove={() => removeItem(item)}
-                          onDelete={() => deleteItem(item)}
+                          price={item.price * item.qty!}
+                          qty={item.qty!}
+                          img={item.img1 as string}
+                          onAdd={() => addOne!(item)}
+                          onRemove={() => removeItem!(item)}
+                          onDelete={() => deleteItem!(item)}
                         />
                       );
                     })}

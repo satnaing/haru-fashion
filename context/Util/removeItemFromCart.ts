@@ -6,7 +6,7 @@ const removeItemFromCart = (cartItems: itemType[], item: itemType) => {
     return cartItems.filter((cartItem) => cartItem.id !== item.id);
   }
   return cartItems.map((cartItem) =>
-    cartItem.id === item.id ? { ...cartItem, qty: cartItem.qty - 1 } : cartItem
+    cartItem.id === item.id ? { ...cartItem, qty: cartItem.qty! - 1 } : cartItem
   );
   //   if (duplicate) {
   //     return cartItems.map((cartItem) =>

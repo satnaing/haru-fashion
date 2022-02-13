@@ -14,8 +14,13 @@ import OverlayContainer from "../components/OverlayContainer/OverlayContainer";
 import Card3 from "../components/Card/Card3";
 import Card5 from "../components/Card/Card5";
 import TestiSlider from "../components/TestiSlider/TestiSlider";
+import { itemType } from "../context/cart/cart-types";
 
-export default function Home({ products }) {
+type Props = {
+  products: itemType[];
+};
+
+const Home: React.FC<Props> = ({ products }) => {
   const [totalItems, setTotalItems] = useState(10);
   const { addOne } = useContext(CartContext);
   const { addToWishlist } = useContext(WishlistContext);
@@ -88,30 +93,30 @@ export default function Home({ products }) {
         </div>
         <div className="flex flex-col md:flex-row w-full px-6 sm:px-16 md:px-20">
           <Card3
-            imgSrc1={currentItems[3].img1}
-            imgSrc2={currentItems[3].img2}
+            imgSrc1={currentItems[3].img1 as string}
+            imgSrc2={currentItems[3].img2 as string}
             itemName={currentItems[3].name}
             itemPrice={currentItems[3].price}
-            onClick={() => addOne(currentItems[3])}
-            onAddWishlist={() => addToWishlist(currentItems[3])}
+            onClick={() => addOne!(currentItems[3])}
+            onAddWishlist={() => addToWishlist!(currentItems[3])}
             itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
           />
           <Card3
-            imgSrc1={currentItems[4].img1}
-            imgSrc2={currentItems[4].img2}
+            imgSrc1={currentItems[4].img1 as string}
+            imgSrc2={currentItems[4].img2 as string}
             itemName={currentItems[4].name}
             itemPrice={currentItems[4].price}
-            onAddWishlist={() => addToWishlist(currentItems[4])}
-            onClick={() => addOne(currentItems[4])}
+            onAddWishlist={() => addToWishlist!(currentItems[4])}
+            onClick={() => addOne!(currentItems[4])}
             itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
           />
           <Card3
-            imgSrc1={currentItems[2].img1}
-            imgSrc2={currentItems[2].img2}
+            imgSrc1={currentItems[2].img1 as string}
+            imgSrc2={currentItems[2].img2 as string}
             itemName={currentItems[2].name}
             itemPrice={currentItems[2].price}
-            onAddWishlist={() => addToWishlist(currentItems[2])}
-            onClick={() => addOne(currentItems[2])}
+            onAddWishlist={() => addToWishlist!(currentItems[2])}
+            onClick={() => addOne!(currentItems[2])}
             itemLink={`/products/${encodeURIComponent(currentItems[3].id)}`}
           />
         </div>
@@ -129,12 +134,12 @@ export default function Home({ products }) {
           {currentItems.map((item) => (
             <Card5
               key={item.id}
-              imgSrc1={item.img1}
-              imgSrc2={item.img2}
+              imgSrc1={item.img1 as string}
+              imgSrc2={item.img2 as string}
               itemName={item.name}
               itemPrice={item.price}
-              onAddWishlist={() => addToWishlist(item)}
-              onClick={() => addOne(item)}
+              onAddWishlist={() => addToWishlist!(item)}
+              onClick={() => addOne!(item)}
               itemLink={`/products/${encodeURIComponent(item.id)}`}
             />
           ))}
@@ -166,10 +171,10 @@ export default function Home({ products }) {
       <Footer />
     </div>
   );
-}
+};
 
 export const getStaticProps = async () => {
-  let products = [];
+  let products: itemType[] = [];
   const res = await db.collection("products").get();
   res.forEach((doc) => {
     let docData = doc.data();
@@ -188,3 +193,5 @@ export const getStaticProps = async () => {
     props: { products }, // will be passed to the page component as props
   };
 };
+
+export default Home;
