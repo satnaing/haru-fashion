@@ -1,6 +1,7 @@
 import { NextComponentType, NextPageContext, NextPage } from "next";
 import Router from "next/router";
 import NProgress from "nprogress";
+import { NextIntlProvider } from "next-intl";
 
 import CartProvider from "../context/cart/CartProvider";
 import WishlistProvider from "../context/wishlist/WishlistProvider";
@@ -35,13 +36,15 @@ const MyApp = ({
   wishlistState,
 }: AppCustomProps) => {
   return (
-    <ProvideAuth>
-      <CartProvider iniState={cartState}>
-        <WishlistProvider iniState={wishlistState}>
-          <Component {...pageProps} />
-        </WishlistProvider>
-      </CartProvider>
-    </ProvideAuth>
+    <NextIntlProvider messages={pageProps?.messages}>
+      <ProvideAuth>
+        <CartProvider iniState={cartState}>
+          <WishlistProvider iniState={wishlistState}>
+            <Component {...pageProps} />
+          </WishlistProvider>
+        </CartProvider>
+      </ProvideAuth>
+    </NextIntlProvider>
   );
 };
 

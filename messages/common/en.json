@@ -1,0 +1,38 @@
+{
+  "Navigation": {
+    "eng": "Eng",
+    "myn": "Myn",
+    "usd": "USD",
+    "mmk": "MMK",
+    "men": "Men",
+    "women": "Women",
+    "bags": "Bags",
+    "blogs": "Blogs",
+    "careers": "Careers",
+    "company": "Company",
+    "help": "Help",
+    "store": "Store",
+    "keep_in_touch": "Keep In Touch",
+    "about_us": "About Us",
+    "contact_us": "Contact Us",
+    "our_policy": "Our Policy",
+    "store_location": "Store Location",
+    "order_tracking": "Order Tracking",
+    "faqs": "FAQs",
+    "privacy_policy": "Privacy Policy",
+    "terms_conditions": "Terms & Conditions",
+    "address_full": "No(7), Ground Floor, Malikha Building, Yadanar Road, Thingangyun, Yangon",
+    "address": {
+      "detail": "No(7), Ground Floor,",
+      "road": "Malikha Building, Yadanar Road,",
+      "city": "Thingangyun, Yangon"
+    },
+    "phone_number": "+95 95 096 051",
+    "open_all_days": "Open All Days",
+    "opening_hours": "9:00 AM ~ 11:00 PM",
+    "newsletter": "newsletter",
+    "newsletter_desc": "Be the first to know about new arrivals, sales & promos!",
+    "all_rights_reserved": "All rights reserved.",
+    "follow_us_on_social_media": "Follow us on Social Media"
+  }
+}
