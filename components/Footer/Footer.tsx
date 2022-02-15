@@ -69,7 +69,7 @@ export default function Footer() {
           <Input name="email" type="email" extraClass=" w-full sm:w-auto" />{" "}
           <Button
             size="lg"
-            value="Send"
+            value={t("send")}
             extraClass="ml-0 mt-4 sm:mt-0 tracking-widest sm:tracking-normal sm:mt-0 sm:ml-4 w-auto w-full sm:w-auto"
           />
         </div>
