@@ -126,8 +126,8 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
       { params: { category: "men" }, locale: "my" },
       { params: { category: "women" }, locale: "en" },
       { params: { category: "women" }, locale: "my" },
-      { params: { category: "bag" }, locale: "en" },
-      { params: { category: "bag" }, locale: "my" },
+      // { params: { category: "bag" }, locale: "en" },
+      // { params: { category: "bag" }, locale: "my" },
     ],
     fallback: false,
   };
