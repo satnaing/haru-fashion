@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import TopNav from "./TopNav";
 import WhistlistIcon from "../../public/icons/WhistlistIcon";
@@ -19,6 +20,7 @@ type Props = {
 };
 
 const Header: React.FC<Props> = ({ title }) => {
+  const t = useTranslations("Navigation");
   const { wishlist } = useContext(WishlistContext);
   const [animate, setAnimate] = useState("");
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -78,22 +80,22 @@ const Header: React.FC<Props> = ({ title }) => {
           <ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>
             <li>
               <Link href={`/product-category/men`}>
-                <a>Men</a>
+                <a>{t("men")}</a>
               </Link>
             </li>
             <li>
               <Link href={`/product-category/women`}>
-                <a>Women</a>
+                <a>{t("women")}</a>
               </Link>
             </li>
             <li>
               <Link href="/coming-soon">
-                <a>Bags</a>
+                <a>{t("bags")}</a>
               </Link>
             </li>
             <li>
               <Link href="/coming-soon">
-                <a>Blogs</a>
+                <a>{t("blogs")}</a>
               </Link>
             </li>
           </ul>

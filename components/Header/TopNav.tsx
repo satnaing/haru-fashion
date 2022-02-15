@@ -1,4 +1,7 @@
 import { Menu } from "@headlessui/react";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 import InstagramLogo from "../../public/icons/InstagramLogo";
 import FacebookLogo from "../../public/icons/FacebookLogo";
@@ -6,6 +9,10 @@ import DownArrow from "../../public/icons/DownArrow";
 import styles from "./Header.module.css";
 
 const TopNav = () => {
+  const router = useRouter();
+  const { asPath, locale } = router;
+  const t = useTranslations("Navigation");
+
   return (
     <div className="bg-gray500 text-gray100 hidden lg:block">
       <div className="flex justify-between">
@@ -21,17 +28,17 @@ const TopNav = () => {
             </a>
           </li>
           <li>
-            <a href="#">About Us</a>
+            <a href="#">{t("about_us")}</a>
           </li>
           <li>
-            <a href="#">Our Policy</a>
+            <a href="#">{t("our_policy")}</a>
           </li>
         </ul>
         <ul className={`flex ${styles.topRightMenu}`}>
           <li>
             <Menu as="div" className="relative">
               <Menu.Button as="a" href="#" className="flex">
-                Eng <DownArrow />
+                {locale === "en" ? t("eng") : t("myn")} <DownArrow />
               </Menu.Button>
               <Menu.Items
                 className="flex flex-col w-20 right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"
@@ -39,30 +46,32 @@ const TopNav = () => {
               >
                 <Menu.Item>
                   {({ active }) => (
-                    <a
-                      href="#"
-                      className={`${
-                        active
-                          ? "bg-gray100 text-gray500"
-                          : "bg-white text-gray500"
-                      } py-2 px-4 text-center focus:outline-none`}
-                    >
-                      Eng
-                    </a>
+                    <Link href={asPath} locale="en">
+                      <a
+                        className={`${
+                          locale === "en"
+                            ? "bg-gray200 text-gray500"
+                            : "bg-white text-gray500"
+                        } py-2 px-4 text-center focus:outline-none`}
+                      >
+                        {t("eng")}
+                      </a>
+                    </Link>
                   )}
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <a
-                      href="#"
-                      className={`${
-                        active
-                          ? "bg-gray100 text-gray500"
-                          : "bg-white text-gray500"
-                      } py-2 px-4 text-center focus:outline-none`}
-                    >
-                      Myn
-                    </a>
+                    <Link href={asPath} locale="my">
+                      <a
+                        className={`${
+                          locale === "my"
+                            ? "bg-gray200 text-gray500"
+                            : "bg-white text-gray500"
+                        } py-2 px-4 text-center focus:outline-none`}
+                      >
+                        {t("myn")}
+                      </a>
+                    </Link>
                   )}
                 </Menu.Item>
               </Menu.Items>
@@ -71,7 +80,7 @@ const TopNav = () => {
           <li>
             <Menu as="div" className="relative">
               <Menu.Button as="a" href="#" className="flex">
-                USD <DownArrow />
+                {t("usd")} <DownArrow />
               </Menu.Button>
               <Menu.Items
                 className="flex flex-col w-20 right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"
@@ -87,7 +96,7 @@ const TopNav = () => {
                           : "bg-white text-gray500"
                       } py-2 px-4 text-center focus:outline-none`}
                     >
-                      USD
+                      {t("usd")}
                     </a>
                   )}
                 </Menu.Item>
@@ -101,7 +110,7 @@ const TopNav = () => {
                           : "bg-white text-gray500"
                       } py-2 px-4 text-center focus:outline-none`}
                     >
-                      Kyats
+                      {t("mmk")}
                     </a>
                   )}
                 </Menu.Item>

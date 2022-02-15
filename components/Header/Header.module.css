@@ -24,7 +24,11 @@
 } */
 
 .leftMenu li {
-  @apply mr-12 hidden lg:block;
+  @apply mr-12 hidden lg:block whitespace-nowrap;
+}
+
+.leftMenu li:hover {
+  @apply text-gray400;
 }
 
 .rightMenu li {
