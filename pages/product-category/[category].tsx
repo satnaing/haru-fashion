@@ -59,6 +59,7 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
 
   return (
     <div>
+      {/* {t("description")} */}
       <Header title={`${capitalizedCategory} - Haru Fashion`} />
       <div className="px-6 sm:px-12 md:px-20 bg-lightgreen h-16 w-full flex items-center">
         <div className="breadcrumb">
@@ -106,21 +107,33 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  let products: dbItemType[] = [];
-  const querySnapshot = await db.collection("products").get();
-  querySnapshot.forEach((doc) => {
-    products = [...products, doc.data() as dbItemType];
-  });
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  // let products: dbItemType[] = [];
+  // const querySnapshot = await db.collection("products").get();
+  // querySnapshot.forEach((doc) => {
+  //   products = [...products, doc.data() as dbItemType];
+  // });
 
-  const paths = products.map((product) => ({
-    params: { category: product.category },
-  }));
+  // const paths = products.map((product) => ({
+  //   params: { category: product.category },
+  // }));
 
-  return { paths, fallback: false };
+  // // console.log(paths);
+
+  return {
+    paths: [
+      { params: { category: "men" }, locale: "en" },
+      { params: { category: "men" }, locale: "my" },
+      { params: { category: "women" }, locale: "en" },
+      { params: { category: "women" }, locale: "my" },
+      { params: { category: "bag" }, locale: "en" },
+      { params: { category: "bag" }, locale: "my" },
+    ],
+    fallback: false,
+  };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const productRef = db.collection("products");
   const paramCategory = params!.category as string;
   const snapshot = await productRef
@@ -135,7 +148,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     items = [...items, doc.data() as dbItemType];
   });
 
-  return { props: { items } };
+  return {
+    props: {
+      messages: (await import(`../../messages/common/${locale}.json`)).default,
+      items,
+    },
+  };
 };
 
 export default ProductCategory;

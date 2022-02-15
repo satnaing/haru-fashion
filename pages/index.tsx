@@ -1,5 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
 
 import CartContext from "../context/cart/CartContext";
 import WishlistContext from "../context/wishlist/WishlistContext";
@@ -15,6 +17,7 @@ import Card3 from "../components/Card/Card3";
 import Card5 from "../components/Card/Card5";
 import TestiSlider from "../components/TestiSlider/TestiSlider";
 import { itemType } from "../context/cart/cart-types";
+import { GetStaticProps } from "next";
 
 type Props = {
   products: itemType[];
@@ -34,7 +37,8 @@ const Home: React.FC<Props> = ({ products }) => {
   }, [viewWidth]);
 
   return (
-    <div className="">
+    <div>
+      {/* {t("description")} */}
       <Header />
       <Slideshow />
       <section className="w-full h-auto px-2 sm:px-8 md:px-16 py-10 border border-b-2 border-gray100">
@@ -173,7 +177,7 @@ const Home: React.FC<Props> = ({ products }) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   let products: itemType[] = [];
   const res = await db.collection("products").get();
   res.forEach((doc) => {
@@ -190,7 +194,13 @@ export const getStaticProps = async () => {
     ];
   });
   return {
-    props: { products }, // will be passed to the page component as props
+    props: {
+      messages: {
+        // ...require(`../messages/index/${locale}.json`),
+        ...require(`../messages/common/${locale}.json`),
+      },
+      products,
+    }, // will be passed to the page component as props
   };
 };
 
