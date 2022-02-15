@@ -8,6 +8,7 @@
     "women": "Women",
     "bags": "Bags",
     "blogs": "Blogs",
+    "send": "Send",
     "careers": "Careers",
     "company": "Company",
     "help": "Help",
@@ -30,9 +31,23 @@
     "phone_number": "+95 95 096 051",
     "open_all_days": "Open All Days",
     "opening_hours": "9:00 AM ~ 11:00 PM",
-    "newsletter": "newsletter",
+    "newsletter": "Newsletter",
     "newsletter_desc": "Be the first to know about new arrivals, sales & promos!",
     "all_rights_reserved": "All rights reserved.",
     "follow_us_on_social_media": "Follow us on Social Media"
+  },
+  "Wishlist": {
+    "wishlist": "Wishlist",
+    "continue_shopping": "Continue Shopping",
+    "product_image": "Product Image",
+    "product_name": "Product Name",
+    "product_details": "Product Details",
+    "unit_price": "Unit Price",
+    "add": "Add",
+    "remove": "Remove",
+    "actions": "Actions",
+    "wishlist_is_empty": "Wishlist is empty!",
+    "add_to_cart": "Add To Cart",
+    "clear_wishlist": "Clear Wishlist"
   }
 }

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import CartContext from "../context/cart/CartContext";
 import WishlistContext from "../context/wishlist/WishlistContext";
@@ -8,10 +9,12 @@ import Footer from "../components/Footer/Footer";
 import LeftArrow from "../public/icons/LeftArrow";
 import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
+import { GetStaticProps } from "next";
 
 // let w = window.innerWidth;
 
 const Wishlist = () => {
+  const t = useTranslations("Wishlist");
   const [deli, setDeli] = useState("Yangon");
   const { addOne } = useContext(CartContext);
   const { wishlist, deleteWishlistItem, clearWishlist } =
@@ -24,13 +27,13 @@ const Wishlist = () => {
       <Header title={`Wishlist - Haru Fashion`} />
       <div className="px-6 md:px-20 w-full border-t-2 border-gray100">
         <h1 className="text-2xl sm:text-4xl text-center sm:text-left mt-6 mb-2 animatee__animated animate__bounce">
-          Wishlist
+          {t("wishlist")}
         </h1>
         <div className="mt-6 mb-3">
           <Link href="/">
             <a className="inline-block">
-              <LeftArrow size="sm" extraClass="inline-block" /> Continue
-              Shopping
+              <LeftArrow size="sm" extraClass="inline-block" />{" "}
+              {t("continue_shopping")}
             </a>
           </Link>
         </div>
@@ -41,36 +44,36 @@ const Wishlist = () => {
             <thead>
               <tr className="border-t-2 border-b-2 border-gray200">
                 <th className="font-normal hidden md:table-cell text-left sm:text-center py-2 xl:w-72">
-                  Product Image
+                  {t("product_image")}
                 </th>
                 <th className="font-normal hidden md:table-cell text-left sm:text-center py-2 xl:w-72">
-                  Product Price
+                  {t("product_name")}
                 </th>
                 <th className="font-normal md:hidden text-left sm:text-center py-2 xl:w-72">
-                  Product Details
+                  {t("product_details")}
                 </th>
                 <th
                   className={`font-normal py-2 ${
                     wishlist.length === 0 ? "text-center" : "text-right"
                   }`}
                 >
-                  Unit Price
+                  {t("unit_price")}
                 </th>
                 <th className="font-normal hidden sm:table-cell py-2 max-w-xs">
-                  Add
+                  {t("add")}
                 </th>
-                <th className="font-normal hidden sm:table-cell py-2 text-right w-10">
-                  Remove
+                <th className="font-normal hidden sm:table-cell py-2 text-right w-10 whitespace-nowrap">
+                  {t("remove")}
                 </th>
                 <th className="font-normal sm:hidden py-2 text-right w-10">
-                  Actions
+                  {t("actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {wishlist.length === 0 ? (
                 <tr className="w-full text-center h-60 border-b-2 border-gray200">
-                  <td colSpan={5}>Wishlist is empty!</td>
+                  <td colSpan={5}>{t("wishlist_is_empty")}</td>
                 </tr>
               ) : (
                 wishlist.map((item) => {
@@ -89,7 +92,7 @@ const Wishlist = () => {
                       </td>
                       <td className="text-center hidden sm:table-cell max-w-xs text-gray400">
                         <Button
-                          value="Add to cart"
+                          value={t("add_to_cart")}
                           extraClass="hidden sm:block m-auto"
                           onClick={() => addOne!(item)}
                         />
@@ -99,9 +102,9 @@ const Wishlist = () => {
                         style={{ minWidth: "3rem" }}
                       >
                         <Button
-                          value="Add"
+                          value={t("add")}
                           onClick={() => addOne!(item)}
-                          extraClass="sm:hidden mb-4"
+                          extraClass="sm:hidden mb-4 whitespace-nowrap"
                         />
                         <button
                           onClick={() => deleteWishlistItem!(item)}
@@ -121,7 +124,7 @@ const Wishlist = () => {
             <GhostButton
               onClick={clearWishlist}
               extraClass="hidden sm:inline-block"
-              value="Clear Wishlist"
+              value={t("clear_wishlist")}
               size="lg"
             />
             {/* <TextButton value="Clear Cart" /> */}
@@ -131,6 +134,14 @@ const Wishlist = () => {
       <Footer />
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      messages: (await import(`../messages/common/${locale}.json`)).default,
+    },
+  };
 };
 
 export default Wishlist;
