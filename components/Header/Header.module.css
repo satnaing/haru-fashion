@@ -31,6 +31,10 @@
   @apply text-gray400;
 }
 
+.leftMenu li:last-child {
+  @apply mr-0;
+}
+
 .rightMenu li {
   @apply ml-12;
 }
