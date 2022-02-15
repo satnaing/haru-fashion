@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
 type authContextType = {
-  user: boolean;
+  user: boolean | null;
   login: () => void;
   logout: () => void;
 };
@@ -23,7 +23,7 @@ type Props = {
 };
 
 export function AuthProvider({ children }: Props) {
-  const [user, setUser] = useState<boolean>(null);
+  const [user, setUser] = useState<boolean | null>(null);
 
   const login = () => {
     setUser(true);

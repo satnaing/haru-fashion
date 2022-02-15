@@ -2,7 +2,13 @@ import { createContext } from "react";
 
 export const TestContext = createContext(null);
 
-const TextProvider = ({ children, user = null }) => {
+const TextProvider = ({
+  children,
+  user = null,
+}: {
+  children: any;
+  user: any;
+}) => {
   console.log(user);
   const val = user;
   return <TestContext.Provider value={val}>{children}</TestContext.Provider>;
