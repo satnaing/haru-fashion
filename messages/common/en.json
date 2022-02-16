@@ -49,5 +49,11 @@
     "wishlist_is_empty": "Wishlist is empty!",
     "add_to_cart": "Add To Cart",
     "clear_wishlist": "Clear Wishlist"
+  },
+  "Cart": {
+    "cart": "Cart",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "view_cart": "View Cart"
   }
 }

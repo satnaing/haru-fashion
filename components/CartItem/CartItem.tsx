@@ -1,6 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment, useCallback, useContext, useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
 import CartContext from "../../context/cart/CartContext";
 import BagIcon from "../../public/icons/BagIcon";
 import Button from "../Buttons/Button";
@@ -8,6 +10,7 @@ import GhostButton from "../Buttons/GhostButton";
 import Item from "./Item";
 
 export default function CartItem() {
+  const t = useTranslations("Cart");
   const [open, setOpen] = useState(false);
   const [animate, setAnimate] = useState("");
   const { cart, addOne, removeItem, deleteItem } = useContext(CartContext);
@@ -104,7 +107,9 @@ export default function CartItem() {
                 className="relative inline-block dur h-screen w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl"
               >
                 <div className="bg-lightgreen flex justify-between items-center p-6">
-                  <h3 className="text-xl">Cart ({noOfItems})</h3>
+                  <h3 className="text-xl">
+                    {t("cart")} ({noOfItems})
+                  </h3>
                   <button
                     type="button"
                     className="outline-none focus:outline-none text-3xl sm:text-2xl"
@@ -134,18 +139,18 @@ export default function CartItem() {
                   </div>
                   <div className="btnContainer mt-4 px-4 h-1/3 mb-20 w-full flex flex-col ">
                     <div className="flex justify-between">
-                      <span>Subtotal</span>
+                      <span>{t("subtotal")}</span>
                       <span>$ {subtotal}</span>
                     </div>
                     <Link href="/shopping-cart">
                       <GhostButton
-                        value="View Cart"
+                        value={t("view_cart")}
                         extraClass="text-center my-4"
                         size="lg"
                       />
                     </Link>
                     <Button
-                      value="Checkout"
+                      value={t("checkout")}
                       extraClass="text-center"
                       size="lg"
                     />
