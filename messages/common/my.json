@@ -65,5 +65,11 @@
     "clear_cart": "အကုန်ပယ်ဖျက်မည်",
     "cart_is_empty": "စျေးခြင်းထဲတွင် ပစ္စည်းမရှိပါ",
     "shopping_cart": "စျေးခြင်း"
+  },
+  "Others": {
+    "page_not_found": "ဘယ်ဆီကိုမင်းရောက်နေလဲ",
+    "coming_soon": "မကြာမီလာမည်",
+    "page_not_created_msg": "ဒီ page ကို မဖန်တီးရသေးပါ။",
+    "go_back_to": "မူလသို့ပြန်သွားမယ်"
   }
 }

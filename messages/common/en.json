@@ -65,5 +65,11 @@
     "clear_cart": "Clear Cart",
     "cart_is_empty": "Cart is empty!",
     "shopping_cart": "Shopping Cart"
+  },
+  "Others": {
+    "page_not_found": "Oops! Page Not Found!",
+    "coming_soon": "Coming Soon!",
+    "page_not_created_msg": "This page has not been created yet!",
+    "go_back_to": "Go back to"
   }
 }
