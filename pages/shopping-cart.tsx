@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import CartContext from "../context/cart/CartContext";
 import Header from "../components/Header/Header";
@@ -12,6 +13,7 @@ import { GetStaticProps } from "next";
 // let w = window.innerWidth;
 
 const ShoppingCart = () => {
+  const t = useTranslations("CartWishlist");
   const [deli, setDeli] = useState("Yangon");
   const { cart, addOne, removeItem, deleteItem, clearCart } =
     useContext(CartContext);
@@ -23,13 +25,13 @@ const ShoppingCart = () => {
       <Header title={`Shopping Cart - Haru Fashion`} />
       <div className="px-6 md:px-20 w-full border-t-2 border-gray100">
         <h1 className="text-2xl sm:text-4xl text-center sm:text-left mt-6 mb-2 animatee__animated animate__bounce">
-          Shopping Cart
+          {t("shopping_cart")}
         </h1>
         <div className="mt-6 mb-3">
           <Link href="/">
             <a className="inline-block">
-              <LeftArrow size="sm" extraClass="inline-block" /> Continue
-              Shopping
+              <LeftArrow size="sm" extraClass="inline-block" />{" "}
+              {t("continue_shopping")}
             </a>
           </Link>
         </div>
@@ -40,17 +42,17 @@ const ShoppingCart = () => {
             <thead>
               <tr className="border-t-2 border-b-2 border-gray200">
                 <th className="font-normal text-left sm:text-center py-2 xl:w-72">
-                  Product Details
+                  {t("product_details")}
                 </th>
                 <th
                   className={`font-normal py-2 hidden sm:block ${
                     cart.length === 0 ? "text-center" : "text-right"
                   }`}
                 >
-                  Unit Price
+                  {t("unit_price")}
                 </th>
-                <th className="font-normal py-2">Quantity</th>
-                <th className="font-normal py-2 text-right">Amount</th>
+                <th className="font-normal py-2">{t("quantity")}</th>
+                <th className="font-normal py-2 text-right">{t("amount")}</th>
                 <th
                   className="font-normal py-2 text-right"
                   style={{ minWidth: "3rem" }}
@@ -60,7 +62,7 @@ const ShoppingCart = () => {
             <tbody>
               {cart.length === 0 ? (
                 <tr className="w-full text-center h-60 border-b-2 border-gray200">
-                  <td colSpan={5}>Cart is empty!</td>
+                  <td colSpan={5}>{t("cart_is_empty")}</td>
                 </tr>
               ) : (
                 cart.map((item) => {
@@ -123,7 +125,7 @@ const ShoppingCart = () => {
             <GhostButton
               onClick={clearCart}
               extraClass="hidden sm:inline-block"
-              value="Clear Cart"
+              value={t("clear_cart")}
               size="lg"
             />
             {/* <TextButton value="Clear Cart" /> */}
@@ -132,13 +134,13 @@ const ShoppingCart = () => {
         <div className="h-full w-full lg:w-4/12 mt-10 lg:mt-0">
           {/* Cart Totals */}
           <div className="border border-gray500 divide-y-2 divide-gray200 p-6">
-            <h2 className="text-xl mb-3">Cart totals</h2>
+            <h2 className="text-xl mb-3">{t("cart_totals")}</h2>
             <div className="flex justify-between py-2">
-              <span>SUBTOTAL</span>
+              <span className="uppercase">{t("subtotal")}</span>
               <span>$ {subtotal}</span>
             </div>
             <div className="py-3">
-              <span>DELIVERY</span>
+              <span className="uppercase">{t("delivery")}</span>
               <div className="mt-3 space-y-2">
                 <div className="flex justify-between">
                   <div>
@@ -152,7 +154,7 @@ const ShoppingCart = () => {
                       // defaultChecked
                     />{" "}
                     <label htmlFor="ygn" className="cursor-pointer">
-                      Within Yangon
+                      {t("within_yangon")}
                     </label>
                   </div>
                   <span>$ 2.00</span>
@@ -168,7 +170,7 @@ const ShoppingCart = () => {
                       onChange={() => setDeli("Others")}
                     />{" "}
                     <label htmlFor="others" className="cursor-pointer">
-                      Other Cities
+                      {t("other_cities")}
                     </label>
                   </div>
                   <span>$ 7.00</span>
@@ -176,10 +178,14 @@ const ShoppingCart = () => {
               </div>
             </div>
             <div className="flex justify-between py-3">
-              <span>TOTAL</span>
+              <span>{t("grand_total")}</span>
               <span>$ {subtotal + (deli === "Yangon" ? 2.0 : 7.0)}</span>
             </div>
-            <Button value="Proceed to Checkout" size="xl" extraClass="w-full" />
+            <Button
+              value={t("proceed_to_checkout")}
+              size="xl"
+              extraClass="w-full"
+            />
           </div>
         </div>
       </div>
