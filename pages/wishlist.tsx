@@ -14,7 +14,7 @@ import { GetStaticProps } from "next";
 // let w = window.innerWidth;
 
 const Wishlist = () => {
-  const t = useTranslations("Wishlist");
+  const t = useTranslations("CartWishlist");
   const [deli, setDeli] = useState("Yangon");
   const { addOne } = useContext(CartContext);
   const { wishlist, deleteWishlistItem, clearWishlist } =

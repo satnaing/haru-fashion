@@ -36,7 +36,7 @@
     "all_rights_reserved": "All rights reserved.",
     "follow_us_on_social_media": "Follow us on Social Media"
   },
-  "Wishlist": {
+  "CartWishlist": {
     "wishlist": "Wishlist",
     "continue_shopping": "Continue Shopping",
     "product_image": "Product Image",
@@ -48,12 +48,12 @@
     "actions": "Actions",
     "wishlist_is_empty": "Wishlist is empty!",
     "add_to_cart": "Add To Cart",
-    "clear_wishlist": "Clear Wishlist"
-  },
-  "Cart": {
+    "clear_wishlist": "Clear Wishlist",
+
     "cart": "Cart",
     "subtotal": "Subtotal",
     "checkout": "Checkout",
-    "view_cart": "View Cart"
+    "view_cart": "View Cart",
+    "shopping_cart": "Shopping Cart"
   }
 }

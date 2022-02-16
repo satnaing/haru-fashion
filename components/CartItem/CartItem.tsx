@@ -10,7 +10,7 @@ import GhostButton from "../Buttons/GhostButton";
 import Item from "./Item";
 
 export default function CartItem() {
-  const t = useTranslations("Cart");
+  const t = useTranslations("CartWishlist");
   const [open, setOpen] = useState(false);
   const [animate, setAnimate] = useState("");
   const { cart, addOne, removeItem, deleteItem } = useContext(CartContext);

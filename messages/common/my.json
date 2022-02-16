@@ -36,7 +36,7 @@
     "all_rights_reserved": "မူပိုင်ခွင့်များရယူပြီး။",
     "follow_us_on_social_media": "ဆိုရှယ်မီဒီယာပေါ်တွင် Follow လုပ်ပါ။"
   },
-  "Wishlist": {
+  "CartWishlist": {
     "wishlist": "လိုချင်သောစာရင်း",
     "continue_shopping": "စျေးဝယ်ခြင်းကို ဆက်လုပ်ပါ။",
     "product_image": "ပစ္စည်းဓာတ်ပုံ",
@@ -48,12 +48,12 @@
     "actions": "လုပ်ဆောင်ချက်",
     "wishlist_is_empty": "စာရင်းမရှိပါ",
     "add_to_cart": "စျေးခြင်းထဲထည့်မည်",
-    "clear_wishlist": "အကုန်ပယ်ဖျက်မည်"
-  },
-  "Cart": {
+    "clear_wishlist": "အကုန်ပယ်ဖျက်မည်",
+
     "cart": "စျေးခြင်း",
     "subtotal": "စုစုပေါင်း",
     "checkout": "ငွေရှင်းရန်",
-    "view_cart": "စျေးခြင်းကိုကြည့်ရန်"
+    "view_cart": "စျေးခြင်းကိုကြည့်ရန်",
+    "shopping_cart": "စျေးခြင်း"
   }
 }
