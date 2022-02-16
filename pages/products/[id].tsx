@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Disclosure } from "@headlessui/react";
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 
 import firebase, { db } from "../../firebase/firebase";
@@ -272,21 +272,29 @@ const Product: React.FC<Props> = ({ post, products }) => {
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   let products: dbItemType[] = [];
   const querySnapshot = await db.collection("products").get();
   querySnapshot.forEach((doc) => {
     products = [...products, doc.data() as dbItemType];
   });
 
-  const paths = products.map((product) => ({
-    params: { id: product.id.toString() },
-  }));
+  // const paths = products.map((product) => ({
+  //   params: { id: product.id.toString() },
+  //   locale: "en",
+  // }));
 
-  return { paths, fallback: false };
-}
+  const paths = locales?.map((locale) =>
+    products.map((product) => ({
+      params: { id: product.id.toString() },
+      locale,
+    }))
+  );
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+  return { paths: [...paths![0], ...paths![1]], fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const productRef = db.collection("products");
   const paramId = params!.id as string;
   const snapshot = await productRef.where("id", "==", parseInt(paramId)).get();
@@ -332,7 +340,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     products[nums[4]],
   ];
 
-  return { props: { post, products: newProducts } };
+  return {
+    props: {
+      post,
+      products: newProducts,
+      messages: (await import(`../../messages/common/${locale}.json`)).default,
+    },
+  };
 };
 
 export default Product;

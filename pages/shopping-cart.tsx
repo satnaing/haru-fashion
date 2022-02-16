@@ -7,6 +7,7 @@ import Footer from "../components/Footer/Footer";
 import LeftArrow from "../public/icons/LeftArrow";
 import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
+import { GetStaticProps } from "next";
 
 // let w = window.innerWidth;
 
@@ -185,6 +186,14 @@ const ShoppingCart = () => {
       <Footer />
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      messages: (await import(`../messages/common/${locale}.json`)).default,
+    },
+  };
 };
 
 export default ShoppingCart;
