@@ -137,7 +137,7 @@ const Register: React.FC<Props> = ({ onLogin }) => {
         </div>
         <Button
           type="submit"
-          value="Register"
+          value={t("register")}
           extraClass="w-full text-center text-xl mb-4"
           size="lg"
         />
