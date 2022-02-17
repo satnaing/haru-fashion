@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
+import { useTranslations } from "next-intl";
 
 import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
@@ -13,6 +14,7 @@ const Login: React.FC<Props> = ({ onRegister }) => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const t = useTranslations("LoginRegister");
 
   const handleEmailChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -35,12 +37,12 @@ const Login: React.FC<Props> = ({ onRegister }) => {
         as="h3"
         className="text-4xl text-center my-8 font-medium leading-6 text-gray-900"
       >
-        Login
+        {t("login")}
       </Dialog.Title>
       <form onSubmit={handleSubmit} className="mt-2">
         <Input
           type="email"
-          placeholder="Email Address *"
+          placeholder={`${t("email_address")} *`}
           name="email"
           required
           extraClass="w-full focus:border-gray500"
@@ -50,7 +52,7 @@ const Login: React.FC<Props> = ({ onRegister }) => {
         />
         <Input
           type="password"
-          placeholder="Password *"
+          placeholder={`${t("password")} *`}
           name="password"
           required
           extraClass="w-full focus:border-gray500 mb-4"
@@ -66,28 +68,30 @@ const Login: React.FC<Props> = ({ onRegister }) => {
               name="remember"
               className="w-4 h-4 mb-0 mr-2"
             />
-            <label htmlFor="remember">Remember me?</label>
+            <label htmlFor="remember" className="text-sm">
+              {t("remember_me")}
+            </label>
           </div>
           <a
             href="www.example.com"
-            className="text-gray400 hover:text-gray500 focus:outline-none focus:text-gray500"
+            className="text-gray400 text-sm hover:text-gray500 focus:outline-none focus:text-gray500"
           >
-            Forgot your password?
+            {t("forgot_password")}
           </a>
         </div>
         <Button
           type="submit"
-          value="Log in"
+          value={t("login")}
           extraClass="w-full text-center text-xl mb-4"
           size="lg"
         />
         <div className="text-center text-gray400">
-          Not a member?{" "}
+          {t("not_member")}{" "}
           <span
             onClick={onRegister}
             className="text-gray500 focus:outline-none focus:underline cursor-pointer"
           >
-            Register
+            {t("register")}
           </span>
         </div>
       </form>

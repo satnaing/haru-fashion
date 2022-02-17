@@ -1,5 +1,6 @@
 import { Fragment, useState, FC } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { useTranslations } from "next-intl";
 
 import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
@@ -15,6 +16,7 @@ const LoginForm: FC<Props> = ({ extraClass, children }) => {
   const auth = useAuth();
   const [isLoginPage, setisLoginPage] = useState(true);
   const [open, setOpen] = useState(false);
+  const t = useTranslations("LoginRegister");
 
   function closeModal() {
     setOpen(false);
@@ -82,7 +84,7 @@ const LoginForm: FC<Props> = ({ extraClass, children }) => {
                   &#10005;
                 </button>
                 {auth.user ? (
-                  <Button value="Sign Out" onClick={() => auth.signout()} />
+                  <Button value={t("logout")} onClick={() => auth.signout()} />
                 ) : isLoginPage ? (
                   <Login onRegister={() => setisLoginPage(false)} />
                 ) : (

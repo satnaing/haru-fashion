@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { Dialog } from "@headlessui/react";
+import { useTranslations } from "next-intl";
 
 import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
@@ -14,6 +15,7 @@ const Register: React.FC<Props> = ({ onLogin }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const t = useTranslations("LoginRegister");
 
   const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -89,12 +91,12 @@ const Register: React.FC<Props> = ({ onLogin }) => {
         as="h3"
         className="text-4xl text-center my-8 font-medium leading-6 text-gray-900"
       >
-        Register
+        {t("register")}
       </Dialog.Title>
       <form onSubmit={handleSubmit} className="mt-2">
         <Input
           type="name"
-          placeholder="User Name *"
+          placeholder={`${t("username")} *`}
           name="username"
           // required
           extraClass="w-full focus:border-gray500"
@@ -104,7 +106,7 @@ const Register: React.FC<Props> = ({ onLogin }) => {
         />
         <Input
           type="email"
-          placeholder="Email Address *"
+          placeholder={`${t("email_address")} *`}
           name="email"
           required
           extraClass="w-full focus:border-gray500"
@@ -114,7 +116,7 @@ const Register: React.FC<Props> = ({ onLogin }) => {
         />
         <Input
           type="password"
-          placeholder="Password *"
+          placeholder={`${t("password")} *`}
           name="password"
           required
           extraClass="w-full focus:border-gray500 mb-4"
@@ -123,13 +125,14 @@ const Register: React.FC<Props> = ({ onLogin }) => {
           value={password}
         />
         <div className="flex justify-between mb-4">
-          <p className="text-gray400">
-            Your personal data will be used to support your experience
+          <p className="text-gray400 text-xs">
+            {t("register_desc")}
+            {/* Your personal data will be used to support your experience
             throughout this website, to manage access to your account, and for
             other purposes described in our{" "}
             <a href="#" className="text-gray500">
               Privacy Policy
-            </a>
+            </a> */}
           </p>
         </div>
         <Button
@@ -139,12 +142,12 @@ const Register: React.FC<Props> = ({ onLogin }) => {
           size="lg"
         />
         <div className="text-center text-gray400">
-          Already a member?{" "}
+          {t("already_member")}{" "}
           <span
             onClick={onLogin}
             className="text-gray500 focus:outline-none focus:underline cursor-pointer"
           >
-            Login
+            {t("login")}
           </span>
         </div>
       </form>

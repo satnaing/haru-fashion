@@ -90,5 +90,18 @@
     "shop_now": "Shop Now",
     "our_shop": "Our Shop",
     "our_shop_desc": "Stop by our stores to learn the stories behind our products, get a personal styling session, or shop the latest in person. See our store locations."
+  },
+  "LoginRegister": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "register",
+    "username": "Username",
+    "email_address": "Email Address",
+    "password": "Password",
+    "remember_me": "Remember me?",
+    "forgot_password": "Forgot your password?",
+    "not_member": "Not a member?",
+    "register_desc": "Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our Privacy Policy",
+    "already_member": "Already a member?"
   }
 }
