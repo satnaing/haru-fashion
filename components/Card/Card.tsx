@@ -1,5 +1,7 @@
-import Link from "next/link";
 import { FC, MouseEventHandler } from "react";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+
 import Heart from "../../public/icons/Heart";
 import styles from "./Card.module.css";
 
@@ -23,35 +25,39 @@ const Card: FC<Props> = ({
   itemPrice,
   onAddWishlist,
   onClick,
-}) => (
-  <div className={styles.cardContainer}>
-    <div className={styles.imageContainer}>
-      <Link href={itemLink}>
-        <a>
-          <img className={styles.firstImage} src={imgSrc1} alt={imgAlt} />
-          <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
-        </a>
-      </Link>
-      <button
-        type="button"
-        aria-label="Wishlist"
-        onClick={onAddWishlist}
-        className={styles.wishlist}
-      >
-        <Heart />
-      </button>
-      <div className="absolute z-20 bottom-5 left-1/2 w-4/5 translate-y-28 "></div>
-      <div className={styles.btnWrapper}>
-        <button onClick={onClick} className={styles.addBtn}>
-          Add to cart
+}) => {
+  const t = useTranslations("CartWishlist");
+
+  return (
+    <div className={styles.cardContainer}>
+      <div className={styles.imageContainer}>
+        <Link href={itemLink}>
+          <a>
+            <img className={styles.firstImage} src={imgSrc1} alt={imgAlt} />
+            <img className={styles.secondImage} src={imgSrc2} alt={imgAlt} />
+          </a>
+        </Link>
+        <button
+          type="button"
+          aria-label="Wishlist"
+          onClick={onAddWishlist}
+          className={styles.wishlist}
+        >
+          <Heart />
         </button>
+        <div className="absolute z-20 bottom-5 left-1/2 w-4/5 translate-y-28 "></div>
+        <div className={styles.btnWrapper}>
+          <button type="button" onClick={onClick} className={styles.addBtn}>
+            {t("add_to_cart")}
+          </button>
+        </div>
       </div>
+      <Link href={itemLink}>
+        <a className={styles.itemName}>{itemName}</a>
+      </Link>
+      <span className="text-gray400">$ {itemPrice}</span>
     </div>
-    <Link href={itemLink}>
-      <a className={styles.itemName}>{itemName}</a>
-    </Link>
-    <span className="text-gray400">$ {itemPrice}</span>
-  </div>
-);
+  );
+};
 
 export default Card;

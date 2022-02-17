@@ -1,4 +1,6 @@
 import { Slide } from "react-slideshow-image";
+import { useTranslations } from "next-intl";
+
 import LeftArrow from "../../public/icons/LeftArrow";
 import RightArrow from "../../public/icons/RightArrow";
 import TextButton from "../Buttons/TextButton";
@@ -51,6 +53,8 @@ const slideProperties = {
 };
 
 const Slideshow = () => {
+  const t = useTranslations("Index");
+
   return (
     <div style={{ height: 640 }}>
       <div className="slide-container absolute w-full h-screen top-0 lg:top-8 z-20">
@@ -81,7 +85,7 @@ const Slideshow = () => {
                     {slider.titleUp} <br />
                     {slider.titleDown}
                   </h1>
-                  <TextButton value="Shop Now" />
+                  <TextButton value={t("shop_now")} />
                 </div>
               </div>
             </div>

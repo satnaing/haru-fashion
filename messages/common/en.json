@@ -71,5 +71,19 @@
     "coming_soon": "Coming Soon!",
     "page_not_created_msg": "This page has not been created yet!",
     "go_back_to": "Go back to"
+  },
+  "Index": {
+    "new_arrivals": "New Arrivals",
+    "women_collection": "Women Collection",
+    "men_collection": "Men Collection",
+    "best_selling": "Best Selling",
+    "best_selling_desc": "Here are some of our best selling products. Explore yourself in the latest trends.",
+    "add_to_cart": "Add to Cart",
+    "testimonial": "Testimonial",
+    "featured_products": "Featured Products",
+    "see_more": "See More",
+    "shop_now": "Shop Now",
+    "our_shop": "Our Shop",
+    "our_shop_desc": "Stop by our stores to learn the stories behind our products, get a personal styling session, or shop the latest in person. See our store locations."
   }
 }
