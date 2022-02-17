@@ -98,7 +98,15 @@
     "bags": "Bags",
     "filter_by": "Filter by",
     "sort_by": "Sort by",
-    "showing_from_to": "Showing {from} ~ {to} of {all}"
+    "showing_from_to": "Showing {from} ~ {to} of {all}",
+    "availability": "Availability",
+    "in_stock": "In Stock",
+    "size": "Size",
+    "add_to_cart": "Add To Cart",
+    "add_to_wishlist": "Add To Wishlist",
+    "details": "Details",
+    "share": "Share",
+    "you_may_also_like": "You may also like"
   },
   "LoginRegister": {
     "login": "Login",

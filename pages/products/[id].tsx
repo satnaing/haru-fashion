@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import firebase, { db } from "../../firebase/firebase";
 import CartContext from "../../context/cart/CartContext";
@@ -41,6 +42,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
   const [size, setSize] = useState("M");
   const [mainImg, setMainImg] = useState(img1);
   const [currentQty, setCurrentQty] = useState(1);
+  const t = useTranslations("Category");
 
   useEffect(() => {
     setMainImg(post.img1);
@@ -63,11 +65,13 @@ const Product: React.FC<Props> = ({ post, products }) => {
       <div className="px-6 sm:px-20 bg-lightgreen h-16 w-full flex items-center border-t-2 border-gray200">
         <div className="breadcrumb">
           <Link href="/">
-            <a className="text-gray400">Home</a>
+            <a className="text-gray400">{t("home")}</a>
           </Link>{" "}
           /{" "}
           <Link href={`/product-category/${post.category}`}>
-            <a className="text-gray400 capitalize">{post.category}</a>
+            <a className="text-gray400 capitalize">
+              {t(post.category as string)}
+            </a>
           </Link>{" "}
           / <span>{post.name}</span>
         </div>
@@ -122,8 +126,12 @@ const Product: React.FC<Props> = ({ post, products }) => {
           <h1 className="text-3xl mb-4">{post.name}</h1>
           <span className="text-2xl text-gray400 mb-2">$ {post.price}</span>
           <span className="mb-2 text-justify">{post.desc}</span>
-          <span className="mb-2">Availability: in stock</span>
-          <span className="mb-2">Size: {size}</span>
+          <span className="mb-2">
+            {t("availability")}: {t("in_stock")}
+          </span>
+          <span className="mb-2">
+            {t("size")}: {size}
+          </span>
           <div className="sizeContainer flex space-x-4 text-sm mb-4">
             <div
               onClick={() => handleSize("S")}
@@ -172,24 +180,24 @@ const Product: React.FC<Props> = ({ post, products }) => {
             </div>
             <div className="flex h-12 space-x-4 w-full">
               <Button
-                value="Add to cart"
+                value={t("add_to_cart")}
                 size="lg"
-                extraClass="flex-grow text-center"
+                extraClass={`flex-grow text-center whitespace-nowrap`}
                 onClick={() => addItem!(currentItem)}
               />
-              <GhostButton
-                value="Add to wishlist"
+              {/* <GhostButton
+                value={t("add_to_wishlist")}
                 size="lg"
                 onClick={() => addToWishlist!(currentItem)}
-                extraClass="text-center hidden xl:block"
+                extraClass="text-center hidden"
               >
                 <Heart extraClass="inline bg-black" />
-              </GhostButton>
+              </GhostButton> */}
               <GhostButton
                 value=""
                 size="lg"
                 onClick={() => addToWishlist!(currentItem)}
-                extraClass="text-center xl:hidden"
+                extraClass="text-center"
               >
                 <Heart extraClass="inline bg-black" />
               </GhostButton>
@@ -199,7 +207,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
             {({ open }) => (
               <>
                 <Disclosure.Button className="py-2 focus:outline-none text-left mb-4 border-b-2 border-gray200 flex items-center justify-between">
-                  <span>Details</span>
+                  <span>{t("details")}</span>
                   <DownArrow
                     extraClass={`${
                       open ? "" : "transform rotate-180"
@@ -215,7 +223,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
             )}
           </Disclosure>
           <div className="flex items-center space-x-4 mt-4">
-            <span>Share </span>
+            <span>{t("share")} </span>
             <FacebookLogo extraClass="h-4 cursor-pointer text-gray400 hover:text-gray500" />
             <InstagramLogo extraClass="h-4 cursor-pointer text-gray400 hover:text-gray500" />
           </div>
@@ -224,7 +232,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
       <div className="border-b-2 border-gray200"></div>
       {/* <div className="hidden"> */}
       <div className="recSection my-8 mx-6 sm:mx-20 flex flex-wrap">
-        <h2 className="text-3xl mb-4">You may also like</h2>
+        <h2 className="text-3xl mb-4">{t("you_may_also_like")}</h2>
         <Swiper
           slidesPerView={1}
           centeredSlides={true}
