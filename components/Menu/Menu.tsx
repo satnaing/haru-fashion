@@ -13,6 +13,8 @@ import WhistlistIcon from "../../public/icons/WhistlistIcon";
 import UserIcon from "../../public/icons/UserIcon";
 import SearchIcon from "../../public/icons/SearchIcon";
 import DownArrow from "../../public/icons/DownArrow";
+import InstagramLogo from "../../public/icons/InstagramLogo";
+import FacebookLogo from "../../public/icons/FacebookLogo";
 
 export default function Menu() {
   const router = useRouter();
@@ -91,7 +93,7 @@ export default function Menu() {
                   </button>
                 </div>
 
-                <div className="mb-24">
+                <div className="mb-10">
                   <div className="itemContainer px-6 w-full flex flex-col justify-around items-center">
                     <div className="flex w-full justify-between items-center mt-5 mb-5 border-gray300 border-b-2">
                       <SearchIcon extraClass="text-gray300 w-6 h-6" />
@@ -263,6 +265,23 @@ export default function Menu() {
                         </HMenu.Item>
                       </HMenu.Items>
                     </HMenu>
+
+                    <div className="flex my-10 w-2/5 space-x-6 justify-center">
+                      <a
+                        href="#"
+                        className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"
+                        aria-label="Haru Fashion Facebook Page"
+                      >
+                        <FacebookLogo extraClass="h-8" />
+                      </a>
+                      <a
+                        href="#"
+                        className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"
+                        aria-label="Haru Fashion Facebook Page"
+                      >
+                        <InstagramLogo extraClass="h-8" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
