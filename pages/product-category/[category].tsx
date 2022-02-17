@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import CartContext from "../../context/cart/CartContext";
 import WishlistContext from "../../context/wishlist/WishlistContext";
@@ -23,6 +24,7 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
   const [itemPerPage, setItemPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [viewWidth, setViewWidth] = useWindowSize();
+  const t = useTranslations("Category");
 
   const router = useRouter();
   const { category } = router.query;
@@ -64,18 +66,22 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
       <div className="px-6 sm:px-12 md:px-20 bg-lightgreen h-16 w-full flex items-center">
         <div className="breadcrumb">
           <Link href="/">
-            <a className="text-gray400">Home</a>
+            <a className="text-gray400">{t("home")}</a>
           </Link>{" "}
-          / <span className="capitalize">{category}</span>
+          / <span className="capitalize">{t(category as string)}</span>
         </div>
       </div>
       <div className="px-6 sm:px-12 md:px-20 w-full mt-8">
-        <h3 className="text-4xl mb-2 capitalize">{category}</h3>
+        <h3 className="text-4xl mb-2 capitalize">{t(category as string)}</h3>
         <div className="flex justify-between mt-6">
           <span>
-            Showing {firstIndexItem + 1} ~ {lastIndexItem} of {totalItems}
+            {t("showing_from_to", {
+              from: firstIndexItem + 1,
+              to: totalItems < lastIndexItem ? totalItems : lastIndexItem,
+              all: totalItems,
+            })}
           </span>
-          <span>Filter by: Price</span>
+          <span>{t("sort_by")}: Price</span>
         </div>
       </div>
       <div className="px-2 sm:px-8 md:px-16 mb-14">

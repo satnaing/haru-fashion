@@ -91,6 +91,15 @@
     "our_shop": "Our Shop",
     "our_shop_desc": "Stop by our stores to learn the stories behind our products, get a personal styling session, or shop the latest in person. See our store locations."
   },
+  "Category": {
+    "home": "Home",
+    "men": "Men",
+    "women": "Women",
+    "bags": "Bags",
+    "filter_by": "Filter by",
+    "sort_by": "Sort by",
+    "showing_from_to": "Showing {from} ~ {to} of {all}"
+  },
   "LoginRegister": {
     "login": "Login",
     "logout": "Logout",
