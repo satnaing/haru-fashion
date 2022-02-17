@@ -1,9 +1,11 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { useTranslations } from "next-intl";
 
 import SearchIcon from "../../public/icons/SearchIcon";
 
 export default function SearchForm() {
+  const t = useTranslations("Navigation");
   const [open, setOpen] = useState(false);
 
   function closeModal() {
@@ -79,7 +81,7 @@ export default function SearchForm() {
                     <SearchIcon extraClass="text-gray300 w-8 h-8" />
                     <input
                       type="search"
-                      placeholder="Search anything ..."
+                      placeholder={t("search_anything")}
                       className="px-4 py-2 w-full focus:outline-none text-2xl"
                     />
                   </div>
