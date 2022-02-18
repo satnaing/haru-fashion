@@ -1,20 +1,17 @@
+# Haru-Fashion E-commerce Web Application
 
-# Haru-Fashion E-commerce Web Application  
 ![Haru-Fashion Responsive Design (2)](https://user-images.githubusercontent.com/53733092/139094836-3c75c8fa-4f7a-43a7-b8c8-7cf45af53b71.png)
 ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue) ![vercel](https://img.shields.io/github/deployments/satnaing/e-commerce/production?label=vercel&logo=vercel&logoColor=white) [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 An e-commerce web application developed with Next.JS and Firebase. Tailwind CSS is used for styling the components and React's Context API is used for state management. The application is fully responsive.
 
-
-
-
 ## Demo
+
 <p align="center">
 <a href="https://haru-fashion.vercel.app/"><img src="https://user-images.githubusercontent.com/53733092/139051262-7d501510-17ab-4e57-83da-c07385a85f9c.gif" alt="Haru-Fashion Demo" /></a><br/><br/>
 <a href="https://haru-fashion.vercel.app/"><img src="https://user-images.githubusercontent.com/53733092/139092307-3e364931-a083-40d9-9f0e-604db4170c2b.png" width="130"/></a>
 </p>
 
-  
 ## Features
 
 - 📱💻 Responsive Design
@@ -24,8 +21,8 @@ An e-commerce web application developed with Next.JS and Firebase. Tailwind CSS 
 - 🛡️ Authentication (Register/Login/Logout)
 - ⬅️➡️ Pagination
 - ✨ Animation
+- 🌐 i18n (English & Burmese)
 
-  
 ## Tech Stack
 
 **Frontend** NextJS, React, TypeScript  
@@ -36,7 +33,7 @@ An e-commerce web application developed with Next.JS and Firebase. Tailwind CSS 
 **Containerization:** Docker  
 **Deployment** Vercel
 
-  ## Running Locally
+## Running Locally
 
 Clone the project
 
@@ -72,12 +69,9 @@ npm run dev
 
 Even though I wrote every single line of code for this web app, images and some design are inspired and used from the following websites.
 
- - [Goya WordPress Premium Theme](https://goya.everthemes.com/demo-fashion/)
- - [Lusion WordPress Premium Theme](https://hn.arrowpress.net/lusion/home-minimalist/?currency=USD)
+- [Goya WordPress Premium Theme](https://goya.everthemes.com/demo-fashion/)
+- [Lusion WordPress Premium Theme](https://hn.arrowpress.net/lusion/home-minimalist/?currency=USD)
 
-  
 ## Author
 
 - [@satnaing](https://github.com/satnaing)
-
-  
