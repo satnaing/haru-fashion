@@ -9,11 +9,10 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.0.0",
-    "@types/nprogress": "^0.2.0",
     "animate.css": "^4.1.1",
     "firebase": "^8.5.0",
     "js-cookie": "^2.2.1",
-    "next": "^10.2.2",
+    "next": "^12.1.0",
     "next-intl": "^2.4.0",
     "nprogress": "^0.2.0",
     "react": "17.0.2",
@@ -22,6 +21,7 @@
     "swiper": "^6.6.2"
   },
   "devDependencies": {
+    "@types/nprogress": "^0.2.0",
     "@types/js-cookie": "^3.0.1",
     "@types/react": "^17.0.3",
     "autoprefixer": "^10.2.5",
