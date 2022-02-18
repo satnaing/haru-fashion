@@ -9,6 +9,7 @@ import LeftArrow from "../public/icons/LeftArrow";
 import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
 import { GetStaticProps } from "next";
+import { roundDecimal } from "../components/Util/utilFunc";
 
 // let w = window.innerWidth;
 
@@ -80,7 +81,7 @@ const ShoppingCart = () => {
                         <span>{item.name}</span>
                       </td>
                       <td className="text-right text-gray400 hidden sm:table-cell">
-                        $ {item.price}
+                        $ {roundDecimal(item.price)}
                       </td>
                       <td>
                         <div className="w-12 h-32 sm:h-auto sm:w-3/4 md:w-2/6 mx-auto flex flex-col-reverse sm:flex-row border border-gray300 sm:divide-x-2 divide-gray300">
@@ -102,9 +103,11 @@ const ShoppingCart = () => {
                         </div>
                       </td>
                       <td className="text-right text-gray400">
-                        $ {item.price * item.qty!}
+                        $ {roundDecimal(item.price * item.qty!)}
                         <br />
-                        <span className="text-xs">($ {item.price})</span>
+                        <span className="text-xs">
+                          ($ {roundDecimal(item.price)})
+                        </span>
                       </td>
                       <td className="text-right" style={{ minWidth: "3rem" }}>
                         <button
@@ -137,7 +140,7 @@ const ShoppingCart = () => {
             <h2 className="text-xl mb-3">{t("cart_totals")}</h2>
             <div className="flex justify-between py-2">
               <span className="uppercase">{t("subtotal")}</span>
-              <span>$ {subtotal}</span>
+              <span>$ {roundDecimal(subtotal)}</span>
             </div>
             <div className="py-3">
               <span className="uppercase">{t("delivery")}</span>
@@ -179,7 +182,9 @@ const ShoppingCart = () => {
             </div>
             <div className="flex justify-between py-3">
               <span>{t("grand_total")}</span>
-              <span>$ {subtotal + (deli === "Yangon" ? 2.0 : 7.0)}</span>
+              <span>
+                $ {roundDecimal(subtotal + (deli === "Yangon" ? 2.0 : 7.0))}
+              </span>
             </div>
             <Button
               value={t("proceed_to_checkout")}

@@ -8,6 +8,7 @@ import BagIcon from "../../public/icons/BagIcon";
 import Button from "../Buttons/Button";
 import GhostButton from "../Buttons/GhostButton";
 import Item from "./Item";
+import { roundDecimal } from "../Util/utilFunc";
 
 export default function CartItem() {
   const t = useTranslations("CartWishlist");
@@ -140,7 +141,7 @@ export default function CartItem() {
                   <div className="btnContainer mt-4 px-4 h-1/3 mb-20 w-full flex flex-col ">
                     <div className="flex justify-between">
                       <span>{t("subtotal")}</span>
-                      <span>$ {subtotal}</span>
+                      <span>$ {roundDecimal(subtotal)}</span>
                     </div>
                     <Link href="/shopping-cart">
                       <GhostButton
