@@ -8,6 +8,7 @@ type Props = {
   required?: boolean;
   border?: string;
   id?: string;
+  label?: string;
   onChange?: (e: FormEvent<HTMLInputElement>) => void;
   value?: string;
 };
@@ -20,6 +21,7 @@ const Input: FC<Props> = ({
   required = false,
   border = "",
   id = "",
+  label = "",
   onChange,
   value,
 }) => (
@@ -34,6 +36,7 @@ const Input: FC<Props> = ({
     required={required}
     onChange={onChange}
     value={value}
+    aria-label={label}
   />
 );
 
