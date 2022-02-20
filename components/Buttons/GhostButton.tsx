@@ -9,6 +9,7 @@ type Props = {
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
+// eslint-disable-next-line react/display-name
 const GhostButton: FC<Props> = forwardRef(
   (
     {
