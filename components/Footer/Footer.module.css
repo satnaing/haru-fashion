@@ -16,7 +16,11 @@
 }
 
 .footerContainer {
-  @apply border-t-2 border-gray100 py-16 px-6 sm:px-12 md:px-20 flex flex-col md:flex-row justify-between;
+  @apply border-t-2 border-gray100 py-16;
+}
+
+.footerContents {
+  @apply flex flex-col md:flex-row justify-between;
 }
 
 .footerContainer > div {
@@ -24,7 +28,7 @@
 }
 
 .bottomFooter {
-  @apply border-2 py-1 text-xs border-gray200 flex justify-between text-gray400;
+  @apply border-2 py-1 text-xs border-gray200 text-gray400;
 }
 
 .bottomFooter a {

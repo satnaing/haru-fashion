@@ -13,52 +13,54 @@ export default function Footer() {
   return (
     <>
       <div className={styles.footerContainer}>
-        <div>
-          <h6 className={styles.footerHead}>{t("company")}</h6>
-          <div className={styles.column}>
-            <a href="example">{t("about_us")}</a>
-            <a href="example">{t("contact_us")}</a>
-            <a href="example">{t("store_location")}</a>
-            <a href="example">{t("careers")}</a>
+        <div className={`app-max-width app-x-padding ${styles.footerContents}`}>
+          <div>
+            <h6 className={styles.footerHead}>{t("company")}</h6>
+            <div className={styles.column}>
+              <a href="example">{t("about_us")}</a>
+              <a href="example">{t("contact_us")}</a>
+              <a href="example">{t("store_location")}</a>
+              <a href="example">{t("careers")}</a>
+            </div>
           </div>
-        </div>
-        <div>
-          <h6 className={styles.footerHead}>{t("help")}</h6>
-          <div className={styles.column}>
-            <a href="example">{t("order_tracking")}</a>
-            <a href="example">{t("faqs")}</a>
-            <a href="example">{t("privacy_policy")}</a>
-            <a href="example">{t("terms_conditions")}</a>
+          <div>
+            <h6 className={styles.footerHead}>{t("help")}</h6>
+            <div className={styles.column}>
+              <a href="example">{t("order_tracking")}</a>
+              <a href="example">{t("faqs")}</a>
+              <a href="example">{t("privacy_policy")}</a>
+              <a href="example">{t("terms_conditions")}</a>
+            </div>
           </div>
-        </div>
-        <div>
-          <h6 className={styles.footerHead}>{t("store")}</h6>
-          <div className={styles.column}>
-            <Link href={`/product-category/women`}>
-              <a>{t("women")}</a>
-            </Link>
-            <Link href={`/product-category/men`}>
-              <a>{t("men")}</a>
-            </Link>
-            <Link href={`/product-category/bags`}>
-              <a>{t("bags")}</a>
-            </Link>
+          <div>
+            <h6 className={styles.footerHead}>{t("store")}</h6>
+            <div className={styles.column}>
+              <Link href={`/product-category/women`}>
+                <a>{t("women")}</a>
+              </Link>
+              <Link href={`/product-category/men`}>
+                <a>{t("men")}</a>
+              </Link>
+              <Link href={`/product-category/bags`}>
+                <a>{t("bags")}</a>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div>
-          <h6 className={styles.footerHead}>{t("keep_in_touch")}</h6>
-          <div className={styles.column}>
-            <span>
-              {t("address.detail")}
-              <br />
-              {t("address.road")}
-              <br />
-              {t("address.city")}
-            </span>
-            <span>{t("phone_number")}</span>
-            <span>
-              {t("open_all_days")} <br />- {t("opening_hours")}
-            </span>
+          <div>
+            <h6 className={styles.footerHead}>{t("keep_in_touch")}</h6>
+            <div className={styles.column}>
+              <span>
+                {t("address.detail")}
+                <br />
+                {t("address.road")}
+                <br />
+                {t("address.city")}
+              </span>
+              <span>{t("phone_number")}</span>
+              <span>
+                {t("open_all_days")} <br />- {t("opening_hours")}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -75,23 +77,26 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.bottomFooter}>
-        <span className="ml-6 sm:ml-12 md:ml-20">
-          @2022 Haru. {t("all_rights_reserved")}
-        </span>
-        <span className="flex items-center mr-6 sm:mr-12 md:mr-20">
-          <span className="hidden sm:block">
-            {t("follow_us_on_social_media")}:
-          </span>{" "}
-          <a
-            href="www.facebook.com"
-            aria-label="Facebook Page for Haru Fashion"
-          >
-            <FacebookLogo />
-          </a>
-          <a href="www.ig.com" aria-label="Instagram Account for Haru Fashion">
-            <InstagramLogo />
-          </a>
-        </span>
+        <div className="app-max-width app-x-padding w-full flex justify-between">
+          <span className="">@2022 Haru. {t("all_rights_reserved")}</span>
+          <span className="flex items-center">
+            <span className="hidden sm:block">
+              {t("follow_us_on_social_media")}:
+            </span>{" "}
+            <a
+              href="www.facebook.com"
+              aria-label="Facebook Page for Haru Fashion"
+            >
+              <FacebookLogo />
+            </a>
+            <a
+              href="www.ig.com"
+              aria-label="Instagram Account for Haru Fashion"
+            >
+              <InstagramLogo />
+            </a>
+          </span>
+        </div>
       </div>
     </>
   );
