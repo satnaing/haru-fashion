@@ -144,7 +144,7 @@ const Wishlist = () => {
         </div>
       </div>
 
-      {/* ===== Head Section ===== */}
+      {/* ===== Footer Section ===== */}
       <Footer />
     </div>
   );
