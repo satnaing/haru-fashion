@@ -1,60 +1,19 @@
-.cardContainer {
-  @apply mx-auto;
-  /* my-6 */
+.card {
+  @apply w-full;
 }
 
 .imageContainer {
-  @apply relative overflow-hidden mb-2;
-}
-
-.firstImage {
-  min-width: 200px;
-  height: 500px;
-  @apply w-full absolute top-0 left-0 transition-opacity object-cover;
-}
-/* 
-  @apply w-full h-full absolute top-0 left-0 transition-opacity; */
-/* w-60 */
-.secondImage {
-  min-width: 200px;
-  height: 500px;
-  @apply w-full transition-transform object-cover;
-}
-
-/* 576px */
-@media (min-width: 992px) {
-  .firstImage,
-  .secondImage {
-    height: 300px;
-  }
-}
-
-.itemName {
-  @apply block no-underline text-gray500 mb-1 truncate;
-}
-
-.cardContainer:hover .firstImage {
-  @apply opacity-0;
-}
-
-.cardContainer:hover .secondImage {
-  @apply transition-transform transform scale-110 duration-1000;
-  /* transform: scale(1.2, 1.2);
-  transition: transform 1.5s; */
+  @apply relative overflow-hidden mb-1;
 }
 
 .addBtn {
-  @apply text-gray500 text-xl shadow-lg lg:text-base focus:outline-none text-center no-underline absolute z-30 bg-white bottom-3 left-1/2 py-4 lg:p-3 w-4/5 inline-block transform -translate-x-1/2 lg:translate-y-28 transition-transform duration-700;
+  @apply hidden sm:block bg-white text-gray400 hover:text-gray500 font-medium whitespace-nowrap px-4 py-2 mx-auto absolute bottom-4 md:-bottom-10 right-1/2 transform translate-x-1/2 transition-all duration-500;
 }
 
-.addBtn:hover {
-  @apply bg-gray500 text-gray100;
+.card:hover .addBtn {
+  @apply md:bottom-8;
 }
 
-.cardContainer:hover .addBtn {
-  transform: translate(-50%, -20%);
-}
-
-.wishlist {
-  @apply text-gray500 bg-white absolute focus:outline-none top-3 right-4 px-2 py-1 hover:bg-gray500 hover:text-white;
+.itemName {
+  @apply text-xs sm:text-base block no-underline text-gray500 mb-1 truncate;
 }
