@@ -39,12 +39,20 @@ const slideProperties = {
   duration: 5000,
   canSwipe: true,
   prevArrow: (
-    <div className={`${styles.arrows} left-2 md:left-8`}>
+    <div
+      role="button"
+      title="Previous"
+      className={`${styles.arrows} left-2 md:left-8`}
+    >
       <LeftArrow />
     </div>
   ),
   nextArrow: (
-    <div className={`${styles.arrows} right-2 md:right-8`}>
+    <div
+      role="button"
+      title="Next"
+      className={`${styles.arrows} right-2 md:right-8`}
+    >
       <RightArrow />
     </div>
   ),
