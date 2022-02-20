@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import WishlistContext from "../../context/wishlist/WishlistContext";
 import { db } from "../../firebase/firebase";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Card5 from "../../components/Card/Card5";
+import Card from "../../components/Card/Card";
 import Pagination from "../../components/Util/Pagination";
 import useWindowSize from "../../components/Util/useWindowSize";
 import { dbItemType, itemType } from "../../context/cart/cart-types";
@@ -21,7 +21,7 @@ type Props = {
 const ProductCategory: React.FC<Props> = ({ items }) => {
   const { addItem } = useContext(CartContext);
   const { addToWishlist } = useContext(WishlistContext);
-  const [itemPerPage, setItemPerPage] = useState(5);
+  const [itemPerPage, setItemPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [viewWidth, setViewWidth] = useWindowSize();
   const t = useTranslations("Category");
@@ -29,10 +29,20 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
   const router = useRouter();
   const { category } = router.query;
 
-  // Change itemPerPage to 8 for good layout
-  useEffect(() => {
-    viewWidth <= 1280 ? setItemPerPage(8) : setItemPerPage(10);
+  // Change totalItems to 8 for good layout
+  const changeTotalItems = useCallback(() => {
+    if (viewWidth >= 992 || viewWidth < 576) {
+      totalItems !== 10 && setItemPerPage(10);
+    } else if (viewWidth >= 768) {
+      totalItems !== 8 && setItemPerPage(8);
+    } else {
+      totalItems !== 9 && setItemPerPage(9);
+    }
   }, [viewWidth]);
+
+  useEffect(() => {
+    changeTotalItems();
+  }, [changeTotalItems]);
 
   const handlePage = (number: number) => {
     setCurrentPage(number);
@@ -61,17 +71,18 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
 
   return (
     <div>
-      {/* {t("description")} */}
       <Header title={`${capitalizedCategory} - Haru Fashion`} />
-      <div className="px-6 sm:px-12 md:px-20 bg-lightgreen h-16 w-full flex items-center">
-        <div className="breadcrumb">
-          <Link href="/">
-            <a className="text-gray400">{t("home")}</a>
-          </Link>{" "}
-          / <span className="capitalize">{t(category as string)}</span>
+      <div className="bg-lightgreen h-16 w-full flex items-center">
+        <div className="app-x-padding app-max-width w-full">
+          <div className="breadcrumb">
+            <Link href="/">
+              <a className="text-gray400">{t("home")}</a>
+            </Link>{" "}
+            / <span className="capitalize">{t(category as string)}</span>
+          </div>
         </div>
       </div>
-      <div className="px-6 sm:px-12 md:px-20 w-full mt-8">
+      <div className="app-x-padding app-max-width w-full mt-8">
         <h3 className="text-4xl mb-2 capitalize">{t(category as string)}</h3>
         <div className="flex justify-between mt-6">
           <span>
@@ -84,19 +95,10 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
           <span>{t("sort_by")}: Price</span>
         </div>
       </div>
-      <div className="px-2 sm:px-8 md:px-16 mb-14">
-        <div className="flex flex-wrap mb-8">
+      <div className="app-x-padding app-max-width mt-3 mb-14">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
           {currentItems.map((item) => (
-            <Card5
-              key={item.name}
-              imgSrc1={item.img1 as string}
-              imgSrc2={item.img2 as string}
-              itemName={item.name}
-              itemPrice={item.price}
-              onAddWishlist={() => addToWishlist!(item)}
-              onClick={() => addItem!(item)}
-              itemLink={`/products/${encodeURIComponent(item.id)}`}
-            />
+            <Card key={item.name} item={item} />
           ))}
         </div>
         <Pagination
