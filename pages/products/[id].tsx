@@ -14,7 +14,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import GhostButton from "../../components/Buttons/GhostButton";
 import Button from "../../components/Buttons/Button";
-import Card5 from "../../components/Card/Card5";
+import Card from "../../components/Card/Card";
 import Items from "../../components/Util/Items";
 
 // swiperjs
@@ -24,12 +24,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper/core";
 import WishlistContext from "../../context/wishlist/WishlistContext";
 import { dbItemType, itemType } from "../../context/cart/cart-types";
+import HeartSolid from "../../public/icons/HeartSolid";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
 type Props = {
-  post: any;
+  post: dbItemType;
   products: dbItemType[];
 };
 
@@ -38,11 +39,15 @@ const Product: React.FC<Props> = ({ post, products }) => {
   const img2 = post.img2;
 
   const { addItem, addOne } = useContext(CartContext);
-  const { addToWishlist } = useContext(WishlistContext);
+  const { wishlist, addToWishlist, deleteWishlistItem } =
+    useContext(WishlistContext);
   const [size, setSize] = useState("M");
   const [mainImg, setMainImg] = useState(img1);
   const [currentQty, setCurrentQty] = useState(1);
   const t = useTranslations("Category");
+
+  const alreadyWishlisted =
+    wishlist.filter((wItem) => wItem.id === post.id).length > 0;
 
   useEffect(() => {
     setMainImg(post.img1);
@@ -57,26 +62,34 @@ const Product: React.FC<Props> = ({ post, products }) => {
     qty: currentQty,
   };
 
+  const handleWishlist = () => {
+    alreadyWishlisted
+      ? deleteWishlistItem!(currentItem)
+      : addToWishlist!(currentItem);
+  };
+
   const featuredItems = Items.slice(0, 5);
 
   return (
     <div>
       <Header title={`${post.name} - Haru Fashion`} />
-      <div className="px-6 sm:px-20 bg-lightgreen h-16 w-full flex items-center border-t-2 border-gray200">
-        <div className="breadcrumb">
-          <Link href="/">
-            <a className="text-gray400">{t("home")}</a>
-          </Link>{" "}
-          /{" "}
-          <Link href={`/product-category/${post.category}`}>
-            <a className="text-gray400 capitalize">
-              {t(post.category as string)}
-            </a>
-          </Link>{" "}
-          / <span>{post.name}</span>
+      <div className="bg-lightgreen h-16 w-full flex items-center border-t-2 border-gray200">
+        <div className="app-x-padding app-max-width w-full">
+          <div className="breadcrumb">
+            <Link href="/">
+              <a className="text-gray400">{t("home")}</a>
+            </Link>{" "}
+            /{" "}
+            <Link href={`/product-category/${post.category}`}>
+              <a className="text-gray400 capitalize">
+                {t(post.category as string)}
+              </a>
+            </Link>{" "}
+            / <span>{post.name}</span>
+          </div>
         </div>
       </div>
-      <div className="itemSection mx-6 sm:mx-20 flex flex-col md:flex-row">
+      <div className="itemSection app-max-width app-x-padding flex flex-col md:flex-row">
         <div className="imgSection w-full md:w-1/2 h-full flex">
           <div className="hidden sm:block w-full sm:w-1/4 h-full space-y-4 my-4">
             <img
@@ -185,21 +198,17 @@ const Product: React.FC<Props> = ({ post, products }) => {
                 extraClass={`flex-grow text-center whitespace-nowrap`}
                 onClick={() => addItem!(currentItem)}
               />
-              {/* <GhostButton
-                value={t("add_to_wishlist")}
-                size="lg"
-                onClick={() => addToWishlist!(currentItem)}
-                extraClass="text-center hidden"
-              >
-                <Heart extraClass="inline bg-black" />
-              </GhostButton> */}
               <GhostButton
                 value=""
                 size="lg"
-                onClick={() => addToWishlist!(currentItem)}
-                extraClass="text-center"
+                onClick={handleWishlist}
+                extraClass={`text-center`}
               >
-                <Heart extraClass="inline bg-black" />
+                {alreadyWishlisted ? (
+                  <HeartSolid extraClass="inline" />
+                ) : (
+                  <Heart extraClass="inline" />
+                )}
               </GhostButton>
             </div>
           </div>
@@ -230,9 +239,8 @@ const Product: React.FC<Props> = ({ post, products }) => {
         </div>
       </div>
       <div className="border-b-2 border-gray200"></div>
-      {/* <div className="hidden"> */}
-      <div className="recSection my-8 mx-6 sm:mx-20 flex flex-wrap">
-        <h2 className="text-3xl mb-4">{t("you_may_also_like")}</h2>
+      <div className="recSection my-8 app-max-width app-x-padding">
+        <h2 className="text-3xl mb-6">{t("you_may_also_like")}</h2>
         <Swiper
           slidesPerView={1}
           centeredSlides={true}
@@ -245,32 +253,16 @@ const Product: React.FC<Props> = ({ post, products }) => {
           className="mySwiper sm:hidden"
         >
           {products.map((item) => (
-            <SwiperSlide key={item.name}>
+            <SwiperSlide key={item.id}>
               <div className="mb-6">
-                <Card5
-                  key={item.name}
-                  imgSrc1={item.img1 as string}
-                  imgSrc2={item.img2 as string}
-                  itemName={item.name}
-                  itemPrice={item.price}
-                  onClick={() => addOne!(item)}
-                  itemLink={`/products/${encodeURIComponent(item.id)}`}
-                />
+                <Card key={item.id} item={item} />
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="hidden sm:flex flex-wrap">
+        <div className="hidden sm:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
           {products.map((item) => (
-            <Card5
-              key={item.name}
-              imgSrc1={item.img1 as string}
-              imgSrc2={item.img2 as string}
-              itemName={item.name}
-              itemPrice={item.price}
-              onClick={() => addOne!(item)}
-              itemLink={`/products/${encodeURIComponent(item.id)}`}
-            />
+            <Card key={item.name} item={item} />
           ))}
         </div>
       </div>
