@@ -15,14 +15,16 @@
 }
 
 @layer utilities {
-  .bottom-10-per {
-    bottom: 10%;
-  }
-  .left-10-per {
-    left: 10%;
-  }
-  .right-10-per {
-    right: 10%;
+  @variants responsive {
+    .bottom-10-per {
+      bottom: 10%;
+    }
+    .left-10-per {
+      left: 10%;
+    }
+    .right-10-per {
+      right: 10%;
+    }
   }
 }
 /* @layer utilities { */
