@@ -40,25 +40,29 @@ const Card: FC<Props> = ({ item }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.imageContainer}>
-        {!isHovered && (
-          <Image
-            src={img1 as string}
-            alt={name}
-            width={230}
-            height={300}
-            layout="responsive"
-          />
-        )}
-        {isHovered && (
-          <Image
-            className="transition-transform transform hover:scale-110 duration-1000"
-            src={img2 as string}
-            alt={name}
-            width={230}
-            height={300}
-            layout="responsive"
-          />
-        )}
+        <Link href={itemLink}>
+          <a>
+            {!isHovered && (
+              <Image
+                src={img1 as string}
+                alt={name}
+                width={230}
+                height={300}
+                layout="responsive"
+              />
+            )}
+            {isHovered && (
+              <Image
+                className="transition-transform transform hover:scale-110 duration-1000"
+                src={img2 as string}
+                alt={name}
+                width={230}
+                height={300}
+                layout="responsive"
+              />
+            )}
+          </a>
+        </Link>
         <button
           type="button"
           className="absolute top-2 right-2 p-1 rounded-full"
