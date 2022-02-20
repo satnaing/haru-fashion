@@ -25,7 +25,8 @@ type Props = {
 
 const Home: React.FC<Props> = ({ products }) => {
   const t = useTranslations("Index");
-  const [totalItems, setTotalItems] = useState(8);
+  const [initialItems, setInitialItems] = useState(8);
+  const [totalItems, setTotalItems] = useState(initialItems);
   const [viewWidth] = useWindowSize();
 
   const currentItems = products.slice(0, totalItems);
@@ -33,13 +34,13 @@ const Home: React.FC<Props> = ({ products }) => {
   // Change totalItems to 8 for good layout
   const changeTotalItems = useCallback(() => {
     if (viewWidth >= 992 || viewWidth < 576) {
-      totalItems !== 10 && setTotalItems(10);
+      initialItems !== 10 && setInitialItems(10);
     } else if (viewWidth >= 768) {
-      totalItems !== 8 && setTotalItems(8);
+      initialItems !== 8 && setInitialItems(8);
     } else {
-      totalItems !== 9 && setTotalItems(9);
+      initialItems !== 9 && setInitialItems(9);
     }
-  }, [viewWidth]);
+  }, [viewWidth, initialItems]);
 
   useEffect(() => {
     changeTotalItems();
@@ -61,7 +62,7 @@ const Home: React.FC<Props> = ({ products }) => {
               imgSrc="/bg-img/banner_minipage1.jpg"
               imgSrc2="/bg-img/banner_minipage1-tablet.jpg"
             >
-              <Link href="/new-arrivals">
+              <Link href="/new-arrivals" passHref>
                 <GhostButton
                   value={t("new_arrivals")}
                   size="xl"
@@ -75,7 +76,7 @@ const Home: React.FC<Props> = ({ products }) => {
           </div>
           <div className="w-full">
             <OverlayContainer imgSrc="/bg-img/banner_minipage2.jpg">
-              <Link href="/product-category/women">
+              <Link href="/product-category/women" passHref>
                 <GhostButton
                   value={t("women_collection")}
                   size="lg"
@@ -88,7 +89,7 @@ const Home: React.FC<Props> = ({ products }) => {
           </div>
           <div className="w-full">
             <OverlayContainer imgSrc="/bg-img/banner_minipage3.jpg">
-              <Link href="/product-category/men">
+              <Link href="/product-category/men" passHref>
                 <GhostButton
                   value={t("men_collection")}
                   size="lg"
