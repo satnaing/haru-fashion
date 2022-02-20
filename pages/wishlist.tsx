@@ -10,6 +10,7 @@ import LeftArrow from "../public/icons/LeftArrow";
 import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 
 // let w = window.innerWidth;
 
@@ -24,8 +25,11 @@ const Wishlist = () => {
 
   return (
     <div>
+      {/* ===== Head Section ===== */}
       <Header title={`Wishlist - Haru Fashion`} />
-      <div className="px-6 md:px-20 w-full border-t-2 border-gray100">
+
+      {/* ===== Heading & Continue Shopping */}
+      <div className="app-max-width px-4 sm:px-8 md:px-20 w-full border-t-2 border-gray100">
         <h1 className="text-2xl sm:text-4xl text-center sm:text-left mt-6 mb-2 animatee__animated animate__bounce">
           {t("wishlist")}
         </h1>
@@ -38,7 +42,9 @@ const Wishlist = () => {
           </Link>
         </div>
       </div>
-      <div className="px-6 md:px-20 mb-14 flex flex-col lg:flex-row">
+
+      {/* ===== Wishlist Table Section ===== */}
+      <div className="app-max-width px-4 sm:px-8 md:px-20 mb-14 flex flex-col lg:flex-row">
         <div className="h-full w-full">
           <table className="w-full mb-6">
             <thead>
@@ -81,8 +87,15 @@ const Wishlist = () => {
                   return (
                     <tr className="border-b-2 border-gray200" key={item.id}>
                       <td className="my-3 flex justify-center flex-col items-start sm:items-center">
-                        <img src={item.img1} alt="" className="h-32 xl:mr-4" />
-                        <span className="md:hidden">{item.name}</span>
+                        {/* <img src={item.img1} alt="" className="h-32 xl:mr-4" /> */}
+                        <Image
+                          src={item.img1 as string}
+                          alt={item.name}
+                          width={95}
+                          height={128}
+                          className="h-32 xl:mr-4"
+                        />
+                        <span className="text-xs md:hidden">{item.name}</span>
                       </td>
                       <td className="text-center hidden md:table-cell">
                         {item.name}
@@ -123,14 +136,15 @@ const Wishlist = () => {
           <div>
             <GhostButton
               onClick={clearWishlist}
-              extraClass="hidden sm:inline-block"
+              extraClass="w-full sm:w-48 text-center whitespace-nowrap"
               value={t("clear_wishlist")}
               size="lg"
             />
-            {/* <TextButton value="Clear Cart" /> */}
           </div>
         </div>
       </div>
+
+      {/* ===== Head Section ===== */}
       <Footer />
     </div>
   );
