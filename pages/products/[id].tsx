@@ -15,7 +15,6 @@ import Footer from "../../components/Footer/Footer";
 import GhostButton from "../../components/Buttons/GhostButton";
 import Button from "../../components/Buttons/Button";
 import Card from "../../components/Card/Card";
-import Items from "../../components/Util/Items";
 
 // swiperjs
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,6 +24,7 @@ import SwiperCore, { Pagination } from "swiper/core";
 import WishlistContext from "../../context/wishlist/WishlistContext";
 import { dbItemType, itemType } from "../../context/cart/cart-types";
 import HeartSolid from "../../public/icons/HeartSolid";
+import Image from "next/image";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
@@ -38,7 +38,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
   const img1 = post.img1;
   const img2 = post.img2;
 
-  const { addItem, addOne } = useContext(CartContext);
+  const { addItem } = useContext(CartContext);
   const { wishlist, addToWishlist, deleteWishlistItem } =
     useContext(WishlistContext);
   const [size, setSize] = useState("M");
@@ -68,11 +68,12 @@ const Product: React.FC<Props> = ({ post, products }) => {
       : addToWishlist!(currentItem);
   };
 
-  const featuredItems = Items.slice(0, 5);
-
   return (
     <div>
+      {/* ===== Head Section ===== */}
       <Header title={`${post.name} - Haru Fashion`} />
+
+      {/* ===== Breadcrumb Section ===== */}
       <div className="bg-lightgreen h-16 w-full flex items-center border-t-2 border-gray200">
         <div className="app-x-padding app-max-width w-full">
           <div className="breadcrumb">
@@ -89,28 +90,34 @@ const Product: React.FC<Props> = ({ post, products }) => {
           </div>
         </div>
       </div>
+
+      {/* ===== Main Content Section ===== */}
       <div className="itemSection app-max-width app-x-padding flex flex-col md:flex-row">
         <div className="imgSection w-full md:w-1/2 h-full flex">
           <div className="hidden sm:block w-full sm:w-1/4 h-full space-y-4 my-4">
-            <img
+            <Image
               className={`cursor-pointer ${
                 mainImg === img1
                   ? "opacity-100 border border-gray300"
                   : "opacity-50"
               }`}
               onClick={() => setMainImg(img1)}
-              src={img1}
-              alt=""
+              src={img1 as string}
+              alt={post.name}
+              width={1000}
+              height={1282}
             />
-            <img
+            <Image
               className={`cursor-pointer ${
                 mainImg === img2
                   ? "opacity-100 border border-gray300"
                   : "opacity-50"
               }`}
               onClick={() => setMainImg(img2)}
-              src={img2}
-              alt=""
+              src={img2 as string}
+              alt={post.name}
+              width={1000}
+              height={1282}
             />
           </div>
           <div className="w-full sm:w-3/4 h-full m-0 sm:m-4">
@@ -124,14 +131,32 @@ const Product: React.FC<Props> = ({ post, products }) => {
               className="mySwiper sm:hidden"
             >
               <SwiperSlide>
-                <img className="each-slide w-full" src={img1} alt="" />
+                <Image
+                  className="each-slide w-full"
+                  src={img1 as string}
+                  width={1000}
+                  height={1282}
+                  alt={post.name}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="each-slide w-full" src={img2} alt="" />
+                <Image
+                  className="each-slide w-full"
+                  src={img2 as string}
+                  width={1000}
+                  height={1282}
+                  alt={post.name}
+                />
               </SwiperSlide>
             </Swiper>
             <div className="hidden sm:block h-full">
-              <img className="w-full" src={mainImg} alt="" />
+              <Image
+                className="w-full"
+                src={mainImg as string}
+                width={1000}
+                height={1282}
+                alt={post.name}
+              />
             </div>
           </div>
         </div>
@@ -238,7 +263,11 @@ const Product: React.FC<Props> = ({ post, products }) => {
           </div>
         </div>
       </div>
+
+      {/* ===== Horizontal Divider ===== */}
       <div className="border-b-2 border-gray200"></div>
+
+      {/* ===== You May Also Like Section ===== */}
       <div className="recSection my-8 app-max-width app-x-padding">
         <h2 className="text-3xl mb-6">{t("you_may_also_like")}</h2>
         <Swiper
@@ -266,7 +295,8 @@ const Product: React.FC<Props> = ({ post, products }) => {
           ))}
         </div>
       </div>
-      {/* </div> */}
+
+      {/* ===== Footer Section ===== */}
       <Footer />
     </div>
   );
