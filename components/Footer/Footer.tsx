@@ -15,7 +15,7 @@ export default function Footer() {
       <div className={styles.footerContainer}>
         <div className={`app-max-width app-x-padding ${styles.footerContents}`}>
           <div>
-            <h6 className={styles.footerHead}>{t("company")}</h6>
+            <h3 className={styles.footerHead}>{t("company")}</h3>
             <div className={styles.column}>
               <a href="example">{t("about_us")}</a>
               <a href="example">{t("contact_us")}</a>
@@ -24,7 +24,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h6 className={styles.footerHead}>{t("help")}</h6>
+            <h3 className={styles.footerHead}>{t("help")}</h3>
             <div className={styles.column}>
               <a href="example">{t("order_tracking")}</a>
               <a href="example">{t("faqs")}</a>
@@ -33,7 +33,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h6 className={styles.footerHead}>{t("store")}</h6>
+            <h3 className={styles.footerHead}>{t("store")}</h3>
             <div className={styles.column}>
               <Link href={`/product-category/women`}>
                 <a>{t("women")}</a>
@@ -47,7 +47,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h6 className={styles.footerHead}>{t("keep_in_touch")}</h6>
+            <h3 className={styles.footerHead}>{t("keep_in_touch")}</h3>
             <div className={styles.column}>
               <span>
                 {t("address.detail")}
@@ -68,7 +68,12 @@ export default function Footer() {
         <h4 className="text-3xl mb-4">{t("newsletter")}</h4>
         <span className="px-6 text-center">{t("newsletter_desc")}</span>
         <div className="mt-5 px-6 flex w-full sm:w-auto flex-col sm:flex-row">
-          <Input name="email" type="email" extraClass=" w-full sm:w-auto" />{" "}
+          <Input
+            label="Newsletter Input Box"
+            name="email"
+            type="email"
+            extraClass=" w-full sm:w-auto"
+          />{" "}
           <Button
             size="lg"
             value={t("send")}
