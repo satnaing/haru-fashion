@@ -5,6 +5,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "styles.css";
 
+@layer components {
+  .app-x-padding {
+    @apply px-4 sm:px-8 md:px-12;
+  }
+  .app-max-width {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
 @layer utilities {
   .bottom-10-per {
     bottom: 10%;
