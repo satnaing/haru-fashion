@@ -32,7 +32,6 @@ const Home: React.FC<Props> = ({ products }) => {
 
   // Change totalItems to 8 for good layout
   const changeTotalItems = useCallback(() => {
-    // if (viewWidth < 992) return;
     if (viewWidth >= 992 || viewWidth < 576) {
       totalItems !== 10 && setTotalItems(10);
     } else if (viewWidth >= 768) {
@@ -48,11 +47,16 @@ const Home: React.FC<Props> = ({ products }) => {
 
   return (
     <div>
+      {/* ===== Header Section ===== */}
       <Header />
+
+      {/* ===== Carousel Section ===== */}
       <Slideshow />
-      <section className="w-full h-auto px-2 sm:px-8 md:px-16 py-10 border border-b-2 border-gray100">
-        <div className="h-full flex flex-col md:flex-row">
-          <div className="h-full w-full md:w-1/3 lg:w-1/2 p-4">
+
+      {/* ===== Category Section ===== */}
+      <section className="w-full h-auto py-10 border border-b-2 border-gray100">
+        <div className="app-max-width app-x-padding h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="w-full sm:col-span-2 lg:col-span-2">
             <OverlayContainer
               imgSrc="/bg-img/banner_minipage1.jpg"
               imgSrc2="/bg-img/banner_minipage1-tablet.jpg"
@@ -63,12 +67,13 @@ const Home: React.FC<Props> = ({ products }) => {
                   size="xl"
                   inverted
                   noBorder
-                  extraClass="absolute bottom-10-per right-10-per z-20"
+                  // extraClass="absolute bottom-10-per right-10-per z-20"
+                  extraClass="absolute bottom-10-per sm:right-10-per z-20"
                 />
               </Link>
             </OverlayContainer>
           </div>
-          <div className="w-full md:w-1/3 lg:w-1/4 bg-cover p-4">
+          <div className="w-full">
             <OverlayContainer imgSrc="/bg-img/banner_minipage2.jpg">
               <Link href="/product-category/women">
                 <GhostButton
@@ -81,7 +86,7 @@ const Home: React.FC<Props> = ({ products }) => {
               </Link>
             </OverlayContainer>
           </div>
-          <div className="w-full md:w-1/3 lg:w-1/4 bg-cover p-4">
+          <div className="w-full">
             <OverlayContainer imgSrc="/bg-img/banner_minipage3.jpg">
               <Link href="/product-category/men">
                 <GhostButton
@@ -96,26 +101,31 @@ const Home: React.FC<Props> = ({ products }) => {
           </div>
         </div>
       </section>
-      <section className="w-full h-full flex flex-col justify-center md:items-center mt-16 mb-20">
+
+      {/* ===== Best Selling Section ===== */}
+      <section className="app-max-width w-full h-full flex flex-col justify-center mt-16 mb-20">
         <div className="flex justify-center">
           <div className="w-3/4 sm:w-1/2 md:w-1/3 text-center mb-8">
             <h4 className="text-3xl mb-4">{t("best_selling")}</h4>
             <span>{t("best_selling_desc")}</span>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-12 gap-y-6 mb-10 px-4 sm:px-16 md:px-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-12 gap-y-6 mb-10 app-x-padding">
           <Card key={currentItems[3].id} item={currentItems[3]} />
           <Card key={currentItems[4].id} item={currentItems[4]} />
           <Card key={currentItems[2].id} item={currentItems[2]} />
           <Card key={currentItems[5].id} item={currentItems[5]} />
         </div>
       </section>
+
+      {/* ===== Testimonial Section ===== */}
       <section className="w-full hidden h-full py-16 md:flex flex-col items-center bg-lightgreen">
         <h4 className="text-3xl">{t("testimonial")}</h4>
         <TestiSlider />
       </section>
 
-      <section className="px-4 sm:px-8 md:px-16 my-16 flex flex-col lg:items-center">
+      {/* ===== Featured Products Section ===== */}
+      <section className="app-max-width app-x-padding my-16 flex flex-col">
         <div className="text-center mb-6">
           <h4 className="text-3xl">{t("featured_products")}</h4>
         </div>
@@ -134,16 +144,18 @@ const Home: React.FC<Props> = ({ products }) => {
 
       <div className="border-gray100 border-b-2"></div>
 
-      <section className="mt-16 mb-20 flex flex-col justify-center items-center text-center">
+      {/* ===== Our Shop Section */}
+      <section className="app-max-width mt-16 mb-20 flex flex-col justify-center items-center text-center">
         <div className="textBox w-3/4 md:w-2/4 lg:w-2/5 mb-6">
           <h4 className="text-3xl mb-6">{t("our_shop")}</h4>
           <span className="w-full">{t("our_shop_desc")}</span>
         </div>
-        <div className="w-full px-6 sm:px-20 flex justify-center">
+        <div className="w-full app-x-padding flex justify-center">
           <Image src={ourShop} alt="Our Shop" />
         </div>
       </section>
 
+      {/* ===== Footer Section ===== */}
       <Footer />
     </div>
   );
