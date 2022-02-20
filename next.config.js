@@ -9,4 +9,7 @@ module.exports = {
   compiler: {
     removeConsole: true,
   },
+  images: {
+    domains: ["firebasestorage.googleapis.com"],
+  },
 };
