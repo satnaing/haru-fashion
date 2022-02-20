@@ -1,11 +1,9 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-import CartContext from "../../context/cart/CartContext";
-import WishlistContext from "../../context/wishlist/WishlistContext";
 import { db } from "../../firebase/firebase";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -19,11 +17,9 @@ type Props = {
 };
 
 const ProductCategory: React.FC<Props> = ({ items }) => {
-  const { addItem } = useContext(CartContext);
-  const { addToWishlist } = useContext(WishlistContext);
   const [itemPerPage, setItemPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewWidth, setViewWidth] = useWindowSize();
+  const [viewWidth] = useWindowSize();
   const t = useTranslations("Category");
 
   const router = useRouter();
@@ -32,13 +28,13 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
   // Change totalItems to 8 for good layout
   const changeTotalItems = useCallback(() => {
     if (viewWidth >= 992 || viewWidth < 576) {
-      totalItems !== 10 && setItemPerPage(10);
+      itemPerPage !== 10 && setItemPerPage(10);
     } else if (viewWidth >= 768) {
-      totalItems !== 8 && setItemPerPage(8);
+      itemPerPage !== 8 && setItemPerPage(8);
     } else {
-      totalItems !== 9 && setItemPerPage(9);
+      itemPerPage !== 9 && setItemPerPage(9);
     }
-  }, [viewWidth]);
+  }, [viewWidth, itemPerPage]);
 
   useEffect(() => {
     changeTotalItems();
