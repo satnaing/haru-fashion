@@ -70,75 +70,76 @@ const Header: React.FC<Props> = ({ title }) => {
           scrolled ? "bg-white sticky top-0 shadow-md z-50" : "bg-transparent"
         } w-full z-50 h-20 relative`}
       >
-        <div
-          className={`flex justify-between align-baseline ${styles.mainMenu}`}
-        >
-          <div className="flex-1 lg:flex-0 lg:hidden">
-            {/* <MenuIcon /> */}
-            <Menu />
-          </div>
-          <ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>
-            <li>
-              <Link href={`/product-category/men`}>
-                <a>{t("men")}</a>
-              </Link>
-            </li>
-            <li>
-              <Link href={`/product-category/women`}>
-                <a>{t("women")}</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/coming-soon">
-                <a>{t("bags")}</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/coming-soon">
-                <a>{t("blogs")}</a>
-              </Link>
-            </li>
-          </ul>
-          <div className="flex-1 flex justify-center items-center cursor-pointer">
-            <Link href="/">
-              <a>
-                <Image
-                  className="justify-center"
-                  src="/logo.svg"
-                  alt="Picture of the author"
-                  width={120}
-                  height={25}
-                />
-              </a>
-            </Link>
-          </div>
-          <ul className={`flex-1 flex justify-end ${styles.rightMenu}`}>
-            <li>
-              <SearchForm />
-            </li>
-            <li>
-              <LoginForm>
-                <UserIcon />
-              </LoginForm>
-            </li>
-            <li>
-              <Link href="/wishlist">
-                <a className="relative">
-                  <WhistlistIcon />
-                  {noOfWishlist > 0 && (
-                    <span
-                      className={`${animate} absolute text-xs -top-3 -right-9 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
-                    >
-                      {noOfWishlist}
-                    </span>
-                  )}
+        <div className="app-max-width w-full">
+          <div
+            className={`flex justify-between align-baseline app-x-padding ${styles.mainMenu}`}
+          >
+            <div className="flex-1 lg:flex-0 lg:hidden">
+              <Menu />
+            </div>
+            <ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>
+              <li>
+                <Link href={`/product-category/men`}>
+                  <a>{t("men")}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href={`/product-category/women`}>
+                  <a>{t("women")}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/coming-soon">
+                  <a>{t("bags")}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/coming-soon">
+                  <a>{t("blogs")}</a>
+                </Link>
+              </li>
+            </ul>
+            <div className="flex-1 flex justify-center items-center cursor-pointer">
+              <Link href="/">
+                <a>
+                  <Image
+                    className="justify-center"
+                    src="/logo.svg"
+                    alt="Picture of the author"
+                    width={120}
+                    height={25}
+                  />
                 </a>
               </Link>
-            </li>
-            <li>
-              <CartItem />
-            </li>
-          </ul>
+            </div>
+            <ul className={`flex-1 flex justify-end ${styles.rightMenu}`}>
+              <li>
+                <SearchForm />
+              </li>
+              <li>
+                <LoginForm>
+                  <UserIcon />
+                </LoginForm>
+              </li>
+              <li>
+                <Link href="/wishlist">
+                  <a className="relative">
+                    <WhistlistIcon />
+                    {noOfWishlist > 0 && (
+                      <span
+                        className={`${animate} absolute text-xs -top-3 -right-9 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
+                      >
+                        {noOfWishlist}
+                      </span>
+                    )}
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <CartItem />
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </>

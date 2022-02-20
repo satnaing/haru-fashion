@@ -7,17 +7,13 @@
   @apply text-xs my-2 mr-4 hover:text-gray300;
 }
 
-.topRightMenu {
-  @apply mr-8;
-}
-
 .topRightMenu li {
   @apply text-xs my-2 ml-4 hover:text-gray300;
 }
 
 /* Main Menu */
 .mainMenu {
-  @apply px-6 md:px-8 py-6;
+  @apply py-6;
 }
 /* .leftMenu {
   @apply ml-8 my-6;
