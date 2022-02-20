@@ -143,7 +143,7 @@ export default function CartItem() {
                       <span>{t("subtotal")}</span>
                       <span>$ {roundDecimal(subtotal)}</span>
                     </div>
-                    <Link href="/shopping-cart">
+                    <Link href="/shopping-cart" passHref>
                       <GhostButton
                         value={t("view_cart")}
                         extraClass="text-center my-4"
