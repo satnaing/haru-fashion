@@ -26,6 +26,8 @@ const ShoppingCart = () => {
     <div>
       {/* ===== Head Section ===== */}
       <Header title={`Shopping Cart - Haru Fashion`} />
+
+      {/* ===== Heading & Continue Shopping */}
       <div className="app-max-width px-4 sm:px-8 md:px-20 w-full border-t-2 border-gray100">
         <h1 className="text-2xl sm:text-4xl text-center sm:text-left mt-6 mb-2 animatee__animated animate__bounce">
           {t("shopping_cart")}
@@ -39,6 +41,8 @@ const ShoppingCart = () => {
           </Link>
         </div>
       </div>
+
+      {/* ===== Cart Table Section ===== */}
       <div className="app-max-width px-4 sm:px-8 md:px-20 mb-14 flex flex-col lg:flex-row">
         <div className="h-full w-full lg:w-4/6 mr-4">
           <table className="w-full mb-6">
