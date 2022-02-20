@@ -10,6 +10,7 @@ import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
 import { GetStaticProps } from "next";
 import { roundDecimal } from "../components/Util/utilFunc";
+import Image from "next/image";
 
 // let w = window.innerWidth;
 
@@ -23,8 +24,9 @@ const ShoppingCart = () => {
 
   return (
     <div>
+      {/* ===== Head Section ===== */}
       <Header title={`Shopping Cart - Haru Fashion`} />
-      <div className="px-6 md:px-20 w-full border-t-2 border-gray100">
+      <div className="app-max-width px-4 sm:px-8 md:px-20 w-full border-t-2 border-gray100">
         <h1 className="text-2xl sm:text-4xl text-center sm:text-left mt-6 mb-2 animatee__animated animate__bounce">
           {t("shopping_cart")}
         </h1>
@@ -37,7 +39,7 @@ const ShoppingCart = () => {
           </Link>
         </div>
       </div>
-      <div className="px-6 md:px-20 mb-14 flex flex-col lg:flex-row">
+      <div className="app-max-width px-4 sm:px-8 md:px-20 mb-14 flex flex-col lg:flex-row">
         <div className="h-full w-full lg:w-4/6 mr-4">
           <table className="w-full mb-6">
             <thead>
@@ -71,10 +73,15 @@ const ShoppingCart = () => {
                   return (
                     <tr className="border-b-2 border-gray200" key={item.id}>
                       <td className="my-3 flex flex-col xl:flex-row items-start sm:items-center xl:space-x-2 text-center xl:text-left">
-                        <Link href={`/products/${encodeURIComponent(item.id)}`}>
-                          <img
-                            src={item.img1}
-                            alt=""
+                        <Link
+                          href={`/products/${encodeURIComponent(item.id)}`}
+                          passHref
+                        >
+                          <Image
+                            src={item.img1 as string}
+                            alt={item.name}
+                            width={95}
+                            height={128}
                             className="h-32 xl:mr-4"
                           />
                         </Link>
@@ -194,6 +201,8 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
+
+      {/* ===== Footer Section ===== */}
       <Footer />
     </div>
   );
