@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { FC, useContext } from "react";
 import { roundDecimal } from "../Util/utilFunc";
 
@@ -22,7 +23,7 @@ const Item: FC<Props> = ({
 }) => {
   return (
     <div className="item flex bg-white my-4 border-b-2 pb-4 border-gray200">
-      <img className="w-2/12" src={img} alt="" />
+      <Image className="w-2/12" src={img} alt={name} width={70} height={104} />
       <div className="midPart mx-4 flex-grow">
         <span>{name}</span>
         <div className="plusOrMinus w-2/6 mt-4 flex border border-gray300 divide-x-2 divide-gray300">
