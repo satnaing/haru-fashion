@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl";
 import CartContext from "../../context/cart/CartContext";
 import BagIcon from "../../public/icons/BagIcon";
 import Button from "../Buttons/Button";
-import GhostButton from "../Buttons/GhostButton";
 import Item from "./Item";
 import { roundDecimal } from "../Util/utilFunc";
+import LinkButton from "../Buttons/LinkButton";
 
 export default function CartItem() {
   const t = useTranslations("CartWishlist");
@@ -139,13 +139,14 @@ export default function CartItem() {
                       <span>{t("subtotal")}</span>
                       <span>$ {roundDecimal(subtotal)}</span>
                     </div>
-                    <Link href="/shopping-cart" passHref>
-                      <GhostButton
-                        value={t("view_cart")}
-                        extraClass="text-center my-4"
-                        size="lg"
-                      />
-                    </Link>
+                    <LinkButton
+                      href="/shopping-cart"
+                      extraClass="my-4"
+                      noBorder={false}
+                      inverted={false}
+                    >
+                      {t("view_cart")}
+                    </LinkButton>
                     <Button
                       value={t("checkout")}
                       extraClass="text-center"

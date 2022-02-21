@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,6 @@ import { db } from "./../firebase/firebase";
 import useWindowSize from "../components/Util/useWindowSize";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import GhostButton from "../components/Buttons/GhostButton";
 import Button from "../components/Buttons/Button";
 import Slideshow from "../components/HeroSection/Slideshow";
 import OverlayContainer from "../components/OverlayContainer/OverlayContainer";
@@ -18,6 +17,7 @@ import { itemType } from "../context/cart/cart-types";
 
 // /bg-img/ourshop.png
 import ourShop from "../public/bg-img/ourshop.png";
+import LinkButton from "../components/Buttons/LinkButton";
 
 type Props = {
   products: itemType[];
@@ -64,16 +64,12 @@ const Home: React.FC<Props> = ({ products }) => {
                 imgSrc2="/bg-img/banner_minipage1-tablet.jpg"
                 imgAlt="New Arrivals"
               >
-                <Link href="/new-arrivals" passHref>
-                  <GhostButton
-                    value={t("new_arrivals")}
-                    size="xl"
-                    inverted
-                    noBorder
-                    // extraClass="absolute bottom-10-per right-10-per z-20"
-                    extraClass="absolute bottom-10-per sm:right-10-per z-20"
-                  />
-                </Link>
+                <LinkButton
+                  href="/coming-soon"
+                  extraClass="absolute bottom-10-per right-10-per z-20"
+                >
+                  {t("new_arrivals")}
+                </LinkButton>
               </OverlayContainer>
             </div>
             <div className="w-full">
@@ -81,15 +77,12 @@ const Home: React.FC<Props> = ({ products }) => {
                 imgSrc="/bg-img/banner_minipage2.jpg"
                 imgAlt="Women Collection"
               >
-                <Link href="/product-category/women" passHref>
-                  <GhostButton
-                    value={t("women_collection")}
-                    size="lg"
-                    inverted
-                    noBorder
-                    extraClass="absolute bottom-10-per z-20"
-                  />
-                </Link>
+                <LinkButton
+                  href="/product-category/women"
+                  extraClass="absolute bottom-10-per z-20"
+                >
+                  {t("women_collection")}
+                </LinkButton>
               </OverlayContainer>
             </div>
             <div className="w-full">
@@ -97,15 +90,12 @@ const Home: React.FC<Props> = ({ products }) => {
                 imgSrc="/bg-img/banner_minipage3.jpg"
                 imgAlt="Men Collection"
               >
-                <Link href="/product-category/men" passHref>
-                  <GhostButton
-                    value={t("men_collection")}
-                    size="lg"
-                    inverted
-                    noBorder
-                    extraClass="absolute bottom-10-per z-20"
-                  />
-                </Link>
+                <LinkButton
+                  href="/product-category/men"
+                  extraClass="absolute bottom-10-per z-20"
+                >
+                  {t("men_collection")}
+                </LinkButton>
               </OverlayContainer>
             </div>
           </div>
