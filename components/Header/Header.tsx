@@ -122,17 +122,23 @@ const Header: React.FC<Props> = ({ title }) => {
                 </LoginForm>
               </li>
               <li>
-                <Link href="/wishlist">
-                  <a className="relative">
+                <Link href="/wishlist" passHref>
+                  {/* <a className="relative" aria-label="Wishlist"> */}
+                  <button
+                    type="button"
+                    className="relative"
+                    aria-label="Wishlist"
+                  >
                     <WhistlistIcon />
                     {noOfWishlist > 0 && (
                       <span
-                        className={`${animate} absolute text-xs -top-3 -right-9 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
+                        className={`${animate} absolute text-xs -top-3 -right-3 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
                       >
                         {noOfWishlist}
                       </span>
                     )}
-                  </a>
+                  </button>
+                  {/* </a> */}
                 </Link>
               </li>
               <li>

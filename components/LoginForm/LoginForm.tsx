@@ -32,7 +32,8 @@ const LoginForm: FC<Props> = ({ extraClass, children }) => {
         <button
           type="button"
           onClick={openModal}
-          className={`focus:outline-none ${extraClass}`}
+          aria-label="Account"
+          className={`${extraClass}`}
         >
           {children}
         </button>

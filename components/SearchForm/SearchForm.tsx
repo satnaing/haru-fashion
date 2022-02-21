@@ -19,12 +19,7 @@ export default function SearchForm() {
   return (
     <>
       <div className="">
-        <button
-          type="button"
-          aria-label="Search Icon"
-          onClick={openModal}
-          className="focus:outline-none"
-        >
+        <button type="button" aria-label="Search" onClick={openModal}>
           <SearchIcon />
         </button>
       </div>

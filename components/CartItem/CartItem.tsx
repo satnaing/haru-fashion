@@ -50,11 +50,7 @@ export default function CartItem() {
   return (
     <>
       <div className="relative">
-        <button
-          type="button"
-          onClick={openModal}
-          className="focus:outline-none"
-        >
+        <button type="button" onClick={openModal} aria-label="Cart">
           <BagIcon extraClass="h-8 w-8 sm:h-6 sm:w-6" />
           {noOfItems > 0 && (
             <span
