@@ -67,45 +67,56 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
 
   return (
     <div>
+      {/* ===== Head Section ===== */}
       <Header title={`${capitalizedCategory} - Haru Fashion`} />
-      <div className="bg-lightgreen h-16 w-full flex items-center">
-        <div className="app-x-padding app-max-width w-full">
-          <div className="breadcrumb">
-            <Link href="/">
-              <a className="text-gray400">{t("home")}</a>
-            </Link>{" "}
-            / <span className="capitalize">{t(category as string)}</span>
+
+      <main id="main-content">
+        {/* ===== Breadcrumb Section ===== */}
+        <div className="bg-lightgreen h-16 w-full flex items-center">
+          <div className="app-x-padding app-max-width w-full">
+            <div className="breadcrumb">
+              <Link href="/">
+                <a className="text-gray400">{t("home")}</a>
+              </Link>{" "}
+              / <span className="capitalize">{t(category as string)}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="app-x-padding app-max-width w-full mt-8">
-        <h3 className="text-4xl mb-2 capitalize">{t(category as string)}</h3>
-        <div className="flex justify-between mt-6">
-          <span>
-            {t("showing_from_to", {
-              from: firstIndexItem + 1,
-              to: totalItems < lastIndexItem ? totalItems : lastIndexItem,
-              all: totalItems,
-            })}
-          </span>
-          <span>{t("sort_by")}: Price</span>
+
+        {/* ===== Heading & Filter Section ===== */}
+        <div className="app-x-padding app-max-width w-full mt-8">
+          <h3 className="text-4xl mb-2 capitalize">{t(category as string)}</h3>
+          <div className="flex justify-between mt-6">
+            <span>
+              {t("showing_from_to", {
+                from: firstIndexItem + 1,
+                to: totalItems < lastIndexItem ? totalItems : lastIndexItem,
+                all: totalItems,
+              })}
+            </span>
+            <span>{t("sort_by")}: Price</span>
+          </div>
         </div>
-      </div>
-      <div className="app-x-padding app-max-width mt-3 mb-14">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
-          {currentItems.map((item) => (
-            <Card key={item.name} item={item} />
-          ))}
+
+        {/* ===== Main Content Section ===== */}
+        <div className="app-x-padding app-max-width mt-3 mb-14">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
+            {currentItems.map((item) => (
+              <Card key={item.name} item={item} />
+            ))}
+          </div>
+          <Pagination
+            postPerPage={itemPerPage}
+            totalPosts={totalItems}
+            handlePage={handlePage}
+            activePage={currentPage}
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+          />
         </div>
-        <Pagination
-          postPerPage={itemPerPage}
-          totalPosts={totalItems}
-          handlePage={handlePage}
-          activePage={currentPage}
-          handleNext={handleNext}
-          handlePrev={handlePrev}
-        />
-      </div>
+      </main>
+
+      {/* ===== Footer Section ===== */}
       <Footer />
     </div>
   );

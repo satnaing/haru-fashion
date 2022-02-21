@@ -54,114 +54,116 @@ const Home: React.FC<Props> = ({ products }) => {
       {/* ===== Carousel Section ===== */}
       <Slideshow />
 
-      {/* ===== Category Section ===== */}
-      <section className="w-full h-auto py-10 border border-b-2 border-gray100">
-        <div className="app-max-width app-x-padding h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="w-full sm:col-span-2 lg:col-span-2">
-            <OverlayContainer
-              imgSrc="/bg-img/banner_minipage1.jpg"
-              imgSrc2="/bg-img/banner_minipage1-tablet.jpg"
-              imgAlt="New Arrivals"
-            >
-              <Link href="/new-arrivals" passHref>
-                <GhostButton
-                  value={t("new_arrivals")}
-                  size="xl"
-                  inverted
-                  noBorder
-                  // extraClass="absolute bottom-10-per right-10-per z-20"
-                  extraClass="absolute bottom-10-per sm:right-10-per z-20"
-                />
-              </Link>
-            </OverlayContainer>
+      <main id="main-content">
+        {/* ===== Category Section ===== */}
+        <section className="w-full h-auto py-10 border border-b-2 border-gray100">
+          <div className="app-max-width app-x-padding h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="w-full sm:col-span-2 lg:col-span-2">
+              <OverlayContainer
+                imgSrc="/bg-img/banner_minipage1.jpg"
+                imgSrc2="/bg-img/banner_minipage1-tablet.jpg"
+                imgAlt="New Arrivals"
+              >
+                <Link href="/new-arrivals" passHref>
+                  <GhostButton
+                    value={t("new_arrivals")}
+                    size="xl"
+                    inverted
+                    noBorder
+                    // extraClass="absolute bottom-10-per right-10-per z-20"
+                    extraClass="absolute bottom-10-per sm:right-10-per z-20"
+                  />
+                </Link>
+              </OverlayContainer>
+            </div>
+            <div className="w-full">
+              <OverlayContainer
+                imgSrc="/bg-img/banner_minipage2.jpg"
+                imgAlt="Women Collection"
+              >
+                <Link href="/product-category/women" passHref>
+                  <GhostButton
+                    value={t("women_collection")}
+                    size="lg"
+                    inverted
+                    noBorder
+                    extraClass="absolute bottom-10-per z-20"
+                  />
+                </Link>
+              </OverlayContainer>
+            </div>
+            <div className="w-full">
+              <OverlayContainer
+                imgSrc="/bg-img/banner_minipage3.jpg"
+                imgAlt="Men Collection"
+              >
+                <Link href="/product-category/men" passHref>
+                  <GhostButton
+                    value={t("men_collection")}
+                    size="lg"
+                    inverted
+                    noBorder
+                    extraClass="absolute bottom-10-per z-20"
+                  />
+                </Link>
+              </OverlayContainer>
+            </div>
           </div>
-          <div className="w-full">
-            <OverlayContainer
-              imgSrc="/bg-img/banner_minipage2.jpg"
-              imgAlt="Women Collection"
-            >
-              <Link href="/product-category/women" passHref>
-                <GhostButton
-                  value={t("women_collection")}
-                  size="lg"
-                  inverted
-                  noBorder
-                  extraClass="absolute bottom-10-per z-20"
-                />
-              </Link>
-            </OverlayContainer>
+        </section>
+
+        {/* ===== Best Selling Section ===== */}
+        <section className="app-max-width w-full h-full flex flex-col justify-center mt-16 mb-20">
+          <div className="flex justify-center">
+            <div className="w-3/4 sm:w-1/2 md:w-1/3 text-center mb-8">
+              <h2 className="text-3xl mb-4">{t("best_selling")}</h2>
+              <span>{t("best_selling_desc")}</span>
+            </div>
           </div>
-          <div className="w-full">
-            <OverlayContainer
-              imgSrc="/bg-img/banner_minipage3.jpg"
-              imgAlt="Men Collection"
-            >
-              <Link href="/product-category/men" passHref>
-                <GhostButton
-                  value={t("men_collection")}
-                  size="lg"
-                  inverted
-                  noBorder
-                  extraClass="absolute bottom-10-per z-20"
-                />
-              </Link>
-            </OverlayContainer>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-12 gap-y-6 mb-10 app-x-padding">
+            <Card key={currentItems[3].id} item={currentItems[3]} />
+            <Card key={currentItems[4].id} item={currentItems[4]} />
+            <Card key={currentItems[2].id} item={currentItems[2]} />
+            <Card key={currentItems[5].id} item={currentItems[5]} />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ===== Best Selling Section ===== */}
-      <section className="app-max-width w-full h-full flex flex-col justify-center mt-16 mb-20">
-        <div className="flex justify-center">
-          <div className="w-3/4 sm:w-1/2 md:w-1/3 text-center mb-8">
-            <h2 className="text-3xl mb-4">{t("best_selling")}</h2>
-            <span>{t("best_selling_desc")}</span>
+        {/* ===== Testimonial Section ===== */}
+        <section className="w-full hidden h-full py-16 md:flex flex-col items-center bg-lightgreen">
+          <h2 className="text-3xl">{t("testimonial")}</h2>
+          <TestiSlider />
+        </section>
+
+        {/* ===== Featured Products Section ===== */}
+        <section className="app-max-width app-x-padding my-16 flex flex-col">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl">{t("featured_products")}</h2>
           </div>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-12 gap-y-6 mb-10 app-x-padding">
-          <Card key={currentItems[3].id} item={currentItems[3]} />
-          <Card key={currentItems[4].id} item={currentItems[4]} />
-          <Card key={currentItems[2].id} item={currentItems[2]} />
-          <Card key={currentItems[5].id} item={currentItems[5]} />
-        </div>
-      </section>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
+            {currentItems.map((item) => (
+              <Card key={item.id} item={item} />
+            ))}
+          </div>
+          <div className="flex justify-center">
+            <Button
+              value={t("see_more")}
+              onClick={() => setTotalItems((prevState) => prevState * 2)}
+            />
+          </div>
+        </section>
 
-      {/* ===== Testimonial Section ===== */}
-      <section className="w-full hidden h-full py-16 md:flex flex-col items-center bg-lightgreen">
-        <h2 className="text-3xl">{t("testimonial")}</h2>
-        <TestiSlider />
-      </section>
+        <div className="border-gray100 border-b-2"></div>
 
-      {/* ===== Featured Products Section ===== */}
-      <section className="app-max-width app-x-padding my-16 flex flex-col">
-        <div className="text-center mb-6">
-          <h2 className="text-3xl">{t("featured_products")}</h2>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
-          {currentItems.map((item) => (
-            <Card key={item.id} item={item} />
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <Button
-            value={t("see_more")}
-            onClick={() => setTotalItems((prevState) => prevState * 2)}
-          />
-        </div>
-      </section>
-
-      <div className="border-gray100 border-b-2"></div>
-
-      {/* ===== Our Shop Section */}
-      <section className="app-max-width mt-16 mb-20 flex flex-col justify-center items-center text-center">
-        <div className="textBox w-3/4 md:w-2/4 lg:w-2/5 mb-6">
-          <h2 className="text-3xl mb-6">{t("our_shop")}</h2>
-          <span className="w-full">{t("our_shop_desc")}</span>
-        </div>
-        <div className="w-full app-x-padding flex justify-center">
-          <Image src={ourShop} alt="Our Shop" />
-        </div>
-      </section>
+        {/* ===== Our Shop Section */}
+        <section className="app-max-width mt-16 mb-20 flex flex-col justify-center items-center text-center">
+          <div className="textBox w-3/4 md:w-2/4 lg:w-2/5 mb-6">
+            <h2 className="text-3xl mb-6">{t("our_shop")}</h2>
+            <span className="w-full">{t("our_shop_desc")}</span>
+          </div>
+          <div className="w-full app-x-padding flex justify-center">
+            <Image src={ourShop} alt="Our Shop" />
+          </div>
+        </section>
+      </main>
 
       {/* ===== Footer Section ===== */}
       <Footer />
