@@ -68,7 +68,7 @@ const TestiSlider: FC = () => {
               >
                 <div className="textiContainer text-center w-3/4">
                   <span>{ti.speech}</span>
-                  <h5 className="font-bold mt-6">{ti.name}</h5>
+                  <h3 className="font-bold mt-6">{ti.name}</h3>
                   <span className="text-sm">({ti.occupation})</span>
                 </div>
               </div>
@@ -77,7 +77,7 @@ const TestiSlider: FC = () => {
         })}
       </div>
       <span
-        className="absolute top-1/3 left-5 hover:bg-green rounded-full p-2 cursor-pointer outline-none"
+        className="absolute top-1/3 left-3 hover:bg-green rounded-full p-2 cursor-pointer outline-none"
         onClick={handlePrev}
       >
         <LeftArrow />
