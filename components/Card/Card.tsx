@@ -41,7 +41,7 @@ const Card: FC<Props> = ({ item }) => {
     >
       <div className={styles.imageContainer}>
         <Link href={itemLink}>
-          <a>
+          <a tabIndex={-1}>
             {!isHovered && (
               <Image
                 src={img1 as string}

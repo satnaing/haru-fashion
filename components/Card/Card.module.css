@@ -10,6 +10,10 @@
   @apply hidden sm:block bg-white text-gray400 hover:text-gray500 font-medium whitespace-nowrap px-4 py-2 mx-auto absolute bottom-4 md:-bottom-10 right-1/2 transform translate-x-1/2 transition-all duration-500;
 }
 
+.addBtn:focus {
+  @apply bottom-8 duration-75;
+}
+
 .card:hover .addBtn {
   @apply md:bottom-8;
 }
