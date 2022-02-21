@@ -66,9 +66,9 @@ const Header: React.FC<Props> = ({ title }) => {
       {/* ===== Skip to main content button ===== */}
       <a
         href="#main-content"
-        className="absolute z-50 left-4 opacity-90 rounded-md bg-white px-4 py-3 transform -translate-y-40 focus:translate-y-0 transition-all duration-300"
+        className="whitespace-nowrap absolute z-50 left-4 opacity-90 rounded-md bg-white px-4 py-3 transform -translate-y-40 focus:translate-y-0 transition-all duration-300"
       >
-        Skip to main content
+        {t("skip_to_main_content")}
       </a>
 
       {/* ===== <head> section */}
