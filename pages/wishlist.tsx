@@ -137,10 +137,10 @@ const Wishlist = () => {
             <div>
               <GhostButton
                 onClick={clearWishlist}
-                extraClass="w-full sm:w-48 text-center whitespace-nowrap"
-                value={t("clear_wishlist")}
-                size="lg"
-              />
+                extraClass="w-full sm:w-48 whitespace-nowrap"
+              >
+                {t("clear_wishlist")}
+              </GhostButton>
             </div>
           </div>
         </div>

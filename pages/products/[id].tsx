@@ -230,12 +230,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
                   extraClass={`flex-grow text-center whitespace-nowrap`}
                   onClick={() => addItem!(currentItem)}
                 />
-                <GhostButton
-                  value=""
-                  size="lg"
-                  onClick={handleWishlist}
-                  extraClass={`text-center`}
-                >
+                <GhostButton onClick={handleWishlist}>
                   {alreadyWishlisted ? (
                     <HeartSolid extraClass="inline" />
                   ) : (

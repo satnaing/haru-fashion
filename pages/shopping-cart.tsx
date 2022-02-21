@@ -141,10 +141,9 @@ const ShoppingCart = () => {
               <GhostButton
                 onClick={clearCart}
                 extraClass="hidden sm:inline-block"
-                value={t("clear_cart")}
-                size="lg"
-              />
-              {/* <TextButton value="Clear Cart" /> */}
+              >
+                {t("clear_cart")}
+              </GhostButton>
             </div>
           </div>
           <div className="h-full w-full lg:w-4/12 mt-10 lg:mt-0">
