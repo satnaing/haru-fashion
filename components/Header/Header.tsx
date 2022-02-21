@@ -14,7 +14,6 @@ import WishlistContext from "../../context/wishlist/WishlistContext";
 import AppHeader from "./AppHeader";
 
 import styles from "./Header.module.css";
-import GhostButton from "../Buttons/GhostButton";
 
 type Props = {
   title?: string;
