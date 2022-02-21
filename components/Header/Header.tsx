@@ -14,6 +14,7 @@ import WishlistContext from "../../context/wishlist/WishlistContext";
 import AppHeader from "./AppHeader";
 
 import styles from "./Header.module.css";
+import GhostButton from "../Buttons/GhostButton";
 
 type Props = {
   title?: string;
@@ -63,8 +64,21 @@ const Header: React.FC<Props> = ({ title }) => {
   }
   return (
     <>
+      {/* ===== Skip to main content button ===== */}
+      <a
+        href="#main-content"
+        className="absolute z-50 left-4 opacity-90 rounded-md bg-white px-4 py-3 transform -translate-y-40 focus:translate-y-0 transition-all duration-300"
+      >
+        Skip to main content
+      </a>
+
+      {/* ===== <head> section */}
       <AppHeader title={title} />
+
+      {/* ===== Top Navigation ===== */}
       <TopNav />
+
+      {/* ===== Main Navigation ===== */}
       <nav
         className={`${
           scrolled ? "bg-white sticky top-0 shadow-md z-50" : "bg-transparent"
@@ -74,9 +88,12 @@ const Header: React.FC<Props> = ({ title }) => {
           <div
             className={`flex justify-between align-baseline app-x-padding ${styles.mainMenu}`}
           >
+            {/* Hamburger Menu and Mobile Nav */}
             <div className="flex-1 lg:flex-0 lg:hidden">
               <Menu />
             </div>
+
+            {/* Left Nav */}
             <ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>
               <li>
                 <Link href={`/product-category/men`}>
@@ -99,6 +116,8 @@ const Header: React.FC<Props> = ({ title }) => {
                 </Link>
               </li>
             </ul>
+
+            {/* Haru Logo */}
             <div className="flex-1 flex justify-center items-center cursor-pointer">
               <Link href="/">
                 <a>
@@ -112,6 +131,8 @@ const Header: React.FC<Props> = ({ title }) => {
                 </a>
               </Link>
             </div>
+
+            {/* Right Nav */}
             <ul className={`flex-1 flex justify-end ${styles.rightMenu}`}>
               <li>
                 <SearchForm />

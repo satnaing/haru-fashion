@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .swiper-slide {
   width: 100% !important;
   margin: auto !important;
