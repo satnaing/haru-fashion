@@ -5,8 +5,6 @@ type Props = {
   extraClass?: string;
   size?: "sm" | "lg" | "xl";
   value: string;
-  inverted?: true;
-  noBorder?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -14,8 +12,6 @@ const Button: FC<Props> = ({
   size = "sm",
   value,
   extraClass,
-  inverted = false,
-  noBorder = false,
   onClick,
   children,
   type = "button",
@@ -32,7 +28,7 @@ const Button: FC<Props> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`focus:outline-none text-xl sm:text-base ${btnSize} border border-gray500 bg-gray500 text-gray100 hover:text-gray300 ${extraClass}`}
+      className={`text-xl sm:text-base ${btnSize} border border-gray500 bg-gray500 text-gray100 hover:text-gray300 ${extraClass}`}
     >
       {value} <span className="ml-1">{children}</span>
     </button>
