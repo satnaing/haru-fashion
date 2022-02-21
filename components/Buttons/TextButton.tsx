@@ -8,7 +8,8 @@ type Props = {
 const TextButton: FC<Props> = ({ value }) => (
   <div className={`group transition-all flex justify-center w-28 relative`}>
     <button
-      className={`focus:outline-none inline-block no-underline text-gray500 p-2 duration-500 group-hover:tracking-widest`}
+      type="button"
+      className={`inline-block no-underline text-gray500 p-2 duration-500 group-hover:tracking-widest`}
     >
       {value}
     </button>
