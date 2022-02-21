@@ -8,6 +8,33 @@ import FacebookLogo from "../../public/icons/FacebookLogo";
 import DownArrow from "../../public/icons/DownArrow";
 import styles from "./Header.module.css";
 
+type LinkProps = {
+  href: string;
+  locale: "en" | "my";
+  active: boolean;
+};
+
+const MyLink: React.FC<LinkProps> = ({
+  href,
+  locale,
+  children,
+  active,
+  ...rest
+}) => {
+  return (
+    <Link href={href} locale={locale}>
+      <a
+        className={`py-2 px-4 text-center ${
+          active ? "bg-gray200 text-gray500" : "bg-white text-gray500"
+        }`}
+        {...rest}
+      >
+        {children}
+      </a>
+    </Link>
+  );
+};
+
 const TopNav = () => {
   const router = useRouter();
   const { asPath, locale } = router;
@@ -46,32 +73,16 @@ const TopNav = () => {
               >
                 <Menu.Item>
                   {({ active }) => (
-                    <Link href={asPath} locale="en">
-                      <a
-                        className={`${
-                          locale === "en"
-                            ? "bg-gray200 text-gray500"
-                            : "bg-white text-gray500"
-                        } py-2 px-4 text-center focus:outline-none`}
-                      >
-                        {t("eng")}
-                      </a>
-                    </Link>
+                    <MyLink active={active} href={asPath} locale="en">
+                      {t("eng")}
+                    </MyLink>
                   )}
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <Link href={asPath} locale="my">
-                      <a
-                        className={`${
-                          locale === "my"
-                            ? "bg-gray200 text-gray500"
-                            : "bg-white text-gray500"
-                        } py-2 px-4 text-center focus:outline-none`}
-                      >
-                        {t("myn")}
-                      </a>
-                    </Link>
+                    <MyLink active={active} href={asPath} locale="my">
+                      {t("myn")}
+                    </MyLink>
                   )}
                 </Menu.Item>
               </Menu.Items>
