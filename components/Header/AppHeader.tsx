@@ -71,6 +71,12 @@ const AppHeader: React.FC<Props> = ({
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#282828" />
 
+    {/* Google Site Verification */}
+    <meta
+      name="google-site-verification"
+      content="xZHtiBkQ4xQ7IoG0o33E2vfbnx6NHYrGhNu-cjhX8Ng"
+    />
+
     {/* Global site tag (gtag.js) - Google Analytics  */}
     <Script
       async
