@@ -41,7 +41,8 @@ const AppHeader: React.FC<Props> = ({
       sizes="16x16"
       href="/favicons/favicon-16x16.png"
     />
-    <link rel="manifest" href="/favicons/site.webmanifest" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#282828" />
   </Head>
 );
 

@@ -1,5 +1,6 @@
-// next.config.js
-module.exports = {
+const withPWA = require("next-pwa");
+
+module.exports = withPWA({
   i18n: {
     locales: ["en", "my"],
     defaultLocale: "en",
@@ -12,4 +13,7 @@ module.exports = {
   images: {
     domains: ["firebasestorage.googleapis.com"],
   },
-};
+  pwa: {
+    dest: "public",
+  },
+});
