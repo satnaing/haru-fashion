@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import Script from "next/script";
+// import Script from "next/script";
 
 type Props = {
   title?: string;
@@ -78,7 +78,7 @@ const AppHeader: React.FC<Props> = ({
     />
 
     {/* Global site tag (gtag.js) - Google Analytics  */}
-    <Script
+    {/* <Script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-2GWCTE59TF"
       strategy="afterInteractive"
@@ -89,7 +89,7 @@ const AppHeader: React.FC<Props> = ({
   gtag('js', new Date());
 
   gtag('config', 'G-2GWCTE59TF');`}
-    </Script>
+    </Script> */}
   </Head>
 );
 
