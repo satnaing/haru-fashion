@@ -118,17 +118,20 @@ const Header: React.FC<Props> = ({ title }) => {
 
             {/* Haru Logo */}
             <div className="flex-1 flex justify-center items-center cursor-pointer">
-              <Link href="/">
-                <a>
-                  <Image
-                    className="justify-center"
-                    src="/logo.svg"
-                    alt="Picture of the author"
-                    width={120}
-                    height={25}
-                  />
-                </a>
-              </Link>
+              <div className="w-32 h-auto">
+                <Link href="/">
+                  <a>
+                    <Image
+                      className="justify-center"
+                      src="/logo.svg"
+                      alt="Picture of the author"
+                      width={220}
+                      height={50}
+                      layout="responsive"
+                    />
+                  </a>
+                </Link>
+              </div>
             </div>
 
             {/* Right Nav */}
