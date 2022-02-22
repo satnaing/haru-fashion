@@ -1,6 +1,7 @@
-const withPWA = require("next-pwa");
+// const withPWA = require("next-pwa");
 
-module.exports = withPWA({
+// module.exports = withPWA({
+module.exports = {
   i18n: {
     locales: ["en", "my"],
     defaultLocale: "en",
@@ -13,9 +14,10 @@ module.exports = withPWA({
   images: {
     domains: ["firebasestorage.googleapis.com"],
   },
-  pwa: {
-    dest: "public",
-    skipWaiting: true,
-    disable: process.env.NODE_ENV === "development",
-  },
-});
+  // pwa: {
+  //   dest: "public",
+  //   skipWaiting: true,
+  //   disable: process.env.NODE_ENV === "development",
+  // },
+};
+// });
