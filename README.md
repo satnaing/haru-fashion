@@ -12,6 +12,10 @@ An e-commerce web application developed with Next.JS and Firebase. Tailwind CSS 
 <a href="https://haru-fashion.vercel.app/"><img src="https://user-images.githubusercontent.com/53733092/139092307-3e364931-a083-40d9-9f0e-604db4170c2b.png" width="130"/></a>
 </p>
 
+## Lighthouse Score
+
+<img width="761" alt="Screen Shot 2022-02-22 at 8 16 41 PM" src="https://user-images.githubusercontent.com/53733092/155145631-0d8e604e-c92d-459e-810e-1c2e1dea9ea8.png">
+
 ## Features
 
 - 📱💻 Responsive Design
@@ -22,6 +26,7 @@ An e-commerce web application developed with Next.JS and Firebase. Tailwind CSS 
 - ⬅️➡️ Pagination
 - ✨ Animation
 - 🌐 i18n (English & Burmese)
+- ⌨️ Keyboard Accessible
 
 ## Tech Stack
 
