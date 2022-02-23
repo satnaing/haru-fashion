@@ -1,6 +1,5 @@
-import Head from "next/head";
 import React from "react";
-// import Script from "next/script";
+import Head from "next/head";
 
 type Props = {
   title?: string;
@@ -12,85 +11,69 @@ type Props = {
 const defaultDesc =
   "Haru Fashion e-commerce developed with Next.JS. Coded with 🖤 by Sat Naing (satnaing.dev).";
 const defaultKeywords =
-  "Women's &amp; Men's Clothing, Shop Online Haru Fashion";
+  "Haru Fashion, Online Shop, E-commerce, Sat Naing, NextJS";
 
 const AppHeader: React.FC<Props> = ({
   title = "Haru Fashion",
   desc = defaultDesc,
   keywords = defaultKeywords,
-}) => (
-  <Head>
-    <title>{title}</title>
-    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+}) => {
+  return (
+    <Head>
+      <title>{title}</title>
+      <meta charSet="utf-8" />
+      <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+      <meta content="width=device-width, initial-scale=1" name="viewport" />
 
-    {/* Apple Touch Icon  */}
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicons/apple-touch-icon.png"
-    />
+      <meta content={desc} name="description" />
+      <meta content={keywords} name="keywords" />
 
-    {/* To run web application in full-screen */}
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta content="follow, index" name="robots" />
+      <meta content="#282828" name="theme-color" />
+      <meta content="#282828" name="msapplication-TileColor" />
 
-    {/* Apple Status Bar Style */}
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"></meta>
+      <link
+        href="/favicons/apple-touch-icon.png"
+        rel="apple-touch-icon"
+        sizes="180x180"
+      />
+      <link
+        href="/favicons/favicon-32x32.png"
+        rel="icon"
+        sizes="32x32"
+        type="image/png"
+      />
+      <link
+        href="/favicons/favicon-16x16.png"
+        rel="icon"
+        sizes="16x16"
+        type="image/png"
+      />
+      <link href="/favicons/favicon.ico" rel="shortcut icon" />
+      <link href="/favicons/site.webmanifest" rel="manifest" />
 
-    {/* Open Graph meat tags */}
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Haru Fashion" />
-    <meta property="og:url" content="https://haru-fashion.vercel.app/" />
-    <meta
-      property="og:image"
-      content="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fourshop.cdca0c1d.png&w=3840&q=75"
-    />
-    <meta property="og:description" content={desc} />
+      <meta property="og:url" content="https://haru-fashion.vercel.app" />
+      <link rel="canonical" href="https://haru-fashion.vercel.app" />
+      <meta property="og:site_name" content="Learn Next.js" />
+      <meta property="og:description" content={desc} />
+      <meta property="og:title" content={title} />
+      <meta
+        property="og:image"
+        content="https://haru-fashion.vercel.app/og.png"
+      />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@satnaing.dev" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={desc} />
+      <meta
+        name="twitter:image"
+        content="https://haru-fashion.vercel.app/og.png"
+      />
 
-    {/* Twitter Card */}
-    <meta name="twitter:card" content="app" />
-    <meta name="twitter:site" content="@satnaing.dev" />
-    <meta name="twitter:description" content={desc} />
-
-    <meta name="author" content="Sat Naing" />
-    <meta name="description" content={desc}></meta>
-    <meta name="keywords" content={keywords}></meta>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicons/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#282828" />
-
-    {/* Google Site Verification */}
-    <meta
-      name="google-site-verification"
-      content="xZHtiBkQ4xQ7IoG0o33E2vfbnx6NHYrGhNu-cjhX8Ng"
-    />
-
-    {/* Global site tag (gtag.js) - Google Analytics  */}
-    {/* <Script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-2GWCTE59TF"
-      strategy="afterInteractive"
-    />
-    <Script id="google-analytics" strategy="afterInteractive">
-      {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2GWCTE59TF');`}
-    </Script> */}
-  </Head>
-);
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    </Head>
+  );
+};
 
 export default AppHeader;
