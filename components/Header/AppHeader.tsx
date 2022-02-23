@@ -54,7 +54,7 @@ const AppHeader: React.FC<Props> = ({
 
       <meta property="og:url" content="https://haru-fashion.vercel.app" />
       <link rel="canonical" href="https://haru-fashion.vercel.app" />
-      <meta property="og:site_name" content="Learn Next.js" />
+      <meta property="og:site_name" content="Haru Fashion" />
       <meta property="og:description" content={desc} />
       <meta property="og:title" content={title} />
       <meta
