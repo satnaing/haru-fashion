@@ -63,6 +63,9 @@ const Header: React.FC<Props> = ({ title }) => {
   }
   return (
     <>
+      {/* ===== <head> section ===== */}
+      <AppHeader title={title} />
+
       {/* ===== Skip to main content button ===== */}
       <a
         href="#main-content"
@@ -70,9 +73,6 @@ const Header: React.FC<Props> = ({ title }) => {
       >
         {t("skip_to_main_content")}
       </a>
-
-      {/* ===== <head> section */}
-      <AppHeader title={title} />
 
       {/* ===== Top Navigation ===== */}
       <TopNav />
