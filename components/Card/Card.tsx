@@ -1,14 +1,14 @@
-import { FC, useState, useContext } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-import WishlistContext from "../../context/wishlist/WishlistContext";
 import Heart from "../../public/icons/Heart";
 import styles from "./Card.module.css";
 import HeartSolid from "../../public/icons/HeartSolid";
 import { itemType } from "../../context/cart/cart-types";
-import CartContext from "../../context/cart/CartContext";
+import { useCart } from "../../context/cart/CartProvider";
+import { useWishlist } from "../../context/wishlist/WishlistProvider";
 
 type Props = {
   item: itemType;
@@ -16,9 +16,8 @@ type Props = {
 
 const Card: FC<Props> = ({ item }) => {
   const t = useTranslations("CartWishlist");
-  const { wishlist, addToWishlist, deleteWishlistItem, clearWishlist } =
-    useContext(WishlistContext);
-  const { addOne } = useContext(CartContext);
+  const { wishlist, addToWishlist, deleteWishlistItem } = useWishlist();
+  const { addOne } = useCart();
   const [isHovered, setIsHovered] = useState(false);
   const [isWLHovered, setIsWLHovered] = useState(false);
 

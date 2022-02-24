@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { Disclosure } from "@headlessui/react";
+import { useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { Disclosure } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 
 import firebase, { db } from "../../firebase/firebase";
-import CartContext from "../../context/cart/CartContext";
 import Heart from "../../public/icons/Heart";
 import DownArrow from "../../public/icons/DownArrow";
 import FacebookLogo from "../../public/icons/FacebookLogo";
@@ -21,10 +21,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper/core";
-import WishlistContext from "../../context/wishlist/WishlistContext";
 import { dbItemType, itemType } from "../../context/cart/cart-types";
 import HeartSolid from "../../public/icons/HeartSolid";
-import Image from "next/image";
+import { useWishlist } from "../../context/wishlist/WishlistProvider";
+import { useCart } from "../../context/cart/CartProvider";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
@@ -38,9 +38,8 @@ const Product: React.FC<Props> = ({ post, products }) => {
   const img1 = post.img1;
   const img2 = post.img2;
 
-  const { addItem } = useContext(CartContext);
-  const { wishlist, addToWishlist, deleteWishlistItem } =
-    useContext(WishlistContext);
+  const { addItem } = useCart();
+  const { wishlist, addToWishlist, deleteWishlistItem } = useWishlist();
   const [size, setSize] = useState("M");
   const [mainImg, setMainImg] = useState(img1);
   const [currentQty, setCurrentQty] = useState(1);

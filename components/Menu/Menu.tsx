@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useState } from "react";
 import { Menu as HMenu } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,7 +6,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 
-import WishlistContext from "../../context/wishlist/WishlistContext";
 import MenuIcon from "../../public/icons/MenuIcon";
 import LoginForm from "../LoginForm/LoginForm";
 import WhistlistIcon from "../../public/icons/WhistlistIcon";
@@ -15,12 +14,13 @@ import SearchIcon from "../../public/icons/SearchIcon";
 import DownArrow from "../../public/icons/DownArrow";
 import InstagramLogo from "../../public/icons/InstagramLogo";
 import FacebookLogo from "../../public/icons/FacebookLogo";
+import { useWishlist } from "../../context/wishlist/WishlistProvider";
 
 export default function Menu() {
   const router = useRouter();
   const { asPath, locale } = router;
   const t = useTranslations("Navigation");
-  const { wishlist } = useContext(WishlistContext);
+  const { wishlist } = useWishlist();
   const [open, setOpen] = useState(false);
 
   // Calculate Number of Wishlist

@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-import CartContext from "../context/cart/CartContext";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import LeftArrow from "../public/icons/LeftArrow";
@@ -10,15 +10,14 @@ import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
 import { GetStaticProps } from "next";
 import { roundDecimal } from "../components/Util/utilFunc";
-import Image from "next/image";
+import { useCart } from "../context/cart/CartProvider";
 
 // let w = window.innerWidth;
 
 const ShoppingCart = () => {
   const t = useTranslations("CartWishlist");
   const [deli, setDeli] = useState("Yangon");
-  const { cart, addOne, removeItem, deleteItem, clearCart } =
-    useContext(CartContext);
+  const { cart, addOne, removeItem, deleteItem, clearCart } = useCart();
 
   let subtotal = 0;
 

@@ -1,20 +1,19 @@
 import { Dialog, Transition } from "@headlessui/react";
-import Link from "next/link";
-import { Fragment, useCallback, useContext, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import CartContext from "../../context/cart/CartContext";
 import BagIcon from "../../public/icons/BagIcon";
 import Button from "../Buttons/Button";
 import Item from "./Item";
-import { roundDecimal } from "../Util/utilFunc";
 import LinkButton from "../Buttons/LinkButton";
+import { roundDecimal } from "../Util/utilFunc";
+import { useCart } from "../../context/cart/CartProvider";
 
 export default function CartItem() {
   const t = useTranslations("CartWishlist");
   const [open, setOpen] = useState(false);
   const [animate, setAnimate] = useState("");
-  const { cart, addOne, removeItem, deleteItem } = useContext(CartContext);
+  const { cart, addOne, removeItem, deleteItem } = useCart();
 
   let subtotal = 0;
 

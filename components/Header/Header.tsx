@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useContext } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -10,8 +10,8 @@ import LoginForm from "../LoginForm/LoginForm";
 import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
 import Menu from "../Menu/Menu";
-import WishlistContext from "../../context/wishlist/WishlistContext";
 import AppHeader from "./AppHeader";
+import { useWishlist } from "../../context/wishlist/WishlistProvider";
 
 import styles from "./Header.module.css";
 
@@ -21,7 +21,7 @@ type Props = {
 
 const Header: React.FC<Props> = ({ title }) => {
   const t = useTranslations("Navigation");
-  const { wishlist } = useContext(WishlistContext);
+  const { wishlist } = useWishlist();
   const [animate, setAnimate] = useState("");
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [didMount, setDidMount] = useState<boolean>(false); // to disable Can't perform a React state Warning
