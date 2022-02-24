@@ -5,11 +5,12 @@ import {
   CLEAR_WISHLIST,
   wishlistType,
   itemType,
+  SET_WISHLIST,
 } from "./wishlist-type";
 
 type actionType = {
   type: string;
-  payload?: itemType;
+  payload?: itemType | itemType[];
 };
 
 const wishlistReducer = (state: wishlistType, action: actionType) => {
@@ -18,16 +19,18 @@ const wishlistReducer = (state: wishlistType, action: actionType) => {
       return {
         ...state,
         wishlist: addWishlist(state.wishlist, action.payload as itemType),
-        // wishlist: !state.wishlist.some(
-        //   (cartItem) => cartItem.id === action.payload.id
-        // ) && [...state.wishlist, { ...action.payload }],
       };
     case DELETE_WISHLIST_ITEM:
       return {
         ...state,
         wishlist: state.wishlist.filter(
-          (wishlistItem) => wishlistItem.id !== action.payload!.id
+          (wishlistItem) => wishlistItem.id !== (action.payload as itemType).id
         ),
+      };
+    case SET_WISHLIST:
+      return {
+        ...state,
+        wishlist: action.payload as itemType[],
       };
     case CLEAR_WISHLIST:
       return {

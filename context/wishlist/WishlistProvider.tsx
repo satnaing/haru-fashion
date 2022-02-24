@@ -1,5 +1,5 @@
-import { FC, useEffect, useReducer } from "react";
-import Cookie from "js-cookie";
+import { useContext, useEffect, useReducer } from "react";
+import { getCookie, setCookies } from "cookies-next";
 
 import wishlistReducer from "./wishlistReducer";
 import WishlistContext from "./WishlistContext";
@@ -9,21 +9,37 @@ import {
   CLEAR_WISHLIST,
   itemType,
   wishlistType,
+  SET_WISHLIST,
 } from "./wishlist-type";
 
-type WishlistProviderType = {
-  iniState: string;
-  children: any;
+export const ProvideWishlist = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const value = useProvideWishlist();
+  return (
+    <WishlistContext.Provider value={value}>
+      {children}
+    </WishlistContext.Provider>
+  );
 };
 
-const CartProvider: FC<WishlistProviderType> = ({ iniState, children }) => {
-  const initPersistState: wishlistType = JSON.parse(iniState);
+export const useWishlist = () => useContext(WishlistContext);
+
+const useProvideWishlist = () => {
+  const initPersistState: wishlistType = { wishlist: [] };
   const [state, dispatch] = useReducer(wishlistReducer, initPersistState);
 
-  // Persist State with Cookies
   useEffect(() => {
-    Cookie.set("wishlistState", JSON.stringify(state));
-  }, [state]);
+    const initialWishlist = getCookie("wishlist");
+    const wishlistItems = JSON.parse(initialWishlist as string);
+    dispatch({ type: SET_WISHLIST, payload: wishlistItems });
+  }, []);
+
+  useEffect(() => {
+    setCookies("wishlist", state.wishlist);
+  }, [state.wishlist]);
 
   const addToWishlist = (item: itemType) => {
     dispatch({
@@ -52,11 +68,5 @@ const CartProvider: FC<WishlistProviderType> = ({ iniState, children }) => {
     clearWishlist,
   };
 
-  return (
-    <WishlistContext.Provider value={value}>
-      {children}
-    </WishlistContext.Provider>
-  );
+  return value;
 };
-
-export default CartProvider;
