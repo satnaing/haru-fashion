@@ -1,6 +1,7 @@
-import { FC, useEffect, useReducer } from "react";
+import React, { FC, useContext, useEffect, useReducer } from "react";
 import cartReducer from "./cartReducer";
 import CartContext from "./CartContext";
+import { getCookie, setCookies } from "cookies-next";
 import Cookie from "js-cookie";
 import {
   ADD_ITEM,
@@ -10,21 +11,30 @@ import {
   itemType,
   cartType,
   CLEAR_CART,
+  SET_CART,
 } from "./cart-types";
 
-type CartProviderType = {
-  iniState: string;
-  children: any;
+export const ProvideCart = ({ children }: { children: React.ReactNode }) => {
+  const value = useProvideCart();
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
-const CartProvider: FC<CartProviderType> = ({ iniState, children }) => {
-  const initPersistState: cartType = JSON.parse(iniState);
+export const useCart = () => useContext(CartContext);
+
+const useProvideCart = () => {
+  const initPersistState: cartType = { cart: [] };
   const [state, dispatch] = useReducer(cartReducer, initPersistState);
 
-  // Persist State with Cookies
   useEffect(() => {
-    Cookie.set("cartState", JSON.stringify(state));
-  }, [state]);
+    const initialCart = getCookie("cart");
+    const haha = JSON.parse(initialCart as string);
+    dispatch({ type: SET_CART, payload: haha });
+  }, []);
+
+  useEffect(() => {
+    setCookies("cart", state.cart);
+    console.log("Set cart in cookie");
+  }, [state.cart]);
 
   const addItem = (item: itemType) => {
     dispatch({
@@ -69,7 +79,5 @@ const CartProvider: FC<CartProviderType> = ({ iniState, children }) => {
     clearCart,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return value;
 };
-
-export default CartProvider;
