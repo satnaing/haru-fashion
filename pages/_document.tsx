@@ -10,7 +10,6 @@ export default function Document() {
     <Html>
       <Head>
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
 
         <meta content={desc} name="description" key="description" />
         <meta content={keywords} name="keywords" key="keywords" />
