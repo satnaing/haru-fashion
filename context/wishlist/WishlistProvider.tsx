@@ -33,8 +33,10 @@ const useProvideWishlist = () => {
 
   useEffect(() => {
     const initialWishlist = getCookie("wishlist");
-    const wishlistItems = JSON.parse(initialWishlist as string);
-    dispatch({ type: SET_WISHLIST, payload: wishlistItems });
+    if (initialWishlist) {
+      const wishlistItems = JSON.parse(initialWishlist as string);
+      dispatch({ type: SET_WISHLIST, payload: wishlistItems });
+    }
   }, []);
 
   useEffect(() => {

@@ -26,8 +26,10 @@ const useProvideCart = () => {
 
   useEffect(() => {
     const initialCart = getCookie("cart");
-    const cartItems = JSON.parse(initialCart as string);
-    dispatch({ type: SET_CART, payload: cartItems });
+    if (initialCart) {
+      const cartItems = JSON.parse(initialCart as string);
+      dispatch({ type: SET_CART, payload: cartItems });
+    }
   }, []);
 
   useEffect(() => {
