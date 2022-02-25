@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -10,13 +10,24 @@ import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
 import Pagination from "../../components/Util/Pagination";
 import useWindowSize from "../../components/Util/useWindowSize";
-import { dbItemType, itemType } from "../../context/cart/cart-types";
+import {
+  apiProductsType,
+  dbItemType,
+  itemType,
+} from "../../context/cart/cart-types";
+import axios from "axios";
 
 type Props = {
   items: dbItemType[];
+  page: number;
+  numberOfProducts: number;
 };
 
-const ProductCategory: React.FC<Props> = ({ items }) => {
+const ProductCategory: React.FC<Props> = ({
+  items,
+  page,
+  numberOfProducts,
+}) => {
   const [itemPerPage, setItemPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [viewWidth] = useWindowSize();
@@ -24,46 +35,14 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
 
   const router = useRouter();
   const { category } = router.query;
-
-  // Change totalItems to 8 for good layout
-  const changeTotalItems = useCallback(() => {
-    if (viewWidth >= 992 || viewWidth < 576) {
-      itemPerPage !== 10 && setItemPerPage(10);
-    } else if (viewWidth >= 768) {
-      itemPerPage !== 8 && setItemPerPage(8);
-    } else {
-      itemPerPage !== 9 && setItemPerPage(9);
-    }
-  }, [viewWidth, itemPerPage]);
-
-  useEffect(() => {
-    changeTotalItems();
-  }, [changeTotalItems]);
-
-  const handlePage = (number: number) => {
-    setCurrentPage(number);
-  };
-
-  let totalItems = items.length;
-  let lastIndexItem = currentPage * itemPerPage;
-  let firstIndexItem = lastIndexItem - itemPerPage;
-  let currentItems = items.slice(firstIndexItem, lastIndexItem);
-
-  const handleNext = (lastIndex: number) => {
-    if (currentPage !== lastIndex) {
-      setCurrentPage((prevState) => prevState + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentPage !== 1) {
-      setCurrentPage((prevState) => prevState - 1);
-    }
-  };
+  const lastPage = Math.ceil(numberOfProducts / 10);
 
   const capitalizedCategory =
     category!.toString().charAt(0).toUpperCase() +
     category!.toString().slice(1);
+
+  const firstIndex = page === 1 ? page : page * 10 - 9;
+  const lastIndex = page * 10;
 
   return (
     <div>
@@ -89,9 +68,9 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
           <div className="flex justify-between mt-6">
             <span>
               {t("showing_from_to", {
-                from: firstIndexItem + 1,
-                to: totalItems < lastIndexItem ? totalItems : lastIndexItem,
-                all: totalItems,
+                from: firstIndex,
+                to: numberOfProducts < lastIndex ? numberOfProducts : lastIndex,
+                all: numberOfProducts,
               })}
             </span>
             <span>{t("sort_by")}: Price</span>
@@ -101,18 +80,11 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
         {/* ===== Main Content Section ===== */}
         <div className="app-x-padding app-max-width mt-3 mb-14">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
-            {currentItems.map((item) => (
-              <Card key={item.name} item={item} />
+            {items.map((item) => (
+              <Card key={item.id} item={item} />
             ))}
           </div>
-          <Pagination
-            postPerPage={itemPerPage}
-            totalPosts={totalItems}
-            handlePage={handlePage}
-            activePage={currentPage}
-            handleNext={handleNext}
-            handlePrev={handlePrev}
-          />
+          <Pagination currentPage={page} lastPage={lastPage} />
         </div>
       </main>
 
@@ -122,51 +94,40 @@ const ProductCategory: React.FC<Props> = ({ items }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  // let products: dbItemType[] = [];
-  // const querySnapshot = await db.collection("products").get();
-  // querySnapshot.forEach((doc) => {
-  //   products = [...products, doc.data() as dbItemType];
-  // });
-
-  // const paths = products.map((product) => ({
-  //   params: { category: product.category },
-  // }));
-
-  // // console.log(paths);
-
-  return {
-    paths: [
-      { params: { category: "men" }, locale: "en" },
-      { params: { category: "men" }, locale: "my" },
-      { params: { category: "women" }, locale: "en" },
-      { params: { category: "women" }, locale: "my" },
-      // { params: { category: "bag" }, locale: "en" },
-      // { params: { category: "bag" }, locale: "my" },
-    ],
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const productRef = db.collection("products");
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  locale,
+  query: { page = 1 },
+}) => {
   const paramCategory = params!.category as string;
-  const snapshot = await productRef
-    .where("category", "==", paramCategory)
-    .get();
-  if (snapshot.empty) {
-    return { props: { items: "Error" } };
-  }
 
-  let items: dbItemType[] = [];
-  snapshot.forEach((doc) => {
-    items = [...items, doc.data() as dbItemType];
+  const start = +page === 1 ? 0 : (+page - 1) * 10;
+
+  const numberOfProductsResponse = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products/count?category=${paramCategory}`
+  );
+  const numberOfProducts = +numberOfProductsResponse.data.count;
+
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&offset=${start}&limit=10&category=${paramCategory}`
+  );
+  const fetchedProducts = res.data.data.map((product: apiProductsType) => ({
+    ...product,
+    img1: product.image1,
+    img2: product.image1,
+  }));
+
+  let items: apiProductsType[] = [];
+  fetchedProducts.forEach((product: apiProductsType) => {
+    items.push(product);
   });
 
   return {
     props: {
       messages: (await import(`../../messages/common/${locale}.json`)).default,
       items,
+      numberOfProducts,
+      page: +page,
     },
   };
 };
