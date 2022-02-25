@@ -1,11 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import axios from "axios";
 
-import { db } from "./../firebase/firebase";
-import useWindowSize from "../components/Util/useWindowSize";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Button from "../components/Buttons/Button";
@@ -13,11 +11,11 @@ import Slideshow from "../components/HeroSection/Slideshow";
 import OverlayContainer from "../components/OverlayContainer/OverlayContainer";
 import Card from "../components/Card/Card";
 import TestiSlider from "../components/TestiSlider/TestiSlider";
-import { itemType } from "../context/cart/cart-types";
+import { apiProductsType, itemType } from "../context/cart/cart-types";
+import LinkButton from "../components/Buttons/LinkButton";
 
 // /bg-img/ourshop.png
 import ourShop from "../public/bg-img/ourshop.png";
-import LinkButton from "../components/Buttons/LinkButton";
 
 type Props = {
   products: itemType[];
@@ -25,26 +23,32 @@ type Props = {
 
 const Home: React.FC<Props> = ({ products }) => {
   const t = useTranslations("Index");
-  const [initialItems, setInitialItems] = useState(8);
-  const [totalItems, setTotalItems] = useState(initialItems);
-  const [viewWidth] = useWindowSize();
-
-  const currentItems = products.slice(0, totalItems);
-
-  // Change totalItems to 8 for good layout
-  const changeTotalItems = useCallback(() => {
-    if (viewWidth >= 992 || viewWidth < 576) {
-      initialItems !== 10 && setInitialItems(10);
-    } else if (viewWidth >= 768) {
-      initialItems !== 8 && setInitialItems(8);
-    } else {
-      initialItems !== 9 && setInitialItems(9);
-    }
-  }, [viewWidth, initialItems]);
+  const [currentItems, setCurrentItems] = useState(products);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
-    changeTotalItems();
-  }, [changeTotalItems]);
+    if (!isFetching) return;
+    const fetchData = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_PROD_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&offset=${currentItems.length}&limit=10`
+      );
+      const fetchedProducts = res.data.data.map((product: apiProductsType) => ({
+        ...product,
+        img1: product.image1,
+        img2: product.image1,
+      }));
+      setCurrentItems((products) => [...products, ...fetchedProducts]);
+      setIsFetching(false);
+    };
+    fetchData();
+  }, [isFetching]);
+
+  const handleSeemore = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    setIsFetching(true);
+  };
 
   return (
     <div>
@@ -110,10 +114,10 @@ const Home: React.FC<Props> = ({ products }) => {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-12 gap-y-6 mb-10 app-x-padding">
+            <Card key={currentItems[1].id} item={currentItems[1]} />
+            <Card key={currentItems[2].id} item={currentItems[2]} />
             <Card key={currentItems[3].id} item={currentItems[3]} />
             <Card key={currentItems[4].id} item={currentItems[4]} />
-            <Card key={currentItems[2].id} item={currentItems[2]} />
-            <Card key={currentItems[5].id} item={currentItems[5]} />
           </div>
         </section>
 
@@ -135,8 +139,8 @@ const Home: React.FC<Props> = ({ products }) => {
           </div>
           <div className="flex justify-center">
             <Button
-              value={t("see_more")}
-              onClick={() => setTotalItems((prevState) => prevState * 2)}
+              value={!isFetching ? t("see_more") : t("loading")}
+              onClick={handleSeemore}
             />
           </div>
         </section>
@@ -163,17 +167,19 @@ const Home: React.FC<Props> = ({ products }) => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   let products: itemType[] = [];
-  const res = await db.collection("products").get();
-  res.forEach((doc) => {
-    let docData = doc.data();
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&limit=10`
+  );
+  const fetchedProducts = res.data;
+  fetchedProducts.data.forEach((product: apiProductsType) => {
     products = [
       ...products,
       {
-        id: docData.id,
-        name: docData.name,
-        price: docData.price,
-        img1: docData.img1,
-        img2: docData.img2,
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        img1: product.image1,
+        img2: product.image1,
       },
     ];
   });
