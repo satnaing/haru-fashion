@@ -14,6 +14,22 @@ export type itemType = {
   qty?: number;
 };
 
+export type apiProductsType = {
+  id: number;
+  name: string;
+  price: number;
+  image1?: string | undefined;
+  image?: string | undefined;
+  qty?: number | undefined;
+  discountPercent?: number;
+  description?: string;
+  detail?: string;
+  categoryId?: number;
+  stock?: number;
+  createdAt?: string;
+  updatedAt?: string | null;
+};
+
 export interface dbItemType extends itemType {
   desc: string;
   category: "men" | "women" | "bags";
