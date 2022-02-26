@@ -35,7 +35,7 @@ const Home: React.FC<Props> = ({ products }) => {
       const fetchedProducts = res.data.data.map((product: apiProductsType) => ({
         ...product,
         img1: product.image1,
-        img2: product.image1,
+        img2: product.image2,
       }));
       setCurrentItems((products) => [...products, ...fetchedProducts]);
       setIsFetching(false);
