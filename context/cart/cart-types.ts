@@ -5,21 +5,10 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const SET_CART = "SET_CART";
 export const CLEAR_CART = "CLEAR_CART";
 
-export type itemType = {
-  id: number;
-  img1?: string;
-  img2?: string;
-  name: string;
-  price: number;
-  qty?: number;
-};
-
-export type apiProductsType = {
+export type commonType = {
   id: number;
   name: string;
   price: number;
-  image1?: string | undefined;
-  image?: string | undefined;
   qty?: number | undefined;
   discountPercent?: number;
   description?: string;
@@ -28,12 +17,25 @@ export type apiProductsType = {
   stock?: number;
   createdAt?: string;
   updatedAt?: string | null;
+  category?: {
+    id?: number;
+    name?: string;
+    description?: string;
+    thumbnailImage?: string;
+    createdAt?: string;
+    updatedAt?: string | null;
+  };
 };
 
-export interface dbItemType extends itemType {
-  desc: string;
-  category: "men" | "women" | "bags";
-  details: string;
+export interface itemType extends commonType {
+  img1?: string;
+  img2?: string;
+  categoryName?: string;
+}
+
+export interface apiProductsType extends commonType {
+  image1?: string;
+  image2?: string;
 }
 
 export type cartFuncType = (item: itemType) => void;
