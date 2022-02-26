@@ -10,15 +10,11 @@ import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
 import Pagination from "../../components/Util/Pagination";
 import useWindowSize from "../../components/Util/useWindowSize";
-import {
-  apiProductsType,
-  dbItemType,
-  itemType,
-} from "../../context/cart/cart-types";
+import { apiProductsType, itemType } from "../../context/cart/cart-types";
 import axios from "axios";
 
 type Props = {
-  items: dbItemType[];
+  items: itemType[];
   page: number;
   numberOfProducts: number;
 };
@@ -114,7 +110,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const fetchedProducts = res.data.data.map((product: apiProductsType) => ({
     ...product,
     img1: product.image1,
-    img2: product.image1,
+    img2: product.image2,
   }));
 
   let items: apiProductsType[] = [];

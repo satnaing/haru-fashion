@@ -179,7 +179,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         name: product.name,
         price: product.price,
         img1: product.image1,
-        img2: product.image1,
+        img2: product.image2,
       },
     ];
   });
