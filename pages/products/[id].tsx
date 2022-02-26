@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Disclosure } from "@headlessui/react";
 import { useTranslations } from "next-intl";
+import axios from "axios";
 
-import firebase, { db } from "../../firebase/firebase";
 import Heart from "../../public/icons/Heart";
 import DownArrow from "../../public/icons/DownArrow";
 import FacebookLogo from "../../public/icons/FacebookLogo";
@@ -21,22 +21,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper/core";
-import { dbItemType, itemType } from "../../context/cart/cart-types";
-import HeartSolid from "../../public/icons/HeartSolid";
+import { apiProductsType, itemType } from "../../context/cart/cart-types";
 import { useWishlist } from "../../context/wishlist/WishlistProvider";
 import { useCart } from "../../context/cart/CartProvider";
+import HeartSolid from "../../public/icons/HeartSolid";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
 type Props = {
-  post: dbItemType;
-  products: dbItemType[];
+  product: itemType;
+  products: itemType[];
 };
 
-const Product: React.FC<Props> = ({ post, products }) => {
-  const img1 = post.img1;
-  const img2 = post.img2;
+const Product: React.FC<Props> = ({ product, products }) => {
+  const img1 = product.img1;
+  const img2 = product.img2;
 
   const { addItem } = useCart();
   const { wishlist, addToWishlist, deleteWishlistItem } = useWishlist();
@@ -46,18 +46,18 @@ const Product: React.FC<Props> = ({ post, products }) => {
   const t = useTranslations("Category");
 
   const alreadyWishlisted =
-    wishlist.filter((wItem) => wItem.id === post.id).length > 0;
+    wishlist.filter((wItem) => wItem.id === product.id).length > 0;
 
   useEffect(() => {
-    setMainImg(post.img1);
-  }, [post]);
+    setMainImg(product.img1);
+  }, [product]);
 
   const handleSize = (value: string) => {
     setSize(value);
   };
 
   const currentItem = {
-    ...post,
+    ...product,
     qty: currentQty,
   };
 
@@ -70,7 +70,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
   return (
     <div>
       {/* ===== Head Section ===== */}
-      <Header title={`${post.name} - Haru Fashion`} />
+      <Header title={`${product.name} - Haru Fashion`} />
 
       <main id="main-content">
         {/* ===== Breadcrumb Section ===== */}
@@ -81,16 +81,15 @@ const Product: React.FC<Props> = ({ post, products }) => {
                 <a className="text-gray400">{t("home")}</a>
               </Link>{" "}
               /{" "}
-              <Link href={`/product-category/${post.category}`}>
+              <Link href={`/product-category/${product.categoryName}`}>
                 <a className="text-gray400 capitalize">
-                  {t(post.category as string)}
+                  {t(product.categoryName as string)}
                 </a>
               </Link>{" "}
-              / <span>{post.name}</span>
+              / <span>{product.name}</span>
             </div>
           </div>
         </div>
-
         {/* ===== Main Content Section ===== */}
         <div className="itemSection app-max-width app-x-padding flex flex-col md:flex-row">
           <div className="imgSection w-full md:w-1/2 h-full flex">
@@ -103,7 +102,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
                 }`}
                 onClick={() => setMainImg(img1)}
                 src={img1 as string}
-                alt={post.name}
+                alt={product.name}
                 width={1000}
                 height={1282}
               />
@@ -115,7 +114,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
                 }`}
                 onClick={() => setMainImg(img2)}
                 src={img2 as string}
-                alt={post.name}
+                alt={product.name}
                 width={1000}
                 height={1282}
               />
@@ -136,7 +135,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
                     src={img1 as string}
                     width={1000}
                     height={1282}
-                    alt={post.name}
+                    alt={product.name}
                   />
                 </SwiperSlide>
                 <SwiperSlide>
@@ -145,7 +144,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
                     src={img2 as string}
                     width={1000}
                     height={1282}
-                    alt={post.name}
+                    alt={product.name}
                   />
                 </SwiperSlide>
               </Swiper>
@@ -155,15 +154,17 @@ const Product: React.FC<Props> = ({ post, products }) => {
                   src={mainImg as string}
                   width={1000}
                   height={1282}
-                  alt={post.name}
+                  alt={product.name}
                 />
               </div>
             </div>
           </div>
           <div className="infoSection w-full md:w-1/2 h-auto py-8 sm:pl-4 flex flex-col">
-            <h1 className="text-3xl mb-4">{post.name}</h1>
-            <span className="text-2xl text-gray400 mb-2">$ {post.price}</span>
-            <span className="mb-2 text-justify">{post.desc}</span>
+            <h1 className="text-3xl mb-4">{product.name}</h1>
+            <span className="text-2xl text-gray400 mb-2">
+              $ {product.price}
+            </span>
+            <span className="mb-2 text-justify">{product.description}</span>
             <span className="mb-2">
               {t("availability")}: {t("in_stock")}
             </span>
@@ -252,19 +253,18 @@ const Product: React.FC<Props> = ({ post, products }) => {
                   <Disclosure.Panel
                     className={`text-gray400 animate__animated animate__bounceIn`}
                   >
-                    {post.details}
+                    {product.detail}
                   </Disclosure.Panel>
                 </>
               )}
             </Disclosure>
             <div className="flex items-center space-x-4 mt-4">
-              <span>{t("share")} </span>
+              <span>{t("share")}</span>
               <FacebookLogo extraClass="h-4 cursor-pointer text-gray400 hover:text-gray500" />
               <InstagramLogo extraClass="h-4 cursor-pointer text-gray400 hover:text-gray500" />
             </div>
           </div>
         </div>
-
         {/* ===== Horizontal Divider ===== */}
         <div className="border-b-2 border-gray200"></div>
 
@@ -292,7 +292,7 @@ const Product: React.FC<Props> = ({ post, products }) => {
           </Swiper>
           <div className="hidden sm:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-10 sm:gap-y-6 mb-10">
             {products.map((item) => (
-              <Card key={item.name} item={item} />
+              <Card key={item.id} item={item} />
             ))}
           </div>
         </div>
@@ -304,78 +304,54 @@ const Product: React.FC<Props> = ({ post, products }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  let products: dbItemType[] = [];
-  const querySnapshot = await db.collection("products").get();
-  querySnapshot.forEach((doc) => {
-    products = [...products, doc.data() as dbItemType];
-  });
-
-  // const paths = products.map((product) => ({
-  //   params: { id: product.id.toString() },
-  //   locale: "en",
-  // }));
-
-  const paths = locales?.map((locale) =>
-    products.map((product) => ({
-      params: { id: product.id.toString() },
-      locale,
-    }))
-  );
-
-  return { paths: [...paths![0], ...paths![1]], fallback: false };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const productRef = db.collection("products");
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  locale,
+}) => {
   const paramId = params!.id as string;
-  const snapshot = await productRef.where("id", "==", parseInt(paramId)).get();
-  if (snapshot.empty) {
-    return { props: { post: "Error" } };
-  }
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products/${paramId}?include=category`
+  );
+  const fetchedProduct: apiProductsType = res.data.data;
 
-  let post: firebase.firestore.DocumentData = {};
-  snapshot.forEach((doc) => {
-    post = doc.data();
-  });
+  let product: itemType = {
+    id: fetchedProduct.id,
+    name: fetchedProduct.name,
+    price: fetchedProduct.price,
+    detail: fetchedProduct.detail,
+    img1: fetchedProduct.image1,
+    img2: fetchedProduct.image2,
+    categoryName: fetchedProduct!.category!.name,
+  };
+
+  // Might be temporary solution for suggested products
+  const randomProductRes = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?category=${product.categoryName}`
+  );
+  const fetchedProducts: apiProductsType[] = randomProductRes.data.data;
+
+  // Shuffle array
+  const shuffled = fetchedProducts.sort(() => 0.5 - Math.random());
+
+  // Get sub-array of first 5 elements after shuffled
+  let randomFetchedProducts = shuffled.slice(0, 5);
 
   let products: itemType[] = [];
-  const productSnapshot = await productRef.get();
-  productSnapshot.forEach((doc) => {
-    let docData = doc.data();
-    products = [
-      ...products,
-      {
-        id: docData.id,
-        name: docData.name,
-        price: docData.price,
-        img1: docData.img1,
-        img2: docData.img2,
-      },
-    ];
+  randomFetchedProducts.forEach((randomProduct: apiProductsType) => {
+    products.push({
+      id: randomProduct.id,
+      name: randomProduct.name,
+      price: randomProduct.price,
+      img1: randomProduct.image1,
+      img2: randomProduct.image2,
+    });
   });
-  let nums: number[] = [];
-  let numOfItems = 5;
-  for (let i = 0; i < numOfItems; i++) {
-    let ranNum = Math.floor(Math.random() * products.length);
-    if (!nums.includes(ranNum)) {
-      nums.push(ranNum);
-    } else {
-      numOfItems++;
-    }
-  }
-  let newProducts = [
-    products[nums[0]],
-    products[nums[1]],
-    products[nums[2]],
-    products[nums[3]],
-    products[nums[4]],
-  ];
 
+  // Pass data to the page via props
   return {
     props: {
-      post,
-      products: newProducts,
+      product,
+      products,
       messages: (await import(`../../messages/common/${locale}.json`)).default,
     },
   };
