@@ -15,12 +15,14 @@ import DownArrow from "../../public/icons/DownArrow";
 import InstagramLogo from "../../public/icons/InstagramLogo";
 import FacebookLogo from "../../public/icons/FacebookLogo";
 import { useWishlist } from "../../context/wishlist/WishlistProvider";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Menu() {
+  const t = useTranslations("Navigation");
   const router = useRouter();
   const { asPath, locale } = router;
-  const t = useTranslations("Navigation");
   const { wishlist } = useWishlist();
+  const auth = useAuth();
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
@@ -169,7 +171,7 @@ export default function Menu() {
                     <hr className="border border-gray300 w-full mt-2" />
                     <div className="w-full text-xl py-2 my-3 flex justify-between">
                       <LoginForm extraClass="flex justify-between w-full">
-                        <span>{t("login")}</span>
+                        <span>{auth.user ? t("profile") : t("login")}</span>
                         <UserIcon />
                       </LoginForm>
                     </div>
