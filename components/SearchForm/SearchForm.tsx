@@ -56,7 +56,7 @@ export default function SearchForm() {
       setIsFetching(false);
     };
     fetchData();
-  }, [isFetching]);
+  }, [isFetching, searchValue]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
