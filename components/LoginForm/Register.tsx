@@ -2,7 +2,6 @@ import React, { FormEvent, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 
-// import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
 import { useAuth } from "../../context/AuthContext";

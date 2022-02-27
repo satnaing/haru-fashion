@@ -2,7 +2,6 @@ import { Fragment, useState, FC } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 
-// import { useAuth } from "../../firebase/firebaseAuth";
 import { useAuth } from "../../context/AuthContext";
 import Button from "../Buttons/Button";
 import Login from "./Login";
