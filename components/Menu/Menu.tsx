@@ -22,6 +22,7 @@ export default function Menu() {
   const t = useTranslations("Navigation");
   const { wishlist } = useWishlist();
   const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   // Calculate Number of Wishlist
   let noOfWishlist = wishlist.length;
@@ -33,6 +34,16 @@ export default function Menu() {
   function openModal() {
     setOpen(true);
   }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setOpen(false);
+    router.push(`/search?q=${searchValue}`);
+  };
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setSearchValue((e.target as HTMLInputElement).value);
+  };
 
   return (
     <>
@@ -95,14 +106,18 @@ export default function Menu() {
 
                 <div className="mb-10">
                   <div className="itemContainer px-6 w-full flex flex-col justify-around items-center">
-                    <div className="flex w-full justify-between items-center mt-5 mb-5 border-gray300 border-b-2">
+                    <form
+                      className="flex w-full justify-between items-center mt-5 mb-5 border-gray300 border-b-2"
+                      onSubmit={handleSubmit}
+                    >
                       <SearchIcon extraClass="text-gray300 w-6 h-6" />
                       <input
                         type="search"
                         placeholder={t("search_anything")}
                         className="px-4 py-2 w-full focus:outline-none text-xl"
+                        onChange={handleChange}
                       />
-                    </div>
+                    </form>
                     <Link href="/product-category/men">
                       <a
                         className="w-full text-xl hover:bg-gray100 text-left py-2"
