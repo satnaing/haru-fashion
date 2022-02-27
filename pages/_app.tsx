@@ -5,7 +5,7 @@ import { NextIntlProvider } from "next-intl";
 
 import { ProvideCart } from "../context/cart/CartProvider";
 import { ProvideWishlist } from "../context/wishlist/WishlistProvider";
-import { ProvideAuth } from "../firebase/firebaseAuth";
+import { ProvideAuth } from "../context/AuthContext";
 
 import "../styles/globals.css";
 import "animate.css";
