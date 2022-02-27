@@ -40,7 +40,9 @@
     "newsletter": "Newsletter",
     "newsletter_desc": "Be the first to know about new arrivals, sales & promos!",
     "all_rights_reserved": "All rights reserved.",
-    "follow_us_on_social_media": "Follow us on Social Media"
+    "follow_us_on_social_media": "Follow us on Social Media",
+    "view_all": "View All",
+    "no_result": "No Result"
   },
   "CartWishlist": {
     "wishlist": "Wishlist",
@@ -122,5 +124,11 @@
     "not_member": "Not a member?",
     "register_desc": "Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our Privacy Policy",
     "already_member": "Already a member?"
+  },
+  "Search": {
+    "home": "Home",
+    "search_results": "Search results",
+    "no_result": "No Result",
+    "showing_results": "Showing {products} result(s)"
   }
 }
