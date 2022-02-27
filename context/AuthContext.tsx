@@ -1,46 +1,157 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import axios from "axios";
+import { getCookie, removeCookies, setCookies } from "cookies-next";
+import React, { useState, useEffect, useContext, createContext } from "react";
 
-type authContextType = {
-  user: boolean | null;
-  login: () => void;
-  logout: () => void;
+type authType = {
+  user: null | userType;
+  register?: (
+    email: string,
+    fullname: string,
+    password: string,
+    shippingAddress: string,
+    phone: string
+  ) => Promise<{
+    success: boolean;
+    message: string;
+  }>;
+  login?: (
+    email: string,
+    password: string
+  ) => Promise<{
+    success: boolean;
+    message: string;
+  }>;
+  logout?: () => void;
 };
 
-const authContextDefaultValues: authContextType = {
+const initialAuth: authType = {
   user: null,
-  login: () => {},
-  logout: () => {},
 };
 
-const AuthContext = createContext<authContextType>(authContextDefaultValues);
+const authContext = createContext<authType>(initialAuth);
 
-// export function useAuth() {
-//   return useContext(AuthContext);
-// }
-
-type Props = {
-  children: ReactNode;
+type userType = {
+  email: string;
+  fullname: string;
+  shippingAddress?: string;
+  phone?: string;
+  token: string;
 };
 
-export function AuthProvider({ children }: Props) {
-  const [user, setUser] = useState<boolean | null>(null);
+// Provider component that wraps your app and makes auth object ...
+// ... available to any child component that calls useAuth().
+export function ProvideAuth({ children }: { children: React.ReactNode }) {
+  const auth = useProvideAuth();
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+}
+// Hook for child components to get the auth object ...
+// ... and re-render when it changes.
+export const useAuth = () => {
+  return useContext(authContext);
+};
 
-  const login = () => {
-    setUser(true);
+// Provider hook that creates auth object and handles state
+function useProvideAuth() {
+  const [user, setUser] = useState<userType | null>(null);
+
+  useEffect(() => {
+    const initialAuth = getCookie("user");
+    if (initialAuth) {
+      const initUser = JSON.parse(initialAuth as string);
+      setUser(initUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    setCookies("user", user);
+  }, [user]);
+
+  const register = async (
+    email: string,
+    fullname: string,
+    password: string,
+    shippingAddress: string,
+    phone: string
+  ) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/register`,
+        {
+          email,
+          fullname,
+          password,
+          shippingAddress,
+          phone,
+        }
+      );
+      const registerResponse = response.data;
+      const user: userType = {
+        email,
+        fullname,
+        shippingAddress,
+        phone,
+        token: registerResponse.token,
+      };
+      setUser(user);
+      return {
+        success: true,
+        message: "register_successful",
+      };
+    } catch (err) {
+      const errResponse = (err as any).response.data;
+      let errorMessage: string;
+      if (errResponse.error.type === "alreadyExists") {
+        errorMessage = errResponse.error.type;
+      } else {
+        errorMessage = errResponse.error.detail.message;
+      }
+      return {
+        success: false,
+        message: errorMessage,
+      };
+    }
+  };
+
+  const login = async (email: string, password: string) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
+      const loginResponse = response.data;
+      const user: userType = {
+        email,
+        fullname: loginResponse.data.fullname,
+        phone: loginResponse.data.phone,
+        shippingAddress: loginResponse.data.shippingAddress,
+        token: loginResponse.token,
+      };
+      setUser(user);
+      return {
+        success: true,
+        message: "login_successful",
+      };
+    } catch (err) {
+      return {
+        success: false,
+        message: "incorrect",
+      };
+    }
   };
 
   const logout = () => {
-    setUser(false);
+    setUser(null);
+    removeCookies("user");
   };
 
-  const value = {
+  // Return the user object and auth methods
+  return {
     user,
+    register,
     login,
     logout,
   };
-  return (
-    <>
-      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-    </>
-  );
 }
