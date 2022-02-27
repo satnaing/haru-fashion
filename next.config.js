@@ -1,7 +1,7 @@
-// const withPWA = require("next-pwa");
+const withPWA = require("next-pwa");
 
-// module.exports = withPWA({
-module.exports = {
+module.exports = withPWA({
+  // module.exports = {
   i18n: {
     locales: ["en", "my"],
     defaultLocale: "en",
@@ -12,12 +12,12 @@ module.exports = {
     removeConsole: true,
   },
   images: {
-    domains: ["firebasestorage.googleapis.com"],
+    domains: ["robohash.org"],
   },
-  // pwa: {
-  //   dest: "public",
-  //   skipWaiting: true,
-  //   disable: process.env.NODE_ENV === "development",
-  // },
-};
-// });
+  pwa: {
+    dest: "public",
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === "development",
+  },
+  // };
+});
