@@ -2,88 +2,53 @@ import React, { FormEvent, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 
-import { useAuth } from "../../firebase/firebaseAuth";
+// import { useAuth } from "../../firebase/firebaseAuth";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
+import { useAuth } from "../../context/AuthContext";
 
 type Props = {
   onLogin: () => void;
+  errorMsg: string;
+  setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
+  setSuccessMsg: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Register: React.FC<Props> = ({ onLogin }) => {
+const Register: React.FC<Props> = ({
+  onLogin,
+  errorMsg,
+  setErrorMsg,
+  setSuccessMsg,
+}) => {
   const auth = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
   const t = useTranslations("LoginRegister");
 
-  const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setName(e.currentTarget.value);
+    const regResponse = await auth.register!(
+      email,
+      name,
+      password,
+      address,
+      phone
+    );
+    if (regResponse.success) {
+      setSuccessMsg("register_successful");
+    } else {
+      if (regResponse.message === "alreadyExists") {
+        setErrorMsg("email_already_exists");
+      } else {
+        setErrorMsg("error_occurs");
+      }
+    }
   };
 
-  const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setEmail(e.currentTarget.value);
-  };
-
-  const handlePasswordChange = (e: FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setPassword(e.currentTarget.value);
-  };
-
-  // firebase.auth().onAuthStateChanged(function (user) {
-  //   if (user) {
-  //     // User is signed in.
-  //     console.log(user);
-  //   } else {
-  //     // No user is signed in.
-  //     console.log("Not Signed in");
-  //   }
-  // });
-
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    auth.signup(email, password);
-
-    // firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     var user = userCredential.user;
-    //     user
-    //       .updateProfile({
-    //         displayName: name,
-    //       })
-    //       .then(function () {
-    //         // Update successful.
-    //         console.log(user);
-    //       })
-    //       .catch(function (error) {
-    //         // An error happened.
-    //         console.log(error);
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     console.log(errorCode);
-    //     console.log(errorMessage);
-    //   });
-    // firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then(function (result) {
-    //     return result.user.updateProfile({
-    //       displayName: name,
-    //     });
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-  };
+  auth.user ? console.log(auth.user) : console.log("No User");
 
   return (
     <>
@@ -96,12 +61,12 @@ const Register: React.FC<Props> = ({ onLogin }) => {
       <form onSubmit={handleSubmit} className="mt-2">
         <Input
           type="name"
-          placeholder={`${t("username")} *`}
-          name="username"
-          // required
+          placeholder={`${t("name")} *`}
+          name="name"
+          required
           extraClass="w-full focus:border-gray500"
           border="border-2 border-gray300 mb-4"
-          onChange={handleNameChange}
+          onChange={(e) => setName((e.target as HTMLInputElement).value)}
           value={name}
         />
         <Input
@@ -111,7 +76,7 @@ const Register: React.FC<Props> = ({ onLogin }) => {
           required
           extraClass="w-full focus:border-gray500"
           border="border-2 border-gray300 mb-4"
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
           value={email}
         />
         <Input
@@ -121,19 +86,34 @@ const Register: React.FC<Props> = ({ onLogin }) => {
           required
           extraClass="w-full focus:border-gray500 mb-4"
           border="border-2 border-gray300"
-          onChange={handlePasswordChange}
+          onChange={(e) => setPassword((e.target as HTMLInputElement).value)}
           value={password}
         />
+        <Input
+          type="text"
+          placeholder={`${t("shipping_address")}`}
+          name="shipping_address"
+          extraClass="w-full focus:border-gray500"
+          border="border-2 border-gray300 mb-4"
+          onChange={(e) => setAddress((e.target as HTMLInputElement).value)}
+          value={address}
+        />
+        <Input
+          type="text"
+          placeholder={`${t("phone")}`}
+          name="phone"
+          extraClass="w-full focus:border-gray500"
+          border="border-2 border-gray300 mb-4"
+          onChange={(e) => setPhone((e.target as HTMLInputElement).value)}
+          value={phone}
+        />
+        {errorMsg !== "" && (
+          <div className="text-red text-sm mb-2 whitespace-nowrap">
+            {t(errorMsg)}
+          </div>
+        )}
         <div className="flex justify-between mb-4">
-          <p className="text-gray400 text-xs">
-            {t("register_desc")}
-            {/* Your personal data will be used to support your experience
-            throughout this website, to manage access to your account, and for
-            other purposes described in our{" "}
-            <a href="#" className="text-gray500">
-              Privacy Policy
-            </a> */}
-          </p>
+          <p className="text-gray400 text-xs">{t("register_desc")}</p>
         </div>
         <Button
           type="submit"

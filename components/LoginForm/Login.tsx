@@ -2,33 +2,36 @@ import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 
-import { useAuth } from "../../firebase/firebaseAuth";
+import { useAuth } from "../../context/AuthContext";
 import Button from "../Buttons/Button";
 import Input from "../Input/Input";
 
 type Props = {
   onRegister: () => void;
+  errorMsg: string;
+  setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
+  setSuccessMsg: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Login: React.FC<Props> = ({ onRegister }) => {
+const Login: React.FC<Props> = ({
+  onRegister,
+  errorMsg,
+  setErrorMsg,
+  setSuccessMsg,
+}) => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const t = useTranslations("LoginRegister");
 
-  const handleEmailChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setEmail(e.currentTarget.value);
-  };
-
-  const handlePasswordChange = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setPassword(e.currentTarget.value);
-  };
-
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    auth.signin(email, password);
+    const loginResponse = await auth.login!(email, password);
+    if (loginResponse.success) {
+      setSuccessMsg("login_successful");
+    } else {
+      setErrorMsg("incorrect_email_password");
+    }
   };
 
   return (
@@ -47,7 +50,7 @@ const Login: React.FC<Props> = ({ onRegister }) => {
           required
           extraClass="w-full focus:border-gray500"
           border="border-2 border-gray300 mb-4"
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
           value={email}
         />
         <Input
@@ -57,9 +60,14 @@ const Login: React.FC<Props> = ({ onRegister }) => {
           required
           extraClass="w-full focus:border-gray500 mb-4"
           border="border-2 border-gray300"
-          onChange={handlePasswordChange}
+          onChange={(e) => setPassword((e.target as HTMLInputElement).value)}
           value={password}
         />
+        {errorMsg !== "" && (
+          <div className="text-red text-sm mb-4 whitespace-nowrap">
+            {t(errorMsg)}
+          </div>
+        )}
         <div className="flex justify-between mb-4">
           <div className="flex items-center text-gray400 focus:outline-none">
             <input

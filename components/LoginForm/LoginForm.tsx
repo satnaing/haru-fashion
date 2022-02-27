@@ -2,7 +2,8 @@ import { Fragment, useState, FC } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 
-import { useAuth } from "../../firebase/firebaseAuth";
+// import { useAuth } from "../../firebase/firebaseAuth";
+import { useAuth } from "../../context/AuthContext";
 import Button from "../Buttons/Button";
 import Login from "./Login";
 import Register from "./Register";
@@ -16,10 +17,16 @@ const LoginForm: FC<Props> = ({ extraClass, children }) => {
   const auth = useAuth();
   const [isLoginPage, setisLoginPage] = useState(true);
   const [open, setOpen] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   const t = useTranslations("LoginRegister");
 
   function closeModal() {
     setOpen(false);
+    setErrorMsg("");
+    setTimeout(() => {
+      setSuccessMsg("profile");
+    }, 100);
   }
 
   function openModal() {
@@ -85,17 +92,76 @@ const LoginForm: FC<Props> = ({ extraClass, children }) => {
                   &#10005;
                 </button>
                 {auth.user ? (
-                  <Button value={t("logout")} onClick={() => auth.signout()} />
+                  <SuccessModal
+                    successMsg={successMsg}
+                    setSuccessMsg={setSuccessMsg}
+                  />
                 ) : isLoginPage ? (
-                  <Login onRegister={() => setisLoginPage(false)} />
+                  <Login
+                    onRegister={() => setisLoginPage(false)}
+                    errorMsg={errorMsg}
+                    setErrorMsg={setErrorMsg}
+                    setSuccessMsg={setSuccessMsg}
+                  />
                 ) : (
-                  <Register onLogin={() => setisLoginPage(true)} />
+                  <Register
+                    onLogin={() => setisLoginPage(true)}
+                    errorMsg={errorMsg}
+                    setErrorMsg={setErrorMsg}
+                    setSuccessMsg={setSuccessMsg}
+                  />
                 )}
               </div>
             </Transition.Child>
           </div>
         </Dialog>
       </Transition>
+    </>
+  );
+};
+
+const SuccessModal = ({
+  successMsg,
+  setSuccessMsg,
+}: {
+  successMsg: string;
+  setSuccessMsg: React.Dispatch<React.SetStateAction<string>>;
+}) => {
+  const t = useTranslations("LoginRegister");
+  const auth = useAuth();
+
+  const handleLogout = () => {
+    auth.logout!();
+    setSuccessMsg("");
+  };
+  return (
+    <>
+      <Dialog.Title
+        as="h3"
+        className="text-xl md:text-2xl whitespace-nowrap text-center my-8 font-medium leading-6 text-gray-900"
+      >
+        {/* {t("login_successful")} */}
+        {/* {t("register_successful")} */}
+        {successMsg !== "" ? t(successMsg) : t("profile")}
+      </Dialog.Title>
+      <div className="mb-12">
+        <div>
+          {t("name")} - {auth.user?.fullname}
+        </div>
+        <div>
+          {t("email_address")} - {auth.user?.email}
+        </div>
+        <div>
+          {t("phone")} - {auth.user?.phone && auth.user?.phone}
+        </div>
+        <div>
+          {t("shipping_address")} -{" "}
+          {auth.user?.shippingAddress && auth.user?.shippingAddress}
+        </div>
+      </div>
+      <div className="flex justify-center items-center">
+        <Button value={t("logout")} onClick={handleLogout} />
+      </div>
     </>
   );
 };
