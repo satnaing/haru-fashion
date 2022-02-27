@@ -41,7 +41,7 @@ const Home: React.FC<Props> = ({ products }) => {
       setIsFetching(false);
     };
     fetchData();
-  }, [isFetching]);
+  }, [isFetching, currentItems.length]);
 
   const handleSeemore = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
