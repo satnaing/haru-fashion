@@ -20,7 +20,6 @@ const Input: FC<Props> = ({
   extraClass,
   required = false,
   border = "",
-  id = "",
   label = "",
   onChange,
   value,
@@ -30,7 +29,6 @@ const Input: FC<Props> = ({
     className={`${
       border !== "" ? border : "border-2 border-gray500"
     } py-2 px-4 outline-none ${extraClass}`}
-    id={id}
     name={name}
     placeholder={placeholder}
     required={required}
