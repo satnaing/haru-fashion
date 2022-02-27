@@ -41,7 +41,7 @@ const Search: React.FC<Props> = ({ items, searchWord }) => {
         {/* ===== Heading & Filter Section ===== */}
         <div className="app-x-padding app-max-width w-full mt-8">
           <h1 className="text-3xl mb-2">
-            {t("search_results")}: "{searchWord}"
+            {t("search_results")}: &quot;{searchWord}&quot;
           </h1>
           {items.length > 0 && (
             <div className="flex justify-between mt-6">
