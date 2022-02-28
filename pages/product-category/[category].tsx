@@ -1,6 +1,8 @@
+import Link from "next/link";
+import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import Link from "next/link";
+import { Menu } from "@headlessui/react";
 import { useTranslations } from "next-intl";
 
 import Header from "../../components/Header/Header";
@@ -8,18 +10,22 @@ import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
 import Pagination from "../../components/Util/Pagination";
 import { apiProductsType, itemType } from "../../context/cart/cart-types";
-import axios from "axios";
+import DownArrow from "../../public/icons/DownArrow";
+
+type OrderType = "latest" | "price" | "price-desc";
 
 type Props = {
   items: itemType[];
   page: number;
   numberOfProducts: number;
+  orderby: OrderType;
 };
 
 const ProductCategory: React.FC<Props> = ({
   items,
   page,
   numberOfProducts,
+  orderby,
 }) => {
   const t = useTranslations("Category");
 
@@ -55,7 +61,7 @@ const ProductCategory: React.FC<Props> = ({
         {/* ===== Heading & Filter Section ===== */}
         <div className="app-x-padding app-max-width w-full mt-8">
           <h3 className="text-4xl mb-2 capitalize">{t(category as string)}</h3>
-          <div className="flex justify-between mt-6">
+          <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-0 justify-between mt-4 sm:mt-6">
             <span>
               {t("showing_from_to", {
                 from: firstIndex,
@@ -63,7 +69,7 @@ const ProductCategory: React.FC<Props> = ({
                 all: numberOfProducts,
               })}
             </span>
-            <span>{t("sort_by")}: Price</span>
+            <SortMenu orderby={orderby} />
           </div>
         </div>
 
@@ -75,7 +81,11 @@ const ProductCategory: React.FC<Props> = ({
             ))}
           </div>
           {category !== "new-arrivals" && (
-            <Pagination currentPage={page} lastPage={lastPage} />
+            <Pagination
+              currentPage={page}
+              lastPage={lastPage}
+              orderby={orderby}
+            />
           )}
         </div>
       </main>
@@ -89,7 +99,7 @@ const ProductCategory: React.FC<Props> = ({
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   locale,
-  query: { page = 1 },
+  query: { page = 1, orderby = "latest" },
 }) => {
   const paramCategory = params!.category as string;
 
@@ -106,10 +116,20 @@ export const getServerSideProps: GetServerSideProps = async ({
     numberOfProducts = 10;
   }
 
+  let order_by: string;
+
+  if (orderby === "price") {
+    order_by = "price";
+  } else if (orderby === "price-desc") {
+    order_by = "price.desc";
+  } else {
+    order_by = "createdAt.desc";
+  }
+
   const reqUrl =
     paramCategory === "new-arrivals"
       ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&limit=10`
-      : `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&offset=${start}&limit=10&category=${paramCategory}`;
+      : `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=${order_by}&offset=${start}&limit=10&category=${paramCategory}`;
 
   const res = await axios.get(reqUrl);
 
@@ -130,8 +150,86 @@ export const getServerSideProps: GetServerSideProps = async ({
       items,
       numberOfProducts,
       page: +page,
+      orderby,
     },
   };
+};
+
+const SortMenu: React.FC<{ orderby: OrderType }> = ({ orderby }) => {
+  const t = useTranslations("Navigation");
+  const router = useRouter();
+  const { category } = router.query;
+
+  let currentOrder: string;
+
+  if (orderby === "price") {
+    currentOrder = "sort_by_price";
+  } else if (orderby === "price-desc") {
+    currentOrder = "sort_by_price_desc";
+  } else {
+    currentOrder = "sort_by_latest";
+  }
+  return (
+    <Menu as="div" className="relative">
+      <Menu.Button as="a" href="#" className="flex items-center capitalize">
+        {t(currentOrder)} <DownArrow />
+      </Menu.Button>
+      <Menu.Items className="flex flex-col z-10 items-start text-xs sm:text-sm w-auto sm:right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none">
+        <Menu.Item>
+          {({ active }) => (
+            <button
+              type="button"
+              onClick={() =>
+                router.push(`/product-category/${category}?orderby=latest`)
+              }
+              className={`${
+                active ? "bg-gray100 text-gray500" : "bg-white"
+              } py-2 px-4 text-left w-full focus:outline-none whitespace-nowrap ${
+                currentOrder === "sort_by_latest" && "bg-gray500 text-gray100"
+              }`}
+            >
+              {t("sort_by_latest")}
+            </button>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <button
+              type="button"
+              onClick={() =>
+                router.push(`/product-category/${category}?orderby=price`)
+              }
+              className={`${
+                active ? "bg-gray100 text-gray500" : "bg-white"
+              } py-2 px-4 text-left w-full focus:outline-none whitespace-nowrap ${
+                currentOrder === "sort_by_price" && "bg-gray500 text-gray100"
+              }`}
+            >
+              {t("sort_by_price")}
+            </button>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <button
+              type="button"
+              onClick={() =>
+                router.push(`/product-category/${category}?orderby=price-desc`)
+              }
+              className={`${
+                active ? "bg-gray100 text-gray500" : "bg-white"
+              } py-2 px-4 text-left w-full focus:outline-none whitespace-nowrap ${
+                currentOrder === "sort_by_price_desc" &&
+                "bg-gray500 text-gray100"
+              }`}
+            >
+              {t("sort_by_price_desc")}
+            </button>
+          )}
+        </Menu.Item>
+      </Menu.Items>
+    </Menu>
+  );
 };
 
 export default ProductCategory;

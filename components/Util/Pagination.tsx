@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
-import { FC } from "react";
 import NextArrow from "../../public/icons/NextArrow";
 import PrevArrow from "../../public/icons/PrevArrow";
 
 type Props = {
   lastPage: number;
   currentPage: number;
+  orderby: "latest" | "price" | "price-desc";
 };
 
-const Pagination: FC<Props> = ({ lastPage, currentPage }) => {
+const Pagination: React.FC<Props> = ({ lastPage, currentPage, orderby }) => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -62,7 +62,9 @@ const Pagination: FC<Props> = ({ lastPage, currentPage }) => {
             aria-label="Navigate to Previous Page"
             onClick={() =>
               router.push(
-                `/product-category/${category}?page=${currentPage - 1}`
+                `/product-category/${category}?page=${
+                  currentPage - 1
+                }&orderby=${orderby}`
               )
             }
             className={`${
@@ -85,7 +87,9 @@ const Pagination: FC<Props> = ({ lastPage, currentPage }) => {
               <button
                 type="button"
                 onClick={() =>
-                  router.push(`/product-category/${category}?page=${num}`)
+                  router.push(
+                    `/product-category/${category}?page=${num}&orderby=${orderby}`
+                  )
                 }
                 className={`${
                   num === currentPage && "bg-gray500 text-gray100"
@@ -107,7 +111,9 @@ const Pagination: FC<Props> = ({ lastPage, currentPage }) => {
             aria-label="Navigate to Next Page"
             onClick={() =>
               router.push(
-                `/product-category/${category}?page=${currentPage + 1}`
+                `/product-category/${category}?page=${
+                  currentPage + 1
+                }&orderby=${orderby}`
               )
             }
             className={`${
