@@ -69,7 +69,7 @@ const ProductCategory: React.FC<Props> = ({
                 all: numberOfProducts,
               })}
             </span>
-            <SortMenu orderby={orderby} />
+            {category !== "new-arrivals" && <SortMenu orderby={orderby} />}
           </div>
         </div>
 
