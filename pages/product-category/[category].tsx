@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -8,7 +7,6 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
 import Pagination from "../../components/Util/Pagination";
-import useWindowSize from "../../components/Util/useWindowSize";
 import { apiProductsType, itemType } from "../../context/cart/cart-types";
 import axios from "axios";
 
@@ -23,9 +21,6 @@ const ProductCategory: React.FC<Props> = ({
   page,
   numberOfProducts,
 }) => {
-  const [itemPerPage, setItemPerPage] = useState(8);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [viewWidth] = useWindowSize();
   const t = useTranslations("Category");
 
   const router = useRouter();
@@ -79,7 +74,9 @@ const ProductCategory: React.FC<Props> = ({
               <Card key={item.id} item={item} />
             ))}
           </div>
-          <Pagination currentPage={page} lastPage={lastPage} />
+          {category !== "new-arrivals" && (
+            <Pagination currentPage={page} lastPage={lastPage} />
+          )}
         </div>
       </main>
 
@@ -98,14 +95,24 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const start = +page === 1 ? 0 : (+page - 1) * 10;
 
-  const numberOfProductsResponse = await axios.get(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products/count?category=${paramCategory}`
-  );
-  const numberOfProducts = +numberOfProductsResponse.data.count;
+  let numberOfProducts = 0;
 
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&offset=${start}&limit=10&category=${paramCategory}`
-  );
+  if (paramCategory !== "new-arrivals") {
+    const numberOfProductsResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products/count?category=${paramCategory}`
+    );
+    numberOfProducts = +numberOfProductsResponse.data.count;
+  } else {
+    numberOfProducts = 10;
+  }
+
+  const reqUrl =
+    paramCategory === "new-arrivals"
+      ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&limit=10`
+      : `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&offset=${start}&limit=10&category=${paramCategory}`;
+
+  const res = await axios.get(reqUrl);
+
   const fetchedProducts = res.data.data.map((product: apiProductsType) => ({
     ...product,
     img1: product.image1,
