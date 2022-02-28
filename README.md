@@ -3,7 +3,7 @@
 ![Haru-Fashion Responsive Design (2)](https://user-images.githubusercontent.com/53733092/139094836-3c75c8fa-4f7a-43a7-b8c8-7cf45af53b71.png)
 ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue) ![vercel](https://img.shields.io/github/deployments/satnaing/e-commerce/production?label=vercel&logo=vercel&logoColor=white) [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-An e-commerce web application developed with Next.JS and Firebase. Tailwind CSS is used for styling the components and React's Context API is used for state management. The application is fully responsive.
+An e-commerce web application developed with Next.JS and TypeScript. Tailwind CSS is used for styling the components and React's Context API is used for state management. Custom REST API is used as a backend ([Haru API](https://github.com/satnaing/haru-api)).
 
 ## Demo
 
@@ -14,27 +14,31 @@ An e-commerce web application developed with Next.JS and Firebase. Tailwind CSS 
 
 ## Lighthouse Score
 
-<img width="761" alt="Screen Shot 2022-02-22 at 8 16 41 PM" src="https://user-images.githubusercontent.com/53733092/155145631-0d8e604e-c92d-459e-810e-1c2e1dea9ea8.png">
+<p align="center">
+<img width="763" alt="Lighthouse" src="https://user-images.githubusercontent.com/53733092/155963931-9de8e33f-e77a-40fb-8cae-18ceffb057ad.png">
+</p>
 
 ## Features
 
-- 📱💻 Responsive Design
-- 🤍 Wishlist
-- 🛒 Add To Cart
-- 🧑🏻👩🏻 Different Category Page
-- 🛡️ Authentication (Register/Login/Logout)
-- ⬅️➡️ Pagination
-- ✨ Animation
-- 🌐 i18n (English & Burmese)
-- ⌨️ Keyboard Accessible
+- Progressive Web App (PWA) 🔥
+- Full-text Search 🔎
+- Responsive Design 📱💻
+- Wishlist 🤍
+- Add To Cart 🛒
+- Different Category Page 🧑🏻👩🏻🎒
+- Authentication (Register/Login/Logout) 🛡️
+- Pagination ⬅️➡️
+- Animation ✨
+- i18n (English & Burmese) 🌐
+- Keyboard Accessible ⌨️
 
 ## Tech Stack
 
-**Frontend** NextJS, React, TypeScript  
-**Styling** Tailwind CSS  
-**Design & Prototype** Figma  
-**State Management** ContextAPI  
-**Backend** Firebase  
+**Frontend** - NextJS, React, TypeScript  
+**Styling** - Tailwind CSS  
+**Design & Prototype** - Figma  
+**State Management** - ContextAPI  
+**Backend** - [Haru API](https://github.com/satnaing/haru-api) (Previous Version - Firebase)  
 **Containerization:** Docker  
 **Deployment** Vercel
 
