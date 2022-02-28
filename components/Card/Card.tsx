@@ -33,14 +33,14 @@ const Card: FC<Props> = ({ item }) => {
   };
 
   return (
-    <div
-      className={styles.card}
-      onMouseOver={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className={styles.card}>
       <div className={styles.imageContainer}>
         <Link href={itemLink}>
-          <a tabIndex={-1}>
+          <a
+            tabIndex={-1}
+            onMouseOver={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             {!isHovered && (
               <Image
                 src={img1 as string}
