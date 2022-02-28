@@ -43,7 +43,10 @@
     "all_rights_reserved": "All rights reserved.",
     "follow_us_on_social_media": "Follow us on Social Media",
     "view_all": "View All",
-    "no_result": "No Result"
+    "no_result": "No Result",
+    "sort_by_latest": "Sort by latest",
+    "sort_by_price": "Sort by price: low to high",
+    "sort_by_price_desc": "Sort by price: high to low"
   },
   "CartWishlist": {
     "wishlist": "Wishlist",
