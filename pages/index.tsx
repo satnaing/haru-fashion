@@ -69,8 +69,8 @@ const Home: React.FC<Props> = ({ products }) => {
                 imgAlt="New Arrivals"
               >
                 <LinkButton
-                  href="/coming-soon"
-                  extraClass="absolute bottom-10-per right-10-per z-20"
+                  href="/product-category/new-arrivals"
+                  extraClass="absolute bottom-10-per sm:right-10-per z-20"
                 >
                   {t("new_arrivals")}
                 </LinkButton>
