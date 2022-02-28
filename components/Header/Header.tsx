@@ -105,7 +105,7 @@ const Header: React.FC<Props> = ({ title }) => {
                 </Link>
               </li>
               <li>
-                <Link href="/coming-soon">
+                <Link href="/product-category/bags">
                   <a>{t("bags")}</a>
                 </Link>
               </li>
