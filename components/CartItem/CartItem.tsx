@@ -8,8 +8,10 @@ import Item from "./Item";
 import LinkButton from "../Buttons/LinkButton";
 import { roundDecimal } from "../Util/utilFunc";
 import { useCart } from "../../context/cart/CartProvider";
+import { useRouter } from "next/router";
 
 export default function CartItem() {
+  const router = useRouter();
   const t = useTranslations("CartWishlist");
   const [open, setOpen] = useState(false);
   const [animate, setAnimate] = useState("");
@@ -148,6 +150,8 @@ export default function CartItem() {
                     </LinkButton>
                     <Button
                       value={t("checkout")}
+                      onClick={() => router.push(`/checkout`)}
+                      disabled={cart.length < 1 ? true : false}
                       extraClass="text-center"
                       size="lg"
                     />
