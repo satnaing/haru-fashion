@@ -11,15 +11,24 @@ import GhostButton from "../components/Buttons/GhostButton";
 import { GetStaticProps } from "next";
 import { roundDecimal } from "../components/Util/utilFunc";
 import { useCart } from "../context/cart/CartProvider";
+import { useRouter } from "next/router";
 
 // let w = window.innerWidth;
 
 const ShoppingCart = () => {
   const t = useTranslations("CartWishlist");
-  const [deli, setDeli] = useState("Yangon");
+  const router = useRouter();
+  const [deli, setDeli] = useState("Pickup");
   const { cart, addOne, removeItem, deleteItem, clearCart } = useCart();
 
   let subtotal = 0;
+
+  let deliFee = 0;
+  if (deli === "Yangon") {
+    deliFee = 2.0;
+  } else if (deli === "Others") {
+    deliFee = 7.0;
+  }
 
   return (
     <div>
@@ -161,6 +170,22 @@ const ShoppingCart = () => {
                       <input
                         type="radio"
                         name="deli"
+                        value="Pickup"
+                        id="pickup"
+                        checked={deli === "Pickup"}
+                        onChange={() => setDeli("Pickup")}
+                      />{" "}
+                      <label htmlFor="pickup" className="cursor-pointer">
+                        {t("store_pickup")}
+                      </label>
+                    </div>
+                    <span>{t("free")}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <div>
+                      <input
+                        type="radio"
+                        name="deli"
                         value="Yangon"
                         id="ygn"
                         checked={deli === "Yangon"}
@@ -193,14 +218,14 @@ const ShoppingCart = () => {
               </div>
               <div className="flex justify-between py-3">
                 <span>{t("grand_total")}</span>
-                <span>
-                  $ {roundDecimal(subtotal + (deli === "Yangon" ? 2.0 : 7.0))}
-                </span>
+                <span>$ {roundDecimal(subtotal + deliFee)}</span>
               </div>
               <Button
                 value={t("proceed_to_checkout")}
                 size="xl"
                 extraClass="w-full"
+                onClick={() => router.push(`/checkout`)}
+                disabled={cart.length < 1 ? true : false}
               />
             </div>
           </div>
