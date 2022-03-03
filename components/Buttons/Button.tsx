@@ -5,6 +5,7 @@ type Props = {
   extraClass?: string;
   size?: "sm" | "lg" | "xl";
   value: string;
+  disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -15,6 +16,7 @@ const Button: FC<Props> = ({
   onClick,
   children,
   type = "button",
+  disabled = false,
 }) => {
   let btnSize = "";
   if (size === "sm") {
@@ -28,7 +30,12 @@ const Button: FC<Props> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`text-xl sm:text-base ${btnSize} border border-gray500 bg-gray500 text-gray100 hover:text-gray300 ${extraClass}`}
+      disabled={disabled}
+      className={`text-xl sm:text-base ${btnSize} border border-gray500 ${
+        disabled
+          ? "bg-gray400 text-gray300 cursor-not-allowed"
+          : "bg-gray500 text-gray100 hover:text-gray300"
+      } ${extraClass}`}
     >
       {value} <span className="ml-1">{children}</span>
     </button>
