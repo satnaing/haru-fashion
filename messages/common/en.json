@@ -51,6 +51,7 @@
   "CartWishlist": {
     "wishlist": "Wishlist",
     "continue_shopping": "Continue Shopping",
+    "product": "Product",
     "product_image": "Product Image",
     "product_name": "Product Name",
     "product_details": "Product Details",
@@ -69,6 +70,8 @@
     "view_cart": "View Cart",
     "amount": "Amount",
     "delivery": "Delivery",
+    "free": "Free",
+    "store_pickup": "Store Pickup",
     "within_yangon": "Within Yangon",
     "other_cities": "Other Cities",
     "grand_total": "Grand Total",
@@ -76,7 +79,16 @@
     "cart_totals": "Cart Totals",
     "clear_cart": "Clear Cart",
     "cart_is_empty": "Cart is empty!",
-    "shopping_cart": "Shopping Cart"
+    "shopping_cart": "Shopping Cart",
+
+    "place_order": "Place Order",
+    "cash_on_delivery": "Cash on Delivery",
+    "bank_transfer": "Bank Transfer",
+    "bank_transfer_desc": "Make your payment directly into our CB, AYA, Kpay.",
+    "name": "Name",
+    "shipping_address": "Shipping Address",
+    "phone": "Phone Number",
+    "email_address": "Email Address"
   },
   "Others": {
     "page_not_found": "Oops! Page Not Found!",

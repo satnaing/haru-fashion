@@ -51,6 +51,7 @@
   "CartWishlist": {
     "wishlist": "လိုချင်သောစာရင်း",
     "continue_shopping": "စျေးဝယ်ခြင်းကို ဆက်လုပ်ပါ။",
+    "product": "ပစ္စည်း",
     "product_image": "ပစ္စည်းဓာတ်ပုံ",
     "product_details": "ပစ္စည်းအမျိုးအမည်",
     "product_name": "ပစ္စည်းအမျိုးအမည်",
@@ -69,6 +70,8 @@
     "view_cart": "စျေးခြင်းကိုကြည့်ရန်",
     "amount": "စုစုပေါင်း",
     "delivery": "ပို့ဆောင်ခ",
+    "free": "အခမဲ့",
+    "store_pickup": "ဆိုင်တွင်လာယူမည်",
     "within_yangon": "ရန်ကုန်မြို့တွင်း",
     "other_cities": "အခြားမြို့သို့",
     "grand_total": "စုစုပေါင်း ကုန်ကျစရိတ်",
@@ -76,7 +79,16 @@
     "cart_totals": "ဈေးခြင်းရှိပစ္စည်းအားလုံးပေါင်း",
     "clear_cart": "အကုန်ပယ်ဖျက်မည်",
     "cart_is_empty": "စျေးခြင်းထဲတွင် ပစ္စည်းမရှိပါ",
-    "shopping_cart": "စျေးခြင်း"
+    "shopping_cart": "စျေးခြင်း",
+
+    "place_order": "အော်ဒါတင်မည်",
+    "cash_on_delivery": "ပစ္စည်းရောက်ငွေချေ",
+    "bank_transfer": "ဘဏ်မှငွေလွှဲ",
+    "bank_transfer_desc": "ကျွန်ုပ်တို့၏ CB၊ AYA၊ Kpay မှ တိုက်ရိုက်ငွေပေးချေပါ။",
+    "name": "အမည်",
+    "shipping_address": "နေရပ်လိပ်စာ",
+    "phone": "ဖုန်း",
+    "email_address": "အီးမေးလ်လိပ်စာ"
   },
   "Others": {
     "page_not_found": "ဘယ်ဆီကိုမင်းရောက်နေလဲ",
