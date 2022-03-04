@@ -51,14 +51,14 @@ const Home: React.FC<Props> = ({ products }) => {
   };
 
   return (
-    <div>
+    <>
       {/* ===== Header Section ===== */}
       <Header />
 
       {/* ===== Carousel Section ===== */}
       <Slideshow />
 
-      <main id="main-content">
+      <main id="main-content" className="-mt-20">
         {/* ===== Category Section ===== */}
         <section className="w-full h-auto py-10 border border-b-2 border-gray100">
           <div className="app-max-width app-x-padding h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -161,7 +161,7 @@ const Home: React.FC<Props> = ({ products }) => {
 
       {/* ===== Footer Section ===== */}
       <Footer />
-    </div>
+    </>
   );
 };
 
