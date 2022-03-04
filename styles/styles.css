@@ -2,71 +2,35 @@ html {
   scroll-behavior: smooth;
 }
 
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: #282828;
+  font-size: 1.5rem !important;
+  font-weight: bold;
+  padding: 0.5rem 0.875rem;
+  border-radius: 100%;
+  background-color: #ddd;
+}
+
+.swiper-button-prev::after {
+  margin-left: 5rem;
+}
+
+.swiper-button-next::after {
+  margin-right: 5rem;
+}
+
+@media only screen and (max-width: 769px) {
+  .swiper-button-prev::after {
+    margin-left: 1rem;
+  }
+
+  .swiper-button-next::after {
+    margin-right: 1rem;
+  }
+}
+
 .swiper-slide {
   width: 100% !important;
   margin: auto !important;
 }
-
-/* Custom React Slideshow Images
-.react-slideshow-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.react-slideshow-container .nav {
-  z-index: 10;
-}
-.react-slideshow-container .default-nav {
-  height: 30px;
-  background: rgba(255, 255, 255, 0.6);
-  width: 30px;
-  border: 0;
-  text-align: center;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-.react-slideshow-container .default-nav:hover,
-.react-slideshow-container .default-nav:focus {
-  background: #fff;
-  color: #666;
-  outline: 0;
-}
-.react-slideshow-container .default-nav.disabled:hover {
-  cursor: not-allowed;
-}
-.react-slideshow-container .default-nav:first-of-type {
-  position: absolute;
-  left: 80px;
-  margin-right: -30px;
-  border-right: 0;
-  border-top: 0;
-}
-.react-slideshow-container .default-nav:last-of-type {
-  position: absolute;
-  right: 80px;
-  margin-left: -30px;
-}
-.react-slideshow-container + ul.indicators {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-top: 20px;
-} */
