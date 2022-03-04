@@ -19,7 +19,6 @@
     "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-slideshow-image": "^3.4.6",
     "swiper": "^6.6.2"
   },
   "devDependencies": {
