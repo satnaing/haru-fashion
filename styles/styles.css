@@ -30,19 +30,19 @@ html {
   }
 }
 
-/* ===== Card Swiper pagination ===== */
+/* ===== Custom Swiper pagination ===== */
 .card-swiper .swiper-pagination-bullets {
   bottom: 0 !important;
 }
 
-.card-swiper .swiper-pagination-bullet {
-  width: 1rem;
-  border-radius: 0;
-  height: 0.35rem;
+.swiper-pagination-bullet {
+  width: 1rem !important;
+  border-radius: 0 !important;
+  height: 0.35rem !important;
 }
 
-.card-swiper .swiper-pagination-bullet-active {
-  background-color: #282828;
+.swiper-pagination-bullet-active {
+  background-color: #282828 !important;
 }
 
 /* .swiper-slide {
