@@ -30,7 +30,22 @@ html {
   }
 }
 
-.swiper-slide {
+/* ===== Card Swiper pagination ===== */
+.card-swiper .swiper-pagination-bullets {
+  bottom: 0 !important;
+}
+
+.card-swiper .swiper-pagination-bullet {
+  width: 1rem;
+  border-radius: 0;
+  height: 0.35rem;
+}
+
+.card-swiper .swiper-pagination-bullet-active {
+  background-color: #282828;
+}
+
+/* .swiper-slide {
   width: 100% !important;
   margin: auto !important;
-}
+} */

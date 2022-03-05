@@ -272,15 +272,16 @@ const Product: React.FC<Props> = ({ product, products }) => {
         <div className="recSection my-8 app-max-width app-x-padding">
           <h2 className="text-3xl mb-6">{t("you_may_also_like")}</h2>
           <Swiper
-            slidesPerView={1}
-            centeredSlides={true}
-            spaceBetween={0}
+            slidesPerView={2}
+            // centeredSlides={true}
+            spaceBetween={10}
             loop={true}
             grabCursor={true}
             pagination={{
               clickable: true,
+              type: "bullets",
             }}
-            className="mySwiper sm:hidden"
+            className="mySwiper card-swiper sm:hidden"
           >
             {products.map((item) => (
               <SwiperSlide key={item.id}>
