@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import TopNav from "./TopNav";
 import WhistlistIcon from "../../public/icons/WhistlistIcon";
 import UserIcon from "../../public/icons/UserIcon";
-import LoginForm from "../LoginForm/LoginForm";
+import AuthForm from "../Auth/AuthForm";
 import SearchForm from "../SearchForm/SearchForm";
 import CartItem from "../CartItem/CartItem";
 import Menu from "../Menu/Menu";
@@ -140,9 +140,9 @@ const Header: React.FC<Props> = ({ title }) => {
                 <SearchForm />
               </li>
               <li>
-                <LoginForm>
+                <AuthForm>
                   <UserIcon />
-                </LoginForm>
+                </AuthForm>
               </li>
               <li>
                 <Link href="/wishlist" passHref>

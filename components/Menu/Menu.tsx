@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 
 import MenuIcon from "../../public/icons/MenuIcon";
-import LoginForm from "../LoginForm/LoginForm";
+import AuthForm from "../Auth/AuthForm";
 import WhistlistIcon from "../../public/icons/WhistlistIcon";
 import UserIcon from "../../public/icons/UserIcon";
 import SearchIcon from "../../public/icons/SearchIcon";
@@ -170,10 +170,10 @@ export default function Menu() {
                     </Link>
                     <hr className="border border-gray300 w-full mt-2" />
                     <div className="w-full text-xl py-2 my-3 flex justify-between">
-                      <LoginForm extraClass="flex justify-between w-full">
+                      <AuthForm extraClass="flex justify-between w-full">
                         <span>{auth.user ? t("profile") : t("login")}</span>
                         <UserIcon />
-                      </LoginForm>
+                      </AuthForm>
                     </div>
                     <hr className="border border-gray300 w-full" />
                     <Link href="/wishlist">
