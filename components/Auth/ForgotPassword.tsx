@@ -7,29 +7,27 @@ import Button from "../Buttons/Button";
 import Input from "../Input/Input";
 
 type Props = {
-  onRegister: () => void;
-  onForgotPassword: () => void;
+  onLogin: () => void;
   errorMsg: string;
   setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
   setSuccessMsg: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Login: React.FC<Props> = ({
-  onRegister,
-  onForgotPassword,
+const ForgotPassword: React.FC<Props> = ({
+  onLogin,
   errorMsg,
   setErrorMsg,
   setSuccessMsg,
 }) => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const t = useTranslations("LoginRegister");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const loginResponse = await auth.login!(email, password);
-    if (loginResponse.success) {
+    const forgotPasswordResponse = await auth.forgotPassword!(email);
+    console.log(forgotPasswordResponse);
+    if (forgotPasswordResponse.success) {
       setSuccessMsg("login_successful");
     } else {
       setErrorMsg("incorrect_email_password");
@@ -40,9 +38,9 @@ const Login: React.FC<Props> = ({
     <>
       <Dialog.Title
         as="h3"
-        className="text-4xl text-center my-8 font-medium leading-6 text-gray-900"
+        className="text-3xl text-center my-8 font-medium leading-10 text-gray-900"
       >
-        {t("login")}
+        {t("forgot_password")}
       </Dialog.Title>
       <form onSubmit={handleSubmit} className="mt-2">
         <Input
@@ -55,53 +53,24 @@ const Login: React.FC<Props> = ({
           onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
           value={email}
         />
-        <Input
-          type="password"
-          placeholder={`${t("password")} *`}
-          name="password"
-          required
-          extraClass="w-full focus:border-gray500 mb-4"
-          border="border-2 border-gray300"
-          onChange={(e) => setPassword((e.target as HTMLInputElement).value)}
-          value={password}
-        />
         {errorMsg !== "" && (
           <div className="text-red text-sm mb-4 whitespace-nowrap">
             {t(errorMsg)}
           </div>
         )}
-        <div className="flex justify-between mb-4">
-          <div className="flex items-center text-gray400 focus:outline-none">
-            <input
-              type="checkbox"
-              id="remember"
-              name="remember"
-              className="w-4 h-4 mb-0 mr-2"
-            />
-            <label htmlFor="remember" className="text-sm">
-              {t("remember_me")}
-            </label>
-          </div>
-          <span
-            onClick={onForgotPassword}
-            className="text-gray400 text-sm hover:text-gray500 focus:outline-none focus:text-gray500"
-          >
-            {t("forgot_password")}
-          </span>
-        </div>
         <Button
           type="submit"
-          value={t("login")}
+          value={t("submit")}
           extraClass="w-full text-center text-xl mb-4"
           size="lg"
         />
         <div className="text-center text-gray400">
-          {t("not_member")}{" "}
+          {t("go_back_to")}{" "}
           <span
-            onClick={onRegister}
+            onClick={onLogin}
             className="text-gray500 focus:outline-none focus:underline cursor-pointer"
           >
-            {t("register")}
+            {t("login")}
           </span>
         </div>
       </form>
@@ -109,4 +78,4 @@ const Login: React.FC<Props> = ({
   );
 };
 
-export default Login;
+export default ForgotPassword;

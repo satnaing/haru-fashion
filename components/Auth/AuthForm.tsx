@@ -6,6 +6,9 @@ import { useAuth } from "../../context/AuthContext";
 import Button from "../Buttons/Button";
 import Login from "./Login";
 import Register from "./Register";
+import ForgotPassword from "./ForgotPassword";
+
+type CurrentPage = "login" | "register" | "forgot-password";
 
 type Props = {
   extraClass?: string;
@@ -14,11 +17,48 @@ type Props = {
 
 const LoginForm: FC<Props> = ({ extraClass, children }) => {
   const auth = useAuth();
-  const [isLoginPage, setisLoginPage] = useState(true);
+  const [currentPage, setCurrentPage] = useState<CurrentPage>("login");
   const [open, setOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const t = useTranslations("LoginRegister");
+
+  let modalBox: JSX.Element;
+  if (auth.user) {
+    modalBox = (
+      <SuccessModal successMsg={successMsg} setSuccessMsg={setSuccessMsg} />
+    );
+  } else {
+    if (currentPage === "login") {
+      modalBox = (
+        <Login
+          onRegister={() => setCurrentPage("register")}
+          onForgotPassword={() => setCurrentPage("forgot-password")}
+          errorMsg={errorMsg}
+          setErrorMsg={setErrorMsg}
+          setSuccessMsg={setSuccessMsg}
+        />
+      );
+    } else if (currentPage === "register") {
+      modalBox = (
+        <Register
+          onLogin={() => setCurrentPage("login")}
+          errorMsg={errorMsg}
+          setErrorMsg={setErrorMsg}
+          setSuccessMsg={setSuccessMsg}
+        />
+      );
+    } else {
+      modalBox = (
+        <ForgotPassword
+          onLogin={() => setCurrentPage("login")}
+          errorMsg={errorMsg}
+          setErrorMsg={setErrorMsg}
+          setSuccessMsg={setSuccessMsg}
+        />
+      );
+    }
+  }
 
   function closeModal() {
     setOpen(false);
@@ -90,26 +130,32 @@ const LoginForm: FC<Props> = ({ extraClass, children }) => {
                 >
                   &#10005;
                 </button>
-                {auth.user ? (
+                {modalBox}
+                {/* {auth.user ? (
                   <SuccessModal
                     successMsg={successMsg}
                     setSuccessMsg={setSuccessMsg}
                   />
-                ) : isLoginPage ? (
+                ) : (if (currentPage === "login") {(
                   <Login
-                    onRegister={() => setisLoginPage(false)}
+                    onRegister={() => setCurrentPage("login")}
                     errorMsg={errorMsg}
                     setErrorMsg={setErrorMsg}
                     setSuccessMsg={setSuccessMsg}
                   />
-                ) : (
+                )} else if (currentPage === "register") {(
                   <Register
-                    onLogin={() => setisLoginPage(true)}
+                    onLogin={() => setCurrentPage("register")}
                     errorMsg={errorMsg}
                     setErrorMsg={setErrorMsg}
                     setSuccessMsg={setSuccessMsg}
                   />
-                )}
+                )} else {(
+                  <ForgotPassword onRegister={() => setCurrentPage("login")}
+                  errorMsg={errorMsg}
+                  setErrorMsg={setErrorMsg}
+                  setSuccessMsg={setSuccessMsg} />
+                )})} */}
               </div>
             </Transition.Child>
           </div>
