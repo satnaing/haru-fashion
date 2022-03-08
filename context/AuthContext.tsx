@@ -3,7 +3,7 @@ import { getCookie, removeCookies, setCookies } from "cookies-next";
 import React, { useState, useEffect, useContext, createContext } from "react";
 
 type authType = {
-  user: null | userType;
+  user: null | User;
   register?: (
     email: string,
     fullname: string,
@@ -34,7 +34,8 @@ const initialAuth: authType = {
 
 const authContext = createContext<authType>(initialAuth);
 
-type userType = {
+type User = {
+  id: number;
   email: string;
   fullname: string;
   shippingAddress?: string;
@@ -56,7 +57,7 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
-  const [user, setUser] = useState<userType | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const initialAuth = getCookie("user");
@@ -89,7 +90,8 @@ function useProvideAuth() {
         }
       );
       const registerResponse = response.data;
-      const user: userType = {
+      const user: User = {
+        id: +registerResponse.id,
         email,
         fullname,
         shippingAddress,
@@ -126,7 +128,8 @@ function useProvideAuth() {
         }
       );
       const loginResponse = response.data;
-      const user: userType = {
+      const user: User = {
+        id: +loginResponse.data.id,
         email,
         fullname: loginResponse.data.fullname,
         phone: loginResponse.data.phone,
