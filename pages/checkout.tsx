@@ -52,6 +52,7 @@ const ShoppingCart = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [completedOrder, setCompletedOrder] = useState<Order | null>(null);
   const [orderError, setOrderError] = useState("");
+  const [sendEmail, setSendEmail] = useState(false);
 
   const products = cart.map((item) => ({
     id: item.id,
@@ -95,6 +96,7 @@ const ShoppingCart = () => {
           paymentType: paymentMethod,
           deliveryType: deli,
           products,
+          sendEmail,
         }
       );
       if (res.data.success) {
@@ -482,6 +484,29 @@ const ShoppingCart = () => {
                           </svg>
                         </span>
                       </span>
+                    </label>
+                  </div>
+
+                  <div className="my-8">
+                    <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                      <input
+                        type="checkbox"
+                        name="send-email-toggle"
+                        id="send-email-toggle"
+                        checked={sendEmail}
+                        onChange={() => setSendEmail(!sendEmail)}
+                        className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray300 appearance-none cursor-pointer"
+                      />
+                      <label
+                        htmlFor="send-email-toggle"
+                        className="toggle-label block overflow-hidden h-6 rounded-full bg-gray300 cursor-pointer"
+                      ></label>
+                    </div>
+                    <label
+                      htmlFor="send-email-toggle"
+                      className="text-xs text-gray-700"
+                    >
+                      {t("send_order_email")}
                     </label>
                   </div>
                 </div>
