@@ -27,6 +27,16 @@
     }
   }
 }
+
+.toggle-checkbox:checked {
+  @apply: right-0 border-gray500;
+  right: 0;
+  border-color: #282828;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply: bg-gray500;
+  background-color: #282828;
+}
 /* @layer utilities { */
 /* .carousel {
     position: relative;
