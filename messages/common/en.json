@@ -108,7 +108,8 @@
     "cash_delivery_note": "Your purchased items will be delivered within a week.",
     "store_pickup_note": "You can pickup your purchased item(s) in our store within 7 days.",
     "thank_you_for_purchasing": " Thank you for purchasing with us.",
-    "our_banking_details": "Our Banking Details"
+    "our_banking_details": "Our Banking Details",
+    "send_order_email": "Send order detail to my email"
   },
   "Others": {
     "page_not_found": "Oops! Page Not Found!",
