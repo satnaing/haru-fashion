@@ -11,6 +11,7 @@ type Props = {
   label?: string;
   onChange?: (e: FormEvent<HTMLInputElement>) => void;
   value?: string;
+  readOnly?: boolean;
 };
 
 const Input: FC<Props> = ({
@@ -23,9 +24,11 @@ const Input: FC<Props> = ({
   label = "",
   onChange,
   value,
+  readOnly = false,
 }) => (
   <input
     type={type}
+    readOnly={readOnly}
     className={`${
       border !== "" ? border : "border-2 border-gray500"
     } py-2 px-4 outline-none ${extraClass}`}
