@@ -116,7 +116,7 @@ const Header: React.FC<Props> = ({ title }) => {
               </li>
             </ul>
 
-            {/* Haru Logo */}
+            {/* Tiara Logo */}
             <div className="flex-1 flex justify-center items-center cursor-pointer">
               <div className="w-32 h-auto">
                 <Link href="/">
