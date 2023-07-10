@@ -85,7 +85,7 @@ const Header: React.FC<Props> = ({ title }) => {
       >
         <div className="app-max-width w-full">
           <div
-            className={`flex justify-between align-baseline app-x-padding ${styles.mainMenu}`}
+            className={`flex flex-row-reverse justify-between align-baseline app-x-padding ${styles.mainMenu}`}
           >
             {/* Hamburger Menu and Mobile Nav */}
             <div className="flex-1 lg:flex-0 lg:hidden">
@@ -116,17 +116,17 @@ const Header: React.FC<Props> = ({ title }) => {
               </li>
             </ul>
 
-            {/* Haru Logo */}
+            {/* Tiara Logo */}
             <div className="flex-1 flex justify-center items-center cursor-pointer">
               <div className="w-32 h-auto">
                 <Link href="/">
                   <a>
                     <Image
                       className="justify-center"
-                      src="/logo.svg"
+                      src="/logo/tiara-logo.png"
                       alt="Picture of the author"
-                      width={220}
-                      height={50}
+                      width={947}
+                      height={236}
                       layout="responsive"
                     />
                   </a>
@@ -164,7 +164,7 @@ const Header: React.FC<Props> = ({ title }) => {
                   {/* </a> */}
                 </Link>
               </li>
-              <li>
+              <li className='ml-0 mr-auto'>
                 <CartItem />
               </li>
             </ul>
