@@ -35,9 +35,9 @@ const initialAuth: authType = {
 const authContext = createContext<authType>(initialAuth);
 
 type User = {
-  id: number;
-  email: string;
-  fullname: string;
+  id?: number;
+  email?: string;
+  fullname?: string;
   shippingAddress?: string;
   phone?: string;
   token: string;
@@ -57,7 +57,7 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const initialAuth = getCookie("user");
@@ -67,9 +67,6 @@ function useProvideAuth() {
     }
   }, []);
 
-  useEffect(() => {
-    setCookies("user", user);
-  }, [user]);
 
   const register = async (
     email: string,
@@ -121,22 +118,18 @@ function useProvideAuth() {
   const login = async (email: string, password: string) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/login`,
+        `https://tiarazar.com/api/login/username`,
         {
-          email,
+          username:email,
           password,
         }
       );
       const loginResponse = response.data;
-      const user: User = {
-        id: +loginResponse.data.id,
-        email,
-        fullname: loginResponse.data.fullname,
-        phone: loginResponse.data.phone,
-        shippingAddress: loginResponse.data.shippingAddress,
-        token: loginResponse.token,
+      const user = {
+        token: loginResponse.token ,
       };
       setUser(user);
+      setCookies("tak", user);
       return {
         success: true,
         message: "login_successful",

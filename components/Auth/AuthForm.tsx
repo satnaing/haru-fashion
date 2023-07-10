@@ -137,7 +137,7 @@ const LoginForm: FC<Props> = ({ extraClass, children }) => {
                     setSuccessMsg={setSuccessMsg}
                   />
                 ) : (if (currentPage === "login") {(
-                  <Login
+                  <Index
                     onRegister={() => setCurrentPage("login")}
                     errorMsg={errorMsg}
                     setErrorMsg={setErrorMsg}
