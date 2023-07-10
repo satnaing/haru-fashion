@@ -151,7 +151,9 @@
     "you_may_also_like": "You may also like"
   },
   "LoginRegister": {
-    "login": "Login",
+    "login": "ورود",
+    "loginToTiara": "ورود به تیــارا",
+    "loginDesc": "برای ورود و استفاده از خدمات تیارا شماره و رمز خود را وارد کنید",
     "logout": "Logout",
     "register": "Register",
     "submit": "Submit",
@@ -159,8 +161,10 @@
     "name": "Name",
     "shipping_address": "Shipping Address",
     "phone": "Phone",
-    "email_address": "Email Address",
-    "password": "Password",
+    "email_address": "ایمیل",
+    "email_address_placeholder": "ایمیل خود را وارد کنید",
+    "password": "رمزعبور",
+    "password_placeholder": "رمزعبور خود را وارد کنید",
     "remember_me": "Remember me?",
     "forgot_password": "Forgot your password?",
     "not_member": "Not a member?",

@@ -38,7 +38,7 @@ const Home: React.FC<Props> = ({ products }) => {
   //       img1: product.image1,
   //       img2: product.image2,
   //     }));
-  //     setCurrentItems((productl;.p s) => [...products, ...fetchedProducts]);
+  //     setCurrentItems((products) => [...products, ...fetchedProducts]);
   //     setIsFetching(false);
   //   };
   //   fetchData();
@@ -167,26 +167,28 @@ const Home: React.FC<Props> = ({ products }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  let products: itemType[] = [];
-  // const res = await axios.get(
-  //   `${ApiRoutes.BASE_URL+ApiRoutes.CLIENT_CATEGORIES}`
-  // );
-  // console.log(res)
-  // const fetchedProducts = res.data;
-  // fetchedProducts.data.forEach((product: apiProductsType) => {
-  //   products = [
-  //     ...products,
-  //     {
-  //       id: product.id,
-  //       name: product.name,
-  //       price: product.price,
-  //       img1: product.image1,
-  //       img2: product.image2,
-  //     },
-  //   ];
-  // });
+//   let products: itemType[] = [];
+//   const res = await axios.get(
+//     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/products?order_by=createdAt.desc&limit=10`
+//   );
+//   const fetchedProducts = res.data;
+//   fetchedProducts.data.forEach((product: apiProductsType) => {
+//     products = [
+//       ...products,
+//       {
+//         id: product.id,
+//         name: product.name,
+//         price: product.price,
+//         img1: product.image1,
+//         img2: product.image2,
+//       },
+//     ];
+//   });
   return {
     props: {
+      messages: {
+        ...require(`../messages/common/${locale}.json`),
+      },
       // products,
     }, // will be passed to the page component as props
   };

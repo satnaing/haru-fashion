@@ -2,8 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "styles.css";
+
+@font-face {
+  font-family: "iranYekanLight";
+  src: url("../public/fonts/woff/iranyekanweblightfanum.woff");
+}
+@font-face {
+  font-family: "iranYekanMedium";
+  src: url("../public/fonts/woff/iranyekanwebmediumfanum.woff");
+}
+@font-face {
+  font-family: "iranYekanRegular";
+  src: url("../public/fonts/woff/iranyekanwebregularfanum.woff");
+}
+@font-face {
+  font-family: "iranYekanBold";
+  src: url("../public/fonts/woff/iranyekanwebboldfanum.woff");
+}
+@font-face {
+  font-family: "iranYekanBlack";
+  src: url("../public/fonts/woff/iranyekanwebblackfanum.woff");
+}
 
 @layer components {
   .app-x-padding {
@@ -26,6 +46,10 @@
       right: 10%;
     }
   }
+}
+
+*{
+  font-family: iranYekanRegular;
 }
 
 .toggle-checkbox:checked {
