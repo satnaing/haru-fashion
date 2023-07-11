@@ -26,7 +26,7 @@ An e-commerce web application developed with Next.JS and TypeScript. Tailwind CS
 - Wishlist 🤍
 - Add To Cart 🛒
 - Different Category Page 🧑🏻👩🏻🎒
-- Authentication (Register/Login/Logout) 🛡️
+- Authentication (Register/Index/Logout) 🛡️
 - Pagination ⬅️➡️
 - Animation ✨
 - i18n (English & Burmese) 🌐
