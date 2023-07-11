@@ -9,9 +9,9 @@ import {useRouter} from "next/router";
 
 const Index = () => {
     const auth = useAuth();
+    const t = useTranslations("LoginRegister");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const t = useTranslations("LoginRegister");
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
     const router = useRouter()
