@@ -43,14 +43,14 @@ const TopNav = () => {
   return (
     <div className="bg-gray500 text-gray100 hidden lg:block">
       <div className="flex justify-between app-max-width">
-        <ul className={`flex ${styles.topLeftMenu}`}>
+        <ul className={`flex ${styles.topRightMenu}`}>
           <li>
-            <a href="#" aria-label="Haru Fashion Facebook Page">
+            <a href="#" aria-label="Tiara">
               <FacebookLogo />
             </a>
           </li>
           <li>
-            <a href="#" aria-label="Haru Fashion Instagram Account">
+            <a href="#" aria-label="Tiara">
               <InstagramLogo />
             </a>
           </li>

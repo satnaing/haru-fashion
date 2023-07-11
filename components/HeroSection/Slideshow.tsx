@@ -16,32 +16,32 @@ SwiperCore.use([Pagination, Navigation, Autoplay]);
 const sliders = [
   {
     id: 2,
-    image: "/bg-img/curly_hair_girl-1.jpg",
-    imageTablet: "/bg-img/curly_hair_girl-1-tablet.png",
-    imageMobile: "/bg-img/curly_hair_girl-1_mobile.jpg",
-    subtitle: "50% off",
-    titleUp: "New Cocktail",
-    titleDown: "Dresses",
+    image: "/images/img1.png",
+    imageTablet: "/images/img1.png",
+    imageMobile: "/images/img1.png",
+    subtitle: "50% تخفیف",
+    titleUp: "جدیدترین ها",
+    titleDown: "جواهرات",
     rightText: false,
   },
   {
     id: 1,
-    image: "/bg-img/curly_hair_white-1.jpg",
-    imageTablet: "/bg-img/curly_hair_white-1-tablet.png",
-    imageMobile: "/bg-img/curly_hair_white-1_mobile.jpg",
-    subtitle: "Spring Revolution",
-    titleUp: "Night Summer",
-    titleDown: "Dresses",
+    image: "/images/img1.png",
+    imageTablet: "/images/img1.png",
+    imageMobile: "/images/img1.png",
+    subtitle: "جدیدترین ها",
+    titleUp: "ست شب",
+    titleDown: "دستبند",
     rightText: true,
   },
   {
     id: 3,
-    image: "/bg-img/monigote.jpg",
-    imageTablet: "/bg-img/monigote-tablet.png",
-    imageMobile: "/bg-img/monigote_mobile.jpg",
-    subtitle: "Spring promo",
-    titleUp: "The Weekend",
-    titleDown: "Promotions",
+    image: "/images/img1.png",
+    imageTablet: "/images/img1.png",
+    imageMobile: "/images/img1.png",
+    subtitle: "جدیدترین ها",
+    titleUp: "ست شب",
+    titleDown: "دستبند",
     rightText: false,
   },
 ];
@@ -51,7 +51,7 @@ const Slideshow = () => {
 
   return (
     <>
-      <div className="relative -top-20 slide-container w-full z-20">
+      <div className="relative slide-container w-full z-20">
         <Swiper
           slidesPerView={1}
           spaceBetween={0}
@@ -74,7 +74,7 @@ const Slideshow = () => {
                 <Image
                   layout="responsive"
                   src={slider.image}
-                  width={1144}
+                  width={572}
                   height={572}
                   alt={"some name"}
                 />
@@ -83,7 +83,7 @@ const Slideshow = () => {
                 <Image
                   layout="responsive"
                   src={slider.imageTablet}
-                  width={820}
+                  width={720}
                   height={720}
                   alt={"some name"}
                 />
@@ -92,7 +92,7 @@ const Slideshow = () => {
                 <Image
                   layout="responsive"
                   src={slider.imageMobile}
-                  width={428}
+                  width={800}
                   height={800}
                   alt={"some name"}
                 />

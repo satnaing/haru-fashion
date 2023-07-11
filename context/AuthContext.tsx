@@ -1,22 +1,24 @@
 import axios from "axios";
-import { getCookie, removeCookies, setCookies } from "cookies-next";
-import React, { useState, useEffect, useContext, createContext } from "react";
+import {getCookie, removeCookies, setCookies} from "cookies-next";
+import React, {createContext, useContext, useEffect, useState} from "react";
+import {ApiRoutes} from "../enums/ApiRoutes";
 
 type authType = {
   user: null | User;
   register?: (
-    email: string,
-    fullname: string,
-    password: string,
-    shippingAddress: string,
-    phone: string
+      email: string,
+      fullname: string,
+      password: string,
+      shippingAddress: string,
+      phone: string,
+
   ) => Promise<{
     success: boolean;
     message: string;
   }>;
   login?: (
-    email: string,
-    password: string
+      email: string,
+      password: string
   ) => Promise<{
     success: boolean;
     message: string;
@@ -35,20 +37,22 @@ const initialAuth: authType = {
 const authContext = createContext<authType>(initialAuth);
 
 type User = {
-  id: number;
-  email: string;
-  fullname: string;
+  id?: number;
+  email?: string;
+  fullname?: string;
   shippingAddress?: string;
   phone?: string;
   token: string;
+  role?:string
 };
 
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().
-export function ProvideAuth({ children }: { children: React.ReactNode }) {
+export function ProvideAuth({children}: { children: React.ReactNode }) {
   const auth = useProvideAuth();
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
+
 // Hook for child components to get the auth object ...
 // ... and re-render when it changes.
 export const useAuth = () => {
@@ -67,27 +71,27 @@ function useProvideAuth() {
     }
   }, []);
 
-  useEffect(() => {
-    setCookies("user", user);
-  }, [user]);
+  // useEffect(() => {
+  //   setCookies("user", user);
+  // }, [user]);
 
   const register = async (
-    email: string,
-    fullname: string,
-    password: string,
-    shippingAddress: string,
-    phone: string
+      email: string,
+      fullname: string,
+      password: string,
+      shippingAddress: string,
+      phone: string
   ) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/register`,
-        {
-          email,
-          fullname,
-          password,
-          shippingAddress,
-          phone,
-        }
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/register`,
+          {
+            email,
+            fullname,
+            password,
+            shippingAddress,
+            phone,
+          }
       );
       const registerResponse = response.data;
       const user: User = {
@@ -121,22 +125,24 @@ function useProvideAuth() {
   const login = async (email: string, password: string) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/login`,
-        {
-          email,
-          password,
-        }
+          ApiRoutes.BASE_URL + ApiRoutes.USER_LOGIN,
+          {
+            mobile: email,
+            password,
+          }
       );
       const loginResponse = response.data;
       const user: User = {
-        id: +loginResponse.data.id,
-        email,
-        fullname: loginResponse.data.fullname,
-        phone: loginResponse.data.phone,
-        shippingAddress: loginResponse.data.shippingAddress,
+        // id: +loginResponse.data.id,
+        // email,
+        // fullname: loginResponse.data.fullname,
+        // phone: loginResponse.data.phone,
+        // shippingAddress: loginResponse.data.shippingAddress,
+        role: loginResponse.role,
         token: loginResponse.token,
       };
       setUser(user);
+      setCookies("user", JSON.stringify(user));
       return {
         success: true,
         message: "login_successful",
@@ -152,10 +158,10 @@ function useProvideAuth() {
   const forgotPassword = async (email: string) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/forgot-password`,
-        {
-          email,
-        }
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/forgot-password`,
+          {
+            email,
+          }
       );
       const forgotPasswordResponse = response.data;
       setUser(user);
