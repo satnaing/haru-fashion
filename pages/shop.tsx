@@ -46,10 +46,13 @@ const Home = () => {
             <main id="main-content">
                 <Slideshow/>
                 <CategoryContainer data={data.slice(0, 4)}/>
-                <ProductsContainer title={t("best_selling")} desc={t("best_selling_desc")} products={data.slice(9,10)[0]?.products}/>
+                <ProductsContainer title={t("best_selling")}
+                                   desc={t("best_selling_desc")}
+                                   products={data.slice(9, 10)[0]?.products}/>
                 <CategoryContainer data={data.slice(4, 8)}/>
                 <div className="border-gray100 border-b-2"></div>
-                <AboutUsContainer title={t("about_us")} desc={t("about_us_desc")}/>
+                <AboutUsContainer title={t("about_us")}
+                                  desc={t("about_us_desc")}/>
             </main>
 
 
