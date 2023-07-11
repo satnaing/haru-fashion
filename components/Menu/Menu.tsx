@@ -68,7 +68,7 @@ export default function Menu() {
           open={open}
           onClose={closeModal}
         >
-          <div className="min-h-screen">
+          <div className="min-h-screen rtl">
             <Transition.Child as={Fragment}>
               <Dialog.Overlay className="fixed inset-0 bg-gray500 opacity-50" />
             </Transition.Child>
@@ -106,23 +106,23 @@ export default function Menu() {
                   </button>
                 </div>
 
-                <div className="mb-10">
-                  <div className="itemContainer px-6 w-full flex flex-col justify-around items-center">
-                    <form
-                      className="flex w-full justify-between items-center mt-5 mb-5 border-gray300 border-b-2"
-                      onSubmit={handleSubmit}
-                    >
-                      <SearchIcon extraClass="text-gray300 w-6 h-6" />
-                      <input
-                        type="search"
-                        placeholder={t("search_anything")}
-                        className="px-4 py-2 w-full focus:outline-none text-xl"
-                        onChange={handleChange}
-                      />
-                    </form>
+                <div className="mb-10 ">
+                  <div className="itemContainer px-6 w-full flex flex-col justify-around items-center ">
+                    {/*<form*/}
+                    {/*  className="flex w-full justify-between items-center mt-5 mb-5 border-gray300 border-b-2"*/}
+                    {/*  onSubmit={handleSubmit}*/}
+                    {/*>*/}
+                    {/*  <SearchIcon extraClass="text-gray300 w-6 h-6" />*/}
+                    {/*  <input*/}
+                    {/*    type="search"*/}
+                    {/*    placeholder={t("search_anything")}*/}
+                    {/*    className="px-4 py-2 w-full focus:outline-none text-xl"*/}
+                    {/*    onChange={handleChange}*/}
+                    {/*  />*/}
+                    {/*</form>*/}
                     <Link href="/product-category/men">
                       <a
-                        className="w-full text-xl hover:bg-gray100 text-left py-2"
+                        className="w-full text-xl hover:bg-gray100 text-right py-2"
                         onClick={closeModal}
                       >
                         {t("men")}
@@ -130,31 +130,15 @@ export default function Menu() {
                     </Link>
                     <Link href="/product-category/women">
                       <a
-                        className="w-full text-xl hover:bg-gray100 text-left py-2"
+                        className="w-full text-xl hover:bg-gray100 text-right py-2"
                         onClick={closeModal}
                       >
                         {t("women")}
                       </a>
                     </Link>
-                    <Link href="/product-category/bags">
-                      <a
-                        className="w-full text-xl hover:bg-gray100 text-left py-2"
-                        onClick={closeModal}
-                      >
-                        {t("bags")}
-                      </a>
-                    </Link>
-                    <Link href="/blogs">
-                      <a
-                        className="w-full text-xl hover:bg-gray100 text-left py-2"
-                        onClick={closeModal}
-                      >
-                        {t("blogs")}
-                      </a>
-                    </Link>
                     <Link href="/about">
                       <a
-                        className="w-full text-xl hover:bg-gray100 text-left py-2"
+                        className="w-full text-xl hover:bg-gray100 text-right py-2"
                         onClick={closeModal}
                       >
                         {t("about_us")}
@@ -162,7 +146,7 @@ export default function Menu() {
                     </Link>
                     <Link href="/contact">
                       <a
-                        className="w-full text-xl hover:bg-gray100 text-left py-2"
+                        className="w-full text-xl hover:bg-gray100 text-right py-2"
                         onClick={closeModal}
                       >
                         {t("contact_us")}
@@ -194,111 +178,111 @@ export default function Menu() {
                     <hr className="border border-gray300 w-full" />
 
                     {/* Locale Dropdown */}
-                    <HMenu
-                      as="div"
-                      className="relative bg-gray100 mt-4 mb-2 w-full"
-                    >
-                      <HMenu.Button
-                        as="a"
-                        href="#"
-                        className="flex justify-center items-center py-2 px-4 text-center"
-                      >
-                        {locale === "en" ? t("english") : t("myanmar")}{" "}
-                        <DownArrow />
-                      </HMenu.Button>
-                      <HMenu.Items
-                        className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"
-                        style={{ zIndex: 9999 }}
-                      >
-                        <HMenu.Item>
-                          <Link href={asPath} locale="en">
-                            <a
-                              className={`${
-                                locale === "en"
-                                  ? "bg-gray200 text-gray500"
-                                  : "bg-white text-gray500"
-                              } py-2 px-4 text-center focus:outline-none`}
-                            >
-                              {t("english")}
-                            </a>
-                          </Link>
-                        </HMenu.Item>
-                        <HMenu.Item>
-                          <Link href={asPath} locale="my">
-                            <a
-                              className={`${
-                                locale === "my"
-                                  ? "bg-gray200 text-gray500"
-                                  : "bg-white text-gray500"
-                              } py-2 px-4 text-center focus:outline-none`}
-                            >
-                              {t("myanmar")}
-                            </a>
-                          </Link>
-                        </HMenu.Item>
-                      </HMenu.Items>
-                    </HMenu>
+                    {/*<HMenu*/}
+                    {/*  as="div"*/}
+                    {/*  className="relative bg-gray100 mt-4 mb-2 w-full"*/}
+                    {/*>*/}
+                    {/*  <HMenu.Button*/}
+                    {/*    as="a"*/}
+                    {/*    href="#"*/}
+                    {/*    className="flex justify-center items-center py-2 px-4 text-center"*/}
+                    {/*  >*/}
+                    {/*    {locale === "en" ? t("english") : t("myanmar")}{" "}*/}
+                    {/*    <DownArrow />*/}
+                    {/*  </HMenu.Button>*/}
+                    {/*  <HMenu.Items*/}
+                    {/*    className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"*/}
+                    {/*    style={{ zIndex: 9999 }}*/}
+                    {/*  >*/}
+                    {/*    <HMenu.Item>*/}
+                    {/*      <Link href={asPath} locale="en">*/}
+                    {/*        <a*/}
+                    {/*          className={`${*/}
+                    {/*            locale === "en"*/}
+                    {/*              ? "bg-gray200 text-gray500"*/}
+                    {/*              : "bg-white text-gray500"*/}
+                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
+                    {/*        >*/}
+                    {/*          {t("english")}*/}
+                    {/*        </a>*/}
+                    {/*      </Link>*/}
+                    {/*    </HMenu.Item>*/}
+                    {/*    <HMenu.Item>*/}
+                    {/*      <Link href={asPath} locale="my">*/}
+                    {/*        <a*/}
+                    {/*          className={`${*/}
+                    {/*            locale === "my"*/}
+                    {/*              ? "bg-gray200 text-gray500"*/}
+                    {/*              : "bg-white text-gray500"*/}
+                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
+                    {/*        >*/}
+                    {/*          {t("myanmar")}*/}
+                    {/*        </a>*/}
+                    {/*      </Link>*/}
+                    {/*    </HMenu.Item>*/}
+                    {/*  </HMenu.Items>*/}
+                    {/*</HMenu>*/}
 
-                    {/* Currency Dropdown */}
-                    <HMenu as="div" className="relative bg-gray100 my-2 w-full">
-                      <HMenu.Button
-                        as="a"
-                        href="#"
-                        className="flex justify-center items-center py-2 px-4 text-center"
-                      >
-                        {t("usd")} <DownArrow />
-                      </HMenu.Button>
-                      <HMenu.Items
-                        className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"
-                        style={{ zIndex: 9999 }}
-                      >
-                        <HMenu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={`${
-                                active
-                                  ? "bg-gray100 text-gray500"
-                                  : "bg-white text-gray500"
-                              } py-2 px-4 text-center focus:outline-none`}
-                            >
-                              {t("usd")}
-                            </a>
-                          )}
-                        </HMenu.Item>
-                        <HMenu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={`${
-                                active
-                                  ? "bg-gray100 text-gray500"
-                                  : "bg-white text-gray500"
-                              } py-2 px-4 text-center focus:outline-none`}
-                            >
-                              {t("mmk")}
-                            </a>
-                          )}
-                        </HMenu.Item>
-                      </HMenu.Items>
-                    </HMenu>
+                    {/*/!* Currency Dropdown *!/*/}
+                    {/*<HMenu as="div" className="relative bg-gray100 my-2 w-full">*/}
+                    {/*  <HMenu.Button*/}
+                    {/*    as="a"*/}
+                    {/*    href="#"*/}
+                    {/*    className="flex justify-center items-center py-2 px-4 text-center"*/}
+                    {/*  >*/}
+                    {/*    {t("usd")} <DownArrow />*/}
+                    {/*  </HMenu.Button>*/}
+                    {/*  <HMenu.Items*/}
+                    {/*    className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"*/}
+                    {/*    style={{ zIndex: 9999 }}*/}
+                    {/*  >*/}
+                    {/*    <HMenu.Item>*/}
+                    {/*      {({ active }) => (*/}
+                    {/*        <a*/}
+                    {/*          href="#"*/}
+                    {/*          className={`${*/}
+                    {/*            active*/}
+                    {/*              ? "bg-gray100 text-gray500"*/}
+                    {/*              : "bg-white text-gray500"*/}
+                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
+                    {/*        >*/}
+                    {/*          {t("usd")}*/}
+                    {/*        </a>*/}
+                    {/*      )}*/}
+                    {/*    </HMenu.Item>*/}
+                    {/*    <HMenu.Item>*/}
+                    {/*      {({ active }) => (*/}
+                    {/*        <a*/}
+                    {/*          href="#"*/}
+                    {/*          className={`${*/}
+                    {/*            active*/}
+                    {/*              ? "bg-gray100 text-gray500"*/}
+                    {/*              : "bg-white text-gray500"*/}
+                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
+                    {/*        >*/}
+                    {/*          {t("mmk")}*/}
+                    {/*        </a>*/}
+                    {/*      )}*/}
+                    {/*    </HMenu.Item>*/}
+                    {/*  </HMenu.Items>*/}
+                    {/*</HMenu>*/}
 
-                    <div className="flex my-10 w-2/5 space-x-6 justify-center">
-                      <a
-                        href="#"
-                        className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"
-                        aria-label="Haru Fashion Facebook Page"
-                      >
-                        <FacebookLogo extraClass="h-8" />
-                      </a>
-                      <a
-                        href="#"
-                        className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"
-                        aria-label="Haru Fashion Facebook Page"
-                      >
-                        <InstagramLogo extraClass="h-8" />
-                      </a>
-                    </div>
+                    {/*<div className="flex my-10 w-2/5 space-x-6 justify-center">*/}
+                    {/*  <a*/}
+                    {/*    href="#"*/}
+                    {/*    className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"*/}
+                    {/*    aria-label="Haru Fashion Facebook Page"*/}
+                    {/*  >*/}
+                    {/*    <FacebookLogo extraClass="h-8" />*/}
+                    {/*  </a>*/}
+                    {/*  <a*/}
+                    {/*    href="#"*/}
+                    {/*    className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"*/}
+                    {/*    aria-label="Haru Fashion Facebook Page"*/}
+                    {/*  >*/}
+                    {/*    <InstagramLogo extraClass="h-8" />*/}
+                    {/*  </a>*/}
+                    {/*</div>*/}
                   </div>
                 </div>
               </div>

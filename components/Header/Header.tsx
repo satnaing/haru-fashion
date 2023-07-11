@@ -23,7 +23,7 @@ const Header: React.FC<Props> = ({ title }) => {
   const t = useTranslations("Navigation");
   const { wishlist } = useWishlist();
   const [animate, setAnimate] = useState("");
-  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(true);
   const [didMount, setDidMount] = useState<boolean>(false); // to disable Can't perform a React state Warning
 
   // Calculate Number of Wishlist
@@ -43,20 +43,20 @@ const Header: React.FC<Props> = ({ title }) => {
     }, 1000);
   }, [handleAnimate]);
 
-  const handleScroll = useCallback(() => {
-    const offset = window.scrollY;
-    if (offset > 30) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  }, [setScrolled]);
+  // const handleScroll = useCallback(() => {
+  //   const offset = window.scrollY;
+  //   if (offset > 30) {
+  //     setScrolled(true);
+  //   } else {
+  //     setScrolled(false);
+  //   }
+  // }, [setScrolled]);
 
   useEffect(() => {
     setDidMount(true);
-    window.addEventListener("scroll", handleScroll);
+    // window.addEventListener("scroll", handleScroll);
     return () => setDidMount(false);
-  }, [handleScroll]);
+  }, []);
 
   if (!didMount) {
     return null;
