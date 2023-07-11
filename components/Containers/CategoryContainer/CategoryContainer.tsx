@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import CategoryItem from "../Reusable/CategoryItem";
+import CategoryItem from "../../Reusable/CategoryItem";
 
 type CatItemsType = {
     images:string[],

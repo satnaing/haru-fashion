@@ -121,8 +121,8 @@
     "new_arrivals": "New Arrivals",
     "women_collection": "Women Collection",
     "men_collection": "Men Collection",
-    "best_selling": "Best Selling",
-    "best_selling_desc": "Here are some of our best selling products. Explore yourself in the latest trends.",
+    "best_selling": "پرفروش ها",
+    "best_selling_desc": "پرفروش ترین محصولات اخیر",
     "add_to_cart": "Add to Cart",
     "testimonial": "Testimonial",
     "featured_products": "Featured Products",
@@ -186,5 +186,11 @@
     "search_results": "Search results",
     "no_result": "No Result",
     "showing_results": "Showing {products} result(s)"
+  },
+  "Product": {
+    "weight": "محدوده وزن",
+    "wage": "محدوده دستمزد",
+    "gram": "گرم",
+    "toman": "تومان"
   }
 }

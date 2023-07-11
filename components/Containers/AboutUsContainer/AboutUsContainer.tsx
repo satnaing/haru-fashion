@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import ourShop from "../../public/images/img1.png";
+import ourShop from "../../../public/images/img1.png";
 
 const AboutUsContainer = ({title,desc}:{title:string,desc:string}) => {
     return (

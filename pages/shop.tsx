@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {GetStaticProps} from "next";
-import Image from "next/image";
 import axios from "axios";
 import {useTranslations} from "next-intl";
 import Header from "../components/Header/Header";
 import Slideshow from "../components/HeroSection/Slideshow";
-import ourShop from "../public/images/img1.png";
 import {ApiRoutes} from "../enums/ApiRoutes";
 import {getCookie} from "cookies-next";
-import CategoryContainer from "../components/CategoryContainer/CategoryContainer";
-import AboutUsContainer from "../components/AboutUsContainer/AboutUsContainer";
+import CategoryContainer from "../components/Containers/CategoryContainer/CategoryContainer";
+import AboutUsContainer from "../components/Containers/AboutUsContainer/AboutUsContainer";
+import ProductsContainer from "../components/Containers/ProductsContainer/ProductsContainer";
 
 type CatItemsType = {
     images: string[],
@@ -20,7 +19,6 @@ type CatItemsType = {
     isActive: boolean,
     products?: any[]
 };
-
 
 const config = {
     headers: {Authorization: `Bearer ${getCookie("user") && JSON.parse(getCookie("user") as string).token}`}
@@ -42,27 +40,13 @@ const Home = () => {
     }, [isFetching, data.length]);
 
 
-    const handleSeemore = async (
-        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-    ) => {
-        e.preventDefault();
-        setIsFetching(true);
-    };
-
     return (
         <>
             <Header/>
             <main id="main-content">
                 <Slideshow/>
                 <CategoryContainer data={data.slice(0, 4)}/>
-                <section className="app-max-width w-full h-full flex flex-col justify-center mt-16 mb-20">
-                    <div className="flex justify-center">
-                        <div className="w-3/4 sm:w-1/2 md:w-1/3 text-center mb-8">
-                            <h2 className="text-3xl mb-4">{t("best_selling")}</h2>
-                            <span>{t("best_selling_desc")}</span>
-                        </div>
-                    </div>
-                </section>
+                <ProductsContainer title={t("best_selling")} desc={t("best_selling_desc")} products={data.slice(9,10)[0]?.products}/>
                 <CategoryContainer data={data.slice(4, 8)}/>
                 <div className="border-gray100 border-b-2"></div>
                 <AboutUsContainer title={t("about_us")} desc={t("about_us_desc")}/>
@@ -138,4 +122,11 @@ export default Home;
 }
 {/*<Footer />*/
 }
+
+// const handleSeemore = async (
+//     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+// ) => {
+//     e.preventDefault();
+//     setIsFetching(true);
+// };
 
