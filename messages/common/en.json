@@ -20,7 +20,7 @@
     "help": "Help",
     "store": "Store",
     "keep_in_touch": "Keep In Touch",
-    "about_us": "About Us",
+    "about_us": "درباره ما",
     "contact_us": "Contact Us",
     "our_policy": "Our Policy",
     "store_location": "Store Location",
@@ -128,9 +128,11 @@
     "featured_products": "Featured Products",
     "see_more": "See More",
     "loading": "Loading...",
-    "shop_now": "Shop Now",
+    "shop_now": "مشاهده محصولات",
     "our_shop": "Our Shop",
-    "our_shop_desc": "Stop by our stores to learn the stories behind our products, get a personal styling session, or shop the latest in person. See our store locations."
+    "about_us": "درباره تیــارا",
+    "about_us_desc": "تیــارا سامانه هوشمند جهت ثبت سفارشات ساخت جواهرات برای بنکداران و فروشندگان بازار طلا می باشد و هدف آن ساده کردن فرآیند ثبت سفارشات ساخت طلا است"
+
   },
   "Category": {
     "home": "Home",

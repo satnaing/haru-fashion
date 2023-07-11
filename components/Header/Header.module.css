@@ -4,11 +4,11 @@
 }
 
 .topLeftMenu li {
-  @apply text-xs my-2 mr-4 hover:text-gray300;
+  @apply text-xs my-2 ml-4 hover:text-gray300;
 }
 
 .topRightMenu li {
-  @apply text-xs my-2 ml-4 hover:text-gray300;
+  @apply text-xs my-2 mr-4 hover:text-gray300;
 }
 
 /* Main Menu */
@@ -31,9 +31,9 @@
   @apply mr-0;
 }
 
-.rightMenu li {
-  @apply ml-12;
-}
+/*.rightMenu li {*/
+/*  @apply ml-12;*/
+/*}*/
 
 .rightMenu li:not(:last-child) {
   @apply hidden lg:block;

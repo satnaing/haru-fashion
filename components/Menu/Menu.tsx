@@ -49,12 +49,12 @@ export default function Menu() {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative text-right">
         <button
           type="button"
           aria-label="Hamburger Menu"
           onClick={openModal}
-          className="focus:outline-none"
+          className="focus:outline-none transform rotate-180"
         >
           <MenuIcon />
         </button>
@@ -90,7 +90,7 @@ export default function Menu() {
                     <a>
                       <Image
                         className="justify-center"
-                        src="/logo.svg"
+                        src="/logo/tiara-logo.png"
                         alt="Picture of the author"
                         width={85}
                         height={22}
