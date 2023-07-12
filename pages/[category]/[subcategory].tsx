@@ -2,39 +2,61 @@ import React, {useEffect, useState} from 'react';
 import Header from "../../components/Header/Header";
 import {useRouter} from "next/router";
 import ProductItem from "../../components/Reusable/ProductItem";
-import {GetServerSideProps, GetStaticProps} from "next";
+import {GetServerSideProps} from "next";
+import useFetch from "../../hooks/useFetch";
+import {ApiRoutes} from "../../enums/ApiRoutes";
+import {AxiosRequestConfig} from "axios";
+
+type categoryType = {
+    subCategories:any[],
+    _id:string,
+    title:string,
+    slug:string
+    thumbnail:string
+}
+type fetchType = {
+    request:(axiosParams: AxiosRequestConfig<any>) => void,
+    data:categoryType,
+    error:any | null
+    isLoaded:boolean
+}
 
 const SubCategoryPage = () => {
-  const [data, setData] = useState(["", "", "", "", "", "", "", "", "", "", "", "", "", "",])
-  const router = useRouter()
-  const {subcategory} = router.query
-  useEffect(() => {
-    subcategory && console.log("AAA")
-  }, [subcategory])
-  return (
-      <>
-        <Header/>
-        <div className='grid grid-cols-4 gap-2 p-2'>
-          {data.map((item, index) => {
-            return (
-                <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
-                  <ProductItem image={"img1"} name={"name"} weight={"8-18"} wage={"40"} />
-                </div>
-            )
-          })}
-        </div>
-      </>
-  );
+    const router = useRouter()
+    const {subcategory} = router.query
+    const {data, error, isLoaded, request}:fetchType = useFetch()
+
+    useEffect(() => {
+        subcategory &&
+        request({
+            url:ApiRoutes.CLIENT_CATEGORIES+"/"+subcategory+"/products"
+        })
+    }, [subcategory])
+
+    return (
+        <>
+            <Header/>
+            <div className='grid grid-cols-4 gap-2 p-2'>
+                {data.subCategories.map((item, index) => {
+                    return (
+                        <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
+                            <ProductItem image={"img1"} name={"name"} weight={"8-18"} wage={"40"}/>
+                        </div>
+                    )
+                })}
+            </div>
+        </>
+    );
 };
 
 export default SubCategoryPage;
 
 export const getServerSideProps: GetServerSideProps = async ({locale}) => {
-  return {
-    props: {
-      messages: {
-        ...require(`../../messages/common/${locale}.json`),
-      },
-    },
-  };
+    return {
+        props: {
+            messages: {
+                ...require(`../../messages/common/${locale}.json`),
+            },
+        },
+    };
 };

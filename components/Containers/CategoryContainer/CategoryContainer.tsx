@@ -5,7 +5,7 @@ type CatItemsType = {
     images:string[],
     thumbnail:string,
     title:string
-    titleEn:string,
+    slug:string,
     _id:string,
     isActive:boolean,
     products?:any[]
@@ -22,7 +22,7 @@ const CategoryContainer:FC<Props> = ({data}) => {
                 {data?.map((item, index) => {
                     return (
                         <div className='col-span-2 lg:col-span-1' key={"CAT_ITEM_" + index}>
-                            <CategoryItem  title={item.title} img={item.thumbnail} name={item.titleEn} link={"/"+item.titleEn}/>
+                            <CategoryItem  title={item.title} img={item.thumbnail} name={item.slug} link={"/"+item.slug}/>
                         </div>
                     )})}
             </div>

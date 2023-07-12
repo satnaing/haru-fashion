@@ -14,7 +14,7 @@ type CatItemsType = {
     images: string[],
     thumbnail: string,
     title: string
-    titleEn: string,
+    slug: string,
     _id: string,
     isActive: boolean,
     products?: any[]

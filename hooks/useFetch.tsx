@@ -7,7 +7,7 @@ const instance = axios.create({
     baseURL: ApiRoutes.BASE_URL,
 });
 
-axios.interceptors.request.use(req => {
+instance.interceptors.request.use(req => {
     const cookie = getCookie("user") && JSON.parse(getCookie("user") as string)
     req.headers = {
         'Authorization': `Bearer ${cookie.token}`
@@ -15,7 +15,7 @@ axios.interceptors.request.use(req => {
     return req;
 });
 
-axios.interceptors.response.use(
+instance.interceptors.response.use(
     res => res,
     err => {
         console.log(err)
@@ -23,7 +23,7 @@ axios.interceptors.response.use(
 );
 
 const UseFetch = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any>(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
     const request = (axiosParams:AxiosRequestConfig) => {
