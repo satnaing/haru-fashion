@@ -25,6 +25,8 @@ import { apiProductsType, itemType } from "../../context/cart/cart-types";
 import { useWishlist } from "../../context/wishlist/WishlistProvider";
 import { useCart } from "../../context/cart/CartProvider";
 import HeartSolid from "../../public/icons/HeartSolid";
+import Breadcrumb from "../../components/Product/Breadcrumb";
+import InfoContaincer from "../../components/Product/InfoContaincer";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
@@ -74,23 +76,9 @@ const Product: React.FC<Props> = ({ product, products }) => {
 
       <main id="main-content">
         {/* ===== Breadcrumb Section ===== */}
-        <div className="bg-lightgreen h-16 w-full flex items-center border-t-2 border-gray200">
-          <div className="app-x-padding app-max-width w-full">
-            <div className="breadcrumb">
-              <Link href="/">
-                <a className="text-gray400">{t("home")}</a>
-              </Link>{" "}
-              /{" "}
-              <Link href={`/product-category/${product.categoryName}`}>
-                <a className="text-gray400 capitalize">
-                  {t(product.categoryName as string)}
-                </a>
-              </Link>{" "}
-              / <span>{product.name}</span>
-            </div>
-          </div>
-        </div>
+        {/*<Breadcrumb category={{title:"",url:""}} name={""} />*/}
         {/* ===== Main Content Section ===== */}
+        {/*<InfoContaincer  />*/}
         <div className="itemSection app-max-width app-x-padding flex flex-col md:flex-row">
           <div className="imgSection w-full md:w-1/2 h-full flex">
             <div className="hidden sm:block w-full sm:w-1/4 h-full space-y-4 my-4">

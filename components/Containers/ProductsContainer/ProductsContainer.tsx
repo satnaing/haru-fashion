@@ -17,9 +17,11 @@ const ProductsContainer:FC<Props> = ({title,desc,products}) => {
             </div>
             <div className='grid grid-cols-4 gap-x-2 gap-y-6 px-4'>
                 {products?.map((item,index)=>{
-                    return(
+                  const weightText =item.minWeight===item.maxWeight ? item.minWeight  :item.minWeight+"-"+item.maxWeight
+
+                  return(
                         <div  key={"PRODUCT_ITEM_"+index} className='col-span-2 lg:col-span-1'>
-                        <ProductItem weight={item.minWeight+"-"+item.maxWeight} name={item.title}
+                        <ProductItem weight={weightText} name={item.title} link={"products/"+item.slug}
                                      image={item.thumbnail} wage={item.wage}/>
                         </div>
                     )

@@ -180,9 +180,14 @@
     "showing_results": "Showing {products} result(s)"
   },
   "Product": {
+    "addToCart": "افزودن به سبد خرید",
+    "pay": "پرداخت",
+    "count": "تعداد",
+    "size": "سایز",
+    "color": "رنگ",
     "weight": "محدوده وزن",
     "wage": "محدوده دستمزد",
     "gram": "گرم",
-    "toman": "تومان"
+    "percent": "درصد"
   }
 }

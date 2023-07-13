@@ -12,8 +12,8 @@ const CategoryItem: FC<CatItemType> = ({title, img, name, link}) => {
   return (
       <div className="w-full">
         <OverlayContainer
-            imgSrc={"/images/" + img + ".png"}
-            imgSrc2={"/images/" + img + ".png"}
+            imgSrc={img ?? "/images/img1.png"}
+            imgSrc2={img ?? "/images/img1.png"}
             imgAlt={name}
         >
           <LinkButton

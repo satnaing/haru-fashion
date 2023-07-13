@@ -34,10 +34,10 @@ const CategoryPage = () => {
             {
                 isLoaded && data &&
                 <div className='grid grid-cols-4 gap-2 p-2'>
-                    {["","","",...data.subCategories].map((item, index) => {
+                    {data.subCategories.map((item, index) => {
                         return (
                             <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
-                                <CategoryItem title={item.title??"ssss"} img={item.thumbnail??"img1"} name={item.slug??"aaaaa"}
+                                <CategoryItem title={item.title} img={item.thumbnail} name={item.slug}
                                               link={"/" + category + "/" + item.slug}/>
                             </div>
                         )
