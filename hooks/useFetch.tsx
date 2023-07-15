@@ -31,6 +31,7 @@ const UseFetch = () => {
             .then(response => {
                 setIsLoaded(true);
                 setData(response.data);
+
             })
             .catch(error => {
                 setError(error);

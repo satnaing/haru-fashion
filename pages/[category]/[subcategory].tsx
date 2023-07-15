@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Header from "../../components/Header/Header";
 import {useRouter} from "next/router";
 import ProductItem from "../../components/Reusable/ProductItem";
@@ -8,7 +8,7 @@ import {ApiRoutes} from "../../enums/ApiRoutes";
 import {AxiosRequestConfig} from "axios";
 
 type categoryType = {
-    subCategories:any[],
+    products:any[],
     _id:string,
     title:string,
     slug:string
@@ -37,10 +37,10 @@ const SubCategoryPage = () => {
         <>
             <Header/>
             <div className='grid grid-cols-4 gap-2 p-2'>
-                {data.subCategories.map((item, index) => {
+                {data && isLoaded && data.products.map((item, index) => {
                     return (
                         <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
-                            <ProductItem image={"img1"} name={"name"} weight={"8-18"} wage={"40"}/>
+                            <ProductItem image={item.thumbnail} name={item.title} link={"products/"+item.slug} weight={"8-18"} wage={"40"}/>
                         </div>
                     )
                 })}

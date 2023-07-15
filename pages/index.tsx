@@ -19,10 +19,9 @@ const Index = () => {
     e.preventDefault();
     const loginResponse = await auth.login!(phone, password);
     if (loginResponse.success) {
-      // setSuccessMsg("login_successful");
+      setSuccessMsg("login_successful");
       router.push("/shop")
     } else {
-      alert("")
       setErrorMsg("incorrect_email_password");
     }
   };
