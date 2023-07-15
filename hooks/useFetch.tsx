@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import axios, {AxiosRequestConfig} from "axios";
 import {getCookie} from "cookies-next";
 import {ApiRoutes} from "../enums/ApiRoutes";
+import {ResponseTypes} from "../types";
+import {toast} from "react-toastify";
 
 const instance = axios.create({
     baseURL: ApiRoutes.BASE_URL,
@@ -23,22 +25,36 @@ instance.interceptors.response.use(
 );
 
 const UseFetch = () => {
-    const [data, setData] = useState<any>(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [error, setError] = useState(null);
-    const request = (axiosParams:AxiosRequestConfig) => {
-        instance.request(axiosParams)
-            .then(response => {
-                setIsLoaded(true);
-                setData(response.data);
+    const [response, setResponse] = useState({
+        response: null,
+        isLoaded: false,
+        error: null,
+    });
 
+    const request = async (axiosParams:AxiosRequestConfig) => {
+        try {
+           const res = await instance.request(axiosParams)
+           await setResponse({
+                isLoaded: true,
+                response: res.data,
+                error: null
             })
-            .catch(error => {
-                setError(error);
+            return Promise.resolve(res.data)
+        }catch (e:any){
+            setResponse({
+                isLoaded: true,
+                response: null,
+                error: e
             });
+            toast.error("خطا در درخواست",{
+                theme:"colored",
+                position:toast.POSITION.BOTTOM_CENTER
+            })
+            return Promise.reject(e.message)
+        }
     };
 
-    return {error, isLoaded, data, request}
+    return {...response,request} as any
 };
 
 export default UseFetch;
