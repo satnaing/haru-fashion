@@ -1,86 +1,34 @@
-# Haru-Fashion E-commerce Web Application
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-![Haru-Fashion Responsive Design (2)](https://user-images.githubusercontent.com/53733092/139094836-3c75c8fa-4f7a-43a7-b8c8-7cf45af53b71.png)
-![ts](https://badgen.net/badge/Built%20With/TypeScript/blue) ![vercel](https://img.shields.io/github/deployments/satnaing/e-commerce/production?label=vercel&logo=vercel&logoColor=white) [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+## Getting Started
 
-An e-commerce web application developed with Next.JS and TypeScript. Tailwind CSS is used for styling and React's Context API is used for state management. Custom REST API is used as a backend ([Haru API](https://github.com/satnaing/haru-api)).
-
-## Demo
-
-<p align="center">
-<a href="https://haru-fashion.vercel.app/"><img src="https://user-images.githubusercontent.com/53733092/139051262-7d501510-17ab-4e57-83da-c07385a85f9c.gif" alt="Haru-Fashion Demo" /></a><br/><br/>
-<a href="https://haru-fashion.vercel.app/"><img src="https://user-images.githubusercontent.com/53733092/139092307-3e364931-a083-40d9-9f0e-604db4170c2b.png" width="130"/></a>
-</p>
-
-## Lighthouse Score
-
-<p align="center">
-<img width="763" alt="Lighthouse" src="https://user-images.githubusercontent.com/53733092/155963931-9de8e33f-e77a-40fb-8cae-18ceffb057ad.png">
-</p>
-
-## Features
-
-- Progressive Web App (PWA) 🔥
-- Full-text Search 🔎
-- Responsive Design 📱💻
-- Wishlist 🤍
-- Add To Cart 🛒
-- Different Category Page 🧑🏻👩🏻🎒
-- Authentication (Register/Login/Logout) 🛡️
-- Pagination ⬅️➡️
-- Animation ✨
-- i18n (English & Burmese) 🌐
-- Keyboard Accessible ⌨️
-
-## Tech Stack
-
-**Frontend** - NextJS, React, TypeScript  
-**Styling** - Tailwind CSS  
-**Design & Prototype** - Figma  
-**State Management** - ContextAPI  
-**Backend** - [Haru API](https://github.com/satnaing/haru-api) (Previous Version - Firebase)  
-**Containerization:** Docker  
-**Deployment** Vercel
-
-## Running Locally
-
-Clone the project
-
-```bash
-git clone https://github.com/satnaing/e-commerce.git
-```
-
-Go to the project directory
-
-```bash
-cd e-commerce
-```
-
-Remove remote origin
-
-```bash
-git remote remove origin
-```
-
-Install dependencies
-
-```bash
-npm install
-```
-
-Start the server
+First, run the development server:
 
 ```bash
 npm run dev
+# or
+yarn dev
 ```
 
-## Inspiration and Credits
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Even though I wrote every single line of code for this web app, images and some design are inspired and used from the following websites.
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-- [Goya WordPress Premium Theme](https://goya.everthemes.com/demo-fashion/)
-- [Lusion WordPress Premium Theme](https://hn.arrowpress.net/lusion/home-minimalist/?currency=USD)
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-## Author
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-- [@satnaing](https://github.com/satnaing)
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
